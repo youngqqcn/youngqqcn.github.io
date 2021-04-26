@@ -6,3 +6,8 @@
 
 
 如果修改或者增加了文章,直接提交到远程`source`分支即可, github会自动进行编译, 将静态文件放在`master`分支
+
+
+# 关于Hexo的文档
+
+> https://hexo.io/docs/
