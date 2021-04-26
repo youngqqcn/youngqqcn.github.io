@@ -20,8 +20,8 @@ subtitle:
   text: 面朝大海，春暖花开。 #给岁月以文明，而不是给文明以岁月。 # 显示的文字
   text2: #愿你一生努力，一生被爱 # 滚动播放，如果不需要可以留空
   text3:  #想要的都拥有，得不到的都释怀 # 最多支持三段文字
-  startDelay: 1000 # 延迟时间
-  typeSpeed: 250 # 打字速度
+  startDelay: 0 # 延迟时间
+  typeSpeed: 150 # 打字速度
   loop: false # 是否循环
   backSpeed: 10000000 # 回退速度
   showCursor: false # 是否显示光标
