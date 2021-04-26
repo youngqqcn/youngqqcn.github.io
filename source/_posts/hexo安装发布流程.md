@@ -1,7 +1,7 @@
 ---
 title: hexo安装发布流程记录
 tags: hexo,github.io
-categories: hexo
+categories: 技术
 ---
 
 - 参考文档
