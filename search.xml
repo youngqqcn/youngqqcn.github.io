@@ -179,4 +179,31 @@
         <tag>三毛</tag>
       </tags>
   </entry>
+  <entry>
+    <title>美食</title>
+    <url>/2021/04/26/delicacy/index/</url>
+    <content><![CDATA[<p>这里会分享一些美食!</p>
+]]></content>
+      <categories>
+        <category>美食</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>生活</title>
+    <url>/2021/04/26/life/index/</url>
+    <content><![CDATA[<p>这里会记录美好生活!</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>摄影</title>
+    <url>/2021/04/26/photo/index/</url>
+    <content><![CDATA[<p>这里会分享一些照片!</p>
+]]></content>
+      <categories>
+        <category>摄影</category>
+      </categories>
+  </entry>
 </search>
