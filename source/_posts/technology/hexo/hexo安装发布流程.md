@@ -2,6 +2,7 @@
 title: hexo安装发布流程记录
 tags: hexo
 categories: 技术
+date: 2021-04-26
 ---
 
 - 参考文档
