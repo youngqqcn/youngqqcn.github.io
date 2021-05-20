@@ -270,6 +270,30 @@
       </categories>
   </entry>
   <entry>
+    <title>leetcode算法题.md</title>
+    <url>/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/</url>
+    <content><![CDATA[<p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
+<p>刷题的代码和笔记都会提交到</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
+</ul>
+<p>刷题计划表:</p>
+<p><a href="https://github.com/youngqqcn/LeetCodeNotes/README.md">https://github.com/youngqqcn/LeetCodeNotes/README.md</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2021五一假期</title>
     <url>/2021/05/07/travel/2021_5/</url>
     <content><![CDATA[<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>既然弄了这个个人博客，那么就要坚持每周写点东西。可能没有几个人会看到博客，就当作是写给未来的自己的信。</p>
