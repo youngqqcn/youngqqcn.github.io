@@ -18,4 +18,4 @@ tags:
 
 刷题计划表:
 
-https://github.com/youngqqcn/LeetCodeNotes/README.md
+https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md
