@@ -44,7 +44,7 @@ progressBar: true
 broadcast:
   enable: false # true开启，false关闭
   type: 2 # 1：自定义输入，2：一言api(https://hitokoto.cn/)
-  text: 一个安静优雅的hexo主题，快速且响应式。 # type为1时有效
+  text: 一个安静优雅的hexo主题,快速且响应式。 # type为1时有效
 
 # 文章配置
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
@@ -170,7 +170,7 @@ mermaid:
   theme: forest
 
 # 网站成立年份(默认为 2019，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
-since: 2019
+since: 2021
 
 # 是否显示页脚信息(建议保留)
 pageFooter: true
