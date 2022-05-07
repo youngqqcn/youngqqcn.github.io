@@ -11,9 +11,10 @@ tags:
 - IPFS
 ---
 
-
 # 深入分析NFT合约源码——以Surge Women为例
 
+
+github地址：https://github.com/youngqqcn/mynft
 
 - Surge Women合约地址：0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0
 - 智能合约源码：[surge.sol](./surge.sol)
@@ -80,8 +81,11 @@ SURGE
 ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5/1802
 ```
 
-
-但是从ipfs浏览器中的链接却是：`ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png`
+项目在IPFS的总目录：
+https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5
+或
+https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5
+ipfs浏览器中的链接：`ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png`
 
 
 分析tokenURI函数的代码
@@ -113,12 +117,6 @@ constructor(
     setRoyalties(_receiver, _royalties);
 }
 ```
-
-
-
-https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5
-
-https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5
 
 
 
