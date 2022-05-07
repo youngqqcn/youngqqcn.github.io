@@ -133,7 +133,8 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><ul>
+  <h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><p>github地址：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/mynft">https://github.com/youngqqcn/mynft</a></p>
+<ul>
 <li>Surge Women合约地址：0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0</li>
 <li>智能合约源码：<a href="./surge.sol">surge.sol</a></li>
 <li>tokenId: 1802</li>
@@ -151,8 +152,7 @@
 <p>运行打印的结果是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Surge Women Passport</span><br><span class="line">SURGE</span><br><span class="line">ipfs:&#x2F;&#x2F;QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5&#x2F;1802</span><br></pre></td></tr></table></figure>
 
-
-<p>但是从ipfs浏览器中的链接却是：<code>ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png</code></p>
+<p>项目在IPFS的总目录：<br><a target="_blank" rel="noopener" href="https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>或<br><a target="_blank" rel="noopener" href="https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>ipfs浏览器中的链接：<code>ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png</code></p>
 <p>分析tokenURI函数的代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function tokenURI(uint256 tokenId) public view virtual override returns (string memory) &#123;</span><br><span class="line">    if (!_exists(tokenId)) revert URIQueryForNonexistentToken();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; baseURI是目录的URI</span><br><span class="line">    string memory baseURI &#x3D; _baseURI();</span><br><span class="line">    &#x2F;&#x2F; 将目录的URI和tokenId拼接在一起就是token的URI</span><br><span class="line">    return bytes(baseURI).length !&#x3D; 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : &#39;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -161,8 +161,6 @@
 
 
 
-<p><a target="_blank" rel="noopener" href="https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a></p>
-<p><a target="_blank" rel="noopener" href="https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a></p>
 <p>presaleMint为什么要用到merkleProof?</p>
 <p>项目方做了预售，对所有参加预售的地址构造了一棵merkle tree，并将merkle root填入智能合约，调用presale的地址必须在merkle tree中。</p>
 <p>使用merkle tree可以隐藏了具体地址。</p>
