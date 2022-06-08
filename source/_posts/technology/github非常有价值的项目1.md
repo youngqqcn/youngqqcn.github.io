@@ -9,12 +9,12 @@ tags:
 - 技术趋势
 ---
 
-## PaddleOCR
+### PaddleOCR
 
 - 仓库链接：https://github.com/PaddlePaddle/PaddleOCR
 - 说明：基于深度学习的OCR库
 
-## Web-Dev-For-Beginners
+### Web-Dev-For-Beginners
 - 仓库链接：https://github.com/microsoft/Web-Dev-For-Beginners
 - 说明：微软出品的零基础学习网站开发
 
