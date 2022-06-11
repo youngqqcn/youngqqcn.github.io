@@ -13,7 +13,7 @@ tags:
 
 # 深度解析Optimism窃取事件
 
-本文在这篇文章[深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击](https://www.techflow520.com/news/920)加以梳理，并配有详细的流程图、示例代码，示例代码会放在github上。
+本文在这篇文章[深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击](https://www.techflow520.com/news/920)加以梳理，并配有详细的示例代码，示例代码会放在github上。
 
 
 ## 起因
@@ -27,11 +27,11 @@ tags:
 
 ## 分析
 
-黑客是如何搞的呢？ 思路很简单，只要2步：
+黑客是做到的呢？ 思路很简单，只要2步：
 
-- 创建乙方的收币地址（是合约地址）
-- 搞到乙方的收币地址的所有权
-
+- 在layer2上创建乙方的收币地址（是合约地址）
+- 搞到乙方的收币地址的所有权（控制权），因为地址是合约地址，而且是个proxy合约，即代理合约。
+- 转移资金
 
 ## Layer1
 
@@ -58,15 +58,15 @@ tags:
 
 https://etherscan.io/txs?a=0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a
 
-### 第1步：如何在layer2创建处合约地址A？
+### ⭐ 第1步：如何在layer2创建处合约地址A？
 因为layer1上创建合约A的交易，没有使用[EIP155](https://learnblockchain.cn/docs/eips/eip-155.html#%E8%A7%84%E8%8C%83),所以可以，将此笔交易进行重放。
 
 重放layer1上创建合约A的交易：https://optimistic.etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261
 ，保证发送笔交易时nonce与layer创建合约A时一样即可。
 
-如何重放？ 可以使用RPC`sendRawTransaction`将交易data发到layer2链上即可，当然要保证账户有余额
+如何重放？ 可以使用RPC `sendRawTransaction`将交易data发到layer2链上即可，当然要保证账户有余额
 
-### 第2步：如何在layer2创建处合约地址B？
+### ⭐ 第2步：如何在layer2创建处合约地址B？
 
 合约地址生成原理: `Hash(caller, nonce_of_caller)`
 
@@ -159,29 +159,8 @@ function createProxy(address masterCopy, bytes memory data)
 
 
 
-### 第3步：如何转移合约B中的金额？
+### ⭐ 第3步：如何转移合约B中的金额？
 
-```Shell
-
-curl https://mainnet.optimism.io -X POST \
--H 'content-type: application/json;'\
--d \
-'{
-    "jsonrpc": "2.0",
-    "method": "eth_call",
-    "params": [
-       {
-        "to": "0x4f3a120e72c76c22ae802d129f599bfdbc31cb81",
-        "data": "0x8da5cb5b"},
-       "latest"
-    ],
-    "id": 1
-}'   
-
-```
-
-0x8BcFe4f1358E50A1db10025D731C8b3b17f04DBB
-0x60B28637879B5a09D21B68040020FFbf7dbA5107
 
 
 黑客转移合约B上的1000000个OP的交易：https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e
@@ -251,6 +230,14 @@ contract Proxy {
 
 因为`masterCopy`在创建合约B时，就已经设置为黑客自己的攻击合约地址`0xE7145dd6287AE53326347f3A6694fCf2954bcD8A`。
 
-如此一来，代码中的`delegatecall`调用黑客自己的攻击合约，然后在攻击合约中执行`OP`合约(`0x4200000000000000000000000000000000000042`)的ERC20的`transfer`操作，就可以转走盗来的`1,000,000`个`OP`代币了。
+如此一来，代码中的`delegatecall`调用黑客自己的攻击合约，然后在攻击合约中执行`OP`合约(`0x4200000000000000000000000000000000000042`)的ERC20的`transfer`操作，又因为使用的是`delegatecall`，`msg.sender`就是合约B的地址，即(0x4f3a120e72c76c22ae802d129f599bfdbc31cb81)，所以，调用`transfer`时，扣除的`msg.sender`的OP代币余额，这样，就可以转移了`OP`代币。
 
+
+我们再验证这个合约B的“转发”功能，
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-001.png)
+
+其中`0x8da5cb5b`是函数`owner()`的签名。合约B`0x4f3a120e72c76c22ae802d129f599bfdbc31cb81`将请求转发到黑客的攻击合约，如下图：
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-002.png)
 
