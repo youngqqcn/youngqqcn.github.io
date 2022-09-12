@@ -1,2 +1,5 @@
 node_modules
 public
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log
