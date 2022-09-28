@@ -102,6 +102,73 @@
     
     
     <article
+  id="post-technology/blockchain/solidity/EIP1967-实现可升级智能合约"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/09/27/technology/blockchain/solidity/EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"
+    >EIP1967-实现可升级智能合约</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/09/27/technology/blockchain/solidity/EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
+  <time datetime="2022-09-27T16:00:00.000Z" itemprop="datePublished">2022-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="EIP1967-实现可升级智能合约"><a href="#EIP1967-实现可升级智能合约" class="headerlink" title="EIP1967-实现可升级智能合约"></a>EIP1967-实现可升级智能合约</h1><p>EIP1967实现可升级的合约(逻辑和数据存储分离)</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-1967">https://eips.ethereum.org/EIPS/eip-1967</a><br>写的很好：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/551852314">https://zhuanlan.zhihu.com/p/551852314</a><br>OpenZeppelin的实现： <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/proxy">https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/proxy</a><br><a target="_blank" rel="noopener" href="https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies">https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies</a></p>
+</blockquote>
+<blockquote>
+<p>解决upgrade-safe<br><a target="_blank" rel="noopener" href="https://docs.openzeppelin.com/upgrades-plugins/1.x/faq#what-does-it-mean-for-a-contract-to-be-upgrade-safe">https://docs.openzeppelin.com/upgrades-plugins/1.x/faq#what-does-it-mean-for-a-contract-to-be-upgrade-safe</a></p>
+</blockquote>
+<p>通过使用逻辑处理与存储分离的模式，来实现智能合约升级。</p>
+<p>通过以下代码进行理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">contract Proxy &#123;</span><br><span class="line">	mapping(address &#x3D;&gt; uint) private balances; &#x2F;&#x2F; 余额</span><br><span class="line"></span><br><span class="line">	address private impl;</span><br><span class="line"></span><br><span class="line">	function upgradeTo(address _addr) &#123;</span><br><span class="line">		impl &#x3D; _addr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 当调用的代理</span><br><span class="line">	fallback() external payable virtual &#123;</span><br><span class="line">        _fallback();</span><br><span class="line">    &#125;</span><br><span class="line">    function _fallback() internal virtual &#123;</span><br><span class="line">        _beforeFallback();</span><br><span class="line">        _delegate(_implementation());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 调用</span><br><span class="line">    function _delegate(address implementation) internal virtual &#123;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            &#x2F;&#x2F; Copy msg.data. We take full control of memory in this inline assembly</span><br><span class="line">            &#x2F;&#x2F; block because it will not return to Solidity code. We overwrite the</span><br><span class="line">            &#x2F;&#x2F; Solidity scratch pad at memory position 0.</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; Call the implementation.</span><br><span class="line">            &#x2F;&#x2F; out and outsize are 0 because we don&#39;t know the size yet.</span><br><span class="line">            let result :&#x3D; delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; Copy the returned data.</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line"></span><br><span class="line">            switch result</span><br><span class="line">            &#x2F;&#x2F; delegatecall returns 0 on error.</span><br><span class="line">            case 0 &#123;</span><br><span class="line">                revert(0, returndatasize())</span><br><span class="line">            &#125;</span><br><span class="line">            default &#123;</span><br><span class="line">                return(0, returndatasize())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>部署</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; ethers, upgrades &#125; = <span class="built_in">require</span>(<span class="string">&quot;hardhat&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    acc  = ethers.getSigners()</span></span><br><span class="line">    <span class="keyword">const</span> [owner] = <span class="keyword">await</span> ethers.getSigners();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Deploying</span></span><br><span class="line">    <span class="keyword">const</span> sbt = <span class="keyword">await</span> ethers.getContractFactory(<span class="string">&quot;SBT&quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> instance = <span class="keyword">await</span> upgrades.deployProxy(</span><br><span class="line">        sbt,</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&quot;Soulbound Token&quot;</span>,</span><br><span class="line">            <span class="string">&quot;SBT&quot;</span>,</span><br><span class="line">            owner.address,</span><br><span class="line">        ],</span><br><span class="line">        &#123;</span><br><span class="line">            initializer: <span class="string">&quot;initialize&quot;</span>,</span><br><span class="line">            kind: <span class="string">&quot;transparent&quot;</span>,</span><br><span class="line">            unsafeAllow: [<span class="string">&#x27;delegatecall&#x27;</span>] <span class="comment">// 遇到unsafe upgrade错误，可以强行使用</span></span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> ret = <span class="keyword">await</span> instance.deployed();</span><br><span class="line">    <span class="built_in">console</span>.log(ret)</span><br><span class="line"></span><br><span class="line"><span class="comment">//   await upgradeProxy(proxyAddress, implementationFactory, &#123; unsafeAllow: [&#x27;delegatecall&#x27;] &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   Upgrading</span></span><br><span class="line"><span class="comment">//   const BoxV2 = await ethers.getContractFactory(&quot;BoxV2&quot;);</span></span><br><span class="line"><span class="comment">//   const upgraded = await upgrades.upgradeProxy(instance.address, BoxV2);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC1967/" rel="tag">ERC1967</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E5%90%88%E7%BA%A6/" rel="tag">代理合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%AF%E5%8D%87%E7%BA%A7/" rel="tag">可升级</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-learning/9-12月技术学习"
   class="article article-type-post"
   itemscope
@@ -540,100 +607,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%8C%E4%BA%BA/" rel="tag">富人</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%95%E8%B5%84/" rel="tag">投资</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%90%86%E8%B4%A2/" rel="tag">理财</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/NFT/深入分析NFT合约源码"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/"
-    >深入分析NFT合约源码——以Surge Women为例</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/" class="article-date">
-  <time datetime="2022-05-06T16:00:00.000Z" itemprop="datePublished">2022-05-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><p>github地址：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/mynft">https://github.com/youngqqcn/mynft</a></p>
-<ul>
-<li>Surge Women合约地址：0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0</li>
-<li>智能合约源码：<a href="./surge.sol">surge.sol</a></li>
-<li>tokenId: 1802</li>
-<li>opensea链接：<a target="_blank" rel="noopener" href="https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802">https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802</a></li>
-<li>token mint 交易链接：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4">https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</a></li>
-</ul>
-<p>问题1：NFT(non-fungible token)，即非同质化代币，如何理解“非同质化”？在代码层面如何实现的？</p>
-<p>答：fungible中文意思是“可互换的”，可互换的东西是没有特殊性的，如果是独一无二的东西则具有了“不可互换的”属性。例如，1元钱的硬币和1元钱的纸钞则可以互换，虽然在形态上不同，但是在作为货币的属性上本质相同，都是代表1元。</p>
-<p>至于如何编码实现，前面说了non-fungible的东西必须具备“独一无二”的属性，在编程领域什么东西独一无二呢？<br>答案很简单，就是唯一的id，用一个整数即可，在solidity中uint256能够表示的整数完全够用。</p>
-<p>问题2：NFT的图片（或者音频、视频等）是怎样和智能中tokenId一一对应起来的？</p>
-<p>图片等资源文件放在IPFS，智能合约中只存储每个token对应的IPFS上的URI即可。每个NFT项目有一个目录，目录下可以放很多资源文件，在构造合约的时候将目录在IPFS上的URI设置为baseURI，那么每个token的资源文件在IPFS的URI就确定了。例如，某个NFT项目在IPFS上总目录的URI为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</code>，tokenId为<code>1802</code>的token在IPFS上的URI则为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5/1802</code>。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</span></span><br><span class="line"><span class="comment"># https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab</span></span><br><span class="line"><span class="comment"># contract address is 0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line">my_provider = Web3.HTTPProvider(<span class="string">&#x27;https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab&#x27;</span>)</span><br><span class="line">w3 = Web3(my_provider)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    </span><br><span class="line">    contract_address = <span class="string">&#x27;0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0&#x27;</span></span><br><span class="line">    contract_abi = json.load(<span class="built_in">open</span>(<span class="string">&#x27;surge.abi&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">    <span class="comment"># print(contract_abi)</span></span><br><span class="line"></span><br><span class="line">    mycontract = w3.eth.contract(address=contract_address, abi=contract_abi)</span><br><span class="line">    name = mycontract.functions.name().call()</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line">    symbol = mycontract.functions.symbol().call()</span><br><span class="line">    <span class="built_in">print</span>(symbol)</span><br><span class="line"></span><br><span class="line">    tokenURI = mycontract.functions.tokenURI(<span class="number">1802</span>).call()</span><br><span class="line">    <span class="built_in">print</span>(tokenURI)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>运行打印的结果是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Surge Women Passport</span><br><span class="line">SURGE</span><br><span class="line">ipfs:&#x2F;&#x2F;QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5&#x2F;1802</span><br></pre></td></tr></table></figure>
-
-<p>项目在IPFS的总目录：<br><a target="_blank" rel="noopener" href="https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>或<br><a target="_blank" rel="noopener" href="https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>ipfs浏览器中的链接：<code>ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png</code></p>
-<p>分析tokenURI函数的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function tokenURI(uint256 tokenId) public view virtual override returns (string memory) &#123;</span><br><span class="line">    if (!_exists(tokenId)) revert URIQueryForNonexistentToken();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; baseURI是目录的URI</span><br><span class="line">    string memory baseURI &#x3D; _baseURI();</span><br><span class="line">    &#x2F;&#x2F; 将目录的URI和tokenId拼接在一起就是token的URI</span><br><span class="line">    return bytes(baseURI).length !&#x3D; 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : &#39;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而 _baseURI由 Surge合约重写了父合约的_baseURI函数。Surge合约在构造函数中设置了baseURI，也就是在构造合约时已经设置了baseURI</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">constructor(</span><br><span class="line">    string memory _name,</span><br><span class="line">    string memory _symbol,</span><br><span class="line">    string memory _baseTokenURI,</span><br><span class="line">    uint128 _price,</span><br><span class="line">    address _receiver,</span><br><span class="line">    uint256 _royalties</span><br><span class="line">) payable ERC721A(_name, _symbol) &#123;</span><br><span class="line">    setBaseURI(_baseTokenURI);</span><br><span class="line">    setPrice(_price);</span><br><span class="line">    setRoyalties(_receiver, _royalties);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>presaleMint为什么要用到merkleProof?</p>
-<p>项目方做了预售，对所有参加预售的地址构造了一棵merkle tree，并将merkle root填入智能合约，调用presale的地址必须在merkle tree中。</p>
-<p>使用merkle tree可以隐藏了具体地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Presale minting verifies callers address is in Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _amountOfTokens Amount of tokens to mint</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleProof Hash of the callers address used to verify the location of that address in the Merkle Root</span><br><span class="line">function presaleMint(uint256 _amountOfTokens, bytes32[] calldata _merkleProof)</span><br><span class="line">    external</span><br><span class="line">    payable</span><br><span class="line">    verifyMaxPerUser(msg.sender, _amountOfTokens)</span><br><span class="line">    verifyMaxSupply(_amountOfTokens)</span><br><span class="line">    isEnoughEth(_amountOfTokens)</span><br><span class="line">&#123;</span><br><span class="line">    require(status &#x3D;&#x3D; SaleStatus.Presale, &quot;Presale not active&quot;);</span><br><span class="line"></span><br><span class="line">    bytes32 leaf &#x3D; keccak256(abi.encodePacked(msg.sender));</span><br><span class="line">    require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), &quot;Not in presale list&quot;);</span><br><span class="line"></span><br><span class="line">    _mintedAmount[msg.sender] +&#x3D; _amountOfTokens;</span><br><span class="line">    _safeMint(msg.sender, _amountOfTokens);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>设置merkle root<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27">https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Set Presale Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleRoot Merkle Root hash</span><br><span class="line">function setMerkleRoot(bytes32 _merkleRoot) public onlyOwner &#123;</span><br><span class="line">    merkleRoot &#x3D; _merkleRoot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>presale</p>
-<p><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581">https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581</a></p>
-<p>同一个地址2次调用presale，那么它提供的merkle proof两次肯定是一样的。<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366">https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366</a><br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e">https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC721/" rel="tag">ERC721</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPFS/" rel="tag">IPFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="tag">源码分析</a></li></ul>
 
     </footer>
   </div>
