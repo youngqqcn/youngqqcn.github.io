@@ -1411,6 +1411,43 @@
       </tags>
   </entry>
   <entry>
+    <title>web3技术学习</title>
+    <url>/2022/12/27/technology/blockchain/web3/web3%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<ul>
+<li><p>Solidity： <a href="https://github.com/AmazingAng/WTF-Solidity">https://github.com/AmazingAng/WTF-Solidity</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/full-blockchain-solidity-course-py">https://github.com/youngqqcn/full-blockchain-solidity-course-py</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/web3app-tutrial-using-web3react">https://github.com/youngqqcn/web3app-tutrial-using-web3react</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/full-blockchain-solidity-course-js">https://github.com/youngqqcn/full-blockchain-solidity-course-js</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/awesome-metaverse-zh">https://github.com/youngqqcn/awesome-metaverse-zh</a></p>
+</li>
+<li><p><a href="https://github.com/shengcaishizhan/kkndme_tianya">https://github.com/shengcaishizhan/kkndme_tianya</a></p>
+</li>
+</ul>
+<ul>
+<li><p>Redis源码分析： <a href="https://github.com/youngqqcn/redis-3.0-annotated/">https://github.com/youngqqcn/redis-3.0-annotated/</a></p>
+</li>
+<li><p>C语言资源大全： <a href="https://github.com/youngqqcn/awesome-c-cn">https://github.com/youngqqcn/awesome-c-cn</a></p>
+</li>
+</ul>
+<ul>
+<li>区块链资源大全：<a href="https://github.com/youngqqcn/awesome-blockchain-cn/tree/master">https://github.com/youngqqcn/awesome-blockchain-cn/tree/master</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>技术</tag>
+        <tag>智能合约</tag>
+        <tag>web3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深度解析Optimism窃取事件</title>
     <url>/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<h1 id="深度解析Optimism窃取事件"><a href="#深度解析Optimism窃取事件" class="headerlink" title="深度解析Optimism窃取事件"></a>深度解析Optimism窃取事件</h1><p>本文在这篇文章<a href="https://www.techflow520.com/news/920">深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击</a>加以梳理，并配有详细的示例代码，示例代码会放在github上。</p>
