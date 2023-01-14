@@ -1151,6 +1151,34 @@
       </tags>
   </entry>
   <entry>
+    <title>ent实体框架学习</title>
+    <url>/2023/01/12/technology/go/ent/</url>
+    <content><![CDATA[<p><a href="https://github.com/ent/ent">https://github.com/ent/ent</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>go</tag>
+        <tag>实体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>celery</title>
+    <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
+<p>Django集成celery示例： <a href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>celery</tag>
+        <tag>任务队列</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NFT学习</title>
     <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
