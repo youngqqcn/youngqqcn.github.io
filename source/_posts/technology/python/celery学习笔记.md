@@ -1,9 +1,3 @@
-<!--
- * @Author: yqq
- * @Email: youngqqcn@gmail.com
- * @Date: 2023-01-12 15:11:35
- * @Description: file content
--->
 ---
 date: 2023-01-12 15:11:35
 title: celery
