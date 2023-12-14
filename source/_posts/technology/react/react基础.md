@@ -55,3 +55,44 @@ console.log(score);  // 0
 setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
+
+
+## 更新数组
+
+
+| |避免使用 (会改变原始数组) | 推荐使用 (会返回一个新数组）|
+|--|-----|----|
+|添加元素| push，unshift|concat，[...arr] 展开语法（例子）|
+|删除元素| pop，shift，splice| filter，slice（例子）|
+|替换元素| splice，arr[i] = ... 赋值| map（例子）|
+|排序| reverse，sort| 先将数组复制一份（例子）|
+
+
+
+## Context使用场景
+
+
+
+
+## ref 和 state 的不同之处
+
+
+|ref | state |
+|----|-----|
+|`useRef(initialValue)`返回 `{ current: initialValue }`|`useState(initialValue)` 返回 state 变量的当前值和一个 `state` 设置函数 `( [value, setValue])`|
+|更改时不会触发重新渲染|更改时触发重新渲染。|
+|可变 —— 你可以在渲染过程之外修改和更新 `current` 的值。|“不可变” —— 你必须使用 `state` 设置函数来修改 `state` 变量，从而排队重新渲染。|
+|你不应在渲染期间读取（或写入） `current` 值。|你可以随时读取 `state`。但是，每次渲染都有自己不变的 `state` 快照。|
+
+
+
+## Effect
+
+
+```js
+const [count, setCount] = useState(0);
+useEffect(() => {
+  setCount(count + 1);
+});
+
+```
