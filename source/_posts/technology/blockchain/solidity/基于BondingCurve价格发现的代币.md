@@ -10,7 +10,7 @@ tags:
 - 代币
 ---
 
-# 基于BodingCurve价格发现的代币
+# 基于BondingCurve价格发现的代币
 
 
 ## 相关链接
