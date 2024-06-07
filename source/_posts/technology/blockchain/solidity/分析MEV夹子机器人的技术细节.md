@@ -68,14 +68,7 @@ function addLiquidity(
     - 即 `(amountA, amountB) = (8.998, 15.456);`
 
 - 其中 `quote`函数, 按照等比例增加, 这里只能近似:
-    $$
-    \frac {\Delta B}{\Delta A} = \frac{B}{A}
-    $$
-
-    所以：
-    $$
-    {\Delta B} = \frac{B \cdot \Delta A}{A}
-    $$
+   ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/截图_2024-06-07_18-35-24.png)
 
   -  `A2: 7.07 + 8.99 = 16.06 USDT`
   - `B2: 12.145 + 15.3 = 27.445  TXXC`
@@ -111,6 +104,7 @@ function addLiquidity(
 - 我损失的:
   - USDT- ` -5.467`
   - BNB: ` +0.0026 BNB`, 约 `1.82U`
+    - 池子是我建的，手续归我
   - 合计: ` -3.647U`
   - 我这笔交易损失: `3.647 U`
 
