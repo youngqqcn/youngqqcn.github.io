@@ -32,7 +32,7 @@ tags:
 
 ### Token Program
 
-![](./imgs/token-program.svg)
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg)
 
 
 - `InitializeMint`: 发行代币
