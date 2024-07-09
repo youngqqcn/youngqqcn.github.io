@@ -188,6 +188,81 @@
 <p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer-process.svg"></p>
 </li>
 </ul>
+<hr>
+<h2 id="交易确认-amp-过期"><a href="#交易确认-amp-过期" class="headerlink" title="交易确认&amp;过期"></a>交易确认&amp;过期</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/confirmation">https://solana.com/docs/advanced/confirmation</a></p>
+</blockquote>
+<ul>
+<li>过期时间 <code>151</code>个区块, 每个区块<code>400ms</code>, 即 <code>60s</code></li>
+<li>交易中的recentBlockHash必须是151区块内, 否则将是过期交易</li>
+</ul>
+<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
+<li><p>建议1： 调用<code>getLatestBlockhash</code>时， 推荐使用 <code>confired</code></p>
+<ul>
+<li><code>proceeded</code>: 已处理, 很激进，速度最快，但有可能被跳过<ul>
+<li>用这种级别的交易中，有约<code>5%</code>交易会被验证节点丢弃</li>
+</ul>
+</li>
+<li><code>confirmed</code>: 已被多个验证节点确认, 折衷方案<ul>
+<li>这个级别，比较稳妥，因为被多个节点确认，之后被丢弃的几率很小</li>
+</ul>
+</li>
+<li><code>finalized</code>: 最终确认, 太保守, 交易不会被丢弃<ul>
+<li>即<code>32</code>个slot确认, 需要<code>12.8s</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>建议2：在<code>sendTransaction</code>和 <code>simulateTransaction</code>时使用， 要设置相同的 <code>preflightCommitment</code>, 即都设置 <code>confirmed</code></p>
+</li>
+<li><p>建议3：使用可靠的RPC节点，不要用落后的RPC节点</p>
+</li>
+<li><p>建议4：不要用过期的blockhash, 而是在签名前实时获取最新的blockHash</p>
+</li>
+<li><p>前端应用要一直轮询最新的区块hash, 确保用户在触发交易时，获取的区块是最新的</p>
+</li>
+<li><p>钱包要一直轮询最新的区块hash, 并刷新交易中的区块hash,确保用户签名时用的是最新的区块hash</p>
+</li>
+<li><p>建议5：使用健康的RPC节点获取区块hash</p>
+</li>
+<li><p>其他建议</p>
+</li>
+</ul>
+<hr>
+<h2 id="Solana交易重试"><a href="#Solana交易重试" class="headerlink" title="Solana交易重试"></a>Solana交易重试</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/retry">https://solana.com/docs/advanced/retry</a></p>
+</blockquote>
+<ul>
+<li>RPC节点会尝试重新广播</li>
+<li>开发者可以实现自定义的重新广播逻辑</li>
+<li>开发者可以利用 <code>sendTransaction</code>的 <code>maxRetries</code>参数</li>
+<li>开发者在提交交易前，应该执行预检(preflight), 如: <code>simulattionTransaction</code></li>
+<li>在对重试交易进行签名交易前，<strong>必须</strong>确保之前那笔交易中的区块hash已经过期，<ul>
+<li>否则存在发起2笔交易的风险</li>
+</ul>
+</li>
+</ul>
+<h3 id="交易的流程"><a href="#交易的流程" class="headerlink" title="交易的流程"></a>交易的流程</h3><p>Solana<strong>没有交易池(mempool, txpool)</strong>, 所有的交易都会转发给leaders节点执行</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tx-journey.png"></p>
+<p>Transaction Processing Unit (TPU) 处理交易的阶段：</p>
+<ul>
+<li>Fetch Stage</li>
+<li>SigVerify Stage</li>
+<li>Banking Stage</li>
+<li>Proof of History Service</li>
+<li>Broadcast Stage</li>
+</ul>
+<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tpu-jito-labs.png)
+</code></pre>
+<h3 id="交易被丢弃的几种情况"><a href="#交易被丢弃的几种情况" class="headerlink" title="交易被丢弃的几种情况"></a>交易被丢弃的几种情况</h3><ul>
+<li>第1种： 开发者引用过期区块hash, 提交交易时被RPC pool丢弃 ，这种是最常见的<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-via-rpc-pool.png"></li>
+</ul>
+<ul>
+<li>第2种： 临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-pre-process.png"></li>
+</ul>
+<ul>
+<li>第3种：  临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png"></li>
+</ul>
  
       <!-- reward -->
       
