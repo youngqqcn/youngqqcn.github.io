@@ -1,5 +1,5 @@
 ---
-date: 2024-07-09 19:43
+date: 2024-07-09 19:52
 title: 6_Solana的跨程序调用CPI
 categories: 技术
 tags:
