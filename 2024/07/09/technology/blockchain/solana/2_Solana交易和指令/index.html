@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.6k</span>
+            <span class="post-count">1.7k</span>
         </span>
     </span>
 
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">7 分钟</span>
+            <span class="post-count">8 分钟</span>
         </span>
     </span>
 </div>
@@ -232,6 +232,31 @@
 </ul>
 <ul>
 <li>第3种：  临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png"></li>
+</ul>
+<hr>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<h2 id="Versioned-Transaction"><a href="#Versioned-Transaction" class="headerlink" title="Versioned Transaction"></a>Versioned Transaction</h2><p>Solana有2种不同的交易类型：</p>
+<ul>
+<li><code>legacy</code>: older transaction format with no additional benefit</li>
+<li><code>0</code>: added support for Address Lookup Tables</li>
+</ul>
+<p>具体例子：<a target="_blank" rel="noopener" href="https://www.solanazh.com/course/7-1">https://www.solanazh.com/course/7-1</a></p>
+<h2 id="Address-Lookup-Tables"><a href="#Address-Lookup-Tables" class="headerlink" title="Address Lookup Tables"></a>Address Lookup Tables</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<ul>
+<li><p><strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址</p>
+</li>
+<li><p>使用 Versioned Transaction 和 Address Lookup Tables, 可以将<strong>每笔交易</strong>能包含的地址提升到 <code>256</code>个地址</p>
+</li>
+<li><p>地址压缩： 在所有地址都存在链上之后， 每个地址(32字节)只需用一个索引(1字节)进行地址定位即可</p>
+<ul>
+<li>先把地址存在链上,获得一个lookupTableAccount</li>
+<li>然后通过索引来获取lookupTableAccount中的地址</li>
+</ul>
+</li>
 </ul>
  
       <!-- reward -->
