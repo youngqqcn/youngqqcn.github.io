@@ -90,8 +90,10 @@ anchor init <new-workspace-name>
 ```rust
 use anchor_lang::prelude::*;
 
+// 程序ID
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
+// 指令执行逻辑
 #[program]
 mod basic_1 {
     use super::*;
@@ -109,6 +111,8 @@ mod basic_1 {
     }
 }
 
+
+// 包含了Initialize指令所需要的账户(my_account, user, system_program)
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init, payer = user, space = 8 + 8)]
@@ -118,12 +122,14 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
+// 包含了Update指令所需要的账户(my_account, user, system_program)
 #[derive(Accounts)]
 pub struct Update<'info> {
     #[account(mut)]
     pub my_account: Account<'info, MyAccount>,
 }
 
+// 数据账户
 #[account]
 pub struct MyAccount {
     pub data: u64,
