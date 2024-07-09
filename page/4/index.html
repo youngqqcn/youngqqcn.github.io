@@ -102,6 +102,265 @@
     
     
     <article
+  id="post-technology/cpp/strtok源码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
+    >strtok源码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/多笔交易打包"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/"
+    >多笔交易打包</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/" class="article-date">
+  <time datetime="2024-03-06T16:00:00.000Z" itemprop="datePublished">2024-03-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
+</ul>
+<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-technology/react/react基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/"
+    >react基础</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2023-12-06T03:42:37.000Z" itemprop="datePublished">2023-12-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="react中文教程"><a href="#react中文教程" class="headerlink" title="react中文教程"></a>react中文教程</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn">https://zh-hans.react.dev/learn</a></li>
+</ul>
+<h1 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h1><ul>
+<li>Ubuntu： <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions#ubuntu-versions">https://github.com/nodesource/distributions#ubuntu-versions</a></li>
+<li>全局安装脚手架: <code>npm i -g create-react-app</code></li>
+<li>直接创建项目: <code>npx create-react-app my-app</code></li>
+</ul>
+<h1 id="antd使用"><a href="#antd使用" class="headerlink" title="antd使用"></a>antd使用</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/components/overview-cn">https://ant-design.antgroup.com/components/overview-cn</a></p>
+</blockquote>
+<ul>
+<li>全局安装  <code>npm install antd-init -g</code></li>
+<li>antd-init</li>
+<li>npm install antd –save</li>
+</ul>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
+<p>想象一下，你的组件是厨房里的厨师，用食材制作出美味的菜肴。在这个场景中，React 是服务员，负责提出顾客的要求，并给顾客上菜。这个请求和服务 UI 的过程有三个步骤：</p>
+<ul>
+<li>触发渲染（将食客的订单送到厨房）</li>
+<li>渲染组件（在厨房准备订单）</li>
+<li>提交到 DOM（将订单送到桌前）</li>
+</ul>
+<p>作为快照的状态</p>
+<ul>
+<li>与普通 JavaScript 变量不同，React 状态的行为更像一个快照。设置它并不改变你已有的状态变量，而是触发一次重新渲染。这在一开始可能会让人感到惊讶！</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="更新数组"><a href="#更新数组" class="headerlink" title="更新数组"></a>更新数组</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>避免使用 (会改变原始数组)</th>
+<th>推荐使用 (会返回一个新数组）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加元素</td>
+<td>push，unshift</td>
+<td>concat，[…arr] 展开语法（例子）</td>
+</tr>
+<tr>
+<td>删除元素</td>
+<td>pop，shift，splice</td>
+<td>filter，slice（例子）</td>
+</tr>
+<tr>
+<td>替换元素</td>
+<td>splice，arr[i] = … 赋值</td>
+<td>map（例子）</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>reverse，sort</td>
+<td>先将数组复制一份（例子）</td>
+</tr>
+</tbody></table>
+<h2 id="Context使用场景"><a href="#Context使用场景" class="headerlink" title="Context使用场景"></a>Context使用场景</h2><h2 id="ref-和-state-的不同之处"><a href="#ref-和-state-的不同之处" class="headerlink" title="ref 和 state 的不同之处"></a>ref 和 state 的不同之处</h2><table>
+<thead>
+<tr>
+<th>ref</th>
+<th>state</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>useRef(initialValue)</code>返回 <code>&#123; current: initialValue &#125;</code></td>
+<td><code>useState(initialValue)</code> 返回 state 变量的当前值和一个 <code>state</code> 设置函数 <code>( [value, setValue])</code></td>
+</tr>
+<tr>
+<td>更改时不会触发重新渲染</td>
+<td>更改时触发重新渲染。</td>
+</tr>
+<tr>
+<td>可变 —— 你可以在渲染过程之外修改和更新 <code>current</code> 的值。</td>
+<td>“不可变” —— 你必须使用 <code>state</code> 设置函数来修改 <code>state</code> 变量，从而排队重新渲染。</td>
+</tr>
+<tr>
+<td>你不应在渲染期间读取（或写入） <code>current</code> 值。</td>
+<td>你可以随时读取 <code>state</code>。但是，每次渲染都有自己不变的 <code>state</code> 快照。</td>
+</tr>
+</tbody></table>
+<h2 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%A0%88/" rel="tag">全栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-life/爱因斯坦与佛陀"
   class="article article-type-post"
   itemscope
@@ -234,255 +493,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">服务端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%9E%E9%98%BB%E5%A1%9E/" rel="tag">非阻塞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/" rel="tag">高性能</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-life/佛教中“空”的本义是什么"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/"
-    >佛教中“空”的本义是什么</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/" class="article-date">
-  <time datetime="2023-10-20T10:50:01.000Z" itemprop="datePublished">2023-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>一切万有都是缘起，这就是佛教“空”之本义，“无”之真意。</p>
-<p>空，是佛教对世界一切事物本质最简要的描述，是释迦世尊洞彻世界万物缘起的结论。故《心经》开头就说：“观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如此。”</p>
-<p>但社会上很多人都误解了佛教的“空”字。有人反问说：“我们每天吃的、穿的、用的，以及看到的一切，难道都是空的吗？”说这话的人也许没认真思维，难道佛教徒糊涂到连日常生活都搞不清楚吗？！佛教所说的“空”，根本不是有人所认为的“没有”的意思，也与社会上常听到的“人生到头一场空”的“空”字意思有别，“一场空”的“空”字，是得不到的意思。</p>
-<p><strong>佛教所说的“空”，是对世间事物变化过程的描述，准确地讲，是万事万物最终要变化、要毁坏的意思，是对缘起法最本质的体证。佛教认为世上任何一种事物，都是由因缘和合而成，都是由各种条件和合而成，或其它事物变化而来，最后又变化为另外的事物</strong>。</p>
-<p>成、住、坏、空，是世上一切事物发展变化的必然，有生就有死，有成就有坏。<strong>佛教所说的空，是指事物的本性是空的，而不是指事物的外相也是空</strong>。比如我们的一辈子，父母亲生下我们时，佛法上说是四大五蕴和合而成，按科学说法，是碳、氢、氧等基本元素构成，然后长大成人，然后衰老，最后死亡，一切都是变化的，我们的一生也就是在这样的因缘变化中过去了。正是在这个意思上，我们说人生是空的，一切都是缘起性空。</p>
-<p>所以佛法教导我们，<strong>做人不要执着于外相上的缘起缘灭，执着就苦，就起烦恼</strong>。但也不要因为认识到人生是空的，就悲观绝望，这就落入了顽空，这也是一种固执。因为“性空”并不否定相上的缘起，相是存在的，它刹那生灭变化。</p>
-<p>一个人认识到人生的空苦，而又不落入顽空，确实需要智慧。如何获得这种智慧？这正是佛教所要解决、所能解决的。通过学佛，修戒定慧三学，体证般若的智慧，达到改变我们苦空人生的目的。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-life/星云大师——空"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/"
-    >空</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/" class="article-date">
-  <time datetime="2023-10-20T10:50:01.000Z" itemprop="datePublished">2023-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p>转载自，星云大师《佛学》丛书：<a target="_blank" rel="noopener" href="http://www.masterhsingyun.org/article/article.jsp?index=7&amp;item=61&amp;bookid=2c907d4945216fae014569962c35052c&amp;ch=4&amp;se=1&amp;f=1">http://www.masterhsingyun.org/article/article.jsp?index=7&amp;item=61&amp;bookid=2c907d4945216fae014569962c35052c&amp;ch=4&amp;se=1&amp;f=1</a></p>
-</blockquote>
-<h2 id="壹‧前言"><a href="#壹‧前言" class="headerlink" title="壹‧前言"></a>壹‧前言</h2><p>　　自古以來，佛門就有「空門」之稱，因為「空」是佛教最重要的教義之一，也是佛法不共其他宗教及世間學說的特質。當初佛陀在菩提樹下、金剛座上證悟成佛，他所證悟的宇宙真理是「緣起」，緣起就是說世間一切存有的事物都是因緣所成，沒有實在的自性可言，這種諸法自性了不可得的特質就稱為「空」。因此，「空」可以說是佛教的言語中最接近諸法實相的名詞，然而一般人不了解「空」的真義，誤解佛教是消極避世的宗教。事實上，「空」蘊含無限，真空才能生妙有；「空」並不是無，而是要我們大破大立，空去一切有無對待，空去一切差別觀念，甚至連這個「空」也要空去，然後才能享有一個大解脫、大自在、空有不二的世界。</p>
-<h2 id="貳‧空的真義"><a href="#貳‧空的真義" class="headerlink" title="貳‧空的真義"></a>貳‧空的真義</h2><p>　　《中論‧觀四諦品》說：「以有空義故，一切法得成；若無空義故，一切則不成。」「空」是建立萬有的要素，以棉布為例，從緣起法來看，布是空的，因為布只是因緣和合的假相，譬如布的原料是來自棉紗，棉紗是由棉花的纖維紡成，棉花又採自棉種子，種子須要有土地、陽光、空氣、水分、肥料等的栽培灌溉，才能萌芽、成長、開花、結果，既而果熟開裂，種子密生棉毛，則可供紡紗。因此，棉布是棉籽結合了宇宙萬有的因緣而成，所以我們從「萬有的因緣」上看，它的自性就是「空」，這就是所謂的「真空能生妙有」。</p>
-<p>　　再以我們的身體為例，鼻孔不空就不能呼吸，耳朵不空就不能聽聞，乃至全身的毛孔細胞、五臟六腑如果不空，就無法生存。有了「空」，生命才能延續；心中有了「空」，才能「心包太虛，量周沙界」；世界有了「空」，才能生出宇宙萬物。所以，空是宇宙之體，是人生之本，是萬有之源。</p>
-<p>　　「空」是真理的極致，「空」能將印證真理的「三法印」統一起來，例如：</p>
-<p>　　1.世間沒有永恒性的東西。世事變化多端，這是「諸行無常」，也就是「無常苦空」。</p>
-<p>　　2.世間沒有獨存性的東西。萬物相生相成，這是「諸法無我」，也就是「緣起性空」。</p>
-<p>　　3.世間沒有實有性的東西。一切如夢幻泡影，這是「涅槃寂靜」，也就是「妙有真空」。</p>
-<p>　　「空」是一種最深刻、最奧妙的哲學，如果想用一句話來表達，事實上是不可能的。《釋摩訶衍論》中曾論「虛空十義」，雖然不能將絕對超越的「空」義淋漓盡致地描繪出來，但在人類所能理解的語言中，已經算是很接近了。所謂「虛空十義」如次：</p>
-<p>　　1.「空」有無障礙的意思，如虛空，雖遍一切處，但絕不障礙任何一色法。</p>
-<p>　　2.「空」有周遍的意思，如虛空，遍滿一切，無所不至。</p>
-<p>　　3.「空」有平等的意思，如虛空，無有簡擇，於一切平等。</p>
-<p>　　4.「空」有廣大的意思，如虛空，廣大、無垠、無際。</p>
-<p>　　5.「空」有無形相的意思，如虛空，無有形狀相貌。</p>
-<p>　　6.「空」有清淨的意思，如虛空，恒常清淨，無有垢染塵累。</p>
-<p>　　7.「空」有不動的意思，如虛空，恒常寂止，離一切生滅成壞之相。</p>
-<p>　　8.「空」有絕對否定的意思，把一切有限量的事理徹底否定、消滅。</p>
-<p>　　9.「空」有空空的意思，徹底否定一切自性和摧毀一切空執。</p>
-<p>　　10.「空」有不可得的意思，如虛空，不可取得，不可把捉。</p>
-<h2 id="參‧空的種類"><a href="#參‧空的種類" class="headerlink" title="參‧空的種類"></a>參‧空的種類</h2><p>　　在佛教的經論中，有關「空」的分類很多，計有二空、三空、四空、六空、七空、十空、十一空、十六空、十八空：：等等。大體而言，可歸納為人空、法空、勝義空三種。</p>
-<p>　　1.人空：又稱為我空、生空等。即有情眾生的生命，是依因緣和合而成，沒有實體可得，僅僅是假合的存在而已。</p>
-<p>　　2.法空：由有情生命出發，空義進一步擴及萬法，便有所謂的「法空」。即諸法是因緣和合而成，沒有實體的存在，所以又稱為法無我。</p>
-<p>　　3.勝義空：是將人空、法空及其他一切執著也一起空掉的「空」；是一種既不住於有，也不住於空，超越一切有無對待，而達到隨緣放曠，任運自由的境界。又稱第一義空、實相空，也就是涅槃寂靜的意思。</p>
-<p>　　《大智度論》卷三十一說：「涅槃中亦無涅槃相，涅槃空是第一義空。……能使諸法實相空，是名為第一義空。」在勝義空下，連涅槃都不住著了，世間上還有什麼不能超越的呢？</p>
-<h2 id="肆‧如何認識空"><a href="#肆‧如何認識空" class="headerlink" title="肆‧如何認識空"></a>肆‧如何認識空</h2><p>　　在一般人的觀念裡，「空」和「有」是截然不同的兩種觀念，「有」的絕對不是「空」，「空」的絕對不是「有」。但是，佛教認為「空」和「有」是一體的兩面，諸法所以是空，是由於無自性可得；諸法所以是有，是由於相用不是空無的。</p>
-<p>　　如何才能認識「空」呢？從諸法的相用上可以認識「空」性：</p>
-<p>　　1.從相續假看空：世間沒有恒久不變的東西，一切現象只不過是相續的存在，無時無刻不在剎那生滅之中。譬如我們身體細胞的新陳代謝，不斷地進行更新；世間上的人事更替，所謂「長江後浪推前浪，一代新人換舊人」，說明了世間的事事物物是相續假有，無常而沒有實體，從這種相續無常的現象上，可以了解「有即是空」的真諦。</p>
-<p>　　2.從循環假看空：因果故空。宇宙萬物，世間諸法，都離不開因果的法則，因為果，果為因。如一粒種子，有了陽光、空氣、水分、泥土等外緣後，於是發芽、開花，乃至結果。種子是因，結成的果實是果；如果再以結成的果實接受外緣，再一次的開花結果，則原有的果，又是另一個新生命的因，因因果果，相關相涉。因此，從這個循環的假相中，可以認識空。</p>
-<p>　　3.從和合假看空：緣起故空。諸法因緣和合而生，譬如人是由皮肉、筋骨、血液等和合而成；如果把各種組織分開，人的自體無從可得。因此，從和合之中，可以瞭解空。</p>
-<p>　　4.從相對假看空：相待故空。世間萬物都是相互對待的，譬如有三層樓，一人在二樓，有人從一樓上到二樓來，二樓是「上」，一樓是「下」；三樓的人下到二樓來，此時原是「上」的二樓變成「下」，三樓才是「上」。由此可知，所謂上下的對待，是一種假相，所以是空。</p>
-<p>　　5.從相狀假看空：無標準故空。以點燈為例，蠟燭、煤油燈、電燈的亮度是沒有一定標準的，如果從蠟燭先看，認為燭光很亮，再看電燈，燭光的亮度就顯得不夠了，「亮」這個相狀是無標準的，所以從無標準的相狀上，也可知道是空。</p>
-<p>　　6.從名詞假看空：但有假名故空。宇宙間諸法萬象，各有不同的稱呼，而這些名稱都是假有，所以是空。譬如一塊布，穿在上身的叫做衣服；穿在下身的叫做褲子；穿在腳上的叫做襪子；戴在頭上的叫做帽子。同樣是一塊布，卻可以有各種不同的名稱，這些名詞原來也都是假名而已，因此是空。</p>
-<p>　　7.從認識不同看空：心境無定準故空。下雪的夜晚，詩人坐在窗前，詩興大發，歎為奇景，自語道：「若再下它三尺，景色將更綺麗。」此時，屈居於破屋簷下的乞丐，縮著身子，不勝酷寒，感歎的說：「大雪紛紛飄滿天，老天又降殺人刀，再落三尺方為景，我輩怎得到明朝？」同樣的事物，因心境的不同，就有不同的看法，由此可知，從不同的認識中，也可以了知空。</p>
-<h2 id="伍‧空的妙用"><a href="#伍‧空的妙用" class="headerlink" title="伍‧空的妙用"></a>伍‧空的妙用</h2><p>　　《大乘密嚴經》說：「離空無有色，離色無有空，如月與光明，始終恒不異；諸法亦如是，空性與之一，展轉無差別，所為皆得成。」萬法惟其性空，才能生起宇宙萬有；萬有徒具假相，才能顯示自性本空。因此，有不是空以外的有，空也不是有以外的空，空與有是相融相即的。</p>
-<p>　　有人說：「空，是佛教的Ｘ光。」這句話實在很有道理。因為藉著Ｘ光的透視，可以讓我們看清體內的五臟六腑；同樣的，經由空性，我們便能洞悉諸法的實相。</p>
-<p>　　「空」是什麼？空就是「○」，○本身什麼都沒有，但若將○放在一的後面，則成為「一○」；若將○放在一○的後面，則成為「一○○」；放在一○○的後面，則成「一○○○」。由此可知，一個「○」，你說它沒有用，它卻能生起大作用。「空」也是如此，若說空是什麼都沒有，其實，空在宇宙世間卻能包含萬有。</p>
-<p>　　「空」是什麼？空是數學中的「Ｘ」──未知數；它能代表很多的數字。</p>
-<p>　　「空」是可以從日常生活中體驗的，例如：「女嬰」日漸長大，就稱為「女孩」；成長到十幾歲，就成為「少女」；到了二、三十歲，就稱她為「小姐」；嫁了人，又成為某某「太太」；生兒育女，就是「媽媽」；兒女婚嫁，就多了「婆婆」、「岳母」，乃至「奶奶」等等稱呼。從這些名詞的轉移上，我們認識到「空」的真諦。</p>
-<p>　　其他如前後、高低、上下、美醜、老少、大小……等等，也都是相對的概念，並沒有絕對的標準，只不過是「假名」而已。《金剛經》上說「實相非相」，又說「法無定法」。唯有「空」才是實相，才是定法。見到了「空」，我們才能如實的認識世間；瞭解了「空」，我們就能跳出有無的對待，而擁有一片更寬廣的世界。「空」真是妙用無窮！</p>
-<h2 id="陸‧結語"><a href="#陸‧結語" class="headerlink" title="陸‧結語"></a>陸‧結語</h2><p>　　一般人以為佛教講「空」，是要人否定一切；其實佛教的空，並不是否定一切，相反的，「空」是諸法所以成就的根據。「空」並不是頑空，是具有建設性的，譬如，沒有空間就不能建房子；袋子不空，便不能裝東西；宇宙不空，人類就無法生存，所以要「空」才能「有」。宇宙萬法就是建立在這個空義上，因為「空」並不是虛無，而是一切法之所依，是一切法不離的真性，是一切法存在與活動的原理。換句話說，如果沒有空性，一切法就不能從緣而有，也不可能有生有滅。</p>
-<p>　　所以，「空」不是消極避世的代名詞；它具有革命性與建設性的意義；當我們認識了空，就能捨棄過去舊有的執著，以嶄新的角度來審視宇宙萬有；當我們瞭解了空，就能蠲除既有的成見，從頭開始反省自己的人生。所謂「平常一樣窗前月，才有梅花便不同」，如果我們有了空的體驗，就能與宇宙萬物融為一體，「空」對於人生實在是太重要了！</p>
-<p>…………</p>
-<p>一、何謂空？</p>
-<p>二、如何認識空？</p>
-<p>三、如何從日常生活體驗空？</p>
-<p>四、舉例說明空的妙用。</p>
-<p>…………</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-life/ 原始佛教基本教義的苦空無常無我概說"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/20/life/%20%E5%8E%9F%E5%A7%8B%E4%BD%9B%E6%95%99%E5%9F%BA%E6%9C%AC%E6%95%99%E7%BE%A9%E7%9A%84%E8%8B%A6%E7%A9%BA%E7%84%A1%E5%B8%B8%E7%84%A1%E6%88%91%E6%A6%82%E8%AA%AA/"
-    >原始佛教基本教義的苦、空、無常、無我概說</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/20/life/%20%E5%8E%9F%E5%A7%8B%E4%BD%9B%E6%95%99%E5%9F%BA%E6%9C%AC%E6%95%99%E7%BE%A9%E7%9A%84%E8%8B%A6%E7%A9%BA%E7%84%A1%E5%B8%B8%E7%84%A1%E6%88%91%E6%A6%82%E8%AA%AA/" class="article-date">
-  <time datetime="2023-10-20T10:49:01.000Z" itemprop="datePublished">2023-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p>转载自: <a target="_blank" rel="noopener" href="http://ccbs.ntu.edu.tw/FULLTEXT/JR-MISC/mag93516.htm">http://ccbs.ntu.edu.tw/FULLTEXT/JR-MISC/mag93516.htm</a></p>
-</blockquote>
-<p>原始佛教基本教義的苦、空、無常、無我概說</p>
-<p>有許多人之所以有煩惱有痛苦，都是由於不明白宇宙間的一切都是無常的道理，執因緣和合的一切為實有，執數十年的生命體為實我，結果為了這個由四大五蘊假和合的生命體，我們不擇手段的去爭取名譽、財產……等種種享受，於是我們就有了煩惱，有了痛苦了。如果我們能夠澈悟到宇宙間的一切都是「苦、空、無常、無我」的道理，那麼，我們就不會有煩惱和痛苦了。</p>
-<p>什麼是「苦、空、無常、無我」呢？現在我們就逐一的把它加以解釋。</p>
-<p>第一、說到「<strong>苦</strong>」字。我們要知道世間的一切是不永恆的，不澈底的，不自在的。雖然我們觀察一般人的感受，有些人是喜樂的，有些人是憂愁苦惱的，有些人是不苦也不樂，但我們所能看到的只是表面的，如果我們做深刻的觀察，我們就可以知道人生一切是苦了。</p>
-<p>就以一個人身體上來說，不分男女，不分貧富貴賤的人，都免不了有生老病死四種苦——上自有財富、有權勢、有地位的帝王，下至最貧窮的乞丐誰都免不了，沒有人可以用金錢買自身不衰老和不痛、不死的——如果可以的話，當年曾經千方百計叫人到海外去求長生不老藥的秦始皇就可以活到現在了。</p>
-<p>上面所說的是身體上的痛苦，我們心理上又有憂愁苦惱、嫉妒、憤恨等苦惱，再加上外界給予我們的種種苦緣，如：飢餓、風雨、勞役、寒熱所生的苦——舉例來說，就好像新加坡地處熱帶，終年都是炎熱異常，我相信每一個人熱起來都很苦惱，絕對沒有人說熱得很舒服的，其他的種種苦也是大家不願意受的，這些身心上的苦叫做<strong>苦苦</strong>。</p>
-<p>那麼，再看看每一個人有生必有死——由嬰兒、少年、中年到老年，日日都在變化；而每一個家庭都免不了有悲歡離合；一個國家也免不了有興衰。我們常常覺得童年的事歷歷如在眼前，但轉眼間已經大了、老了。再以器世間來說：也是日日有新變化——荒涼的變成熱鬧的，破壞的又有了新建設，高山夷為平地，大海變成良田，這些遷流、造作的，佛經上把它稱為<strong>行苦</strong>。</p>
-<p>有些人認為自己事事如意，不但有名譽地位，也有財產，眷屬美滿，兒女孝順，每天都享受看快樂的生活。但是我們要知道世間是無常的，我們可以看到多少有錢人在遇到生意失敗或意外的災難就傾家蕩產，又有多少美滿眷屬生離死別或成為怨偶，又有多少人在官場得意之餘身敗名裂，最近美國總統尼克森被迫辭職就是一個最鮮明的例子；又有多少人在歡樂時樂極生悲，所以縱然自己處在順境中，一旦樂境壞時也難免痛苦，這是佛經上所說的<strong>壞苦</strong>。</p>
-<p>以上所說的苦苦、行苦、壞苦佛經上稱為三苦。三苦是包括了世間與器世間的。</p>
-<p>如果單從人類的立場來說，最切要的是**八苦(生，老，病，死，求不得，爱别离，怨憎会，五阴炽盛)**。</p>
-<p>有很多人認為<strong>生</strong>是值得喜悅的事，其實，一個新生命體的誕生，不只做母親的要受極大的痛苦，在佛經中說，嬰兒誕生時，由於有十個月的長久時間都是在溫暖的母胎中，一旦呱呱墮地，接觸到外面的冷空氣或堅硬的物體，他所感受的痛苦，就像鋼刀刺鼻一樣的難受。我們每一個人都是由母親十月懷胎生下來的，所以每一個人都曾經吃過這種苦頭，只是現在都忘記罷了。</p>
-<p>再說到<strong>老苦</strong>，一個人在年輕力壯時做什麼事都感到方便自在，但是一到年紀大了，種種毛病就都來了——往日能跑能跳的腿，到老了就不聽指揮了，走起路來步履蹣跚，牙齒也動搖了，耳朵也不管用了，眼睛的視力也減退了，一天到晚不是頭痛就是腰痛……人一到老就免不了這些痛苦。</p>
-<p>再其次說到<strong>病苦</strong>，一個人只要生到這個世界上來，都免不了有病魔的折磨，只不過是大病小病的差別罷了。我們只要有些頭痛、牙痛或肚痛就感到痛苦難當了，那些躺在醫院中患了絕症或重病的病人那就更不用說了。如果不信，各位只要到醫院去看一看那些開刀的、鋸腿的、斷手的……聽到他們的哀叫聲，真的像人間活地獄一樣，由此可見，不管是大病小病只要是病都不是好受的。</p>
-<p>第四是<strong>死苦</strong>，一個人出生以後，經過了童年、少年、壯年、老年、最後總是難免一死。大家對死卻心懷恐懼，但不管你多麼怕死，還是沒有辦法不接受這個事實。我們看到人要死時輾轉床第，呻吟哀號，就知道死是多麼痛苦了。老年人死時固然很痛苦，而少壯的人如果遇到什麼突然的災禍——好像車禍等等，死時更加痛苦。佛經裡面說，人死時就好像生龜脫殼，活被剝皮一樣，由此就可以想像到死時是如何的痛苦了。</p>
-<p>以上所說的四苦是我們身心方面的。</p>
-<p>下面再說到<strong>求不得苦</strong>，這是我們對外物所引起的苦惱。只要是人，都希望自己有很好的名譽、崇高的地位、強大的權勢、美滿的眷屬和無盡的財富……但是這些人人希求的東西並不是想有就有的。想求而求不到就會心生苦惱了，求得而再失去，心中更加苦惱。舉個例子來說：一個人到了中年，他雖然有名譽、有地位、有財也有勢，但是卻沒有子女，這樣就不免有苦惱了，如果能夠中年得子，心中當然很高興，但是如果不幸好不容易才得到兒子忽然又遭夭折，相信他心中的哀傷是難以形容的。這就是求不得苦。</p>
-<p>在人事方面，有<strong>愛別離苦</strong>和<strong>怨憎會苦</strong>。</p>
-<p>有人說：「人生最大的悲哀莫過於生離死別」這是對自己最關心、最親愛的人而說的;好像自己的父母、夫妻、子女、兄弟、師長、朋友，誰不希望能夠長相廝守，永不分離呢？但是一旦人老了，或者是遭遇到天災人禍和疾病……，到這時候，不想生離死別都不可能了，這就是愛別離苦。</p>
-<p>另一方面，誰都不願意和冤家仇人共處，所謂「仇人見面分外眼紅」，這種心情真是如被火燒，萬般氣惱，如果能夠避得遠遠那該多好？但是為了工作或其他原因，卻偏偏要日夜共處，常常見面，真是苦惱之極。這就是怨憎會苦了。</p>
-<p>以上所說的七種苦，卻是由於我們有了四大五蘊所和合的身心才有的，如果沒有我們現在的這個身心，怎麼還會有老、病、死、愛別離、怨憎會和求不得苦呢？所以和我們這<strong>五蘊熾盛</strong>的色身合為八苦。</p>
-<p>說完了苦，其次我們談到「空」字，有很多人對「空」字誤解成什麼都沒有了，或者什麼都不要了，這樣叫做空，更可笑的是有人把佛經上「四大皆空，五陰非有」的「四大」解釋成「酒、色、財、氣」，這真是天大的笑話。</p>
-<p>須知道這一個「<strong>空</strong>」字是一種真理，是佛教的宇宙觀，也就是「真空假有」的道理。什麼叫做「真空假有」呢？也就是說宇宙間的萬法本來是真空的，而我們所能夠見到的一切事物都是假因緣和合而有，所以叫做真空假有。</p>
-<p>就以人體來說，大家都知道這個世間本來沒有我，但是有了父母為因緣才能生下我來，而我這個包身又是「四大、五蘊」和合而成的，所謂四大就是「地、水、火、風」，我們的骨肉等堅硬性的東西屬於地大、血、汗等濕潤性的東西屬於水大，身體的溫熱屬於火大，呼吸運動等輕動性屬於風大。如果四大中有一種不調和就會生病或死亡了，如火大不調就會發燒或發冷，風大不調，一口氣不來也就會死亡了；你說溫暖是你的身體嗎？血液是你的身體嗎？呼吸的空氣是你的身體嗎？都不是，但是四大之中如果缺乏其中的一大人就要死亡了。</p>
-<p>不只是人的身體是靠四大五蘊的因緣和合而成，就是器世間的一切也是靠因緣和合而成：如一間房子，並不是有了鋼筋、有了洋灰，有了木材它自己就會成就一所房子，而是有了這些東西還要靠木匠和水泥匠去著手建築，這些材料是主因，那些建築工人便是助緣。又如我們所穿的衣服，也不是自然有的，而是要經過種棉花、紡紗、織布、更要經過裁剪和縫製；一本書，不但要有紙，而且要經過排版，印刷和裝訂；不只是這些，就是植物的生長也要靠因緣——如果我們有一粒種子把它放在因緣不具足的洋灰地或石頭上，那就不能生長了，我們一定要把它放在泥上中，而且還要靠水的滋潤和陽光的照射才能生長。由以上我所舉的幾個例子來看，我們可以瞭解到世間上的萬事萬物本來都是沒有的，但經過因緣的和合才能生起、存在，這就是佛教所說的「因緣所生法」，也就是「真空假有」的道理。</p>
-<p>現在我們再看看，緣生的東西，緣滅時又如何呢？好好的一本書，我們如果把它撕成一張張的碎紙，你會再叫這一堆碎紙為書本嗎？一件好好的衣服，你如果把它一條線一條線的抽開，那麼你還會叫那一堆亂線做衣服嗎？再說一間好好的房子，如果你把它的磚一塊塊的拆開，鋼筋一根根的拆開，你還會說那一堆廢鐵破磚是一間房子嗎？我想沒有人會的。碎紙是書本上撕下來的，亂線是衣服上抽下來的……我們為什麼不再叫它是書本、是衣服？因為成為書本和衣服的條件已經不具足了。可見因緣滅時，一切因緣生時所存在的東西就成空了。</p>
-<p>學佛的人能夠瞭解<strong>緣生即住，緣散即滅</strong>的道理，知道世界上的一切事物，本來都是空的，不過都是因緣所生的，那麼對於我們所貪著熱愛的一切就能不起貪著了，貪念一息，煩惱也就沒有了。</p>
-<p>現在我們再說到「<strong>無常</strong>」，諸位一定讀過「滄海桑田」這句成語吧？這正是「無常」的寫照，還有句俗語說「人無千日好，花無百日紅」，這也正是無常的說明。我們可以看到某人在幾個鐘頭前甚至於幾分鐘以前還談笑風生，但一下子聽說他已去世了；曾經海誓山盟的人沒有多久就變成了反目的仇人；富貴的人一夜之間變窮了；高官顯爵忽然成了落泊人，杜工部有詩說「昔日王謝堂前燕，飛入尋常百姓家」，這不是對無常的感概嗎？由此可見不只人命，世間和器世間的一切都沒有一種是一成不變的，沒有一種是永恆的，這就是無常了。</p>
-<p>最後我們講到「<strong>無我</strong>」，我們前面曾說到我們的身體是由四大五蘊和合而成的;也就是由地水火風四大所成的肉體，再加上受想行識才成為一個「我」，那麼那一種是我呢？如果說色身是我，那麼，剛剛死去的人，他的身體不是還好好的嗎？為什麼沒有作用了呢？你也許會說：「死去的人雖然有身體，但他已沒有思想，不能行動了，所以這個身體不能成方「我」，這樣說來是「受想行識」才是我了？那麼我又要問你了，小時的感受和長大以後的感受會相同嗎？既然不同：應該是大時的感受是「我」呢？還是小時的感受是「我」？再說，我們的思想、意識是不斷的在改變，那麼你說前一念是我呢？還是後一念是我？不只是我們的受想行識有所變異，我們的身體從出生到老死也沒有一天不變易，所以我們可以說以前的我不是現在的我，現在的我更不是以前的我，由此我們可以發現，原來我一直執以為「我」的這個身心，原來不是真正的「我」，而是由四大五蘊和合而成的，所以佛經上說「四大皆空，五蘊非有」，各位一定明自這個道理了。</p>
-<p>人之所以有煩惱有痛苦，就是因為不了解「苦、空、無常、無我」的道理，而誤認為「我」是確確實實存在的，由我為出發點，產生了對物的執著，順意，就生喜樂，不順意的就生苦惱而造作種種不淨業，我們眾生的輪迴生死，受種種苦報皆由此而來。<strong>如果我們能瞭解「苦、空、無常、無我」的道理，對一切名利財色等都能看得開，放得下，我們的一切痛苦一切煩惱自然就會消失了</strong>。</p>
-<p>佛陀說法四十五年，為我們開示了許多人生的大道理，這也不是我們用短短的時間就能談得完的，希望諸位同學以淨化自己的身心，進一步去淨化別人的身心，使我們的世界成功清淨和樂的世界。</p>
-<p>——二五一八（七四）年八月廿二日講於南洋大學佛學聯歡會</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
 
     </footer>
   </div>
