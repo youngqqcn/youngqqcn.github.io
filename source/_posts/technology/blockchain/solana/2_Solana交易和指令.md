@@ -219,3 +219,90 @@ pub struct AccountMeta {
 
 
 
+
+
+
+---
+
+## 交易确认&过期
+
+> https://solana.com/docs/advanced/confirmation
+
+
+- 过期时间 `151`个区块, 每个区块`400ms`, 即 `60s`
+- 交易中的recentBlockHash必须是151区块内, 否则将是过期交易
+
+## 一些建议
+
+- 建议1： 调用`getLatestBlockhash`时， 推荐使用 `confired`
+  - `proceeded`: 已处理, 很激进，速度最快，但有可能被跳过
+    - 用这种级别的交易中，有约`5%`交易会被验证节点丢弃
+  - `confirmed`: 已被多个验证节点确认, 折衷方案
+    - 这个级别，比较稳妥，因为被多个节点确认，之后被丢弃的几率很小
+  - `finalized`: 最终确认, 太保守, 交易不会被丢弃
+    - 即`32`个slot确认, 需要`12.8s`
+
+- 建议2：在`sendTransaction`和 `simulateTransaction`时使用， 要设置相同的 `preflightCommitment`, 即都设置 `confirmed`
+
+- 建议3：使用可靠的RPC节点，不要用落后的RPC节点
+- 建议4：不要用过期的blockhash, 而是在签名前实时获取最新的blockHash
+ - 前端应用要一直轮询最新的区块hash, 确保用户在触发交易时，获取的区块是最新的
+ - 钱包要一直轮询最新的区块hash, 并刷新交易中的区块hash,确保用户签名时用的是最新的区块hash
+- 建议5：使用健康的RPC节点获取区块hash
+- 其他建议
+
+
+
+----
+
+## Solana交易重试
+
+> https://solana.com/docs/advanced/retry
+
+- RPC节点会尝试重新广播
+- 开发者可以实现自定义的重新广播逻辑
+- 开发者可以利用 `sendTransaction`的 `maxRetries`参数
+- 开发者在提交交易前，应该执行预检(preflight), 如: `simulattionTransaction`
+- 在对重试交易进行签名交易前，**必须**确保之前那笔交易中的区块hash已经过期，
+  - 否则存在发起2笔交易的风险
+
+
+### 交易的流程
+
+
+Solana**没有交易池(mempool, txpool)**, 所有的交易都会转发给leaders节点执行
+
+  ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tx-journey.png)
+
+
+Transaction Processing Unit (TPU) 处理交易的阶段：
+
+- Fetch Stage
+- SigVerify Stage
+- Banking Stage
+- Proof of History Service
+- Broadcast Stage
+
+
+    ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tpu-jito-labs.png)
+
+
+
+### 交易被丢弃的几种情况
+
+
+- 第1种： 开发者引用过期区块hash, 提交交易时被RPC pool丢弃 ，这种是最常见的
+  ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-via-rpc-pool.png)
+
+
+- 第2种： 临时分叉， 引用了被丢弃的分叉区块hash
+  ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-pre-process.png)
+
+
+- 第3种：  临时分叉， 引用了被丢弃的分叉区块hash
+  ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png)
+
+
+
+
+
