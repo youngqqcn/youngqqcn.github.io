@@ -2857,7 +2857,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Solana共识协议</title>
+    <title>0_Solana共识协议</title>
     <url>/2024/07/09/technology/blockchain/solana/0_Solana%E5%85%B1%E8%AF%86/</url>
     <content><![CDATA[<blockquote>
 <p><a href="https://solana.com/developers/evm-to-svm/consensus">https://solana.com/developers/evm-to-svm/consensus</a></p>
@@ -2883,7 +2883,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Solana账户模型</title>
+    <title>1_Solana账户模型</title>
     <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
 <li><p>官方文档(推荐)：<a href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
@@ -3029,7 +3029,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Solana交易和指令</title>
+    <title>3_Solana交易和指令</title>
     <url>/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
 <p><a href="https://solana.com/docs/core/transactions">https://solana.com/docs/core/transactions</a></p>
@@ -3098,7 +3098,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Solana的手续费</title>
+    <title>3_Solana的手续费</title>
     <url>/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/</url>
     <content><![CDATA[<h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
 <p><a href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
@@ -3163,6 +3163,57 @@
 <li>租金<ul>
 <li>获取租金豁免: <a href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
 <li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>4_Solana程序</title>
+    <url>/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
+</blockquote>
+<ul>
+<li>在solana中“智能合约”被称为“程序”(program)</li>
+<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
+</ul>
+<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
+<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
+</li>
+<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
+</li>
+<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
+</li>
+<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
+</li>
+</ul>
+<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
+<li><p>原生Rust</p>
+</li>
+<li><p>Anchor框架(推荐)</p>
+<ul>
+<li><a href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
+<li><a href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
+<p><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
+</blockquote>
+<ul>
+<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
+<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
+<li><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
 </ul>
 </li>
 </ul>
