@@ -1,6 +1,6 @@
 ---
 date: 2024-07-09 19:31
-title: Solana的手续费
+title: 3_Solana的手续费
 categories: 技术
 tags:
 - 区块链

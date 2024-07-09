@@ -1,6 +1,6 @@
 ---
 date: 2024-07-09 18:52
-title: Solana账户模型
+title: 1_Solana账户模型
 categories: 技术
 tags:
 - 区块链
