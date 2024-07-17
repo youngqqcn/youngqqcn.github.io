@@ -247,9 +247,15 @@
 <p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
 </blockquote>
 <ul>
-<li><p><strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址</p>
+<li><p>每个交易最大1232字节，因此，<strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址(每个地址32字节)</p>
 </li>
 <li><p>使用 Versioned Transaction 和 Address Lookup Tables, 可以将<strong>每笔交易</strong>能包含的地址提升到 <code>256</code>个地址</p>
+<ul>
+<li>一个LookupTable 账户最多可以存放<code>256</code>个地址<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs</a></li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>地址压缩： 在所有地址都存在链上之后， 每个地址(32字节)只需用一个索引(1字节)进行地址定位即可</p>
 <ul>
