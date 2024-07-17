@@ -324,7 +324,7 @@ Solana有2种不同的交易类型：
 > https://solana.com/docs/advanced/lookup-tables
 
 
-- **每笔**普通交易(legacy)最多包含`32`个地址
+- 每个交易最大1232字节，因此，**每笔**普通交易(legacy)最多包含`32`个地址(每个地址32字节)
 - 使用 Versioned Transaction 和 Address Lookup Tables, 可以将**每笔交易**能包含的地址提升到 `256`个地址
   - 一个LookupTable 账户最多可以存放`256`个地址
     - https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs
