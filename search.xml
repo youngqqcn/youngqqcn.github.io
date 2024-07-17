@@ -640,24 +640,6 @@
       </tags>
   </entry>
   <entry>
-    <title>理财知识学习</title>
-    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>TODO</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>保险</tag>
-        <tag>理财</tag>
-        <tag>投资</tag>
-        <tag>风险</tag>
-        <tag>储蓄</tag>
-        <tag>财务</tag>
-        <tag>税务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>注册BVI公司好处</title>
     <url>/2023/08/26/learning/%E6%B3%A8%E5%86%8CBVI%E5%85%AC%E5%8F%B8%E5%A5%BD%E5%A4%84/</url>
     <content><![CDATA[<p>BVI英属维尔京群岛简介</p>
@@ -674,9 +656,27 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>税务</tag>
         <tag>公司</tag>
         <tag>国际</tag>
+        <tag>税务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理财知识学习</title>
+    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>TODO</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>保险</tag>
+        <tag>理财</tag>
+        <tag>投资</tag>
+        <tag>风险</tag>
+        <tag>税务</tag>
+        <tag>储蓄</tag>
+        <tag>财务</tag>
       </tags>
   </entry>
   <entry>
@@ -1930,6 +1930,25 @@
       </tags>
   </entry>
   <entry>
+    <title>小王子</title>
+    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
+<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
+<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
+<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
+<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>阅读</tag>
+        <tag>小说</tag>
+        <tag>童话</tag>
+        <tag>经典</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>幸福的方法</title>
     <url>/2021/06/01/read/%E5%B9%B8%E7%A6%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>坚持每周都写点东西, 发布到这里. </p>
@@ -1976,25 +1995,6 @@
       </categories>
       <tags>
         <tag>积极心理学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小王子</title>
-    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
-<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
-<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
-<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
-<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>阅读</tag>
-        <tag>小说</tag>
-        <tag>童话</tag>
-        <tag>经典</tag>
       </tags>
   </entry>
   <entry>
@@ -2991,6 +2991,49 @@
       </tags>
   </entry>
   <entry>
+    <title>13_Solana_程序安全</title>
+    <url>/2024/07/17/technology/blockchain/solana/13_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<blockquote>
+<p><a href="https://www.soldev.app/course/signer-auth">https://www.soldev.app/course/signer-auth</a></p>
+</blockquote>
+<h3 id="案例1-缺少Signer-Authentication"><a href="#案例1-缺少Signer-Authentication" class="headerlink" title="案例1: 缺少Signer Authentication"></a>案例1: 缺少Signer Authentication</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> insecure_update&#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update_authority</span></span>(ctx: Context&lt;UpdateAuthority&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        ctx.accounts.vault.authority = ctx.accounts.new_authority.key();</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">UpdateAuthority</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">   <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        has_one = authority</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> vault: Account&lt;<span class="symbol">&#x27;info</span>, Vault&gt;,</span><br><span class="line">    <span class="keyword">pub</span> new_authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vault</span></span> &#123;</span><br><span class="line">    token_account: Pubkey,</span><br><span class="line">    authority: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>漏洞分析： 虽然有 <code>has_one = authority</code>, 但它仅检查 <code>vault.authority.pubkey == authority.pubkey</code>, 即检查调用程序的参数中的<code>authority</code>是否和程序中的<code>vault</code>的<code>authority</code>是否一致, 并没有检查<strong>调用者</strong>是否是<code>authority</code>。 因此，存在被攻击的风险，即任何人只要将调用参数中的<code>authority</code>设置为和<code>vault</code>中的<code>authority</code> 一致， 都可以成功调用<code>update_authority</code></p>
+<p>漏洞修复:</p>
+<ul>
+<li>方案1：使用 <code>ctx.accounts.authority.is_signer</code> 判断 authority是否是交易的signer<ul>
+<li>缺点： 账户验证和指令逻辑验证是一起的（没有分离）</li>
+</ul>
+</li>
+<li>方案2：使用 Anchor的 <code>Singer</code><ul>
+<li>优点： 账户验证和指令逻辑验证是分开, 在进入逻辑之前就已经做了校验</li>
+<li>缺点: 只能和Singer账户一起,不能和其他账户类型</li>
+</ul>
+</li>
+<li>方案3: 使用 <code>#[account(singer)]</code><ul>
+<li>作用和 <code>Signer</code>是一样，但是比 <code>Signer</code> 更灵活，支持更多账户类型</li>
+<li>比如，<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account(signer)]</span></span><br><span class="line"><span class="keyword">pub</span> authority: Account&lt;<span class="symbol">&#x27;info</span>, SomeData&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> secure_update&#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update_authority</span></span>(ctx: Context&lt;UpdateAuthority&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="comment">// Signer中已经做了检查</span></span><br><span class="line">        <span class="comment">// if !ctx.accounts.authority.is_signer &#123;</span></span><br><span class="line">        <span class="comment">//     return Err(ProgramError::MissingRequiredSignature.into());</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">        ctx.accounts.vault.authority = ctx.accounts.new_authority.key();</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">UpdateAuthority</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        has_one = authority</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> vault: Account&lt;<span class="symbol">&#x27;info</span>, Vault&gt;,</span><br><span class="line">    <span class="keyword">pub</span> new_authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> authority: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vault</span></span> &#123;</span><br><span class="line">    token_account: Pubkey,</span><br><span class="line">    authority: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="案例2：-Missing-owner-check"><a href="#案例2：-Missing-owner-check" class="headerlink" title="案例2： Missing owner check"></a>案例2： Missing owner check</h3><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Cft4eTTrt4sJU4Ar35rUQHx6PSXfJju3dixmvApzhWws&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> owner_check &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">admin_instruction</span></span>(ctx: Context&lt;Unchecked&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> account_data = ctx.accounts.admin_config.try_borrow_data()?;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> account_data_slice: &amp;[<span class="built_in">u8</span>] = &amp;account_data;</span><br><span class="line">        <span class="keyword">let</span> account_state = AdminConfig::try_deserialize(&amp;<span class="keyword">mut</span> account_data_slice)?;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> account_state.admin != ctx.accounts.admin.key() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">Err</span>(ProgramError::InvalidArgument.into());</span><br><span class="line">        &#125;</span><br><span class="line">        msg!(<span class="string">&quot;Admin: &#123;&#125;&quot;</span>, account_state.admin.to_string());</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Unchecked</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    admin_config: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    admin: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AdminConfig</span></span> &#123;</span><br><span class="line">    admin: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>Token</tag>
+        <tag>Anchor</tag>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1_Solana账户模型</title>
     <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
@@ -3134,86 +3177,6 @@
       <tags>
         <tag>区块链</tag>
         <tag>Solana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3_Solana的手续费</title>
-    <url>/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/</url>
-    <content><![CDATA[<h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
-<p><a href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
-</blockquote>
-<ul>
-<li>Transaction Fees(base fee) : 交易费</li>
-<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
-<li>给矿工</li>
-</ul>
-</li>
-<li>Rent: 账户租金(充值)</li>
-</ul>
-<ul>
-<li><p>交易手续费的分配：</p>
-<ul>
-<li><code>50%</code>: 交易费直接燃烧</li>
-<li><code>50%</code>: 给矿工</li>
-</ul>
-</li>
-<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
-</li>
-<li><p>交易执行限制：</p>
-<blockquote>
-<p><a href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
-</blockquote>
-<ul>
-<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
-<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
-<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
-<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
-<li>关于调整交易的最大CU: <a href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
-</li>
-<li><p>Prioritization fee 的计算取决于：</p>
-<ul>
-<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
-<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
-<li>如果不提供此值， 则交易无priority fee</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>如何设置  <code>prioritization fee</code> ？</p>
-<ul>
-<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
-<li>注意：<ul>
-<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
-<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
-</ul>
-</li>
-<li>更多：<a href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>租金<ul>
-<li>获取租金豁免: <a href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
-<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
       </tags>
   </entry>
   <entry>
@@ -3393,6 +3356,86 @@
 <li>每个交易包含了<code>recentBlockhash</code>, 即最近的 150个区块内的区块hash, 这个hash用来决定交易执行先后顺序</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>3_Solana的手续费</title>
+    <url>/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/</url>
+    <content><![CDATA[<h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
+<p><a href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>Transaction Fees(base fee) : 交易费</li>
+<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
+<li>给矿工</li>
+</ul>
+</li>
+<li>Rent: 账户租金(充值)</li>
+</ul>
+<ul>
+<li><p>交易手续费的分配：</p>
+<ul>
+<li><code>50%</code>: 交易费直接燃烧</li>
+<li><code>50%</code>: 给矿工</li>
+</ul>
+</li>
+<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
+</li>
+<li><p>交易执行限制：</p>
+<blockquote>
+<p><a href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
+<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
+<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
+<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
+<li>关于调整交易的最大CU: <a href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
+</li>
+<li><p>Prioritization fee 的计算取决于：</p>
+<ul>
+<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
+<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
+<li>如果不提供此值， 则交易无priority fee</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何设置  <code>prioritization fee</code> ？</p>
+<ul>
+<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
+<li>注意：<ul>
+<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
+<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
+</ul>
+</li>
+<li>更多：<a href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>租金<ul>
+<li>获取租金豁免: <a href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
+<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
 </ul>
 </li>
 </ul>

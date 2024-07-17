@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>12_Solana-Rust的宏 |  青我所青</title>
+      <title>13_Solana_程序安全 |  青我所青</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -48,7 +48,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-technology/blockchain/solana/12_Solana_Rust的宏"
+  id="post-technology/blockchain/solana/13_Solana_程序安全"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -59,7 +59,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  12_Solana-Rust的宏
+  13_Solana_程序安全
 </h1>
  
 
@@ -67,8 +67,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/" class="article-date">
-  <time datetime="2024-07-17T08:31:00.000Z" itemprop="datePublished">2024-07-17</time>
+      <a href="/2024/07/17/technology/blockchain/solana/13_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8/" class="article-date">
+  <time datetime="2024-07-17T10:44:00.000Z" itemprop="datePublished">2024-07-17</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">205</span>
+            <span class="post-count">550</span>
         </span>
     </span>
 
@@ -88,13 +88,15 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
@@ -102,26 +104,33 @@
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
-<p>参考: <a target="_blank" rel="noopener" href="https://www.soldev.app/course/rust-macros">https://www.soldev.app/course/rust-macros</a><br>Rust官方: <a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/ch19-06-macros.html">https://rustwiki.org/zh-CN/book/ch19-06-macros.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/signer-auth">https://www.soldev.app/course/signer-auth</a></p>
 </blockquote>
-<p>Rust的宏分为2类:</p>
+<h3 id="案例1-缺少Signer-Authentication"><a href="#案例1-缺少Signer-Authentication" class="headerlink" title="案例1: 缺少Signer Authentication"></a>案例1: 缺少Signer Authentication</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> insecure_update&#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update_authority</span></span>(ctx: Context&lt;UpdateAuthority&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        ctx.accounts.vault.authority = ctx.accounts.new_authority.key();</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">UpdateAuthority</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">   <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        has_one = authority</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> vault: Account&lt;<span class="symbol">&#x27;info</span>, Vault&gt;,</span><br><span class="line">    <span class="keyword">pub</span> new_authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vault</span></span> &#123;</span><br><span class="line">    token_account: Pubkey,</span><br><span class="line">    authority: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>漏洞分析： 虽然有 <code>has_one = authority</code>, 但它仅检查 <code>vault.authority.pubkey == authority.pubkey</code>, 即检查调用程序的参数中的<code>authority</code>是否和程序中的<code>vault</code>的<code>authority</code>是否一致, 并没有检查<strong>调用者</strong>是否是<code>authority</code>。 因此，存在被攻击的风险，即任何人只要将调用参数中的<code>authority</code>设置为和<code>vault</code>中的<code>authority</code> 一致， 都可以成功调用<code>update_authority</code></p>
+<p>漏洞修复:</p>
 <ul>
-<li><p>声明宏(Declarative macro): 使用<code>macro_rules!</code>定义，例如: <code>vec!</code></p>
-</li>
-<li><p>过程宏(Procedural macro): 使用AST(Abstract syntax tree) 支持更加复杂的代码生成</p>
-<ul>
-<li><p>Function-like macros - <code>custom!(...)</code></p>
-</li>
-<li><p>Derive macros - <code>#[derive(CustomDerive)]</code>, 一般用于 <code>struct, enum, union</code> , 用于实现某些trait</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(MyMacro)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Input</span></span> &#123;</span><br><span class="line">    field: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定helper属性</span></span><br><span class="line"><span class="meta">#[proc_macro_derive(MyMacro, attributes(helper))]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">my_macro</span></span>(body: TokenStream) -&gt; TokenStream &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(MyMacro)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Input</span></span> &#123;</span><br><span class="line">    <span class="meta">#[helper]</span>  <span class="comment">// 可以根据这个 helper attribitue 执行更多操作</span></span><br><span class="line">    field: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>Attribute macros - <code>#[CustomAttribute]</code>: 用于<code>struct</code>或函数</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[my_macro]</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">my_function</span></span>() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[proc_macro_attribute]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">my_macro</span></span>(attr: TokenStream, input: TokenStream) -&gt; TokenStream &#123;</span><br><span class="line">    <span class="comment">// 第1个参数 attr 代表属性宏的参数</span></span><br><span class="line">    <span class="comment">// 第2个参数 input，是剩余的元素</span></span><br><span class="line">    ...,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[my_macro(arg1, arg2)]</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">my_function</span></span>() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>方案1：使用 <code>ctx.accounts.authority.is_signer</code> 判断 authority是否是交易的signer<ul>
+<li>缺点： 账户验证和指令逻辑验证是一起的（没有分离）</li>
 </ul>
 </li>
-<li><p>可以使用 <code>cargo-expand</code> 命令展开宏</p>
+<li>方案2：使用 Anchor的 <code>Singer</code><ul>
+<li>优点： 账户验证和指令逻辑验证是分开, 在进入逻辑之前就已经做了校验</li>
+<li>缺点: 只能和Singer账户一起,不能和其他账户类型</li>
+</ul>
+</li>
+<li>方案3: 使用 <code>#[account(singer)]</code><ul>
+<li>作用和 <code>Signer</code>是一样，但是比 <code>Signer</code> 更灵活，支持更多账户类型</li>
+<li>比如，<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account(signer)]</span></span><br><span class="line"><span class="keyword">pub</span> authority: Account&lt;<span class="symbol">&#x27;info</span>, SomeData&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
 </ul>
- 
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> secure_update&#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update_authority</span></span>(ctx: Context&lt;UpdateAuthority&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="comment">// Signer中已经做了检查</span></span><br><span class="line">        <span class="comment">// if !ctx.accounts.authority.is_signer &#123;</span></span><br><span class="line">        <span class="comment">//     return Err(ProgramError::MissingRequiredSignature.into());</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">        ctx.accounts.vault.authority = ctx.accounts.new_authority.key();</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">UpdateAuthority</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        has_one = authority</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> vault: Account&lt;<span class="symbol">&#x27;info</span>, Vault&gt;,</span><br><span class="line">    <span class="keyword">pub</span> new_authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> authority: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vault</span></span> &#123;</span><br><span class="line">    token_account: Pubkey,</span><br><span class="line">    authority: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="案例2：-Missing-owner-check"><a href="#案例2：-Missing-owner-check" class="headerlink" title="案例2： Missing owner check"></a>案例2： Missing owner check</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Cft4eTTrt4sJU4Ar35rUQHx6PSXfJju3dixmvApzhWws&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> owner_check &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">admin_instruction</span></span>(ctx: Context&lt;Unchecked&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> account_data = ctx.accounts.admin_config.try_borrow_data()?;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> account_data_slice: &amp;[<span class="built_in">u8</span>] = &amp;account_data;</span><br><span class="line">        <span class="keyword">let</span> account_state = AdminConfig::try_deserialize(&amp;<span class="keyword">mut</span> account_data_slice)?;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> account_state.admin != ctx.accounts.admin.key() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">Err</span>(ProgramError::InvalidArgument.into());</span><br><span class="line">        &#125;</span><br><span class="line">        msg!(<span class="string">&quot;Admin: &#123;&#125;&quot;</span>, account_state.admin.to_string());</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Unchecked</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    admin_config: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    admin: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AdminConfig</span></span> &#123;</span><br><span class="line">    admin: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
@@ -173,12 +182,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/17/technology/blockchain/solana/13_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
 
     </footer>
   </div>
@@ -186,19 +195,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2024/07/17/technology/blockchain/solana/13_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            13_Solana_程序安全
-          
-        </div>
-      </a>
     
-    
-      <a href="/2024/07/12/technology/blockchain/solana/11_Solana-Anchor%E8%A7%A3%E5%86%B3%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6/" class="article-nav-link">
+      <a href="/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">11_Solana-Anchor解决内存限制</div>
+        <div class="article-nav-title">12_Solana-Rust的宏</div>
       </a>
     
   </nav>
