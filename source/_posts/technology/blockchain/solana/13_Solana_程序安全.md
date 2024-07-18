@@ -379,6 +379,8 @@ pub struct User {
 
 ### 案例5： 相同的可修改账户
 
+> https://www.soldev.app/course/duplicate-mutable-accounts
+
 一个"石头剪刀布"游戏程序
 
 ```rust
@@ -465,5 +467,71 @@ pub enum RockPaperScissors {
         pub player_one: Account<'info, PlayerState>,
         #[account(mut)]
         pub player_two: Account<'info, PlayerState>,
+    }
+    ```
+
+
+### 案例6： type-cosplay
+
+> https://www.soldev.app/course/type-cosplay
+
+```rust
+use anchor_lang::prelude::*;
+use borsh::{BorshDeserialize, BorshSerialize};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod type_cosplay_insecure {
+    use super::*;
+
+    pub fn admin_instruction(ctx: Context<AdminInstruction>) -> Result<()> {
+        let account_data =
+            AdminConfig::try_from_slice(&ctx.accounts.admin_config.data.borrow()).unwrap();
+        if ctx.accounts.admin_config.owner != ctx.program_id {
+            return Err(ProgramError::IllegalOwner.into());
+        }
+        if account_data.admin != ctx.accounts.admin.key() {
+            return Err(ProgramError::InvalidAccountData.into());
+        }
+        msg!("Admin {}", account_data.admin);
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct AdminInstruction<'info> {
+    admin_config: UncheckedAccount<'info>,
+    admin: Signer<'info>,
+}
+
+#[derive(BorshSerialize, BorshDeserialize)]
+pub struct AdminConfig {
+    admin: Pubkey,
+}
+
+#[derive(BorshSerialize, BorshDeserialize)]
+pub struct UserConfig {
+    user: Pubkey,
+}
+```
+
+
+漏洞分析:
+
+- `AdminConfig` 和 `UserConfig` 有相同的数据结构， 因此2个类型可以随意传参,
+
+
+漏洞修复:
+
+- 方案1: 使用Anchor的 `Account`类型， 为类型增加类型标识(`Discriminator`)
+
+    ```rust
+
+    #[derive(Accounts)]
+    pub struct AdminInstruction<'info> {
+        #[account(has_one = admin)]
+        admin_config: Account<'info, AdminConfig>,
+        admin: Signer<'info>,
     }
     ```
