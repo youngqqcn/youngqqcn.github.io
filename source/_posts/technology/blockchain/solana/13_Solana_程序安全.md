@@ -316,3 +316,154 @@ pub struct Vault {
     )]
     pub vault: Account<'info, Vault>,
 ```
+
+
+
+### 案例4： Re-initialization Attacks (重新初始化攻击)
+
+```rust
+use anchor_lang::prelude::*;
+use borsh::{BorshDeserialize, BorshSerialize};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod initialization_insecure  {
+    use super::*;
+
+    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+        let mut user = User::try_from_slice(&ctx.accounts.user.data.borrow()).unwrap();
+        user.authority = ctx.accounts.authority.key();
+        user.serialize(&mut *ctx.accounts.user.data.borrow_mut())?;
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(mut)]
+    user: AccountInfo<'info>,
+    #[account(mut)]
+    authority: Signer<'info>,
+}
+
+#[derive(BorshSerialize, BorshDeserialize)]
+pub struct User {
+    authority: Pubkey,
+}
+```
+
+漏洞分析：
+
+- `Initialize`的 user采用的 手动初始化， 没有 `is_initialize`标识， 可以重复初始化
+
+修复方案:
+
+- 方案1： 在`User`中增加`is_initialize`字段，并且在指令处理函数中增加 `is_initialize`的判断, 防止重复初始化
+
+- 方案2(推荐)： 使用 Anchor的`init`约束, `init`约束通过CPI调用System Program创建一个账户，并且设置账户`discrimiantor`,
+  - `init` 约束可以确保每个账户**只能**被初始化一次
+  - `init`约束必须和 `payer` 和 `space` 一起使用
+    - `space`: 指定账户的空间大小，这决定了支付的租金大小
+      - 头`8字节`，存放账户的`discrimiantor`, 即账户结构体名称的哈希
+    - `payer`: 支付初始化账户的费用
+
+- 方案3： 使用Anchor的 `init_if_needed`约束, **要谨慎**:
+  - 如果指定的账户不存在，它会创建并初始化该账户
+  - 如果账户已经存在，它会跳过初始化步骤，直接使用现有账户。
+  - `init_if_needed`与普通 `init` 的区别：
+    - `init` 总是尝试创建新账户，如果账户已存在会失败。
+    - `init_if_needed` 在账户存在时不会失败，而是跳过初始化。
+
+
+
+### 案例5： 相同的可修改账户
+
+一个"石头剪刀布"游戏程序
+
+```rust
+use anchor_lang::prelude::*;
+use borsh::{BorshDeserialize, BorshSerialize};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod duplicate_mutable_accounts {
+    use super::*;
+
+    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+        ctx.accounts.new_player.player = ctx.accounts.payer.key();
+        ctx.accounts.new_player.choice = None;
+        Ok(())
+    }
+
+    pub fn rock_paper_scissors_shoot_insecure(
+        ctx: Context<RockPaperScissorsInsecure>,
+        player_one_choice: RockPaperScissors,
+        player_two_choice: RockPaperScissors,
+    ) -> Result<()> {
+        ctx.accounts.player_one.choice = Some(player_one_choice);
+
+        ctx.accounts.player_two.choice = Some(player_two_choice);
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(
+        init,
+        payer = payer,
+        space = 8 + 32 + 8
+    )]
+    pub new_player: Account<'info, PlayerState>,
+    #[account(mut)]
+    pub payer: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct RockPaperScissorsInsecure<'info> {
+    #[account(mut)]
+    pub player_one: Account<'info, PlayerState>,
+    #[account(mut)]
+    pub player_two: Account<'info, PlayerState>,
+}
+
+#[account]
+pub struct PlayerState {
+    player: Pubkey,
+    choice: Option<RockPaperScissors>,
+}
+
+#[derive(Clone, Copy, BorshDeserialize, BorshSerialize)]
+pub enum RockPaperScissors {
+    Rock,
+    Paper,
+    Scissors,
+}
+```
+
+
+
+漏洞分析: `RockPaperScissorsInsecure` 中 `player_one` 和 `player_two` 可以相同, 攻击可以传入2个相同的地址
+
+
+漏洞修复:
+
+- 方案1： 直接在指令处理函数中增加判断 `ctx.accounts.player_one() != ctx.account.player_two.key()`
+
+- 方案2（推荐）： 使用 Anchor的 `constraint`,
+
+    ```rust
+    #[derive(Accounts)]
+    pub struct RockPaperScissorsSecure<'info> {
+        #[account(
+            mut,
+            constraint = player_one.key() != player_two.key() // 检查
+        )]
+        pub player_one: Account<'info, PlayerState>,
+        #[account(mut)]
+        pub player_two: Account<'info, PlayerState>,
+    }
+    ```
