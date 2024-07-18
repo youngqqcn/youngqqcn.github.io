@@ -200,3 +200,119 @@ pub struct AdminConfig {
         pub authority: Signer<'info>,
     }
     ```
+
+
+### 案例3： Account Data Matching
+
+> https://www.soldev.app/course/account-data-matching
+
+```rust
+use anchor_lang::prelude::*;
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod data_validation {
+    use super::*;
+    ...
+    pub fn update_admin(ctx: Context<UpdateAdmin>) -> Result<()> {
+        ctx.accounts.admin_config.admin = ctx.accounts.new_admin.key();
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct UpdateAdmin<'info> {
+    #[account(mut)]
+    pub admin_config: Account<'info, AdminConfig>,
+    #[account(mut)]
+    pub admin: Signer<'info>,
+    pub new_admin: SystemAccount<'info>,
+}
+
+#[account]
+pub struct AdminConfig {
+    admin: Pubkey,
+}
+```
+
+- 漏洞分析:
+  - `update_config`缺少校验: `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
+
+
+- 漏洞修复:
+  - 方案1： 在`update_admin`增加校验 `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
+  - 方案2： 使用`has_one`约束, 为`admin_config`增加约束 `#[account(has_one = admin)]`, 这样和方案1等效
+  - 方案3： 使用`constraint`约束, 为`admin_config`增加约束 `#[account(constraint = admin_config.admin == admin.key())]`, 这样和方案1等效
+
+
+
+[示例代码](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/anchor-account-data-matching/programs/anchor-account-data-matching/src/lib.rs)
+
+```rust
+//...
+    pub fn insecure_withdraw(ctx: Context<InsecureWithdraw>) -> Result<()> {
+        // 缺少对 authority的校验
+        let amount = ctx.accounts.token_account.amount;
+
+        let seeds = &[b"vault".as_ref(), &[ctx.bumps.vault]];
+        let signer = [&seeds[..]];
+
+        let cpi_ctx = CpiContext::new_with_signer(
+            ctx.accounts.token_program.to_account_info(),
+            token::Transfer {
+                from: ctx.accounts.token_account.to_account_info(),
+                authority: ctx.accounts.vault.to_account_info(),
+                to: ctx.accounts.withdraw_destination.to_account_info(),
+            },
+            &signer,
+        );
+
+        token::transfer(cpi_ctx, amount)?;
+        Ok(())
+    }
+// ...
+
+#[derive(Accounts)]
+pub struct InsecureWithdraw<'info> {
+    #[account(
+        seeds = [b"vault"],
+        bump,
+        // 缺少对 authority的校验
+    )]
+    pub vault: Account<'info, Vault>,
+
+    #[account(
+        mut,
+        seeds = [b"token"],
+        bump,
+    )]
+    pub token_account: Account<'info, TokenAccount>,
+    #[account(mut)]
+    pub withdraw_destination: Account<'info, TokenAccount>,
+    pub token_program: Program<'info, Token>,
+    pub authority: Signer<'info>,
+}
+
+#[account]
+pub struct Vault {
+    token_account: Pubkey,
+    authority: Pubkey,
+    withdraw_destination: Pubkey,
+}
+```
+
+
+修复方案: 为 vault增加约束
+
+```rust
+    #[account(
+        mut,
+        seeds = [b"vault"],
+        bump,
+        has_one = authority,
+        has_one=token_account,
+        has_one = withdraw_destination,
+    )]
+    pub vault: Account<'info, Vault>,
+```
