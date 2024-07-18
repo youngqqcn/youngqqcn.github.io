@@ -111,6 +111,7 @@ pub struct Vault {
 
 
 ### 案例2： Missing owner check
+> https://www.soldev.app/course/owner-checks
 
 ```rust
 use anchor_lang::prelude::*;
@@ -146,3 +147,56 @@ pub struct AdminConfig {
     admin: Pubkey,
 }
 ```
+
+
+漏洞分析:
+
+- `admin_instruction`: 检查的是有输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的owner是不是本程序帐户
+
+    如下图, 攻击这将B数据账户传入给A程序，可以通过A程序的简单校验，从而修改A数据账户的状态
+
+    ```
+    [A程序账户]        [B程序账户]
+       |                 |
+       |                 |
+    [A数据账户]        [B数据账户]
+    ```
+
+
+- [攻击案例-国库提币攻击](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-owner-checks-starter/programs/solana-owner-checks-starter/src/lib.rs)
+
+  - 攻击者的合约，
+    ```rust
+    #[account]
+    pub struct Vault {
+        // 必须保持和被攻击者的账户结构体同名, 即必须Vault， 因为结构体名称的hash作为账户的 Discriminator,
+        // 否则被攻击合约序列化的时候报错: Error Message: 8 byte discriminator did not match what was expected
+
+        // 必须保持和被攻击账户的数据结构顺序一致,
+        // 结构体内部变量名称可以不同,
+        token_accountxx: Pubkey,
+        authorityx: Pubkey,
+    }
+    ```
+  - 漏洞修复： 将 vault的 `UncheckedAccount` 改成 `Account`, anchor为Account实现了owner安全检查
+    ```rust
+    #[derive(Accounts)]
+    pub struct SecureWithdraw<'info> {
+        /// 具体检查如下:
+        // has_one:
+        //     input_args.token_account.key == vault.token_account.key
+        //     input_args.authority.key == vault.authority.key
+        // Acccount的Owner trait 安全检查
+        //    Account.info.owner == T::owner()
+        //   `!(Account.info.owner == SystemProgram && Account.info.lamports() == 0)`
+        #[account(has_one=token_account, has_one=authority)]
+        pub vault: Account<'info, Vault>,
+
+        #[account(mut, seeds=[b"token"], bump)]
+        pub token_account: Account<'info, TokenAccount>,
+        #[account(mut)]
+        pub withdraw_destination: Account<'info, TokenAccount>,
+        pub token_program: Program<'info, Token>, // SPL Token Program固定是 TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+        pub authority: Signer<'info>,
+    }
+    ```
