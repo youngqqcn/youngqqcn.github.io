@@ -535,3 +535,142 @@ pub struct UserConfig {
         admin: Signer<'info>,
     }
     ```
+
+
+
+### 案例7： Arbitrary CPI
+
+
+```rust
+use anchor_lang::prelude::*;
+use anchor_lang::solana_program;
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod arbitrary_cpi_insecure {
+    use super::*;
+
+    pub fn cpi(ctx: Context<Cpi>, amount: u64) -> ProgramResult {
+
+        //
+        solana_program::program::invoke(
+            &spl_token::instruction::transfer(
+                ctx.accounts.token_program.key,
+                ctx.accounts.source.key,
+                ctx.accounts.destination.key,
+                ctx.accounts.authority.key,
+                &[],
+                amount,
+            )?,
+            &[
+                ctx.accounts.source.clone(),
+                ctx.accounts.destination.clone(),
+                ctx.accounts.authority.clone(),
+            ],
+        )
+    }
+}
+
+#[derive(Accounts)]
+pub struct Cpi<'info> {
+    source: UncheckedAccount<'info>,
+    destination: UncheckedAccount<'info>,
+    authority: UncheckedAccount<'info>,
+    token_program: UncheckedAccount<'info>, // 没有做任何检测
+}
+```
+
+
+漏洞分析：
+
+- 没有检查`token_program` , 因此，可以传入任意值
+- 直接使用原生的`invoke`和指令组装进行 CPI调用，缺少安全检查
+
+
+漏洞修复：
+
+- 方案1： 在`cpi`中增加检查
+  ```rust
+  if &spl_token::ID != ctx.accounts.token_program.key {
+        return Err(ProgramError::IncorrectProgramId);
+    }
+  ```
+
+- 方案2： 使用Anchor的CPI模块进行CPI调用, Anchor在CPI内部做了一系列安全检查
+
+```rust
+use anchor_lang::prelude::*;
+use anchor_spl::token::{self, Token, TokenAccount};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod arbitrary_cpi_recommended {
+    use super::*;
+
+    pub fn cpi(ctx: Context<Cpi>, amount: u64) -> ProgramResult {
+        token::transfer(ctx.accounts.transfer_ctx(), amount)
+    }
+}
+
+#[derive(Accounts)]
+pub struct Cpi<'info> {
+    source: Account<'info, TokenAccount>,
+    destination: Account<'info, TokenAccount>,
+    authority: Signer<'info>,
+    token_program: Program<'info, Token>,
+}
+
+impl<'info> Cpi<'info> {
+    pub fn transfer_ctx(&self) -> CpiContext<'_, '_, '_, 'info, token::Transfer<'info>> {
+        let program = self.token_program.to_account_info();
+        let accounts = token::Transfer {
+            from: self.source.to_account_info(),
+            to: self.destination.to_account_info(),
+            authority: self.authority.to_account_info(),
+        };
+        CpiContext::new(program, accounts)
+    }
+}
+```
+
+
+
+案例,  对战游戏: https://github.com/Unboxed-Software/solana-arbitrary-cpi/tree/starter/programs
+
+
+账户结构:
+
+```
+
+Gameplay Program                 Metadata Program              Metadata Fake Program
+
+ [character A]                  [metadata account A]           [metadata account X]
+ [character B]                  [metadata account B]
+```
+
+
+漏洞分析: 因为`gameplay`中 `BattleInsecure` 的 metadata_program 和 player 可以任意传入，并且指令处理函数中也没有进行判断，
+那么，攻击者就可以伪造 一个Metadata Fake程序，在Fake程序中为角色设置很高`health`, 这样，攻击者可以一直获胜
+
+```rust
+#[derive(Accounts)]
+pub struct BattleInsecure<'info> {
+    pub player_one: Account<'info, Character>,
+    pub player_two: Account<'info, Character>,
+
+
+    /// CHECK: manual checks  漏洞
+    pub player_one_metadata: UncheckedAccount<'info>,
+    /// CHECK: manual checks   漏洞
+    pub player_two_metadata: UncheckedAccount<'info>,
+    /// CHECK: intentionally unchecked      漏洞
+    pub metadata_program: UncheckedAccount<'info>,
+}
+
+```
+
+
+
+
