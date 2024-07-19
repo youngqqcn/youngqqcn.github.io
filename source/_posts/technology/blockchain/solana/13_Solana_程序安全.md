@@ -3,19 +3,17 @@ date: 2024-07-17 18:44
 title: 13_Solana_程序安全
 categories: 技术
 tags:
-- 区块链
-- Solana
-- 交易
-- Token
-- Anchor
-- 安全
+    - 区块链
+    - Solana
+    - 交易
+    - Token
+    - Anchor
+    - 安全
 ---
-
 
 > https://www.soldev.app/course/signer-auth
 
-
-### 案例1: 缺少Signer Authentication
+### 案例 1: 缺少 Signer Authentication
 
 ```rust
 use anchor_lang::prelude::*;
@@ -51,25 +49,22 @@ pub struct Vault {
 }
 ```
 
-
 漏洞分析： 虽然有 `has_one = authority`, 但它仅检查 `vault.authority.pubkey == authority.pubkey`, 即检查调用程序的参数中的`authority`是否和程序中的`vault`的`authority`是否一致, 并没有检查**调用者**是否是`authority`。 因此，存在被攻击的风险，即任何人只要将调用参数中的`authority`设置为和`vault`中的`authority` 一致， 都可以成功调用`update_authority`
 
-
-
 漏洞修复:
-- 方案1：使用 `ctx.accounts.authority.is_signer` 判断 authority是否是交易的signer
-  - 缺点： 账户验证和指令逻辑验证是一起的（没有分离）
-- 方案2：使用 Anchor的 `Singer`
-  - 优点： 账户验证和指令逻辑验证是分开, 在进入逻辑之前就已经做了校验
-  - 缺点: 只能和Singer账户一起,不能和其他账户类型
-- 方案3: 使用 `#[account(singer)]`
-  - 作用和 `Signer`是一样，但是比 `Signer` 更灵活，支持更多账户类型
-  - 比如，
-    ```rust
-    #[account(signer)]
-    pub authority: Account<'info, SomeData>
-    ```
 
+-   方案 1：使用 `ctx.accounts.authority.is_signer` 判断 authority 是否是交易的 signer
+    -   缺点： 账户验证和指令逻辑验证是一起的（没有分离）
+-   方案 2：使用 Anchor 的 `Singer`
+    -   优点： 账户验证和指令逻辑验证是分开, 在进入逻辑之前就已经做了校验
+    -   缺点: 只能和 Singer 账户一起,不能和其他账户类型
+-   方案 3: 使用 `#[account(singer)]`
+    -   作用和 `Signer`是一样，但是比 `Signer` 更灵活，支持更多账户类型
+    -   比如，
+        ```rust
+        #[account(signer)]
+        pub authority: Account<'info, SomeData>
+        ```
 
 ```rust
 use anchor_lang::prelude::*;
@@ -109,8 +104,8 @@ pub struct Vault {
 }
 ```
 
+### 案例 2： Missing owner check
 
-### 案例2： Missing owner check
 > https://www.soldev.app/course/owner-checks
 
 ```rust
@@ -148,12 +143,11 @@ pub struct AdminConfig {
 }
 ```
 
-
 漏洞分析:
 
-- `admin_instruction`: 检查的是有输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的owner是不是本程序帐户
+-   `admin_instruction`: 检查的是有输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的 owner 是不是本程序帐户
 
-    如下图, 攻击这将B数据账户传入给A程序，可以通过A程序的简单校验，从而修改A数据账户的状态
+    如下图, 攻击这将 B 数据账户传入给 A 程序，可以通过 A 程序的简单校验，从而修改 A 数据账户的状态
 
     ```
     [A程序账户]        [B程序账户]
@@ -162,47 +156,48 @@ pub struct AdminConfig {
     [A数据账户]        [B数据账户]
     ```
 
+-   [攻击案例-国库提币攻击](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-owner-checks-starter/programs/solana-owner-checks-starter/src/lib.rs)
 
-- [攻击案例-国库提币攻击](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-owner-checks-starter/programs/solana-owner-checks-starter/src/lib.rs)
+    -   攻击者的合约，
 
-  - 攻击者的合约，
-    ```rust
-    #[account]
-    pub struct Vault {
-        // 必须保持和被攻击者的账户结构体同名, 即必须Vault， 因为结构体名称的hash作为账户的 Discriminator,
-        // 否则被攻击合约序列化的时候报错: Error Message: 8 byte discriminator did not match what was expected
+        ```rust
+        #[account]
+        pub struct Vault {
+            // 必须保持和被攻击者的账户结构体同名, 即必须Vault， 因为结构体名称的hash作为账户的 Discriminator,
+            // 否则被攻击合约序列化的时候报错: Error Message: 8 byte discriminator did not match what was expected
 
-        // 必须保持和被攻击账户的数据结构顺序一致,
-        // 结构体内部变量名称可以不同,
-        token_accountxx: Pubkey,
-        authorityx: Pubkey,
-    }
-    ```
-  - 漏洞修复： 将 vault的 `UncheckedAccount` 改成 `Account`, anchor为Account实现了owner安全检查
-    ```rust
-    #[derive(Accounts)]
-    pub struct SecureWithdraw<'info> {
-        /// 具体检查如下:
-        // has_one:
-        //     input_args.token_account.key == vault.token_account.key
-        //     input_args.authority.key == vault.authority.key
-        // Acccount的Owner trait 安全检查
-        //    Account.info.owner == T::owner()
-        //   `!(Account.info.owner == SystemProgram && Account.info.lamports() == 0)`
-        #[account(has_one=token_account, has_one=authority)]
-        pub vault: Account<'info, Vault>,
+            // 必须保持和被攻击账户的数据结构顺序一致,
+            // 结构体内部变量名称可以不同,
+            token_accountxx: Pubkey,
+            authorityx: Pubkey,
+        }
+        ```
 
-        #[account(mut, seeds=[b"token"], bump)]
-        pub token_account: Account<'info, TokenAccount>,
-        #[account(mut)]
-        pub withdraw_destination: Account<'info, TokenAccount>,
-        pub token_program: Program<'info, Token>, // SPL Token Program固定是 TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
-        pub authority: Signer<'info>,
-    }
-    ```
+    -   漏洞修复： 将 vault 的 `UncheckedAccount` 改成 `Account`, anchor 为 Account 实现了 owner 安全检查
 
+        ```rust
+        #[derive(Accounts)]
+        pub struct SecureWithdraw<'info> {
+            /// 具体检查如下:
+            // has_one:
+            //     input_args.token_account.key == vault.token_account.key
+            //     input_args.authority.key == vault.authority.key
+            // Acccount的Owner trait 安全检查
+            //    Account.info.owner == T::owner()
+            //   `!(Account.info.owner == SystemProgram && Account.info.lamports() == 0)`
+            #[account(has_one=token_account, has_one=authority)]
+            pub vault: Account<'info, Vault>,
 
-### 案例3： Account Data Matching
+            #[account(mut, seeds=[b"token"], bump)]
+            pub token_account: Account<'info, TokenAccount>,
+            #[account(mut)]
+            pub withdraw_destination: Account<'info, TokenAccount>,
+            pub token_program: Program<'info, Token>, // SPL Token Program固定是 TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA
+            pub authority: Signer<'info>,
+        }
+        ```
+
+### 案例 3： Account Data Matching
 
 > https://www.soldev.app/course/account-data-matching
 
@@ -236,16 +231,14 @@ pub struct AdminConfig {
 }
 ```
 
-- 漏洞分析:
-  - `update_config`缺少校验: `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
+-   漏洞分析:
 
+    -   `update_config`缺少校验: `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
 
-- 漏洞修复:
-  - 方案1： 在`update_admin`增加校验 `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
-  - 方案2： 使用`has_one`约束, 为`admin_config`增加约束 `#[account(has_one = admin)]`, 这样和方案1等效
-  - 方案3： 使用`constraint`约束, 为`admin_config`增加约束 `#[account(constraint = admin_config.admin == admin.key())]`, 这样和方案1等效
-
-
+-   漏洞修复:
+    -   方案 1： 在`update_admin`增加校验 `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
+    -   方案 2： 使用`has_one`约束, 为`admin_config`增加约束 `#[account(has_one = admin)]`, 这样和方案 1 等效
+    -   方案 3： 使用`constraint`约束, 为`admin_config`增加约束 `#[account(constraint = admin_config.admin == admin.key())]`, 这样和方案 1 等效
 
 [示例代码](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/anchor-account-data-matching/programs/anchor-account-data-matching/src/lib.rs)
 
@@ -302,8 +295,7 @@ pub struct Vault {
 }
 ```
 
-
-修复方案: 为 vault增加约束
+修复方案: 为 vault 增加约束
 
 ```rust
     #[account(
@@ -317,9 +309,7 @@ pub struct Vault {
     pub vault: Account<'info, Vault>,
 ```
 
-
-
-### 案例4： Re-initialization Attacks (重新初始化攻击)
+### 案例 4： Re-initialization Attacks (重新初始化攻击)
 
 ```rust
 use anchor_lang::prelude::*;
@@ -355,29 +345,28 @@ pub struct User {
 
 漏洞分析：
 
-- `Initialize`的 user采用的 手动初始化， 没有 `is_initialize`标识， 可以重复初始化
+-   `Initialize`的 user 采用的 手动初始化， 没有 `is_initialize`标识， 可以重复初始化
 
 修复方案:
 
-- 方案1： 在`User`中增加`is_initialize`字段，并且在指令处理函数中增加 `is_initialize`的判断, 防止重复初始化
+-   方案 1： 在`User`中增加`is_initialize`字段，并且在指令处理函数中增加 `is_initialize`的判断, 防止重复初始化
 
-- 方案2(推荐)： 使用 Anchor的`init`约束, `init`约束通过CPI调用System Program创建一个账户，并且设置账户`discrimiantor`,
-  - `init` 约束可以确保每个账户**只能**被初始化一次
-  - `init`约束必须和 `payer` 和 `space` 一起使用
-    - `space`: 指定账户的空间大小，这决定了支付的租金大小
-      - 头`8字节`，存放账户的`discrimiantor`, 即账户结构体名称的哈希
-    - `payer`: 支付初始化账户的费用
+-   方案 2(推荐)： 使用 Anchor 的`init`约束, `init`约束通过 CPI 调用 System Program 创建一个账户，并且设置账户`discrimiantor`,
 
-- 方案3： 使用Anchor的 `init_if_needed`约束, **要谨慎**:
-  - 如果指定的账户不存在，它会创建并初始化该账户
-  - 如果账户已经存在，它会跳过初始化步骤，直接使用现有账户。
-  - `init_if_needed`与普通 `init` 的区别：
-    - `init` 总是尝试创建新账户，如果账户已存在会失败。
-    - `init_if_needed` 在账户存在时不会失败，而是跳过初始化。
+    -   `init` 约束可以确保每个账户**只能**被初始化一次
+    -   `init`约束必须和 `payer` 和 `space` 一起使用
+        -   `space`: 指定账户的空间大小，这决定了支付的租金大小
+            -   头`8字节`，存放账户的`discrimiantor`, 即账户结构体名称的哈希
+        -   `payer`: 支付初始化账户的费用
 
+-   方案 3： 使用 Anchor 的 `init_if_needed`约束, **要谨慎**:
+    -   如果指定的账户不存在，它会创建并初始化该账户
+    -   如果账户已经存在，它会跳过初始化步骤，直接使用现有账户。
+    -   `init_if_needed`与普通 `init` 的区别：
+        -   `init` 总是尝试创建新账户，如果账户已存在会失败。
+        -   `init_if_needed` 在账户存在时不会失败，而是跳过初始化。
 
-
-### 案例5： 相同的可修改账户
+### 案例 5： 相同的可修改账户
 
 > https://www.soldev.app/course/duplicate-mutable-accounts
 
@@ -446,16 +435,13 @@ pub enum RockPaperScissors {
 }
 ```
 
-
-
-漏洞分析: `RockPaperScissorsInsecure` 中 `player_one` 和 `player_two` 可以相同, 攻击可以传入2个相同的地址
-
+漏洞分析: `RockPaperScissorsInsecure` 中 `player_one` 和 `player_two` 可以相同, 攻击可以传入 2 个相同的地址
 
 漏洞修复:
 
-- 方案1： 直接在指令处理函数中增加判断 `ctx.accounts.player_one() != ctx.account.player_two.key()`
+-   方案 1： 直接在指令处理函数中增加判断 `ctx.accounts.player_one() != ctx.account.player_two.key()`
 
-- 方案2（推荐）： 使用 Anchor的 `constraint`,
+-   方案 2（推荐）： 使用 Anchor 的 `constraint`,
 
     ```rust
     #[derive(Accounts)]
@@ -470,8 +456,7 @@ pub enum RockPaperScissors {
     }
     ```
 
-
-### 案例6： type-cosplay
+### 案例 6： type-cosplay
 
 > https://www.soldev.app/course/type-cosplay
 
@@ -516,15 +501,13 @@ pub struct UserConfig {
 }
 ```
 
-
 漏洞分析:
 
-- `AdminConfig` 和 `UserConfig` 有相同的数据结构， 因此2个类型可以随意传参,
-
+-   `AdminConfig` 和 `UserConfig` 有相同的数据结构， 因此 2 个类型可以随意传参,
 
 漏洞修复:
 
-- 方案1: 使用Anchor的 `Account`类型， 为类型增加类型标识(`Discriminator`)
+-   方案 1: 使用 Anchor 的 `Account`类型， 为类型增加类型标识(`Discriminator`)
 
     ```rust
 
@@ -536,10 +519,7 @@ pub struct UserConfig {
     }
     ```
 
-
-
-### 案例7： Arbitrary CPI
-
+### 案例 7： Arbitrary CPI
 
 ```rust
 use anchor_lang::prelude::*;
@@ -581,23 +561,22 @@ pub struct Cpi<'info> {
 }
 ```
 
-
 漏洞分析：
 
-- 没有检查`token_program` , 因此，可以传入任意值
-- 直接使用原生的`invoke`和指令组装进行 CPI调用，缺少安全检查
-
+-   没有检查`token_program` , 因此，可以传入任意值
+-   直接使用原生的`invoke`和指令组装进行 CPI 调用，缺少安全检查
 
 漏洞修复：
 
-- 方案1： 在`cpi`中增加检查
-  ```rust
-  if &spl_token::ID != ctx.accounts.token_program.key {
-        return Err(ProgramError::IncorrectProgramId);
-    }
-  ```
+-   方案 1： 在`cpi`中增加检查
 
-- 方案2： 使用Anchor的CPI模块进行CPI调用, Anchor在CPI内部做了一系列安全检查
+    ```rust
+    if &spl_token::ID != ctx.accounts.token_program.key {
+          return Err(ProgramError::IncorrectProgramId);
+      }
+    ```
+
+-   方案 2： 使用 Anchor 的 CPI 模块进行 CPI 调用, Anchor 在 CPI 内部做了一系列安全检查
 
 ```rust
 use anchor_lang::prelude::*;
@@ -635,10 +614,7 @@ impl<'info> Cpi<'info> {
 }
 ```
 
-
-
-案例,  对战游戏: https://github.com/Unboxed-Software/solana-arbitrary-cpi/tree/starter/programs
-
+案例, 对战游戏: https://github.com/Unboxed-Software/solana-arbitrary-cpi/tree/starter/programs
 
 账户结构:
 
@@ -650,9 +626,8 @@ Gameplay Program                 Metadata Program              Metadata Fake Pro
  [character B]                  [metadata account B]
 ```
 
-
 漏洞分析: 因为`gameplay`中 `BattleInsecure` 的 metadata_program 和 player 可以任意传入，并且指令处理函数中也没有进行判断，
-那么，攻击者就可以伪造 一个Metadata Fake程序，在Fake程序中为角色设置很高`health`, 这样，攻击者可以一直获胜
+那么，攻击者就可以伪造 一个 Metadata Fake 程序，在 Fake 程序中为角色设置很高`health`, 这样，攻击者可以一直获胜
 
 ```rust
 #[derive(Accounts)]
@@ -671,12 +646,94 @@ pub struct BattleInsecure<'info> {
 
 ```
 
-漏洞修复: 使用 Anchor自带的 `Program`类型， 其中做了检查`account_info.key == expected_program && account_info.executable == true`
+漏洞修复: 使用 Anchor 自带的 `Program`类型， 其中做了检查`account_info.key == expected_program && account_info.executable == true`
 
 ```rust
 pub metadata_program: Program<'info, CharacterMetadata>,
 ```
 
+### 案例 8： Bump Seed Canonicalization
 
+-   对于每个 seed, 有效的 bump 值在 `[0, 255]`闭区间， 共`256`个
+-   有效的 bump 值，是确保 PDA 在 ED25519 曲线之外
+-   对于单个 bump 值，有约`80%`概率是有效的, 因此，生成有效 bump 值是很容易的
+-   Canonical bump 指的是最大有效`bump`值, 从`255`开始递减
 
+```rust
+use anchor_lang::prelude::*;
 
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod bump_seed_canonicalization_insecure {
+    use super::*;
+
+    pub fn set_value(ctx: Context<BumpSeed>, key: u64, new_value: u64, bump: u8) -> Result<()> {
+        let address = Pubkey::create_program_address(
+            &[key.to_le_bytes().as_ref(),
+            &[bump]],
+            ctx.program_id
+        ).unwrap();
+
+        if address != ctx.accounts.data.key() {
+            return Err(ProgramError::InvalidArgument.into());
+        }
+
+        ctx.accounts.data.value = new_value;
+
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct BumpSeed<'info> {
+    data: Account<'info, Data>,
+}
+
+#[account]
+pub struct Data {
+    value: u64,
+}
+```
+
+-   漏洞分析:
+
+    -   key 和 bump 都是由外部输入，那么，就存在碰撞风险
+    -   PDA 没有建立与账户 `1对1`绑定的关系， 用户可以传入任意的有效 key 和 bump 来生成**多个**PDA 账户
+
+-   漏洞修复：
+
+    -   方案 1: 推荐使用 `find_program_address` 生成有效的 canonical bump
+    -   方案 2: 使用 Anchor 的 `seeds` 和`bump` 约束,
+        -   注意: 如果不指定 bump,由 solana 自动计算，则需要消耗更多计算单元(CU)
+
+    ```rust
+      // initialize account at PDA
+      #[derive(Accounts)]
+      #[instruction(key: u64)]
+      pub struct BumpSeed<'info> {
+      #[account(mut)]
+      payer: Signer<'info>,
+      #[account(
+          init,
+          seeds = [key.to_le_bytes().as_ref()],
+          // 会自动生成 canonical bump, 来生成 PDA， 需要消耗更多计算单元
+          // derives the PDA using the canonical bump
+          bump,
+          payer = payer,
+          space = 8 + 8
+      )]
+      data: Account<'info, Data>,
+      system_program: Program<'info, System>
+      }
+
+      #[account]
+      pub struct Data {
+          value: u64,
+      }
+
+    ```
+
+-   [空投案例](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/bump-seed-canonicalization/programs/bump-seed-canonicalization/src/lib.rs)
+    -   [修复官方 demo 的漏洞 PR](https://github.com/Unboxed-Software/solana-bump-seed-canonicalization/pull/1)
+    -   `user`缺少`mut`, 导致 `claim_secure` 可以重复调用
