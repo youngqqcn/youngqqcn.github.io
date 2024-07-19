@@ -671,6 +671,12 @@ pub struct BattleInsecure<'info> {
 
 ```
 
+漏洞修复: 使用 Anchor自带的 `Program`类型， 其中做了检查`account_info.key == expected_program && account_info.executable == true`
+
+```rust
+pub metadata_program: Program<'info, CharacterMetadata>,
+```
+
 
 
 
