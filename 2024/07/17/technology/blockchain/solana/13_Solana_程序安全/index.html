@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">3.2k</span>
+            <span class="post-count">3.5k</span>
         </span>
     </span>
 
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">16 分钟</span>
+            <span class="post-count">17 分钟</span>
         </span>
     </span>
 </div>
@@ -104,6 +104,10 @@
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://github.com/coral-xyz/sealevel-attacks/tree/master">https://github.com/coral-xyz/sealevel-attacks/tree/master</a></p>
+</blockquote>
+<hr>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/signer-auth">https://www.soldev.app/course/signer-auth</a></p>
 </blockquote>
 <h3 id="案例-1-缺少-Signer-Authentication"><a href="#案例-1-缺少-Signer-Authentication" class="headerlink" title="案例 1: 缺少 Signer Authentication"></a>案例 1: 缺少 Signer Authentication</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> insecure_update&#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update_authority</span></span>(ctx: Context&lt;UpdateAuthority&gt;) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        ctx.accounts.vault.authority = ctx.accounts.new_authority.key();</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">UpdateAuthority</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">   <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        has_one = authority</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> vault: Account&lt;<span class="symbol">&#x27;info</span>, Vault&gt;,</span><br><span class="line">    <span class="keyword">pub</span> new_authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> authority: AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Vault</span></span> &#123;</span><br><span class="line">    token_account: Pubkey,</span><br><span class="line">    authority: Pubkey,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -278,19 +282,46 @@
 </li>
 <li><p>漏洞修复：</p>
 <ul>
-<li>  方案 1: 推荐使用 <code>find_program_address</code> 生成有效的 canonical bump</li>
+<li>方案 1: 推荐使用 <code>find_program_address</code> 生成有效的 canonical bump</li>
 <li>方案 2: 使用 Anchor 的 <code>seeds</code> 和<code>bump</code> 约束,<ul>
-<li>  注意: 如果不指定 bump,由 solana 自动计算，则需要消耗更多计算单元(CU)</li>
+<li>注意: 如果不指定 bump,由 solana 自动计算，则需要消耗更多计算单元(CU)</li>
 </ul>
 </li>
 </ul>
   <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// initialize account at PDA</span></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="meta">#[instruction(key: u64)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BumpSeed</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line"><span class="meta">#[account(mut)]</span></span><br><span class="line">payer: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line"><span class="meta">#[account(</span></span><br><span class="line"><span class="meta">    init,</span></span><br><span class="line"><span class="meta">    seeds = [key.to_le_bytes().as_ref()]</span>,</span><br><span class="line">    <span class="comment">// 会自动生成 canonical bump, 来生成 PDA， 需要消耗更多计算单元</span></span><br><span class="line">    <span class="comment">// derives the PDA using the canonical bump</span></span><br><span class="line">    bump,</span><br><span class="line">    payer = payer,</span><br><span class="line">    space = <span class="number">8</span> + <span class="number">8</span></span><br><span class="line">)]</span><br><span class="line">data: Account&lt;<span class="symbol">&#x27;info</span>, Data&gt;,</span><br><span class="line">system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Data</span></span> &#123;</span><br><span class="line">    value: <span class="built_in">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/bump-seed-canonicalization/programs/bump-seed-canonicalization/src/lib.rs">空投案例</a></p>
 <ul>
-<li>  <a target="_blank" rel="noopener" href="https://github.com/Unboxed-Software/solana-bump-seed-canonicalization/pull/1">修复官方 demo 的漏洞 PR</a></li>
-<li>  <code>user</code>缺少<code>mut</code>, 导致 <code>claim_secure</code> 可以重复调用</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Unboxed-Software/solana-bump-seed-canonicalization/pull/1">修复官方 demo 的漏洞 PR</a></li>
+<li><code>user</code>缺少<code>mut</code>, 导致 <code>claim_secure</code> 可以重复调用</li>
 </ul>
 </li>
+</ul>
+<h3 id="案例9：-Closing-Account重入攻击"><a href="#案例9：-Closing-Account重入攻击" class="headerlink" title="案例9： Closing Account重入攻击"></a>案例9： Closing Account重入攻击</h3><p>原理: 因为Solana的垃圾回收是<strong>整个交易</strong>结束之后才进行，而一笔交易包含多个指令, 在交易插入一笔发送“租金”的指令，这样，账户就不会回收</p>
+<p>示例:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-closing-accounts/programs/solana-closing-accounts/src/lib.rs">彩票案例</a></p>
+<p>关于Anchor的<code>close</code>属性约束的细节：</p>
+<ol>
+<li><p>执行时机：<br>是的，close约束是在指令执行之后关闭账户。更具体地说，它是在指令的主要逻辑执行完成后，但在指令完全结束之前执行的。</p>
+</li>
+<li><p>执行顺序：<br>在一个Anchor指令中，执行顺序通常是：</p>
+<ul>
+<li>首先执行所有的前置约束（比如检查账户所有者、初始化检查等）</li>
+<li>然后执行指令的主要逻辑</li>
+<li>最后执行close等后置约束</li>
+</ul>
+</li>
+<li><p>功能：<br>close约束会做以下3件事：</p>
+<ul>
+<li>将账户的lamports（Solana的原生代币）转移到指定的接收者账户</li>
+<li>将账户数据的前8个字节设置为CLOSED_ACCOUNT_DISCRIMINATOR</li>
+<li>将账户的大小设置为0</li>
+</ul>
+</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li><code>close</code>约束是在<strong>单个指令</strong>结束之前执行3个关闭操作(退钱，清零，改owner)</li>
+<li>solana垃圾回收的时机是 <strong>整个交易</strong> 执行结束</li>
 </ul>
  
       <!-- reward -->
