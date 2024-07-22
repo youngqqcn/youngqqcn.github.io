@@ -139,7 +139,7 @@
 
 <p>漏洞分析:</p>
 <ul>
-<li><p><code>admin_instruction</code>: 检查的是有输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的 owner 是不是本程序帐户</p>
+<li><p><code>admin_instruction</code>: 检查的是输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的 owner 是不是本程序帐户</p>
 <p>  如下图, 攻击这将 B 数据账户传入给 A 程序，可以通过 A 程序的简单校验，从而修改 A 数据账户的状态</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[A程序账户]        [B程序账户]</span><br><span class="line">   |                 |</span><br><span class="line">   |                 |</span><br><span class="line">[A数据账户]        [B数据账户]</span><br></pre></td></tr></table></figure></li>
 <li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-owner-checks-starter/programs/solana-owner-checks-starter/src/lib.rs">攻击案例-国库提币攻击</a></p>
@@ -159,7 +159,7 @@
 <ul>
 <li><p>漏洞分析:</p>
 <ul>
-<li>  <code>update_config</code>缺少校验: <code>ctx.accounts.admin_conifg.admin == ctx.accounts.admin</code></li>
+<li>  <code>update_admin</code>缺少校验: <code>ctx.accounts.admin_conifg.admin == ctx.accounts.admin</code></li>
 </ul>
 </li>
 <li><p>漏洞修复:</p>
@@ -408,6 +408,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            14_Solana_程序架构
+          
+        </div>
+      </a>
     
     
       <a href="/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/" class="article-nav-link">
