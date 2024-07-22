@@ -11,7 +11,13 @@ tags:
     - 安全
 ---
 
+> 参考: https://github.com/coral-xyz/sealevel-attacks/tree/master
+
+
+----
+
 > https://www.soldev.app/course/signer-auth
+
 
 ### 案例 1: 缺少 Signer Authentication
 
@@ -696,16 +702,16 @@ pub struct Data {
 }
 ```
 
--   漏洞分析:
+- 漏洞分析:
 
     -   key 和 bump 都是由外部输入，那么，就存在碰撞风险
     -   PDA 没有建立与账户 `1对1`绑定的关系， 用户可以传入任意的有效 key 和 bump 来生成**多个**PDA 账户
 
--   漏洞修复：
+- 漏洞修复：
 
-    -   方案 1: 推荐使用 `find_program_address` 生成有效的 canonical bump
-    -   方案 2: 使用 Anchor 的 `seeds` 和`bump` 约束,
-        -   注意: 如果不指定 bump,由 solana 自动计算，则需要消耗更多计算单元(CU)
+    - 方案 1: 推荐使用 `find_program_address` 生成有效的 canonical bump
+    - 方案 2: 使用 Anchor 的 `seeds` 和`bump` 约束,
+        - 注意: 如果不指定 bump,由 solana 自动计算，则需要消耗更多计算单元(CU)
 
     ```rust
       // initialize account at PDA
@@ -735,5 +741,40 @@ pub struct Data {
     ```
 
 -   [空投案例](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/bump-seed-canonicalization/programs/bump-seed-canonicalization/src/lib.rs)
-    -   [修复官方 demo 的漏洞 PR](https://github.com/Unboxed-Software/solana-bump-seed-canonicalization/pull/1)
-    -   `user`缺少`mut`, 导致 `claim_secure` 可以重复调用
+    - [修复官方 demo 的漏洞 PR](https://github.com/Unboxed-Software/solana-bump-seed-canonicalization/pull/1)
+    - `user`缺少`mut`, 导致 `claim_secure` 可以重复调用
+
+
+
+### 案例9： Closing Account重入攻击
+
+
+原理: 因为Solana的垃圾回收是**整个交易**结束之后才进行，而一笔交易包含多个指令, 在交易插入一笔发送“租金”的指令，这样，账户就不会回收
+
+示例:
+
+[彩票案例](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-closing-accounts/programs/solana-closing-accounts/src/lib.rs)
+
+
+关于Anchor的`close`属性约束的细节：
+
+1. 执行时机：
+   是的，close约束是在指令执行之后关闭账户。更具体地说，它是在指令的主要逻辑执行完成后，但在指令完全结束之前执行的。
+
+2. 执行顺序：
+   在一个Anchor指令中，执行顺序通常是：
+   - 首先执行所有的前置约束（比如检查账户所有者、初始化检查等）
+   - 然后执行指令的主要逻辑
+   - 最后执行close等后置约束
+
+3. 功能：
+   close约束会做以下3件事：
+   - 将账户的lamports（Solana的原生代币）转移到指定的接收者账户
+   - 将账户数据的前8个字节设置为CLOSED_ACCOUNT_DISCRIMINATOR
+   - 将账户的大小设置为0
+
+
+注意：
+- `close`约束是在**单个指令**结束之前执行3个关闭操作(退钱，清零，改owner)
+- solana垃圾回收的时机是 **整个交易** 执行结束
+
