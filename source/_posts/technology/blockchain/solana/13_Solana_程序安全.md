@@ -151,7 +151,7 @@ pub struct AdminConfig {
 
 漏洞分析:
 
--   `admin_instruction`: 检查的是有输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的 owner 是不是本程序帐户
+-   `admin_instruction`: 检查的是输入参数指定的程序状态(state)与参数是否匹配, 并没有检查数据账户的 owner 是不是本程序帐户
 
     如下图, 攻击这将 B 数据账户传入给 A 程序，可以通过 A 程序的简单校验，从而修改 A 数据账户的状态
 
@@ -239,7 +239,7 @@ pub struct AdminConfig {
 
 -   漏洞分析:
 
-    -   `update_config`缺少校验: `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
+    -   `update_admin`缺少校验: `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
 
 -   漏洞修复:
     -   方案 1： 在`update_admin`增加校验 `ctx.accounts.admin_conifg.admin == ctx.accounts.admin`
