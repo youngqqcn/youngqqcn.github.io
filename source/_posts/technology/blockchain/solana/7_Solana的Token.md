@@ -30,6 +30,30 @@ tags:
 - **Associated Token Account (ATA)**: 由 owner地址 和 Mint Account地址派生出来的 Token Account
   - An Associated Token Account(ATA) is a **Token Account** created with an address derived from the owner's and mint account's addresses.
 
+
+
+
+
+注意区别：Token Account 和 ATA
+
+- Token Account 是更加通用的，可以随机生成(由客户端生成)
+
+- ATA 是通过确定性算法生成出来的, 标准化的
+
+    ```
+    ATA = PDA(
+        [
+            owner_address,
+            token_program_id,
+            mint_address
+        ],
+        associated_token_program_id
+    )
+    ```
+
+
+
+
 ### Token Program
 
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg)

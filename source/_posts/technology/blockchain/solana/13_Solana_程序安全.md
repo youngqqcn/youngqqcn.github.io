@@ -778,3 +778,126 @@ pub struct Data {
 - `close`约束是在**单个指令**结束之前执行3个关闭操作(退钱，清零，改owner)
 - solana垃圾回收的时机是 **整个交易** 执行结束
 
+
+
+### 案例10: PDA Sharing（PDA账户被多个账户共享)
+
+- PDA账户共享, 导致一个账户可以访问别人的PDA
+
+```rust
+use anchor_lang::prelude::*;
+use anchor_spl::token::{self, Token, TokenAccount};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod pda_sharing_insecure {
+    use super::*;
+
+    pub fn withdraw_tokens(ctx: Context<WithdrawTokens>) -> Result<()> {
+        let amount = ctx.accounts.vault.amount;
+        let seeds = &[ctx.accounts.pool.mint.as_ref(), &[ctx.accounts.pool.bump]];
+        token::transfer(ctx.accounts.transfer_ctx().with_signer(&[seeds]), amount)
+    }
+}
+
+#[derive(Accounts)]
+pub struct WithdrawTokens<'info> {
+    #[account(has_one = vault, has_one = withdraw_destination)]
+    pool: Account<'info, TokenPool>,
+    vault: Account<'info, TokenAccount>,
+    withdraw_destination: Account<'info, TokenAccount>,
+    authority: AccountInfo<'info>,
+    token_program: Program<'info, Token>,
+}
+
+impl<'info> WithdrawTokens<'info> {
+    pub fn transfer_ctx(&self) -> CpiContext<'_, '_, '_, 'info, token::Transfer<'info>> {
+        let program = self.token_program.to_account_info();
+        let accounts = token::Transfer {
+            from: self.vault.to_account_info(),
+            to: self.withdraw_destination.to_account_info(),
+            authority: self.authority.to_account_info(),
+        };
+        CpiContext::new(program, accounts)
+    }
+}
+
+#[account]
+pub struct TokenPool {
+    vault: Pubkey,
+    mint: Pubkey,
+    withdraw_destination: Pubkey,
+    bump: u8,
+}
+```
+
+
+漏洞分析：
+>注意： 因为这个示例不完整，缺少详细的细节，所以只能大概表示意思即可，不必细究
+
+- TokenPool.vault PDA的签名seeds是 `ctx.accounts.pool.mint.as_ref()`  和 `&[ctx.accounts.pool.bump`, 这就导致:
+  - 多个Pool 会共用同一个 Vault, 这就导致所有人都可以生成一个TokenPool并将其中的 vault的余额提走
+- 指令`WithdrawTokens`中的 pool , 虽然做了 vault 和 withdraw_destination的比对，但是对于调用者没有进行鉴权, 任何人都可以调用
+
+
+
+
+漏洞修复:
+-  使用Anchor的 seeds 和 bump约束, 将 `pool.withdraw_destination`作为seeds
+
+```rust
+
+use anchor_lang::prelude::*;
+use anchor_spl::token::{self, Token, TokenAccount};
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod pda_sharing_recommended {
+    use super::*;
+
+    pub fn withdraw_tokens(ctx: Context<WithdrawTokens>) -> Result<()> {
+        let amount = ctx.accounts.vault.amount;
+        let seeds = &[
+            ctx.accounts.pool.withdraw_destination.as_ref(),
+            &[ctx.accounts.pool.bump],
+        ];
+        token::transfer(ctx.accounts.transfer_ctx().with_signer(&[seeds]), amount)
+    }
+}
+
+#[derive(Accounts)]
+pub struct WithdrawTokens<'info> {
+    #[account(
+				has_one = vault,
+				has_one = withdraw_destination,
+				seeds = [withdraw_destination.key().as_ref()],
+				bump = pool.bump,
+		)]
+    pool: Account<'info, TokenPool>,
+    vault: Account<'info, TokenAccount>,
+    withdraw_destination: Account<'info, TokenAccount>,
+    token_program: Program<'info, Token>,
+}
+
+impl<'info> WithdrawTokens<'info> {
+    pub fn transfer_ctx(&self) -> CpiContext<'_, '_, '_, 'info, token::Transfer<'info>> {
+        let program = self.token_program.to_account_info();
+        let accounts = token::Transfer {
+            from: self.vault.to_account_info(),
+            to: self.withdraw_destination.to_account_info(),
+            authority: self.pool.to_account_info(),
+        };
+        CpiContext::new(program, accounts)
+    }
+}
+
+#[account]
+pub struct TokenPool {
+    vault: Pubkey,
+    mint: Pubkey,
+    withdraw_destination: Pubkey,
+    bump: u8,
+}
+```
