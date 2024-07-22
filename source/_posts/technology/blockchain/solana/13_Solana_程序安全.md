@@ -61,10 +61,10 @@ pub struct Vault {
 
 -   方案 1：使用 `ctx.accounts.authority.is_signer` 判断 authority 是否是交易的 signer
     -   缺点： 账户验证和指令逻辑验证是一起的（没有分离）
--   方案 2：使用 Anchor 的 `Singer`
+-   方案 2：使用 Anchor 的 `Signer`
     -   优点： 账户验证和指令逻辑验证是分开, 在进入逻辑之前就已经做了校验
     -   缺点: 只能和 Singer 账户一起,不能和其他账户类型
--   方案 3: 使用 `#[account(singer)]`
+-   方案 3: 使用 `#[account(signer)]`
     -   作用和 `Signer`是一样，但是比 `Signer` 更灵活，支持更多账户类型
     -   比如，
         ```rust
@@ -870,11 +870,11 @@ pub mod pda_sharing_recommended {
 #[derive(Accounts)]
 pub struct WithdrawTokens<'info> {
     #[account(
-				has_one = vault,
-				has_one = withdraw_destination,
-				seeds = [withdraw_destination.key().as_ref()],
-				bump = pool.bump,
-		)]
+         has_one = vault,
+         has_one = withdraw_destination,
+         seeds = [withdraw_destination.key().as_ref()],
+         bump = pool.bump,
+    )]
     pool: Account<'info, TokenPool>,
     vault: Account<'info, TokenAccount>,
     withdraw_destination: Account<'info, TokenAccount>,
