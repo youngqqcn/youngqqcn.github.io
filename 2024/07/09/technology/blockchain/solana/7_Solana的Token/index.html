@@ -126,12 +126,18 @@
 </ul>
 </li>
 </ul>
-<p>注意区别：Token Account 和 ATA</p>
+<hr>
+<p>注意区别：<code>Token Account</code> 和 ATA</p>
 <ul>
 <li><p>Token Account 是更加通用的，可以随机生成(由客户端生成)</p>
 </li>
 <li><p>ATA 是通过确定性算法生成出来的, 标准化的</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ATA &#x3D; PDA(</span><br><span class="line">    [</span><br><span class="line">        owner_address,</span><br><span class="line">        token_program_id,</span><br><span class="line">        mint_address</span><br><span class="line">    ],</span><br><span class="line">    associated_token_program_id</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p>问题： <code>SPL Token</code>的接收账户必须是<code>ATA</code>吗？</p>
+<ul>
+<li>答： 不是不是必须，用户可以自定义<code>seeds</code>和<code>bump</code>生成 Token Account</li>
+</ul>
+</li>
 </ul>
 <h3 id="Token-Program"><a href="#Token-Program" class="headerlink" title="Token Program"></a>Token Program</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg"></p>
 <ul>
