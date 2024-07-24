@@ -15,6 +15,7 @@ tags:
 
 > https://www.soldev.app/course/intro-to-token-extensions-program
 
+- Token Extension Program 是 Token Program 的超集
 
 - Token Program 和 Token Extension Program 是2个程序
   - 两个程序的地址，不可以互换(`not interchangeable`)
@@ -325,3 +326,71 @@ Transfer 1 tokens
 Error: Client(Error { request: Some(SendTransaction), kind: RpcError(RpcResponseError { code: -32002, message: "Transaction simulation failed: Error processing Instruction 1: custom program error: 0x25", data: SendTransactionPreflightFailure(RpcSimulateTransactionResult { err: Some(InstructionError(1, Custom(37))), logs: Some(["Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]", "Program log: CreateIdempotent", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]", "Program log: Instruction: GetAccountDataSize", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3064 of 22071 compute units", "Program return: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb rgAAAAAAAAA=", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success", "Program 11111111111111111111111111111111 invoke [2]", "Program 11111111111111111111111111111111 success", "Program log: Initialize the associated token account", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]", "Program log: Instruction: InitializeImmutableOwner", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 1924 of 14077 compute units", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]", "Program log: Instruction: InitializeAccount3", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 5815 of 9763 compute units", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success", "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 29823 of 33467 compute units", "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [1]", "Program log: Instruction: TransferChecked", "Program log: Transfer is disabled for this mint", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3644 of 3644 compute units", "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb failed: custom program error: 0x25"]), accounts: None, units_consumed: Some(33467), return_data: None, inner_instructions: None }) }) })
 
 ```
+
+---
+
+
+## 在客户端中使用 Token 2022
+
+> https://www.soldev.app/course/token-extensions-in-the-client
+
+- `spl-token`默认使用 `Token Program`, 除非明确指定使用`Token Programs Extension`
+  - Token Program: `TOKEN_PROGRAM_ID`
+  - Token 2022: `TOKEN_2022_PROGRAM_ID`
+
+
+[示例代码](https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-token-2022/src/create-and-mint-token.ts)
+
+```ts
+const mint = await createMint(
+    connection,
+    payer,
+    payer.publicKey,
+    payer.publicKey,
+    decimals,
+    undefined,
+    { commitment: connection.commitment },
+    tokenProgramId  // 指定 Program Id 即可
+);
+```
+
+
+-----
+
+
+## 在Anchor使用 Token2022
+
+
+在Anchor中使用 interface 类型来将 `Token Program` 和 `Token 2022` 融合到一起
+
+```rust
+use {
+    anchor_lang::prelude::*,
+    anchor_spl::{token_interface},
+};
+
+#[derive(Accounts)]
+pub struct Example<'info>{
+    // Token account
+    #[account(
+        token::token_program = token_program
+    )]
+    pub token_account: InterfaceAccount<'info, token_interface::TokenAccount>,
+    // Mint account
+    #[account(
+        mut,
+        mint::token_program = token_program
+    )]
+    pub mint_account: InterfaceAccount<'info, token_interface::Mint>,
+    pub token_program: Interface<'info, token_interface::TokenInterface>,
+}
+```
+
+- [Interface](https://docs.rs/anchor-lang/latest/anchor_lang/accounts/interface/index.html): 是 Program 的wrapper支持多种Program
+- [TokenInterface](https://docs.rs/anchor-lang/latest/anchor_lang/accounts/interface_account/index.html): 支持 `Token Program` 和 `Token 2022`, 且仅支持这2种，如果传入其他的程序id会报错
+
+
+- `InterfaceAccount`: 和 `Interface` 类似，也是一个wrapper, 用于 `AccountInfo`. `InterfaceAccount`
+
+
+

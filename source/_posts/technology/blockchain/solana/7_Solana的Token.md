@@ -30,11 +30,9 @@ tags:
 - **Associated Token Account (ATA)**: 由 owner地址 和 Mint Account地址派生出来的 Token Account
   - An Associated Token Account(ATA) is a **Token Account** created with an address derived from the owner's and mint account's addresses.
 
+---
 
-
-
-
-注意区别：Token Account 和 ATA
+注意区别：`Token Account` 和 ATA
 
 - Token Account 是更加通用的，可以随机生成(由客户端生成)
 
@@ -50,7 +48,8 @@ tags:
         associated_token_program_id
     )
     ```
-
+- 问题： `SPL Token`的接收账户必须是`ATA`吗？
+  - 答： 不是不是必须，用户可以自定义`seeds`和`bump`生成 Token Account
 
 
 
