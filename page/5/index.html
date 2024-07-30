@@ -102,6 +102,298 @@
     
     
     <article
+  id="post-technology/blockchain/solidity/分析MEV夹子机器人的技术细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/"
+    >分析MEV夹子机器人的技术细节</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2024-06-07T10:30:00.000Z" itemprop="datePublished">2024-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
+<li><code>A0: 1 USDT</code></li>
+<li><code>B0: 85.875  TXXC</code></li>
+<li><code>TXXC价格 = A0/B0 =  0.0116 USDT/TXXC</code></li>
+<li><a target="_blank" rel="noopener" href="https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default">https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default</a></li>
+</ul>
+<h2 id="机器人买入"><a href="#机器人买入" class="headerlink" title="机器人买入:"></a>机器人买入:</h2><ul>
+<li><p>该交易区块的第1个位置(给了 11Gwei)</p>
+</li>
+<li><p>MEV机器人的买入: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6">https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-20-57.png"></p>
+</li>
+<li><p>买入： <code>6.07 USDT</code>, 计算买入的 TXXC的数量和价格, ChatGPT的计算过程:</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-14-29.png"></p>
+</li>
+<li><p>ChatGPT的计算过程和计算结果完全正确：</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_15-17-35.png"></p>
+</li>
+</ul>
+<ul>
+<li>此时流动池中的状态</li>
+<li><code>A1: 7.07 USDT</code></li>
+<li><code>B1: 12.145 TXXC</code></li>
+<li>此时的价格 <code>7.07 / 12.145 = 0.5821  USDT/TXXC</code></li>
+</ul>
+<h2 id="我的添加流动性交易"><a href="#我的添加流动性交易" class="headerlink" title="我的添加流动性交易:"></a>我的添加流动性交易:</h2><ul>
+<li><p>该交易区块的第2个位置</p>
+</li>
+<li><p>源码： <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a></p>
+</li>
+<li><p>详细代码分析，见文末</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired, <span class="comment">// 希望投入的代币 A 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired, <span class="comment">// 希望投入的代币 B 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 A 的数量， 确保用户不会因为价格波动而损失太多代币A</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 B 的数量，确保用户不会因为价格波动而损失太多代币B</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to, <span class="comment">// 流动性代币接收者的地址。流动性代币是代表用户在流动池中所有权的代币。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline <span class="comment">// 交易的最后期限（时间戳）。确保交易在指定时间内完成，否则交易将被取消。</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>交易： <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74">https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-28-37.png"></p>
+</li>
+<li><p>计算:</p>
+<ul>
+<li><code>amountADesired</code>: <code>8.998834461493163430 USDT</code></li>
+<li><code>amountBDesired</code>: <code>7.73000000000000000000 TXXC</code></li>
+<li>因此<code>amountBOptimal = amountADesired * B1 / A1 = 8.998 * 12.1455 / 7.07 = 15.456</code></li>
+<li>满足 <code>if (amountBOptimal &lt;= amountBDesired) </code>, 所以<ul>
+<li>因此 <code>(amountA, amountB) = (amountADesired, amountBOptimal);</code></li>
+<li>即 <code>(amountA, amountB) = (8.998, 15.456);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其中 <code>quote</code>函数, 按照等比例增加, 这里只能近似:<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_18-35-24.png"></p>
+<ul>
+<li> <code>A2: 7.07 + 8.99 = 16.06 USDT</code></li>
+<li><code>B2: 12.145 + 15.3 = 27.445  TXXC</code></li>
+<li>此时价格  <code>0.5854 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="MEV机器人的卖出"><a href="#MEV机器人的卖出" class="headerlink" title="MEV机器人的卖出"></a>MEV机器人的卖出</h2><ul>
+<li><p>该交易区块的第3个位置</p>
+</li>
+<li><p>MEV机器人的卖出: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc">https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc</a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-29-28.png"></p>
+<ul>
+<li>此时MEV机器人全部卖出，<ul>
+<li><code>B3 = 27.45 + 66.5 + 3.5 = 97.45</code></li>
+<li><code>A3 =  k / B3 = (16.06*27.445) / 97.45  = 4.523</code></li>
+<li>此时的价格： <code>A3 / B3 = 4.523 / 97.45 = 0.0464 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>MEV机器人的获利：</p>
+<ul>
+<li>USDT: <code>16.06 - 4.523 - 6.07 = 5.467 USDT</code></li>
+<li>BNB手续费: <code>0.00475 BNB</code> , <code>0.0047 * 700</code> = <code>3.324 U</code><ul>
+<li>购买交易手续费:<code>0.00245 BNB</code><ul>
+<li>gas price: 11Gwei ， 一般是 1Gwei, 所以能排在第0个位置,</li>
+</ul>
+</li>
+<li>购买交易平台手续费: <code>0.002 BNB</code></li>
+<li>卖出交易手续费：<code>0.0003 BNB</code></li>
+</ul>
+</li>
+<li>合计： <code>5.467 - 3.324 = 2.1423</code></li>
+<li>MEV通过这一次交易，净赚<code>2.14 U</code></li>
+</ul>
+</li>
+<li><p>我损失的:</p>
+<ul>
+<li>USDT- <code> -5.467</code></li>
+<li>BNB: <code> +0.0026 BNB</code>, 约 <code>1.82U</code><ul>
+<li>池子是我建的，手续费归我</li>
+</ul>
+</li>
+<li>合计: <code> -3.647U</code></li>
+<li>我这笔交易损失: <code>3.647 U</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><ul>
+<li>添加流动性交易，没有设置滑点保护参数, <code>amountAMin</code> 和  <code>amountBMin</code>:<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-27-05.png"></li>
+<li>源码 <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given some amount of an asset and pair reserves, returns an equivalent amount of the other asset</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quote</span>(<span class="params">uint amountA, uint reserveA, uint reserveB</span>) <span class="title">internal</span> <span class="title">pure</span> <span class="title">returns</span> (<span class="params">uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(amountA &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_AMOUNT&#x27;</span>);</span><br><span class="line">    <span class="built_in">require</span>(reserveA &gt; <span class="number">0</span> &amp;&amp; reserveB &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_LIQUIDITY&#x27;</span>);</span><br><span class="line">    amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// **** ADD LIQUIDITY ****</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">internal</span> <span class="title">virtual</span> <span class="title">returns</span> (<span class="params">uint amountA, uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// create the pair if it doesn&#x27;t exist yet</span></span><br><span class="line">    <span class="keyword">if</span> (IPancakeFactory(factory).getPair(tokenA, tokenB) == address(<span class="number">0</span>)) &#123;</span><br><span class="line">        IPancakeFactory(factory).createPair(tokenA, tokenB);</span><br><span class="line">    &#125;</span><br><span class="line">    (uint reserveA, uint reserveB) = PancakeLibrary.getReserves(factory, tokenA, tokenB);</span><br><span class="line">    <span class="keyword">if</span> (reserveA == <span class="number">0</span> &amp;&amp; reserveB == <span class="number">0</span>) &#123;</span><br><span class="line">        (amountA, amountB) = (amountADesired, amountBDesired);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算 B的最小数量, 满足  A * B = k = A&#x27; * B&#x27; 的恒常等式</span></span><br><span class="line">        <span class="comment">// B&#x27; = A&#x27; * B</span></span><br><span class="line">        uint amountBOptimal = PancakeLibrary.quote(amountADesired, reserveA, reserveB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果 B的最有数量  小于 用户愿意投入的</span></span><br><span class="line">        <span class="keyword">if</span> (amountBOptimal &lt;= amountBDesired) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountBOptimal &gt;= amountBMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_B_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountADesired, amountBOptimal);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 A的最优数量</span></span><br><span class="line">            uint amountAOptimal = PancakeLibrary.quote(amountBDesired, reserveB, reserveA);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 必须满足： A的</span></span><br><span class="line">            assert(amountAOptimal &lt;= amountADesired);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountAOptimal &gt;= amountAMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_A_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountAOptimal, amountBDesired);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> <span class="title">virtual</span> <span class="title">override</span> <span class="title">ensure</span>(<span class="params">deadline</span>) <span class="title">returns</span> (<span class="params">uint amountA, uint amountB, uint liquidity</span>) </span>&#123;</span><br><span class="line">    (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);</span><br><span class="line">    address pair = PancakeLibrary.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);</span><br><span class="line">    liquidity = IPancakePair(pair).mint(to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="关于MEV的一些问题？"><a href="#关于MEV的一些问题？" class="headerlink" title="关于MEV的一些问题？"></a>关于MEV的一些问题？</h2><blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3163">https://learnblockchain.cn/article/3163</a></p>
+</blockquote>
+<ul>
+<li>交易顺序如何确定？<ul>
+<li>MEV在第一笔交易设置了非常搞的gas price</li>
+<li>矿工通过重组交易的执行顺序，可以获取收益<ul>
+<li>至于具体重组交易顺序的算法，需要进一步研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>如何防止MEV夹子机器人？<ul>
+<li>设置合适的滑点,<ul>
+<li>如果是添加流动性，要设置 <code>amountAMin</code>, <code>amountBMin</code></li>
+</ul>
+</li>
+<li>使用私密交易，用第三方的工具</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/学习课程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/"
+    >智能合约课程大纲</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/" class="article-date">
+  <time datetime="2024-05-23T16:00:00.000Z" itemprop="datePublished">2024-05-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>登链社区的培训课程大纲, 非常全面，可以借鉴学习</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/openspace/1">https://learnblockchain.cn/openspace/1</a></p>
+</blockquote>
+<h2 id="课程大纲"><a href="#课程大纲" class="headerlink" title="课程大纲"></a>课程大纲</h2><h3 id="夯实基础"><a href="#夯实基础" class="headerlink" title="夯实基础"></a>夯实基础</h3><ul>
+<li>比特币、以太坊核心技术原理，核心概念：钱包账号、交易调用、GAS 机制</li>
+<li>Remix &amp; Solidity 语言特性：数据类型、函数、库、事件、异常处理、OpenZeppelin</li>
+<li>开发工具：MetaMask、Hardhat、Foundry，如何进行编译、部署、代码验证</li>
+<li>测试：Foundry作弊码使用、Fork 链模拟测试、模糊测试</li>
+<li>ERC 标准介绍及实战：ERC20、ERC777、EIP2612、ERC721、ERC1155 及 SBT</li>
+<li>理解合约 ABI</li>
+<li>跟踪链上数据：解析合约事件与TheGraph 使⽤</li>
+<li>使用 Oracle 预言机、Keeper 服务，进行链上链下自动化交互</li>
+<li>前端 web3 SDK 集成：ethers.js ，viem，wagmi ，walletconnect 原理及应用</li>
+</ul>
+<h3 id="合约开发进阶"><a href="#合约开发进阶" class="headerlink" title="合约开发进阶"></a>合约开发进阶</h3><ul>
+<li>探究升级原理及可能遇到问题，实践合约升级模式：透明代理及 UUPS</li>
+<li>理解底层调用call、delegatecall，什么时候用、该如何用，有什么风险；</li>
+<li>理解 Multicall 解决什么问题</li>
+<li>离线签名的作用、如何安全的应用离线签名、线上验证</li>
+<li>智能合约钱包、多签钱包、AA 钱包</li>
+<li>跨链交互</li>
+<li>探究 EVM ，理解合约字节码</li>
+<li>Solidity 合约数据存储布局</li>
+<li>Gas 优化技巧：数据结构优化和使用、链上与链下权衡</li>
+<li>高级安全技术及漏洞挑战：重入攻击、不安全的随机数、权限漏洞</li>
+<li>大量 CTF 挑战实战，培养优秀代码思维</li>
+<li>Flashbots 应用</li>
+</ul>
+<h3 id="DeFi-算法"><a href="#DeFi-算法" class="headerlink" title="DeFi 算法"></a>DeFi 算法</h3><ul>
+<li>核心 DEFI 协议分析： Uniswap、 Compound、AAVE 、MakerDAO 等</li>
+<li>AMM DEX 实践</li>
+<li>借贷算法 Compound</li>
+<li>质押分红算法</li>
+<li>算法稳定币</li>
+</ul>
+<h3 id="Rollup-二层"><a href="#Rollup-二层" class="headerlink" title="Rollup 二层"></a>Rollup 二层</h3><ul>
+<li>Op-Stack 架构、Rollup 流程、跨链调用</li>
+<li>深入理解 ETH 和 ERC20 充值提现</li>
+<li>本地启动 op-Stack 测试网</li>
+<li>开发自己的的 Layer2 链</li>
+<li>模块化区块链、以太坊 DA（EIP4844 ）与 Celestia 等</li>
+<li>EigenLayer 重质押与 EigenDA</li>
+</ul>
+<h3 id="应用开发"><a href="#应用开发" class="headerlink" title="应用开发"></a>应用开发</h3><ul>
+<li>实现一个你自己的创意想法（学员组队完成）</li>
+<li>构建一个 DEX 、 Token 质押应用</li>
+<li>构建 NFT 市场</li>
+<li>构建抽象账户（AA）钱包</li>
+<li>构建一个区块链浏览器</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solidity/基于BondingCurve价格发现的代币"
   class="article article-type-post"
   itemscope
@@ -301,203 +593,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solidity/多笔交易打包"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/"
-    >多笔交易打包</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/" class="article-date">
-  <time datetime="2024-03-06T16:00:00.000Z" itemprop="datePublished">2024-03-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
-</ul>
-<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-technology/react/react基础"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/"
-    >react基础</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time datetime="2023-12-06T03:42:37.000Z" itemprop="datePublished">2023-12-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="react中文教程"><a href="#react中文教程" class="headerlink" title="react中文教程"></a>react中文教程</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn">https://zh-hans.react.dev/learn</a></li>
-</ul>
-<h1 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h1><ul>
-<li>Ubuntu： <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions#ubuntu-versions">https://github.com/nodesource/distributions#ubuntu-versions</a></li>
-<li>全局安装脚手架: <code>npm i -g create-react-app</code></li>
-<li>直接创建项目: <code>npx create-react-app my-app</code></li>
-</ul>
-<h1 id="antd使用"><a href="#antd使用" class="headerlink" title="antd使用"></a>antd使用</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/components/overview-cn">https://ant-design.antgroup.com/components/overview-cn</a></p>
-</blockquote>
-<ul>
-<li>全局安装  <code>npm install antd-init -g</code></li>
-<li>antd-init</li>
-<li>npm install antd –save</li>
-</ul>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
-<p>想象一下，你的组件是厨房里的厨师，用食材制作出美味的菜肴。在这个场景中，React 是服务员，负责提出顾客的要求，并给顾客上菜。这个请求和服务 UI 的过程有三个步骤：</p>
-<ul>
-<li>触发渲染（将食客的订单送到厨房）</li>
-<li>渲染组件（在厨房准备订单）</li>
-<li>提交到 DOM（将订单送到桌前）</li>
-</ul>
-<p>作为快照的状态</p>
-<ul>
-<li>与普通 JavaScript 变量不同，React 状态的行为更像一个快照。设置它并不改变你已有的状态变量，而是触发一次重新渲染。这在一开始可能会让人感到惊讶！</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="更新数组"><a href="#更新数组" class="headerlink" title="更新数组"></a>更新数组</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>避免使用 (会改变原始数组)</th>
-<th>推荐使用 (会返回一个新数组）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>添加元素</td>
-<td>push，unshift</td>
-<td>concat，[…arr] 展开语法（例子）</td>
-</tr>
-<tr>
-<td>删除元素</td>
-<td>pop，shift，splice</td>
-<td>filter，slice（例子）</td>
-</tr>
-<tr>
-<td>替换元素</td>
-<td>splice，arr[i] = … 赋值</td>
-<td>map（例子）</td>
-</tr>
-<tr>
-<td>排序</td>
-<td>reverse，sort</td>
-<td>先将数组复制一份（例子）</td>
-</tr>
-</tbody></table>
-<h2 id="Context使用场景"><a href="#Context使用场景" class="headerlink" title="Context使用场景"></a>Context使用场景</h2><h2 id="ref-和-state-的不同之处"><a href="#ref-和-state-的不同之处" class="headerlink" title="ref 和 state 的不同之处"></a>ref 和 state 的不同之处</h2><table>
-<thead>
-<tr>
-<th>ref</th>
-<th>state</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>useRef(initialValue)</code>返回 <code>&#123; current: initialValue &#125;</code></td>
-<td><code>useState(initialValue)</code> 返回 state 变量的当前值和一个 <code>state</code> 设置函数 <code>( [value, setValue])</code></td>
-</tr>
-<tr>
-<td>更改时不会触发重新渲染</td>
-<td>更改时触发重新渲染。</td>
-</tr>
-<tr>
-<td>可变 —— 你可以在渲染过程之外修改和更新 <code>current</code> 的值。</td>
-<td>“不可变” —— 你必须使用 <code>state</code> 设置函数来修改 <code>state</code> 变量，从而排队重新渲染。</td>
-</tr>
-<tr>
-<td>你不应在渲染期间读取（或写入） <code>current</code> 值。</td>
-<td>你可以随时读取 <code>state</code>。但是，每次渲染都有自己不变的 <code>state</code> 快照。</td>
-</tr>
-</tbody></table>
-<h2 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%A0%88/" rel="tag">全栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
 
     </footer>
   </div>

@@ -102,6 +102,334 @@
     
     
     <article
+  id="post-technology/blockchain/NFT/深入分析NFT合约源码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/"
+    >深入分析NFT合约源码——以Surge Women为例</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2022-05-06T16:00:00.000Z" itemprop="datePublished">2022-05-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><p>github地址：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/mynft">https://github.com/youngqqcn/mynft</a></p>
+<ul>
+<li>Surge Women合约地址：0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0</li>
+<li>智能合约源码：<a href="./surge.sol">surge.sol</a></li>
+<li>tokenId: 1802</li>
+<li>opensea链接：<a target="_blank" rel="noopener" href="https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802">https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802</a></li>
+<li>token mint 交易链接：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4">https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</a></li>
+</ul>
+<p>问题1：NFT(non-fungible token)，即非同质化代币，如何理解“非同质化”？在代码层面如何实现的？</p>
+<p>答：fungible中文意思是“可互换的”，可互换的东西是没有特殊性的，如果是独一无二的东西则具有了“不可互换的”属性。例如，1元钱的硬币和1元钱的纸钞则可以互换，虽然在形态上不同，但是在作为货币的属性上本质相同，都是代表1元。</p>
+<p>至于如何编码实现，前面说了non-fungible的东西必须具备“独一无二”的属性，在编程领域什么东西独一无二呢？<br>答案很简单，就是唯一的id，用一个整数即可，在solidity中uint256能够表示的整数完全够用。</p>
+<p>问题2：NFT的图片（或者音频、视频等）是怎样和智能中tokenId一一对应起来的？</p>
+<p>图片等资源文件放在IPFS，智能合约中只存储每个token对应的IPFS上的URI即可。每个NFT项目有一个目录，目录下可以放很多资源文件，在构造合约的时候将目录在IPFS上的URI设置为baseURI，那么每个token的资源文件在IPFS的URI就确定了。例如，某个NFT项目在IPFS上总目录的URI为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</code>，tokenId为<code>1802</code>的token在IPFS上的URI则为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5/1802</code>。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</span></span><br><span class="line"><span class="comment"># https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab</span></span><br><span class="line"><span class="comment"># contract address is 0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line">my_provider = Web3.HTTPProvider(<span class="string">&#x27;https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab&#x27;</span>)</span><br><span class="line">w3 = Web3(my_provider)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    </span><br><span class="line">    contract_address = <span class="string">&#x27;0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0&#x27;</span></span><br><span class="line">    contract_abi = json.load(<span class="built_in">open</span>(<span class="string">&#x27;surge.abi&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">    <span class="comment"># print(contract_abi)</span></span><br><span class="line"></span><br><span class="line">    mycontract = w3.eth.contract(address=contract_address, abi=contract_abi)</span><br><span class="line">    name = mycontract.functions.name().call()</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line">    symbol = mycontract.functions.symbol().call()</span><br><span class="line">    <span class="built_in">print</span>(symbol)</span><br><span class="line"></span><br><span class="line">    tokenURI = mycontract.functions.tokenURI(<span class="number">1802</span>).call()</span><br><span class="line">    <span class="built_in">print</span>(tokenURI)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>运行打印的结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Surge Women Passport</span><br><span class="line">SURGE</span><br><span class="line">ipfs:&#x2F;&#x2F;QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5&#x2F;1802</span><br></pre></td></tr></table></figure>
+
+<p>项目在IPFS的总目录：<br><a target="_blank" rel="noopener" href="https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>或<br><a target="_blank" rel="noopener" href="https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>ipfs浏览器中的链接：<code>ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png</code></p>
+<p>分析tokenURI函数的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function tokenURI(uint256 tokenId) public view virtual override returns (string memory) &#123;</span><br><span class="line">    if (!_exists(tokenId)) revert URIQueryForNonexistentToken();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; baseURI是目录的URI</span><br><span class="line">    string memory baseURI &#x3D; _baseURI();</span><br><span class="line">    &#x2F;&#x2F; 将目录的URI和tokenId拼接在一起就是token的URI</span><br><span class="line">    return bytes(baseURI).length !&#x3D; 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : &#39;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而 _baseURI由 Surge合约重写了父合约的_baseURI函数。Surge合约在构造函数中设置了baseURI，也就是在构造合约时已经设置了baseURI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">constructor(</span><br><span class="line">    string memory _name,</span><br><span class="line">    string memory _symbol,</span><br><span class="line">    string memory _baseTokenURI,</span><br><span class="line">    uint128 _price,</span><br><span class="line">    address _receiver,</span><br><span class="line">    uint256 _royalties</span><br><span class="line">) payable ERC721A(_name, _symbol) &#123;</span><br><span class="line">    setBaseURI(_baseTokenURI);</span><br><span class="line">    setPrice(_price);</span><br><span class="line">    setRoyalties(_receiver, _royalties);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>presaleMint为什么要用到merkleProof?</p>
+<p>项目方做了预售，对所有参加预售的地址构造了一棵merkle tree，并将merkle root填入智能合约，调用presale的地址必须在merkle tree中。</p>
+<p>使用merkle tree可以隐藏了具体地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Presale minting verifies callers address is in Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _amountOfTokens Amount of tokens to mint</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleProof Hash of the callers address used to verify the location of that address in the Merkle Root</span><br><span class="line">function presaleMint(uint256 _amountOfTokens, bytes32[] calldata _merkleProof)</span><br><span class="line">    external</span><br><span class="line">    payable</span><br><span class="line">    verifyMaxPerUser(msg.sender, _amountOfTokens)</span><br><span class="line">    verifyMaxSupply(_amountOfTokens)</span><br><span class="line">    isEnoughEth(_amountOfTokens)</span><br><span class="line">&#123;</span><br><span class="line">    require(status &#x3D;&#x3D; SaleStatus.Presale, &quot;Presale not active&quot;);</span><br><span class="line"></span><br><span class="line">    bytes32 leaf &#x3D; keccak256(abi.encodePacked(msg.sender));</span><br><span class="line">    require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), &quot;Not in presale list&quot;);</span><br><span class="line"></span><br><span class="line">    _mintedAmount[msg.sender] +&#x3D; _amountOfTokens;</span><br><span class="line">    _safeMint(msg.sender, _amountOfTokens);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置merkle root<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27">https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Set Presale Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleRoot Merkle Root hash</span><br><span class="line">function setMerkleRoot(bytes32 _merkleRoot) public onlyOwner &#123;</span><br><span class="line">    merkleRoot &#x3D; _merkleRoot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>presale</p>
+<p><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581">https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581</a></p>
+<p>同一个地址2次调用presale，那么它提供的merkle proof两次肯定是一样的。<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366">https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366</a><br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e">https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC721/" rel="tag">ERC721</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPFS/" rel="tag">IPFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="tag">源码分析</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-learning/认知世界的经济学（笔记）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/04/18/learning/%E8%AE%A4%E7%9F%A5%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%8F%E6%B5%8E%E5%AD%A6%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/"
+    >认知世界的经济学（笔记）</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/04/18/learning/%E8%AE%A4%E7%9F%A5%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%8F%E6%B5%8E%E5%AD%A6%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/" class="article-date">
+  <time datetime="2022-04-18T04:27:21.000Z" itemprop="datePublished">2022-04-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="认知世界的经济学（笔记）"><a href="#认知世界的经济学（笔记）" class="headerlink" title="认知世界的经济学（笔记）"></a>认知世界的经济学（笔记）</h1><h2 id="第1章-经济学是什么"><a href="#第1章-经济学是什么" class="headerlink" title="第1章 经济学是什么"></a>第1章 经济学是什么</h2><h3 id="理论课1——经济学世界观"><a href="#理论课1——经济学世界观" class="headerlink" title="理论课1——经济学世界观"></a>理论课1——经济学世界观</h3><h4 id="经济学研究什么"><a href="#经济学研究什么" class="headerlink" title="经济学研究什么"></a>经济学研究什么</h4><ul>
+<li>个体的选择</li>
+</ul>
+<h4 id="经济学和金融学的区别"><a href="#经济学和金融学的区别" class="headerlink" title="经济学和金融学的区别"></a>经济学和金融学的区别</h4><ul>
+<li>钱的选择</li>
+</ul>
+<h4 id="经济学的前提假设"><a href="#经济学的前提假设" class="headerlink" title="经济学的前提假设"></a>经济学的前提假设</h4><ul>
+<li>资源永远稀缺的</li>
+<li>人是理性的</li>
+</ul>
+<p><strong>取舍</strong></p>
+<p>课程地图</p>
+<ul>
+<li>第一模块：经济学核心原理</li>
+<li>第二模块：消费者如何选择</li>
+<li>第三模块：企业如何决策</li>
+<li>第四模块：市场如何运行</li>
+<li>第五模块：金钱如何分配</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg1.jpg"></p>
+<h4 id="经济学的历史观"><a href="#经济学的历史观" class="headerlink" title="经济学的历史观"></a>经济学的历史观</h4><ul>
+<li>现在：现在的经济制度存在系统性漏洞——就业问题和贫富差距增大</li>
+<li>未来：凯恩斯主义、货币主义</li>
+</ul>
+<h3 id="理论课3——经济学道德观"><a href="#理论课3——经济学道德观" class="headerlink" title="理论课3——经济学道德观"></a>理论课3——经济学道德观</h3><h2 id="第2章-经济学的基本方法"><a href="#第2章-经济学的基本方法" class="headerlink" title="第2章 经济学的基本方法"></a>第2章 经济学的基本方法</h2><p>1、个体分析<br>2、群体分析<br>3、模型与数据检验</p>
+<h3 id="机会成本"><a href="#机会成本" class="headerlink" title="机会成本"></a>机会成本</h3><h4 id="什么是机会成本？"><a href="#什么是机会成本？" class="headerlink" title="什么是机会成本？"></a>什么是机会成本？</h4><p>选择中放弃选择最高价值</p>
+<blockquote>
+<p>她那时还太年轻，不知道命运馈赠的礼物，早已暗中标好了价格。<br>——斯蒂芬·茨威格《断头皇后》</p>
+</blockquote>
+<h4 id="机会成本有何用？"><a href="#机会成本有何用？" class="headerlink" title="机会成本有何用？"></a>机会成本有何用？</h4><h3 id="沉没成本"><a href="#沉没成本" class="headerlink" title="沉没成本"></a>沉没成本</h3><ul>
+<li>沉没成本：人们在决定是否去做一件事情的时候，不仅是看这件事对自己有没有好处，而且也看过去是不是已经在这件事情上有过投入。我们把这些已经发生不可收回的支出，如时间、金钱、精力等称为“沉没成本”（Sunk Cost）。</li>
+</ul>
+<h3 id="边际分析"><a href="#边际分析" class="headerlink" title="边际分析"></a>边际分析</h3><ul>
+<li>边际成本：增加一单位的产量随即而产生的成本增加量即称为边际成</li>
+<li>边际收益：是指增加一单位产品的销售所增加的收益，即最后一单位产品的售出所取得的收益。</li>
+</ul>
+<h3 id="存量与增量"><a href="#存量与增量" class="headerlink" title="存量与增量"></a>存量与增量</h3><hr>
+<h3 id="个体选项优化"><a href="#个体选项优化" class="headerlink" title="个体选项优化"></a>个体选项优化</h3><h4 id="1、预算约束与可行选项"><a href="#1、预算约束与可行选项" class="headerlink" title="1、预算约束与可行选项"></a>1、预算约束与可行选项</h4><h4 id="2、权衡选项：成本收益分析"><a href="#2、权衡选项：成本收益分析" class="headerlink" title="2、权衡选项：成本收益分析"></a>2、权衡选项：成本收益分析</h4><p>充分考虑影响因素、准确估值</p>
+<h4 id="3、激励"><a href="#3、激励" class="headerlink" title="3、激励"></a>3、激励</h4><h3 id="群体均衡"><a href="#群体均衡" class="headerlink" title="群体均衡"></a>群体均衡</h3><ul>
+<li><p>群体分析：</p>
+</li>
+<li><p>均衡：</p>
+</li>
+<li><p>合成谬误： </p>
+</li>
+<li><p>搭便车： </p>
+</li>
+</ul>
+<h3 id="模型与数据检验"><a href="#模型与数据检验" class="headerlink" title="模型与数据检验"></a>模型与数据检验</h3><p>步骤</p>
+<ul>
+<li>1、设立假说</li>
+<li>2、解释假说</li>
+<li>3、数据检验</li>
+<li>4、查看结果</li>
+</ul>
+<h3 id="归因谬误"><a href="#归因谬误" class="headerlink" title="归因谬误"></a>归因谬误</h3><ul>
+<li>把先后发生的事情当作因果关系</li>
+<li>把同事发生的两类事情当成有因果关系</li>
+</ul>
+<p>有相关关系，却没有因果关系？</p>
+<ul>
+<li>遗漏因素</li>
+<li>反向因果关系</li>
+<li>巧合</li>
+</ul>
+<h3 id="马斯洛的需求层次理论"><a href="#马斯洛的需求层次理论" class="headerlink" title="马斯洛的需求层次理论"></a>马斯洛的需求层次理论</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    &#x2F;理想人生价值\   自我实现需求</span><br><span class="line">   &#x2F; 尊重需求     \  （自尊、他尊）</span><br><span class="line">  &#x2F;  社交需求      \  （归属和爱的需求）</span><br><span class="line"> &#x2F;   安全需求       \  （人身、健康、职业安全等）</span><br><span class="line">&#x2F;    生理需求        \  （食物、水、睡眠）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第三章—经济学的核心逻辑"><a href="#第三章—经济学的核心逻辑" class="headerlink" title="第三章—经济学的核心逻辑"></a>第三章—经济学的核心逻辑</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>需求量：在某个价格下，消费者愿意且能够购买的某种商品或服务的数量</p>
+<ul>
+<li>购买意愿</li>
+<li>购买能力</li>
+</ul>
+<p>需求定律：价格与需求之间呈反向关系：</p>
+<ul>
+<li>替代效应</li>
+<li>收入效应</li>
+</ul>
+<p>需求曲线移动：</p>
+<ul>
+<li>收入变化</li>
+<li>替代品</li>
+<li>互补品</li>
+<li>人的变化 </li>
+<li>消费者对未来的预期</li>
+<li>消费者的喜好、偏好的变化</li>
+</ul>
+<h3 id="供给"><a href="#供给" class="headerlink" title="供给"></a>供给</h3><p>供给量：在某个价格下，卖家愿意且能够出售的某种商品或服务的数量</p>
+<ul>
+<li>供给意愿</li>
+<li>供给能力</li>
+</ul>
+<p>供给定律：价格与供给呈正相关关系</p>
+<p>供给曲线：</p>
+<h3 id="均衡-价格"><a href="#均衡-价格" class="headerlink" title="均衡/价格"></a>均衡/价格</h3><hr>
+<p>PPI（Producer Price Index）：生产价格指数</p>
+<p>PMI（Purchasing Manager’s Index）：采购经理指数</p>
+<hr>
+<p>第二模块——消费者如何选择的？</p>
+<ul>
+<li>消费者的偏好</li>
+<li>商品或服务的价格</li>
+<li>消费者的收入</li>
+</ul>
+<h2 id="第4章——消费者选择模型"><a href="#第4章——消费者选择模型" class="headerlink" title="第4章——消费者选择模型"></a>第4章——消费者选择模型</h2><h3 id="效应"><a href="#效应" class="headerlink" title="效应"></a>效应</h3><p> 边际效用递减规律</p>
+<p> 基数效用论<br> 序数效用论</p>
+<p> 无差异曲线</p>
+<p> 预算线 </p>
+<p> 网路外部性：</p>
+<p> 用户转换成本：</p>
+<hr>
+<p>案例——婚姻与恋爱关系</p>
+<ul>
+<li>付出与回报</li>
+<li>处理矛盾，解决问题，不要冷战</li>
+<li>新鲜感降低</li>
+</ul>
+<h2 id="第5章——时间与风险"><a href="#第5章——时间与风险" class="headerlink" title="第5章——时间与风险"></a>第5章——时间与风险</h2><p>风险补偿</p>
+<p>风险：不确定性</p>
+<p>风险的计算：</p>
+<p>时间补偿：</p>
+<p>通胀</p>
+<p>利率：时间补偿+风险补偿</p>
+<p>利率计算：</p>
+<ul>
+<li>年利率 = 月利率 * 12</li>
+<li>月利率 = 日利率 * 30</li>
+</ul>
+<p>单利、复利</p>
+<p>复利计算：m * (1 + r)^n</p>
+<p>折现率：</p>
+<p>贴现率：</p>
+<h2 id="第六章——消费者是如何选择的？"><a href="#第六章——消费者是如何选择的？" class="headerlink" title="第六章——消费者是如何选择的？"></a>第六章——消费者是如何选择的？</h2><p>过度自信：</p>
+<p>框架效应：</p>
+<p>锚定效应：</p>
+<p>人们更偏向于维持现状：</p>
+<p>压力线：</p>
+<p>支撑线：</p>
+<p>峰终定律：如果在一段体验的高峰处结尾，体验是愉悦的，那么对整个体验的感受就是愉悦的。</p>
+<p>心理账户：</p>
+<h2 id="第七章——"><a href="#第七章——" class="headerlink" title="第七章——"></a>第七章——</h2><p>需求弹性</p>
+<p>交叉弹性：</p>
+<p>消费者剩余：</p>
+<h2 id="第八章——企业"><a href="#第八章——企业" class="headerlink" title="第八章——企业"></a>第八章——企业</h2><p>企业的目的：利润最大化</p>
+<p>企业组织：</p>
+<h3 id="成本分析"><a href="#成本分析" class="headerlink" title="成本分析"></a>成本分析</h3><p>显性成本：</p>
+<p>隐性成本：没有产生会计成本（例如，资金成本，老板自己的人力成本，企业自己拥有的办公楼，小店自己的店铺，企业的专利）。隐形成本需要用机会成本来度量。</p>
+<p>会计成本：</p>
+<p>会计利润、经济利润</p>
+<p>显性成本=会计成本</p>
+<p>显性成本 + 隐性成本 = 经济成本 = 机会成本的总和 = 生产成本</p>
+<p>固定成本：</p>
+<p>可变成本：</p>
+<p>总成本：</p>
+<p>平均总成本 = 平均固定成本 + 平均可变成本</p>
+<p>边际产量：</p>
+<p>边际报酬递减：固定其他资源，只改变单一资源</p>
+<p>边际成本：<br>平均成本：</p>
+<p>企业短期成本：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg2.JPG"></p>
+<p>边际成本：</p>
+<p>只要  增加成本 &gt; 产出 ，就可以增加投入</p>
+<p>规模经济、规模不经济</p>
+<p>利润：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg3.JPG"></p>
+<p>边际成本大于市场价格，增加的产量带来的是亏损</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg4.JPG"></p>
+<p>通过平均成本计算利润：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg5.JPG"></p>
+<p>定价：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg6.JPG"></p>
+<p>消费者剩余与生产者剩余</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/imgimg7.JPG"></p>
+<p>供给弹性：</p>
+<ul>
+<li>企业的库存情况</li>
+<li>商品类目的大小</li>
+<li>生产的难度、门槛、资源的耗费</li>
+<li>时间长短</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6/" rel="tag">经济学</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/NFT/NFT学习"
   class="article article-type-post"
   itemscope
@@ -278,161 +606,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%99%E4%BD%9C/" rel="tag">写作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E8%80%83/" rel="tag">思考</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-read/幸福的方法"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/06/01/read/%E5%B9%B8%E7%A6%8F%E7%9A%84%E6%96%B9%E6%B3%95/"
-    >幸福的方法</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/06/01/read/%E5%B9%B8%E7%A6%8F%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2021-06-01T05:31:52.000Z" itemprop="datePublished">2021-06-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>坚持每周都写点东西, 发布到这里. </p>
-<p><img src="https://www.hualigs.cn/image/60b5da5888d8e.jpg"></p>
-<blockquote>
-<p> 如果我们能在80岁的时候出生，然后慢慢走向18岁，那生活将会幸福无比。——马克·吐温</p>
-</blockquote>
-<p>分享最近刚看完的一本书，可以和<a target="_blank" rel="noopener" href="https://open.163.com/newview/movie/courseintro?newurl=M6HV755O6">哈佛大学公开课：幸福课</a>一起看，我比较喜欢看文字版。如作者在书中所说,读完本书并不能马上就获得幸福,幸福需要慢慢学习和实践.我觉得阅读也是这样,阅读是日积月累的思考过程,在这个过程中慢慢的提升,不能一蹴而就的.</p>
-<p>很赞同作者关于幸福的定义——快乐与意义的结合, 真正快乐的人，能够在自己觉得有意义的生活方式里享受它的点点滴滴。</p>
-<h2 id="四种人生模式"><a href="#四种人生模式" class="headerlink" title="四种人生模式"></a>四种人生模式</h2><p>书中一汉堡为例，提出了4种人生模式:</p>
-<ul>
-<li><p>享乐主义型: 为及时享乐而出卖未来的幸福人生，这样的人可以被称为“享乐主义型”。“享乐主义型”的格言就是“及时行乐，逃避痛苦”，他们注重的是眼前的快乐，却忽视了自己的行为可能带来的任何负面后果。</p>
-</li>
-<li><p>忙碌奔波型: 第二种汉堡虽然口味很差，可里面全是蔬菜和有机食物，食用这类汉堡可以确保日后的健康，但却让食用者吃得很痛苦。这类人与“享乐主义型”相反，他们只追求未来的快乐，承受着现在的痛苦。我称这类人为“忙碌奔波型”。这种人认为此刻的一切努力都是为了实现未来的目标，痛苦的过程是获得未来幸福的必由之路。</p>
-</li>
-<li><p>虚无主义型: 第三种汉堡最糟糕，既不好吃也不健康，如果吃了它，不但现在无法享受美味，日后还会影响健康。与此类似，有一种人对生命已经丧失了希望和欲望，他们既不享受眼前的所有，对未来也没有任何期望。我称其为“虚无主义型”。</p>
-</li>
-<li><p>感悟幸福型: 第四种汉堡就是“感悟幸福型”汉堡。生活幸福的人，不但能够享受当下所做的事情，而且通过目前的行为，他们也可以拥有更加满意的未来。</p>
-</li>
-</ul>
-<p><img src="https://www.hualigs.cn/image/60b5cb8d065c4.jpg"></p>
-<hr>
-<p>以下是我的一点思考：</p>
-<p>我属于哪种模式呢？ 我觉得我属于“感悟幸福型”。从小的就很喜欢的一句话，虽然是广告词，但很经典：</p>
-<blockquote>
-<p>人生就像一场旅行，在乎的不是目的地，而是沿途的风景和看风景的心情。</p>
-</blockquote>
-<p>旅行是有目的地，而不是没有目的地；旅行有终点，但终点不是目的地；旅行，出发之后沿途都是风景，无论它是普通的平凡的还是壮丽的或是萧条的；你就是风景的一部分，正所谓你在桥上看风景，看风景的在桥下看你；无论是哪种风景，它都是你的风景 ……</p>
-<hr>
-<h2 id="幸福冥想"><a href="#幸福冥想" class="headerlink" title="幸福冥想"></a>幸福冥想</h2><p>我觉得书中关于冥想的练习也非常有用，应该将冥想作为一种习惯</p>
-<blockquote>
-<p>首先选择一个安静的地方，找把椅子，或是盘腿坐在地上。确定自己处于舒适的姿势，但背部和颈部要挺直。 至于要不要闭上眼睛，由你自己决定。</p>
-<p>深呼吸，试着保持心态平静，每次吸气都要吸到底，在呼出时，要通过口或鼻慢慢地呼出。</p>
-<p>用意念扫描你的全身。如果有任何部位感到紧张，就将你的呼吸传向那里，并让这个部位放松。至少保持5分钟（最长20分钟），专注于你深缓的呼吸。如果发现注意力游移，只要把它简单而自然地带回到你的呼吸上即可。</p>
-<p>继续深呼吸，让积极情绪包围自己。你可以想象自己在一个非常开心的状态中，比如和爱人共处或是在工作上得心应手的时候。用30秒到5分钟的时间，让这种积极情绪蔓延全身并在体内流动。如果经常做这个练习，你甚至不需要再去想象什么情景，只是想着“幸福”、“宁静”或是“欢愉”这样的字眼，就能引发积极的力量。</p>
-</blockquote>
-<hr>
-<h2 id="时光机"><a href="#时光机" class="headerlink" title="时光机"></a>时光机</h2><p>想象一下，当你110岁时，诞生了一部时光机，而你被选中进行首次试用。发明人是美国国家航空航天局的一位科学家，他说：“你将会被传送到你读本书的那天，而你这个有智慧并且人生经历丰富的老人，只有5分钟的时间，去和那个经历浅薄、年轻的自己交谈。”请问，你在见到“他”后会说什么？你会给“他”什么样的建议呢？</p>
-<hr>
-<p>书中还有很多值得思考和学习的观点，这里就不列出了。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/" rel="tag">积极心理学</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-technology/leetcode算法题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/"
-    >leetcode算法题.md</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/" class="article-date">
-  <time datetime="2021-05-20T02:57:37.000Z" itemprop="datePublished">2021-05-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
-<p>刷题的代码和笔记都会提交到</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
-</ul>
-<p>参考</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
-</ul>
-<p>刷题计划表:</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md">https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
     </footer>
   </div>
