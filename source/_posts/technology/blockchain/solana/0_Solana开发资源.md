@@ -34,12 +34,20 @@ tags:
 
 ## 开源 Solana DEX
 - Openbook
-  -  https://github.com/openbook-dex/openbook-v2
+  - 官网： https://prism.ag/trade/
+  - https://github.com/openbook-dex/program
+  - https://github.com/openbook-dex/openbook-v2
   - https://github.com/openbook-dex/scripts-v2
 - Raydium:
+    - 官网：https://raydium.io/swap/
     - https://github.com/raydium-io/raydium-cp-swap
     - https://github.com/raydium-io/raydium-amm
     - https://github.com/raydium-io/raydium-contract-instructions/
+- Mango Dex:
+  - https://app.mango.markets/zh
+  - 代码：https://github.com/blockworks-foundation/mango-v4/tree/dev
+- Serum Dex:
+  - https://github.com/project-serum/serum-dex/
 - Jupiter:
   - https://github.com/jup-ag/sol-swap-cpi
   - https://station.jup.ag/docs
@@ -54,3 +62,17 @@ tags:
   - Raydium交易: https://github.com/henrytirla/Solana-Raydium-Trading/tree/master
   - swap前端: https://github.com/atillabirer/solana-nextjs-dex/tree/main
 
+
+
+
+## Solana节点搭建
+
+- https://docs.solanalabs.com/operations/requirements
+
+RPC节点最低配置:
+  - CPU:  32核+
+  - RAM:  512GB+
+  - Disk: 2TB+
+  - Network: 10GBit/s+
+
+- 预估服务器费用(年): 13万RMB左右
