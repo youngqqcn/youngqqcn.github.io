@@ -27,6 +27,8 @@ tags:
     - `Immutable ownership`:  ATA权限不可以转移
       - Token 2022的ATA权限默认是不可转移的
     - `Default account state`:  设置默认的账户状态，如：默认冻结
+      - https://www.soldev.app/course/default-account-state
+      - 一般用在游戏内，禁止用于转移，必须需要管理员解冻,才能转移
     - `CPI guard`: 对CPI做一些限制操作
   - **Mint**
     - `Transfer fees`: 项目方可以加入抽水功能
@@ -34,10 +36,14 @@ tags:
       - 需要supply为0, 即，需要销毁所有token之后才能关闭mint
     - `Interest-bearing tokens`: 生息， 非常适合staking项目
     - `Non-transferable tokens`: 不可转移， 适合做灵魂绑定(`Soul-Bound`)
+      - https://www.soldev.app/course/non-transferable-token
     - `Permanent delegate`: 永久代理，项目方可以控制一切账户，非常适合做中心化集权场景
     - `Transfer hook`: token转账的钩子， 可以增加自定义相关回调
     - `Metadata pointer`: 为token增加metadata
+      - 一般与Metadata Extension一起用, 也可以与外部账户(Metaplex)联合使用
     - `Metadata`： 为token增加metadata ，一般和 `metadta pointer`一起用
+      - https://www.soldev.app/course/token-extensions-metadata
+      - 解决了需要以来外部账户(如Metaplex)的缺点，简化了开发
     - `Group pointer`： 群组，适合做合集， 如NFT合集
     - `Group`: 同上
     - `Member pointer `： 成员
