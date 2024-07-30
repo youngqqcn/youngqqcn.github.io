@@ -344,7 +344,11 @@
 <li>Token 2022的ATA权限默认是不可转移的</li>
 </ul>
 </li>
-<li><code>Default account state</code>:  设置默认的账户状态，如：默认冻结</li>
+<li><code>Default account state</code>:  设置默认的账户状态，如：默认冻结<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/default-account-state">https://www.soldev.app/course/default-account-state</a></li>
+<li>一般用在游戏内，禁止用于转移，必须需要管理员解冻,才能转移</li>
+</ul>
+</li>
 <li><code>CPI guard</code>: 对CPI做一些限制操作</li>
 </ul>
 </li>
@@ -355,11 +359,21 @@
 </ul>
 </li>
 <li><code>Interest-bearing tokens</code>: 生息， 非常适合staking项目</li>
-<li><code>Non-transferable tokens</code>: 不可转移， 适合做灵魂绑定(<code>Soul-Bound</code>)</li>
+<li><code>Non-transferable tokens</code>: 不可转移， 适合做灵魂绑定(<code>Soul-Bound</code>)<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/non-transferable-token">https://www.soldev.app/course/non-transferable-token</a></li>
+</ul>
+</li>
 <li><code>Permanent delegate</code>: 永久代理，项目方可以控制一切账户，非常适合做中心化集权场景</li>
 <li><code>Transfer hook</code>: token转账的钩子， 可以增加自定义相关回调</li>
-<li><code>Metadata pointer</code>: 为token增加metadata</li>
-<li><code>Metadata</code>： 为token增加metadata ，一般和 <code>metadta pointer</code>一起用</li>
+<li><code>Metadata pointer</code>: 为token增加metadata<ul>
+<li>一般与Metadata Extension一起用, 也可以与外部账户(Metaplex)联合使用</li>
+</ul>
+</li>
+<li><code>Metadata</code>： 为token增加metadata ，一般和 <code>metadta pointer</code>一起用<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/token-extensions-metadata">https://www.soldev.app/course/token-extensions-metadata</a></li>
+<li>解决了需要以来外部账户(如Metaplex)的缺点，简化了开发</li>
+</ul>
+</li>
 <li><code>Group pointer</code>： 群组，适合做合集， 如NFT合集</li>
 <li><code>Group</code>: 同上</li>
 <li><code>Member pointer </code>： 成员</li>
