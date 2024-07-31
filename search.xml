@@ -1998,6 +1998,27 @@
       </tags>
   </entry>
   <entry>
+    <title>秋园</title>
+    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
+<blockquote>
+<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
+</blockquote>
+<blockquote>
+<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
+</blockquote>
+<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
+<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
+<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>当代小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>百万富翁的思维密码</title>
     <url>/2022/05/29/read/%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<h2 id="第一部分：财富蓝图"><a href="#第一部分：财富蓝图" class="headerlink" title="第一部分：财富蓝图"></a>第一部分：财富蓝图</h2><ul>
@@ -2123,27 +2144,6 @@
         <tag>阅读</tag>
         <tag>富人</tag>
         <tag>思维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>秋园</title>
-    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
-<blockquote>
-<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
-</blockquote>
-<blockquote>
-<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
-</blockquote>
-<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
-<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
-<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>当代小说</tag>
       </tags>
   </entry>
   <entry>
@@ -2912,8 +2912,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Uniswap-v1学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v2学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Uniswap-v3分析</title>
-    <url>/2025/07/06/technology/blockchain/defi/Uniswap-v3%E5%88%86%E6%9E%90/</url>
+    <url>/2024/07/29/technology/blockchain/defi/Uniswap-v3%E5%85%AC%E5%BC%8F/</url>
     <content><![CDATA[<ul>
 <li>白皮书: <a href="https://uniswap.org/whitepaper-v3.pdf">https://uniswap.org/whitepaper-v3.pdf</a></li>
 <li>数学公式: <a href="https://www.odaily.news/post/5174767">https://www.odaily.news/post/5174767</a></li>
@@ -2931,7 +2959,7 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20240730-191613.jpg"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg"></p>
-<p>增加了虚拟资产<code>x&#39;</code>和 <code>y&#39;</code>之后 , </p>
+<p>增加了虚拟资产<code>x&#39;</code>和 <code>y&#39;</code>之后 ,</p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png"></p>
 <p>用户可以将流动性集中，这样提供资金利用率（有交易，就有手续费）<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-positions.png"></p>
 ]]></content>
@@ -2942,6 +2970,21 @@
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v3学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -4507,6 +4550,36 @@
       </tags>
   </entry>
   <entry>
+    <title>基于BodingCurve价格发现的代币</title>
+    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
+    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+</li>
+<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+</li>
+<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+</li>
+</ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
+<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Token</tag>
+        <tag>Solidity</tag>
+        <tag>BodingCurve</tag>
+        <tag>价格发现</tag>
+        <tag>代币</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分析可升级智能合约</title>
     <url>/2022/12/14/technology/blockchain/solidity/%E5%88%86%E6%9E%90%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为了理解可升级合约，必须理解proxy机制，要理解proxy机制，必须理解solidity的<code>sstore</code>和<code>sload</code>,以及关于以太坊架构和存储结构（数据结构）。</p>
@@ -4599,36 +4672,6 @@
         <tag>区块链</tag>
         <tag>代理合约</tag>
         <tag>可升级</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于BodingCurve价格发现的代币</title>
-    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
-</li>
-<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
-</li>
-<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
-</li>
-</ul>
-<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
-<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Token</tag>
-        <tag>Solidity</tag>
-        <tag>BodingCurve</tag>
-        <tag>价格发现</tag>
-        <tag>代币</tag>
       </tags>
   </entry>
   <entry>
