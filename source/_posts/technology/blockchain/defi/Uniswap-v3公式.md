@@ -1,5 +1,5 @@
 ---
-date: 2024-19-07
+date: 2024-7-30
 title: Uniswap-v3分析
 categories: 技术
 tags:
@@ -34,7 +34,7 @@ tags:
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg)
 
 
-增加了虚拟资产`x'`和 `y'`之后 , 
+增加了虚拟资产`x'`和 `y'`之后 ,
 
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png)
 
