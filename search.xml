@@ -2315,26 +2315,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2023川西成都之行</title>
-    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
-<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
-]]></content>
-      <categories>
-        <category>旅行</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>川西</tag>
-        <tag>成都</tag>
-        <tag>峨眉山</tag>
-        <tag>旅游</tag>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2021五一假期</title>
     <url>/2021/05/07/travel/2021_5/</url>
     <content><![CDATA[<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>既然弄了这个个人博客，那么就要坚持每周写点东西。可能没有几个人会看到博客，就当作是写给未来的自己的信。</p>
@@ -2427,11 +2407,31 @@
         <category>旅行</category>
       </categories>
       <tags>
-        <tag>旅游</tag>
         <tag>云南</tag>
         <tag>大理</tag>
         <tag>丽江</tag>
+        <tag>旅游</tag>
         <tag>昆明</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023川西成都之行</title>
+    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
+<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
+]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>旅游</tag>
+        <tag>川西</tag>
+        <tag>成都</tag>
+        <tag>峨眉山</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -2725,25 +2725,6 @@
       </tags>
   </entry>
   <entry>
-    <title>NFT学习</title>
-    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>NFT</tag>
-        <tag>ERC721</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>记录一次Rust借用的生命周期问题</title>
     <url>/2024/07/26/technology/rust/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1Rust%E5%80%9F%E7%94%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>Unstake的结构体声明如下:</p>
@@ -2796,6 +2777,25 @@
         <tag>生命周期</tag>
         <tag>Solana</tag>
         <tag>Anchor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NFT学习</title>
+    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>NFT</tag>
+        <tag>ERC721</tag>
       </tags>
   </entry>
   <entry>
@@ -3242,66 +3242,6 @@
       </tags>
   </entry>
   <entry>
-    <title>16_Solana_程序安全实践指南</title>
-    <url>/2024/07/26/technology/blockchain/solana/16_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<p>官方列出的安全例子:</p>
-<ul>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs">https://github.com/coral-xyz/sealevel-attacks/tree/master/programs</a></li>
-</ul>
-<p>汇总如下：</p>
-<ul>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/0-signer-authorization"><code>0-signer-authorization</code></a>: <strong>非法权限调用攻击</strong>，调用者不是交易签名者<ul>
-<li>使用 Anchor的<code>Signer</code>账户类型检查交易签名者</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/1-account-data-matching"><code>1-account-data-matching</code></a>: 账户&amp;数据不一致，伪造攻击<ul>
-<li>使用 Anchor的约束，检查权限是否一致</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/2-owner-checks"><code>2-owner-check</code></a>: 权限, owner不一致</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/3-type-cosplay"><code>3-type-cosplay</code></a>: 数据类型伪造</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/4-initialization"><code>4-initialization</code></a>:  重复初始化攻击 + 初始化抢跑攻击<ul>
-<li>重新初始化攻击: 使用Anchor的<code>init</code>,</li>
-<li>初始化抢跑攻击: 使用 Anchor的init, 重复初始化会报错，因为就会发现是否被抢跑</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/5-arbitrary-cpi"><code>5-arbitrary-cpi</code></a>:  CPI乱调用(programId不一致, PDA的owner不是该程序), 可以进行<strong>伪造PDA攻击</strong><ul>
-<li>使用Anchor的<code>CpiContext</code>进行CPI调用</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/6-duplicate-mutable-accounts"><code>6-duplicate-mutable-accounts</code></a>: 重复修改账户(2个账户数据结构相同，传入相同的值)<ul>
-<li>注意账户&amp;指令中包含2个相同的数据结构的账户，要做检查key检查</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/7-bump-seed-canonicalization"><code>7-bump-seed-canonicalization</code></a>: PDA碰撞攻击(通过传入 seeds和bump)</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/8-pda-sharing"><code>8-pda-sharing</code></a>: <strong>(常见)伪造PDA攻击</strong>, PDA权限不清晰(共享的PDA)，攻击者可以伪造一个PDA<ul>
-<li>原因： <code>seeds</code> 中字段不唯一，没有跟账户关联起来</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/9-closing-accounts"><code>9-closing-accounts</code></a>: <strong>账户关闭攻击（重入攻击）</strong>,<ul>
-<li>要在指令执行结束后，关闭一个（临时）账户, 直接使用Anchor的 <code>close=destination</code> 约束即可</li>
-</ul>
-</li>
-<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/10-sysvar-address-checking"><code>10-sysvar-address-checking</code></a>: 系统变量地址检查(PDA伪造)<ul>
-<li>使用Anchor的<code>Sysvar</code>获取系统变量</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>Anchor</tag>
-        <tag>交易</tag>
-        <tag>Token</tag>
-        <tag>安全</tag>
-        <tag>架构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>15_Solana_Token Extension</title>
     <url>/2024/07/23/technology/blockchain/solana/15_Solana_Token%20Extension/</url>
     <content><![CDATA[<blockquote>
@@ -3499,6 +3439,66 @@
 </ul>
 <ul>
 <li><code>InterfaceAccount</code>: 和 <code>Interface</code> 类似，也是一个wrapper, 用于 <code>AccountInfo</code>. <code>InterfaceAccount</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>Anchor</tag>
+        <tag>交易</tag>
+        <tag>Token</tag>
+        <tag>安全</tag>
+        <tag>架构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>16_Solana_程序安全实践指南</title>
+    <url>/2024/07/26/technology/blockchain/solana/16_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<p>官方列出的安全例子:</p>
+<ul>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs">https://github.com/coral-xyz/sealevel-attacks/tree/master/programs</a></li>
+</ul>
+<p>汇总如下：</p>
+<ul>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/0-signer-authorization"><code>0-signer-authorization</code></a>: <strong>非法权限调用攻击</strong>，调用者不是交易签名者<ul>
+<li>使用 Anchor的<code>Signer</code>账户类型检查交易签名者</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/1-account-data-matching"><code>1-account-data-matching</code></a>: 账户&amp;数据不一致，伪造攻击<ul>
+<li>使用 Anchor的约束，检查权限是否一致</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/2-owner-checks"><code>2-owner-check</code></a>: 权限, owner不一致</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/3-type-cosplay"><code>3-type-cosplay</code></a>: 数据类型伪造</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/4-initialization"><code>4-initialization</code></a>:  重复初始化攻击 + 初始化抢跑攻击<ul>
+<li>重新初始化攻击: 使用Anchor的<code>init</code>,</li>
+<li>初始化抢跑攻击: 使用 Anchor的init, 重复初始化会报错，因为就会发现是否被抢跑</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/5-arbitrary-cpi"><code>5-arbitrary-cpi</code></a>:  CPI乱调用(programId不一致, PDA的owner不是该程序), 可以进行<strong>伪造PDA攻击</strong><ul>
+<li>使用Anchor的<code>CpiContext</code>进行CPI调用</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/6-duplicate-mutable-accounts"><code>6-duplicate-mutable-accounts</code></a>: 重复修改账户(2个账户数据结构相同，传入相同的值)<ul>
+<li>注意账户&amp;指令中包含2个相同的数据结构的账户，要做检查key检查</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/7-bump-seed-canonicalization"><code>7-bump-seed-canonicalization</code></a>: PDA碰撞攻击(通过传入 seeds和bump)</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/8-pda-sharing"><code>8-pda-sharing</code></a>: <strong>(常见)伪造PDA攻击</strong>, PDA权限不清晰(共享的PDA)，攻击者可以伪造一个PDA<ul>
+<li>原因： <code>seeds</code> 中字段不唯一，没有跟账户关联起来</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/9-closing-accounts"><code>9-closing-accounts</code></a>: <strong>账户关闭攻击（重入攻击）</strong>,<ul>
+<li>要在指令执行结束后，关闭一个（临时）账户, 直接使用Anchor的 <code>close=destination</code> 约束即可</li>
+</ul>
+</li>
+<li><a href="https://github.com/coral-xyz/sealevel-attacks/tree/master/programs/10-sysvar-address-checking"><code>10-sysvar-address-checking</code></a>: 系统变量地址检查(PDA伪造)<ul>
+<li>使用Anchor的<code>Sysvar</code>获取系统变量</li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
