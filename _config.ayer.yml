@@ -18,7 +18,7 @@ menu:
 # https://github.com/mattboldt/typed.js
 subtitle:
   enable: true # 是否开启动效
-  text: 面朝大海，春暖花开。 #给岁月以文明，而不是给文明以岁月。 # 显示的文字
+  text: Hello,world! #给岁月以文明，而不是给文明以岁月。 # 显示的文字
   text2: #愿你一生努力，一生被爱 # 滚动播放，如果不需要可以留空
   text3:  #想要的都拥有，得不到的都释怀 # 最多支持三段文字
   startDelay: 0 # 延迟时间
@@ -35,7 +35,7 @@ logo: /images/ayer-side.svg
 # enable-是否启用封面；path-封面背景图；logo-封面logo
 cover:
   enable: true
-  path: /images/cover4.jpg # /source/images目录下附送多张美图，可更换
+  path: /images/cover5.jpg # /source/images目录下附送多张美图，可更换
   logo: false #/images/ayer.svg，如果不要直接设置成false
 
 # 页面顶部进度条
@@ -89,9 +89,9 @@ reward_type: 0
 # 打赏wording
 reward_wording: "请我喝杯咖啡吧~"
 # 支付宝二维码图片地址，跟你设置logo的方式一样。比如：/images/alipay.jpg
-alipay: 
+alipay:
 # 微信二维码图片地址
-weixin: 
+weixin:
 
 # 版权声明
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
@@ -105,7 +105,7 @@ search: true
 # RSS订阅(先安装hexo-generator-feed插件，再去博客根目录config进行配置)
 # 不想显示可以直接留空
 # rss: /atom.xml
-rss: 
+rss:
 
 # 是否启用黑夜模式开关
 darkmode: true
@@ -147,7 +147,7 @@ busuanzi:
 # 友盟cnzz统计(url填js代码src链接)
 cnzz:
   enable: false
-  url: 
+  url:
 
 # Google Analytics
 google_analytics: ""
@@ -213,23 +213,23 @@ friends_link:
 # 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)
 # 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可
 leancloud:
-  enable: true
+  enable: false
   app_id: dqQDam2kOKklNOjtpOcc9wa1-gzGzoHsz #
   app_key: mJM3tAtsiBv3uDU9a1tWDSyI #
 # Valine配置
 valine:
-  enable: true # 是否启用
+  enable: false # 是否启用
   avatar: monsterid # 头像样式(https://valine.js.org/avatar.html)
   placeholder: 给我的文章加点评论吧~ # placeholder
 
 # 2、Gitalk(https://github.com/gitalk/gitalk)
 gitalk:
-  enable: false # true
-  clientID: # GitHub Application Client ID
-  clientSecret: # Client Secret
-  repo: # Repository name
-  owner: # GitHub ID
-  admin: # GitHub ID
+  enable: true # true
+  clientID: Ov23li39D7xcwiTHeGgk # GitHub Application Client ID
+  clientSecret: 007da9b580d1c5627f38c2e4d6130837031c9261 # Client Secret
+  repo: youngqqcn.github.io # Repository name
+  owner: youngqqcn # GitHub ID
+  admin: youngqqcn # GitHub ID
 
 # 3、Twikoo(https://github.com/imaegoo/twikoo)
 twikoo:
