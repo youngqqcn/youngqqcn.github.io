@@ -76,3 +76,12 @@ RPC节点最低配置:
   - Network: 10GBit/s+
 
 - 预估服务器费用(年): 13万RMB左右
+
+
+
+
+## 使用 `solana-keygen` 生成与 Phantom一致的地址
+
+```
+solana-keygen new --word-count 12 --no-bip39-passphrase --derivation-path "m/44'/501'/0'/0'" --outfile ./mynew-address.json
+```
