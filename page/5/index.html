@@ -104,6 +104,176 @@
     
     
     <article
+  id="post-technology/blockchain/solana/7_Solana的Token"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/"
+    >7_Solana的Token</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/" class="article-date">
+  <time datetime="2024-07-09T11:54:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana的Token"><a href="#Solana的Token" class="headerlink" title="Solana的Token"></a>Solana的Token</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens">https://solana.com/docs/core/tokens</a></p>
+</blockquote>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1454141877972779013">https://x.com/pencilflip/status/1454141877972779013</a></p>
+</li>
+<li><p>SPL Token官方文档: <a target="_blank" rel="noopener" href="https://spl.solana.com/associated-token-account">https://spl.solana.com/associated-token-account</a></p>
+</li>
+</ul>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>Token代表了同质化和非同质化的资产的所有权</li>
+<li>Token Program 包含了所有与token交互所需要的指令</li>
+<li>Token Extensions Program 是新版程序，包含了额外的特性</li>
+<li><strong>Mint Account</strong>: 代表了一个唯一的代币</li>
+<li>Token Account:<ul>
+<li>A Token Account tracks individual ownership of tokens for a specific mint account.</li>
+</ul>
+</li>
+<li><strong>Associated Token Account (ATA)</strong>: 由 owner地址 和 Mint Account地址派生出来的 Token Account<ul>
+<li>An Associated Token Account(ATA) is a <strong>Token Account</strong> created with an address derived from the owner’s and mint account’s addresses.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>注意区别：<code>Token Account</code> 和 ATA</p>
+<ul>
+<li><p>Token Account 是更加通用的，可以随机生成(由客户端生成)</p>
+</li>
+<li><p>ATA 是通过确定性算法生成出来的, 标准化的</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ATA &#x3D; PDA(</span><br><span class="line">    [</span><br><span class="line">        owner_address,</span><br><span class="line">        token_program_id,</span><br><span class="line">        mint_address</span><br><span class="line">    ],</span><br><span class="line">    associated_token_program_id</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p>问题： <code>SPL Token</code>的接收账户必须是<code>ATA</code>吗？</p>
+<ul>
+<li>答： 不是不是必须，用户可以自定义<code>seeds</code>和<code>bump</code>生成 Token Account</li>
+</ul>
+</li>
+</ul>
+<h3 id="Token-Program"><a href="#Token-Program" class="headerlink" title="Token Program"></a>Token Program</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg"></p>
+<ul>
+<li><code>InitializeMint</code>: 发行代币<ul>
+<li>Create a new mint account to represent a new type of token.</li>
+</ul>
+</li>
+<li><code>InitializeAccount</code>:  创建ATA账号<ul>
+<li>Create a new token account to hold units of a specific type of token (mint).</li>
+</ul>
+</li>
+<li><code>MintTo</code>: 增发代币。<ul>
+<li>Create new units of a specific type of token and add them to a token account. This increases the supply of the token and can only be done by the mint authority of the mint account.</li>
+</ul>
+</li>
+<li><code>Transfer</code>: 转移Token<ul>
+<li>Transfer units of a specific type of token from one token account to another.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Mint-Account"><a href="#Mint-Account" class="headerlink" title="Mint Account"></a>Mint Account</h3><ul>
+<li>Supply: token 的总发行量</li>
+<li>Decimals: 精度</li>
+<li>Mint authority: 持有<em>增发token权限</em>账户, 可以增发token</li>
+<li>Freeze authority: 持有<em>冻结转移</em>的账户, 即将某个用户账户”拉黑”<ul>
+<li>The account authorized to freeze tokens from being transferred from “token accounts”</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/mint-account.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Mint</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Optional authority used to mint new tokens. The mint authority may only</span></span><br><span class="line">    <span class="comment">/// be provided during mint creation. If no mint authority is present</span></span><br><span class="line">    <span class="comment">/// then the mint has a fixed supply and no further tokens may be</span></span><br><span class="line">    <span class="comment">/// minted.</span></span><br><span class="line">    <span class="keyword">pub</span> mint_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// Total supply of tokens.</span></span><br><span class="line">    <span class="keyword">pub</span> supply: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// Number of base 10 digits to the right of the decimal place.</span></span><br><span class="line">    <span class="keyword">pub</span> decimals: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="comment">/// Is `true` if this structure has been initialized</span></span><br><span class="line">    <span class="keyword">pub</span> is_initialized: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to freeze token accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如 USDC的Mint Account : <a target="_blank" rel="noopener" href="https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v">https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</a></p>
+<h3 id="Token-Account"><a href="#Token-Account" class="headerlink" title="Token Account"></a>Token Account</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account.svg"></p>
+<ul>
+<li><code>Mint</code>: 执行特定的Mint Account<ul>
+<li>The type of token the Token Account holds units of</li>
+</ul>
+</li>
+<li><code>Owner</code>: The account authorized to transfer tokens out of the Token Account<ul>
+<li>该Token Account 的所有者，有权转移该Token Account上的token</li>
+<li>注意： AccountInfo中owner 和 AccountInfo Data中的owner 是不同的，前者是Program的owner（即Token Program地址, 所有Token Account的owner都是 Token Program）, 后者是 Token Account的所有者(即用户的钱包地址)<blockquote>
+<p>原文： Note that each Token Account’s data includes an owner field used to identify who has <strong>authority over that specific Token Account</strong>. This is separate from the <strong>program owner</strong> specified in the AccountInfo, which is the Token Program for all Token Accounts.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><code>Amount</code>: Units of the token the Token Account currently holds<ul>
+<li>余额</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The mint associated with this account</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The owner of this account.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line">    <span class="comment">/// The amount of tokens this account holds.</span></span><br><span class="line">    <span class="keyword">pub</span> amount: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// If `delegate` is `Some` then `delegated_amount` represents</span></span><br><span class="line">    <span class="comment">/// the amount authorized by the delegate</span></span><br><span class="line">    <span class="keyword">pub</span> delegate: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// The account&#x27;s state</span></span><br><span class="line">    <span class="keyword">pub</span> state: AccountState,</span><br><span class="line">    <span class="comment">/// If is_native.is_some, this is a native token, and the value logs the</span></span><br><span class="line">    <span class="comment">/// rent-exempt reserve. An Account is required to be rent-exempt, so</span></span><br><span class="line">    <span class="comment">/// the value is used by the Processor to ensure that wrapped SOL</span></span><br><span class="line">    <span class="comment">/// accounts do not drop below this threshold.</span></span><br><span class="line">    <span class="keyword">pub</span> is_native: COption&lt;<span class="built_in">u64</span>&gt;,</span><br><span class="line">    <span class="comment">/// The amount delegated</span></span><br><span class="line">    <span class="keyword">pub</span> delegated_amount: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to close the account.</span></span><br><span class="line">    <span class="keyword">pub</span> close_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship.svg"></p>
+<h3 id="Associated-Token-Account"><a href="#Associated-Token-Account" class="headerlink" title="Associated Token Account"></a>Associated Token Account</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#associated-token-account">https://solana.com/docs/core/tokens#associated-token-account</a></p>
+</blockquote>
+<ul>
+<li>Associated Token Account (ATA) 是一个 Token Account, 这个token account的地址是确定的，通过 owner的地址 和 Mint Account的地址一起生成出来的。你可以认为<strong>ATA就是每个用户的默认Token Account</strong><blockquote>
+<p>原文：An Associated Token Account is a token account whose address is deterministically derived using the owner’s address and the mint account’s address. You can think of the Associated Token Account as the “default” token account for a specific mint and owner.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/associated-token-account.svg"></p>
+<p>获取 ATA</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getAssociatedTokenAddressSync &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/spl-token&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> associatedTokenAccountAddress = getAssociatedTokenAddressSync(</span><br><span class="line">  USDC_MINT_ADDRESS,</span><br><span class="line">  OWNER_ADDRESS,</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或者，通过<code>PDA</code>的方式生成 ATA</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; PublicKey &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/web3.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [PDA, bump] = PublicKey.findProgramAddressSync(</span><br><span class="line">  [</span><br><span class="line">    OWNER_ADDRESS.toBuffer(),</span><br><span class="line">    TOKEN_PROGRAM_ID.toBuffer(),</span><br><span class="line">    USDC_MINT_ADDRESS.toBuffer(),</span><br><span class="line">  ],</span><br><span class="line">  ASSOCIATED_TOKEN_PROGRAM_ID,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>对于每个代币(即Mint Account), 每个钱包账户都有一个自己的 Token Account(也可以叫ATA)， 如下图：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship-ata.svg"></p>
+<h3 id="创建Token-Metadata"><a href="#创建Token-Metadata" class="headerlink" title="创建Token Metadata"></a>创建Token Metadata</h3><p>需要使用<code>Token Extensions Program </code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#create-token-metadata">https://solana.com/docs/core/tokens#create-token-metadata</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">--enable-metadata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">TokenMetadata</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The authority that can sign to update the metadata</span></span><br><span class="line">    <span class="keyword">pub</span> update_authority: OptionalNonZeroPubkey,</span><br><span class="line">    <span class="comment">/// The associated mint, used to counter spoofing to be sure that metadata</span></span><br><span class="line">    <span class="comment">/// belongs to a particular mint</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The longer name of the token</span></span><br><span class="line">    <span class="keyword">pub</span> name: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// The shortened symbol for the token</span></span><br><span class="line">    <span class="keyword">pub</span> symbol: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// The URI pointing to richer metadata</span></span><br><span class="line">    <span class="keyword">pub</span> uri: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// Any additional metadata about the token as key-value pairs. The program</span></span><br><span class="line">    <span class="comment">/// must avoid storing the same key twice.</span></span><br><span class="line">    <span class="keyword">pub</span> additional_metadata: <span class="built_in">Vec</span>&lt;(<span class="built_in">String</span>, <span class="built_in">String</span>)&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多细节：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/token-extensions/metadata-pointer">https://solana.com/developers/guides/token-extensions/metadata-pointer</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/6_Solana的跨程序调用CPI"
   class="article article-type-post"
   itemscope
@@ -466,242 +636,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/solana/2_Solana交易和指令"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/"
-    >2_Solana交易和指令</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/" class="article-date">
-  <time datetime="2024-07-09T11:15:00.000Z" itemprop="datePublished">2024-07-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions">https://solana.com/docs/core/transactions</a></p>
-</blockquote>
-<p>关键细节：</p>
-<ul>
-<li><strong>执行顺序</strong>： 如果交易包含多个指令，按照顺序执行（指令添加到交易中的顺序）</li>
-<li><strong>原子性</strong>： 交易是原子性，只有当全部指令都执行成功，交易才成功，否则交易执行失败</li>
-</ul>
-<p>关键点:</p>
-<ul>
-<li>交易由不同指令组成，这些指令用来与链上不同的程序进行交互， 不同的指令代表不同的操作</li>
-<li>每个指令指定3个要素, 见下文的<code>CompiledInstruction</code>结构体：<ul>
-<li>程序id索引</li>
-<li>账户列表, 即指令所涉及的账户</li>
-<li>输入数据</li>
-</ul>
-</li>
-<li>交易中的指令，按照顺序执行</li>
-<li>交易是原子性的</li>
-<li>一笔交易最大为<strong>1232 bytes</strong><ul>
-<li>Solana最大传输单元是1280字节, 这个值跟IPV6的MTU(最小传输单元) 一样， 为了UDP传输的效率。 详细见： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions#transaction-size">https://solana.com/docs/core/transactions#transaction-size</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><ul>
-<li><code>recent_blockhash</code>用作交易的时间戳, 交易最大的age是 150 区块 （约1分钟），超过150区块就视为过期， 过期交易将不能执行<ul>
-<li>可以通过<code>getLatestBlockHash</code>获取最新区块hash</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/transaction-simple.svg"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/tx_format.png"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/src/transaction/mod.rs#L173</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// A set of signatures of a serialized [`Message`], signed by the first</span></span><br><span class="line">    <span class="comment">/// keys of the `Message`&#x27;s [`account_keys`], where the number of signatures</span></span><br><span class="line">    <span class="comment">/// is equal to [`num_required_signatures`] of the `Message`&#x27;s</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`].</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// [`account_keys`]: Message::account_keys</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`]: crate::message::MessageHeader</span></span><br><span class="line">    <span class="comment">/// [`num_required_signatures`]: crate::message::MessageHeader::num_required_signatures</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The message to sign.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> message: Message,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Message</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The message header, identifying signed and read-only `account_keys`.</span></span><br><span class="line">    <span class="comment">/// Header values only describe static `account_keys`, they do not describe</span></span><br><span class="line">    <span class="comment">/// any additional account keys loaded via address table lookups.</span></span><br><span class="line">    <span class="keyword">pub</span> header: MessageHeader,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有的需要使用到的账户数组</span></span><br><span class="line">    <span class="comment">/// List of accounts loaded by this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> account_keys: <span class="built_in">Vec</span>&lt;Pubkey&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用做交易的时间戳，也用于防止重复交易和过期交易</span></span><br><span class="line">    <span class="comment">// 交易最大的age是 150 区块 （约1分钟）</span></span><br><span class="line">    <span class="comment">/// The blockhash of a recent block.</span></span><br><span class="line">    <span class="keyword">pub</span> recent_blockhash: Hash,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指令合集</span></span><br><span class="line">    <span class="comment">/// Instructions that invoke a designated program, are executed in sequence,</span></span><br><span class="line">    <span class="comment">/// and committed in one atomic transaction if all succeed.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// # Notes</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Program indexes must index into the list of message `account_keys` because</span></span><br><span class="line">    <span class="comment">/// program id&#x27;s cannot be dynamically loaded from a lookup table.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Account indexes must index into the list of addresses</span></span><br><span class="line">    <span class="comment">/// constructed from the concatenation of three key lists:</span></span><br><span class="line">    <span class="comment">///   1) message `account_keys`</span></span><br><span class="line">    <span class="comment">///   2) ordered list of keys loaded from `writable` lookup table indexes</span></span><br><span class="line">    <span class="comment">///   3) ordered list of keys loaded from `readable` lookup table indexes</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> instructions: <span class="built_in">Vec</span>&lt;CompiledInstruction&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// List of address table lookups used to load additional accounts</span></span><br><span class="line">    <span class="comment">/// for this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> address_table_lookups: <span class="built_in">Vec</span>&lt;MessageAddressTableLookup&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">VersionedMessage</span></span> &#123;</span><br><span class="line">    Legacy(LegacyMessage),</span><br><span class="line">    V0(v0::Message),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">VersionedTransaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// List of signatures</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line">    <span class="comment">/// Message to sign.</span></span><br><span class="line">    <span class="keyword">pub</span> message: VersionedMessage,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息头</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/message/mod.rs#L96</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MessageHeader</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The number of signatures required for this message to be considered</span></span><br><span class="line">    <span class="comment">/// valid. The signers of those signatures must match the first</span></span><br><span class="line">    <span class="comment">/// `num_required_signatures` of [`Message::account_keys`].</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="keyword">pub</span> num_required_signatures: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_signed_accounts` of the signed keys are read-only</span></span><br><span class="line">    <span class="comment">/// accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_signed_accounts: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_unsigned_accounts` of the unsigned keys are</span></span><br><span class="line">    <span class="comment">/// read-only accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_unsigned_accounts: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/legacy_message.png"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/message_header.png"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compat_array_of_account_addresses.png"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compact_array_of_ixs.png"></p>
-<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/instruction.svg"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交易中的结构是 CompiledInstruction</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">CompiledInstruction</span></span> &#123;</span><br><span class="line">    <span class="comment">// 索引</span></span><br><span class="line">    <span class="comment">/// Index into the transaction keys array indicating the program account that executes this instruction.</span></span><br><span class="line">    <span class="keyword">pub</span> program_id_index: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要和合约交互账户</span></span><br><span class="line">    <span class="comment">/// Ordered indices into the transaction keys array indicating which accounts to pass to the program.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入数据</span></span><br><span class="line">    <span class="comment">/// The program input data.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instruction 是底层的数据结构</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L329</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Instruction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Pubkey of the program that executes this instruction.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> program_id: Pubkey,</span><br><span class="line">    <span class="comment">/// Metadata describing accounts that should be passed to the program.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;AccountMeta&gt;,</span><br><span class="line">    <span class="comment">/// Opaque data passed to the program for its own interpretation.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="AccountMeta"><a href="#AccountMeta" class="headerlink" title="AccountMeta"></a>AccountMeta</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/accountmeta.svg"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L539</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AccountMeta</span></span> &#123;</span><br><span class="line">    <span class="comment">/// An account&#x27;s public key.</span></span><br><span class="line">    <span class="keyword">pub</span> pubkey: Pubkey,</span><br><span class="line">    <span class="comment">/// True if an `Instruction` requires a `Transaction` signature matching `pubkey`.</span></span><br><span class="line">    <span class="keyword">pub</span> is_signer: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// True if the account data or metadata may be mutated during program execution.</span></span><br><span class="line">    <span class="keyword">pub</span> is_writable: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="转移-SOL的交易示例图："><a href="#转移-SOL的交易示例图：" class="headerlink" title="转移 SOL的交易示例图："></a>转移 SOL的交易示例图：</h3><ul>
-<li><p>结构图</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer.svg"></p>
-</li>
-</ul>
-<ul>
-<li><p>SOL转账交易执行流程：</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer-process.svg"></p>
-</li>
-</ul>
-<hr>
-<h2 id="交易确认-amp-过期"><a href="#交易确认-amp-过期" class="headerlink" title="交易确认&amp;过期"></a>交易确认&amp;过期</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/confirmation">https://solana.com/docs/advanced/confirmation</a></p>
-</blockquote>
-<ul>
-<li>过期时间 <code>151</code>个区块, 每个区块<code>400ms</code>, 即 <code>60s</code></li>
-<li>交易中的recentBlockHash必须是151区块内, 否则将是过期交易</li>
-</ul>
-<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
-<li><p>建议1： 调用<code>getLatestBlockhash</code>时， 推荐使用 <code>confired</code></p>
-<ul>
-<li><code>proceeded</code>: 已处理, 很激进，速度最快，但有可能被跳过<ul>
-<li>用这种级别的交易中，有约<code>5%</code>交易会被验证节点丢弃</li>
-</ul>
-</li>
-<li><code>confirmed</code>: 已被多个验证节点确认, 折衷方案<ul>
-<li>这个级别，比较稳妥，因为被多个节点确认，之后被丢弃的几率很小</li>
-</ul>
-</li>
-<li><code>finalized</code>: 最终确认, 太保守, 交易不会被丢弃<ul>
-<li>即<code>32</code>个slot确认, 需要<code>12.8s</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>建议2：在<code>sendTransaction</code>和 <code>simulateTransaction</code>时使用， 要设置相同的 <code>preflightCommitment</code>, 即都设置 <code>confirmed</code></p>
-</li>
-<li><p>建议3：使用可靠的RPC节点，不要用落后的RPC节点</p>
-</li>
-<li><p>建议4：不要用过期的blockhash, 而是在签名前实时获取最新的blockHash</p>
-</li>
-<li><p>前端应用要一直轮询最新的区块hash, 确保用户在触发交易时，获取的区块是最新的</p>
-</li>
-<li><p>钱包要一直轮询最新的区块hash, 并刷新交易中的区块hash,确保用户签名时用的是最新的区块hash</p>
-</li>
-<li><p>建议5：使用健康的RPC节点获取区块hash</p>
-</li>
-<li><p>其他建议</p>
-</li>
-</ul>
-<hr>
-<h2 id="Solana交易重试"><a href="#Solana交易重试" class="headerlink" title="Solana交易重试"></a>Solana交易重试</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/retry">https://solana.com/docs/advanced/retry</a></p>
-</blockquote>
-<ul>
-<li>RPC节点会尝试重新广播</li>
-<li>开发者可以实现自定义的重新广播逻辑</li>
-<li>开发者可以利用 <code>sendTransaction</code>的 <code>maxRetries</code>参数</li>
-<li>开发者在提交交易前，应该执行预检(preflight), 如: <code>simulattionTransaction</code></li>
-<li>在对重试交易进行签名交易前，<strong>必须</strong>确保之前那笔交易中的区块hash已经过期，<ul>
-<li>否则存在发起2笔交易的风险</li>
-</ul>
-</li>
-</ul>
-<h3 id="交易的流程"><a href="#交易的流程" class="headerlink" title="交易的流程"></a>交易的流程</h3><p>Solana<strong>没有交易池(mempool, txpool)</strong>, 所有的交易都会转发给leaders节点执行</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tx-journey.png"></p>
-<p>Transaction Processing Unit (TPU) 处理交易的阶段：</p>
-<ul>
-<li>Fetch Stage</li>
-<li>SigVerify Stage</li>
-<li>Banking Stage</li>
-<li>Proof of History Service</li>
-<li>Broadcast Stage</li>
-</ul>
-<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tpu-jito-labs.png)
-</code></pre>
-<h3 id="交易被丢弃的几种情况"><a href="#交易被丢弃的几种情况" class="headerlink" title="交易被丢弃的几种情况"></a>交易被丢弃的几种情况</h3><ul>
-<li>第1种： 开发者引用过期区块hash, 提交交易时被RPC pool丢弃 ，这种是最常见的<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-via-rpc-pool.png"></li>
-</ul>
-<ul>
-<li>第2种： 临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-pre-process.png"></li>
-</ul>
-<ul>
-<li>第3种：  临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png"></li>
-</ul>
-<hr>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
-</blockquote>
-<h2 id="Versioned-Transaction"><a href="#Versioned-Transaction" class="headerlink" title="Versioned Transaction"></a>Versioned Transaction</h2><p>Solana有2种不同的交易类型：</p>
-<ul>
-<li><code>legacy</code>: older transaction format with no additional benefit</li>
-<li><code>0</code>: added support for Address Lookup Tables</li>
-</ul>
-<p>具体例子：<a target="_blank" rel="noopener" href="https://www.solanazh.com/course/7-1">https://www.solanazh.com/course/7-1</a></p>
-<h2 id="Address-Lookup-Tables"><a href="#Address-Lookup-Tables" class="headerlink" title="Address Lookup Tables"></a>Address Lookup Tables</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
-</blockquote>
-<ul>
-<li><p>每个交易最大1232字节，因此，<strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址(每个地址32字节)</p>
-</li>
-<li><p>使用 Versioned Transaction 和 Address Lookup Tables, 可以将<strong>每笔交易</strong>能包含的地址提升到 <code>256</code>个地址</p>
-<ul>
-<li>一个LookupTable 账户最多可以存放<code>256</code>个地址<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>地址压缩： 在所有地址都存在链上之后， 每个地址(32字节)只需用一个索引(1字节)进行地址定位即可</p>
-<ul>
-<li>先把地址存在链上,获得一个lookupTableAccount</li>
-<li>然后通过索引来获取lookupTableAccount中的地址</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Solana共识"><a href="#Solana共识" class="headerlink" title="Solana共识"></a>Solana共识</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/developers/evm-to-svm/consensus">https://solana.com/developers/evm-to-svm/consensus</a></p>
-</blockquote>
-<ul>
-<li>Solana的共识: 基于<code>Tower BFT + PoH</code>的<code>PoS</code><ul>
-<li>PoS是solana的上层出块的共识协议</li>
-<li>PoS之下是 Tower BFT<ul>
-<li><code>Tower BFT = PBFT + PoH</code></li>
-<li><code>PoH(Proof of History) </code>: 作为全局网络时钟，以决定区块/交易/数据的顺序, 因此Solana可以快速决定区块/交易/数据的先后顺序，并且验证节点可以快速解决分叉</li>
-<li>每个交易包含了<code>recentBlockhash</code>, 即最近的 150个区块内的区块hash, 这个hash用来决定交易执行先后顺序</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
   
 </section>
