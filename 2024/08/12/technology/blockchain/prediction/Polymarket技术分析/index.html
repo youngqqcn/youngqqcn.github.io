@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">815</span>
+            <span class="post-count">817</span>
         </span>
     </span>
 
@@ -124,7 +124,7 @@
 </li>
 <li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
 </li>
-<li><p>关于价格: 0<del>1美金的价格, 对应当前市场对于该事件的概率(0</del>1)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
+<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
 <ul>
 <li>例如： 特朗普赢得2024大选的事件<ul>
 <li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
@@ -174,8 +174,8 @@
 </li>
 <li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
 <li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
-<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, YES, 99) * 1000</code>,</li>
-<li>因此， <code>(BUY, YES, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
+<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
+<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
 <li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
 </ul>
 </li>
