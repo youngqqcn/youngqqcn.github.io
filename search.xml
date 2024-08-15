@@ -235,21 +235,6 @@
       </categories>
   </entry>
   <entry>
-    <title>学习</title>
-    <url>/2021/04/27/learning/index/</url>
-    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
-<p>2021的学习计划:</p>
-<ul>
-<li>积极心理学课程(哈佛)</li>
-<li>英语</li>
-<li>经济学概论课程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>2022技术学习</title>
     <url>/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
@@ -271,6 +256,21 @@
         <tag>前端</tag>
         <tag>全栈</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>学习</title>
+    <url>/2021/04/27/learning/index/</url>
+    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
+<p>2021的学习计划:</p>
+<ul>
+<li>积极心理学课程(哈佛)</li>
+<li>英语</li>
+<li>经济学概论课程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
   </entry>
   <entry>
     <title>东南亚Web3调研</title>
@@ -572,47 +572,6 @@
       </tags>
   </entry>
   <entry>
-    <title>帕金森定律</title>
-    <url>/2022/12/23/learning/%E5%B8%95%E9%87%91%E6%A3%AE%E5%AE%9A%E5%BE%8B/</url>
-    <content><![CDATA[<h2 id="帕金森十大定律"><a href="#帕金森十大定律" class="headerlink" title="帕金森十大定律"></a>帕金森十大定律</h2><blockquote>
-<p>来源：百度百科</p>
-</blockquote>
-<h3 id="定律1——冗员增加原理："><a href="#定律1——冗员增加原理：" class="headerlink" title="定律1——冗员增加原理："></a>定律1——冗员增加原理：</h3><ul>
-<li>官员数量增加与工作量并无关系，而是由两个源动因造成的。每一个官员都希望增加部属而不是对手（如“投票”）；</li>
-<li>官员们彼此为对方制造工作</li>
-</ul>
-<h3 id="定律2——中间派决定原理："><a href="#定律2——中间派决定原理：" class="headerlink" title="定律2——中间派决定原理："></a>定律2——中间派决定原理：</h3><p>中间派是指对决定的内容不十分清楚的、意志薄弱、耳朵不大灵光的人，他们在组织的“票决制”议程中具有举足轻重的作用。为了争取中间派的支持，双方颇费心机进行争取，特别是双方势均力敌的情况下。所以，不是竞争对手而是中间派成了主角。</p>
-<h3 id="定律3——鸡毛蒜皮定律："><a href="#定律3——鸡毛蒜皮定律：" class="headerlink" title="定律3——鸡毛蒜皮定律："></a>定律3——鸡毛蒜皮定律：</h3><p>大部分官员由不懂得百万、千万元而只懂得千元的人组成，以至于讨论各种财政议案所费的时间与涉及的金额呈反比，即涉及的金额越大，讨论的时间越短，反之时间则越长，越是鸡毛蒜皮的事情越花费很多时间。</p>
-<h3 id="定律4——无效率系数："><a href="#定律4——无效率系数：" class="headerlink" title="定律4——无效率系数："></a>定律4——无效率系数：</h3><p>由于复杂的利益关系，决策性委员会多的非必要成员愈来愈多，以至于会议开始变质，变得效率低下。于是，不得不在委员会重新设立核心决策委员会或核心决策团体。</p>
-<h3 id="定律5——人事遴选庸才："><a href="#定律5——人事遴选庸才：" class="headerlink" title="定律5——人事遴选庸才："></a>定律5——人事遴选庸才：</h3><p>人们设计了许多的人事遴选方法，但大部分测试都是徒劳无功的，最终不得不靠偶然性标准遴选。</p>
-<h3 id="定律6——办公场合的豪华程度与机关的事业和效率呈反比："><a href="#定律6——办公场合的豪华程度与机关的事业和效率呈反比：" class="headerlink" title="定律6——办公场合的豪华程度与机关的事业和效率呈反比："></a>定律6——办公场合的豪华程度与机关的事业和效率呈反比：</h3><p>事业处于成长期的机关一般没有足够的兴趣和时间设计完美无缺的总部。所以，“设计完美乃是凋零的象征”，“完美就是结局，结局就是死亡”。</p>
-<h3 id="定律7——鸡尾酒会公式："><a href="#定律7——鸡尾酒会公式：" class="headerlink" title="定律7——鸡尾酒会公式："></a>定律7——鸡尾酒会公式：</h3><p>会议与鸡尾酒会（饭局）同在，不同重要性的人物参加鸡尾酒会，会在不同的时间出现，并站在不同的位置上。把会场从左到右分为A-F六段，从进门处到最远端分为1-8八段，则可划分出48个区域；在假定酒会开始的时间为H，且最后一名客人离开的时间是最初一名客人进场后2小时20分钟，则，重要人物都会在H+75至H+90的时间在E/7区域集合，最重要的人物自然会在其中。</p>
-<h3 id="定律8——嫉妒症（分三个时期）："><a href="#定律8——嫉妒症（分三个时期）：" class="headerlink" title="定律8——嫉妒症（分三个时期）："></a>定律8——嫉妒症（分三个时期）：</h3><p>在嫉妒症流行的机关里，高级主管辛苦而迟钝，中层干部勾心斗角，底层人员垂头丧气而不务正业。</p>
-<ul>
-<li>第一阶段，出现了既无能又好嫉妒的人物，即患上了“庸妒症（平庸而嫉妒）”；</li>
-<li>第二阶段，这些庸妒症患者不幸进入或原本就在高层，尽一切可能手段排斥比自己强的人，拒绝提升能力强的人；“愚蠢比赛”；</li>
-<li>第三阶段，机关仿佛被喷了DDT，凡才智者一概不得入内，机关病入膏肓，此时的机关已经无药可救了。</li>
-</ul>
-<h3 id="定律9——财不外露"><a href="#定律9——财不外露" class="headerlink" title="定律9——财不外露"></a>定律9——财不外露</h3><p>财不外露</p>
-<h3 id="定律10——延迟退休："><a href="#定律10——延迟退休：" class="headerlink" title="定律10——延迟退休："></a>定律10——延迟退休：</h3><p>一般退休的年龄是R，在前3年（R-3）人的精力会开始减退；问题在于如何挑选合适的接替者，工作表现越优秀，任职时间越长，越难寻得合适的接替者，而在位者总会设法阻止职位较低的人接近自己的职位，以至不得不延长自己的退休时间。</p>
-<h2 id="如何预防？"><a href="#如何预防？" class="headerlink" title="如何预防？"></a>如何预防？</h2><ul>
-<li>建立学习型的组织，持续学习新东西</li>
-<li>招聘人员要公开透明，不能全权交由直接上级，防止招聘能力低下的人</li>
-<li>建立人才培养计划</li>
-<li>定期考核</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>心理学效应</tag>
-        <tag>帕金森定律</tag>
-        <tag>官僚主义</tag>
-        <tag>效率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>技术管理</title>
     <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<blockquote>
@@ -653,6 +612,47 @@
         <tag>生活</tag>
         <tag>管理</tag>
         <tag>工作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>帕金森定律</title>
+    <url>/2022/12/23/learning/%E5%B8%95%E9%87%91%E6%A3%AE%E5%AE%9A%E5%BE%8B/</url>
+    <content><![CDATA[<h2 id="帕金森十大定律"><a href="#帕金森十大定律" class="headerlink" title="帕金森十大定律"></a>帕金森十大定律</h2><blockquote>
+<p>来源：百度百科</p>
+</blockquote>
+<h3 id="定律1——冗员增加原理："><a href="#定律1——冗员增加原理：" class="headerlink" title="定律1——冗员增加原理："></a>定律1——冗员增加原理：</h3><ul>
+<li>官员数量增加与工作量并无关系，而是由两个源动因造成的。每一个官员都希望增加部属而不是对手（如“投票”）；</li>
+<li>官员们彼此为对方制造工作</li>
+</ul>
+<h3 id="定律2——中间派决定原理："><a href="#定律2——中间派决定原理：" class="headerlink" title="定律2——中间派决定原理："></a>定律2——中间派决定原理：</h3><p>中间派是指对决定的内容不十分清楚的、意志薄弱、耳朵不大灵光的人，他们在组织的“票决制”议程中具有举足轻重的作用。为了争取中间派的支持，双方颇费心机进行争取，特别是双方势均力敌的情况下。所以，不是竞争对手而是中间派成了主角。</p>
+<h3 id="定律3——鸡毛蒜皮定律："><a href="#定律3——鸡毛蒜皮定律：" class="headerlink" title="定律3——鸡毛蒜皮定律："></a>定律3——鸡毛蒜皮定律：</h3><p>大部分官员由不懂得百万、千万元而只懂得千元的人组成，以至于讨论各种财政议案所费的时间与涉及的金额呈反比，即涉及的金额越大，讨论的时间越短，反之时间则越长，越是鸡毛蒜皮的事情越花费很多时间。</p>
+<h3 id="定律4——无效率系数："><a href="#定律4——无效率系数：" class="headerlink" title="定律4——无效率系数："></a>定律4——无效率系数：</h3><p>由于复杂的利益关系，决策性委员会多的非必要成员愈来愈多，以至于会议开始变质，变得效率低下。于是，不得不在委员会重新设立核心决策委员会或核心决策团体。</p>
+<h3 id="定律5——人事遴选庸才："><a href="#定律5——人事遴选庸才：" class="headerlink" title="定律5——人事遴选庸才："></a>定律5——人事遴选庸才：</h3><p>人们设计了许多的人事遴选方法，但大部分测试都是徒劳无功的，最终不得不靠偶然性标准遴选。</p>
+<h3 id="定律6——办公场合的豪华程度与机关的事业和效率呈反比："><a href="#定律6——办公场合的豪华程度与机关的事业和效率呈反比：" class="headerlink" title="定律6——办公场合的豪华程度与机关的事业和效率呈反比："></a>定律6——办公场合的豪华程度与机关的事业和效率呈反比：</h3><p>事业处于成长期的机关一般没有足够的兴趣和时间设计完美无缺的总部。所以，“设计完美乃是凋零的象征”，“完美就是结局，结局就是死亡”。</p>
+<h3 id="定律7——鸡尾酒会公式："><a href="#定律7——鸡尾酒会公式：" class="headerlink" title="定律7——鸡尾酒会公式："></a>定律7——鸡尾酒会公式：</h3><p>会议与鸡尾酒会（饭局）同在，不同重要性的人物参加鸡尾酒会，会在不同的时间出现，并站在不同的位置上。把会场从左到右分为A-F六段，从进门处到最远端分为1-8八段，则可划分出48个区域；在假定酒会开始的时间为H，且最后一名客人离开的时间是最初一名客人进场后2小时20分钟，则，重要人物都会在H+75至H+90的时间在E/7区域集合，最重要的人物自然会在其中。</p>
+<h3 id="定律8——嫉妒症（分三个时期）："><a href="#定律8——嫉妒症（分三个时期）：" class="headerlink" title="定律8——嫉妒症（分三个时期）："></a>定律8——嫉妒症（分三个时期）：</h3><p>在嫉妒症流行的机关里，高级主管辛苦而迟钝，中层干部勾心斗角，底层人员垂头丧气而不务正业。</p>
+<ul>
+<li>第一阶段，出现了既无能又好嫉妒的人物，即患上了“庸妒症（平庸而嫉妒）”；</li>
+<li>第二阶段，这些庸妒症患者不幸进入或原本就在高层，尽一切可能手段排斥比自己强的人，拒绝提升能力强的人；“愚蠢比赛”；</li>
+<li>第三阶段，机关仿佛被喷了DDT，凡才智者一概不得入内，机关病入膏肓，此时的机关已经无药可救了。</li>
+</ul>
+<h3 id="定律9——财不外露"><a href="#定律9——财不外露" class="headerlink" title="定律9——财不外露"></a>定律9——财不外露</h3><p>财不外露</p>
+<h3 id="定律10——延迟退休："><a href="#定律10——延迟退休：" class="headerlink" title="定律10——延迟退休："></a>定律10——延迟退休：</h3><p>一般退休的年龄是R，在前3年（R-3）人的精力会开始减退；问题在于如何挑选合适的接替者，工作表现越优秀，任职时间越长，越难寻得合适的接替者，而在位者总会设法阻止职位较低的人接近自己的职位，以至不得不延长自己的退休时间。</p>
+<h2 id="如何预防？"><a href="#如何预防？" class="headerlink" title="如何预防？"></a>如何预防？</h2><ul>
+<li>建立学习型的组织，持续学习新东西</li>
+<li>招聘人员要公开透明，不能全权交由直接上级，防止招聘能力低下的人</li>
+<li>建立人才培养计划</li>
+<li>定期考核</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>心理学效应</tag>
+        <tag>帕金森定律</tag>
+        <tag>官僚主义</tag>
+        <tag>效率</tag>
       </tags>
   </entry>
   <entry>
@@ -1305,56 +1305,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何选择结婚对象</title>
-    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<p>材料:</p>
-<ul>
-<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
-</ul>
-<p>摘录：</p>
-<ul>
-<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
-<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
-<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
-<li>只有时间才有大浪淘沙的魔力。</li>
-<li>而资本,是按照风险分钱的。</li>
-<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
-<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
-<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
-<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
-<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
-<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
-<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
-<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
-<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
-<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
-<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
-<li>家庭对孩子的影响,远大于学校。</li>
-<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
-<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
-<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
-</ul>
-<p>个人总结：</p>
-<ul>
-<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
-<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
-<li>日久见人心，事久见人心。</li>
-<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>风险</tag>
-        <tag>婚姻</tag>
-        <tag>两性关系</tag>
-        <tag>社会</tag>
-        <tag>人性</tag>
-        <tag>利益</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>塔勒布智慧箴言录</title>
     <url>/2023/10/19/life/%E5%A1%94%E5%8B%92%E5%B8%83%E6%99%BA%E6%85%A7%E7%AE%B4%E8%A8%80%E5%BD%95/</url>
     <content><![CDATA[<blockquote>
@@ -1464,6 +1414,56 @@
       </tags>
   </entry>
   <entry>
+    <title>如何选择结婚对象</title>
+    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>材料:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
+</ul>
+<p>摘录：</p>
+<ul>
+<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
+<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
+<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
+<li>只有时间才有大浪淘沙的魔力。</li>
+<li>而资本,是按照风险分钱的。</li>
+<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
+<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
+<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
+<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
+<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
+<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
+<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
+<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
+<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
+<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
+<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
+<li>家庭对孩子的影响,远大于学校。</li>
+<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
+<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
+<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
+</ul>
+<p>个人总结：</p>
+<ul>
+<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
+<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
+<li>日久见人心，事久见人心。</li>
+<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>风险</tag>
+        <tag>婚姻</tag>
+        <tag>两性关系</tag>
+        <tag>社会</tag>
+        <tag>人性</tag>
+        <tag>利益</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>空</title>
     <url>/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/</url>
     <content><![CDATA[<blockquote>
@@ -1526,19 +1526,6 @@
       </tags>
   </entry>
   <entry>
-    <title>空杯心态</title>
-    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
-    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爱因斯坦与佛陀</title>
     <url>/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/</url>
     <content><![CDATA[<blockquote>
@@ -1584,6 +1571,19 @@
         <tag>佛学</tag>
         <tag>科学</tag>
         <tag>世界</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>空杯心态</title>
+    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
+    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -2055,6 +2055,27 @@
       </tags>
   </entry>
   <entry>
+    <title>秋园</title>
+    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
+<blockquote>
+<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
+</blockquote>
+<blockquote>
+<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
+</blockquote>
+<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
+<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
+<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>当代小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>百万富翁的思维密码</title>
     <url>/2022/05/29/read/%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<h2 id="第一部分：财富蓝图"><a href="#第一部分：财富蓝图" class="headerlink" title="第一部分：财富蓝图"></a>第一部分：财富蓝图</h2><ul>
@@ -2180,27 +2201,6 @@
         <tag>阅读</tag>
         <tag>富人</tag>
         <tag>思维</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>秋园</title>
-    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
-<blockquote>
-<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
-</blockquote>
-<blockquote>
-<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
-</blockquote>
-<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
-<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
-<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>当代小说</tag>
       </tags>
   </entry>
   <entry>
@@ -2533,38 +2533,6 @@
       </tags>
   </entry>
   <entry>
-    <title>epoll的水平触发和边缘触发模式</title>
-    <url>/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>参考: <a href="https://cloud.tencent.com/developer/article/1636224">https://cloud.tencent.com/developer/article/1636224</a></p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证epoll的LT与ET模式的区别, epoll_server.cpp</span></span><br><span class="line"><span class="comment"> * zhangyl 2019.04.01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试ET模式(边缘触发模式)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_ET_MODE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个监听socket</span></span><br><span class="line">    <span class="keyword">int</span> listenfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (listenfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create listen socket error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置重用ip地址和端口号</span></span><br><span class="line">    <span class="keyword">int</span> on = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEPORT, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听socker设置为非阻塞的</span></span><br><span class="line">    <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(listenfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fcntl</span>(listenfd, F_SETFL, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;set listenfd to nonblock error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化服务器地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">bindaddr</span>;</span></span><br><span class="line">    bindaddr.sin_family = AF_INET;</span><br><span class="line">    bindaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY);</span><br><span class="line">    bindaddr.sin_port = <span class="built_in">htons</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">bind</span>(listenfd, (struct sockaddr*) &amp; bindaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(bindaddr)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bind listen socker error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//启动监听</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">listen</span>(listenfd, SOMAXCONN) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;listen error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建epollfd</span></span><br><span class="line">    <span class="keyword">int</span> epollfd = <span class="built_in">epoll_create</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (epollfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create epollfd error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    epoll_event listen_fd_event;</span><br><span class="line">    listen_fd_event.data.fd = listenfd;</span><br><span class="line">    listen_fd_event.events = EPOLLIN;</span><br><span class="line">    <span class="comment">//取消注释掉这一行，则使用ET模式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">    listen_fd_event.events |= EPOLLET;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听sokcet绑定到epollfd上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, listenfd, &amp;listen_fd_event) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;epoll_ctl error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        epoll_event epoll_events[<span class="number">1024</span>];</span><br><span class="line">        n = <span class="built_in">epoll_wait</span>(epollfd, epoll_events, <span class="number">1024</span>, <span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//被信号中断</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//出错,退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//超时,继续</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件可读</span></span><br><span class="line">            <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLIN)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd == listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//侦听socket,接受新连接</span></span><br><span class="line">                    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientaddr</span>;</span></span><br><span class="line">                    <span class="keyword">socklen_t</span> clientaddrlen = <span class="built_in"><span class="keyword">sizeof</span></span>(clientaddr);</span><br><span class="line">                    <span class="keyword">int</span> clientfd = <span class="built_in">accept</span>(listenfd, (struct sockaddr*) &amp; clientaddr, &amp;clientaddrlen);</span><br><span class="line">                    <span class="keyword">if</span> (clientfd != <span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(clientfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">                        <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">fcntl</span>(clientfd, F_SETFD, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;set clientfd to nonblocking error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            epoll_event client_fd_event;</span><br><span class="line">                            client_fd_event.data.fd = clientfd;</span><br><span class="line">                            <span class="comment">//同时侦听新来连接socket的读和写时间</span></span><br><span class="line">                            client_fd_event.events = EPOLLIN | EPOLLOUT;</span><br><span class="line">                            <span class="comment">//取消注释这一行，则使用ET模式</span></span><br><span class="line">                            client_fd_event.events |= EPOLLET;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, clientfd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;new client accepted,clientfd: &quot;</span> &lt;&lt; clientfd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;add client fd to epollfd error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                                <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;client fd: &quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot; recv data.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                    <span class="comment">//普通clientfd</span></span><br><span class="line">                    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">                    <span class="comment">// 边缘出发，必须一次性收完</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">do</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">                        <span class="keyword">if</span>(m &gt; <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">bzero</span>(recvbuf, <span class="built_in"><span class="keyword">sizeof</span></span>(recvbuf));</span><br><span class="line">                    &#125;<span class="keyword">while</span>(m &gt; <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">                    <span class="comment">// 水平触发，每次只收一个字节, 不影响</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//对端关闭了连接，从epollfd上移除clientfd</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (m &lt; <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//出错</span></span><br><span class="line">                        <span class="keyword">if</span> (errno != EWOULDBLOCK &amp;&amp; errno != EINTR)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//正常收到数据</span></span><br><span class="line">                        std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">                        epoll_event client_fd_event;</span><br><span class="line">                        client_fd_event.data.fd = epoll_events[i].data.fd;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEST_ET_MODE</span></span><br><span class="line">                        <span class="comment">// 水平触发模式下，需要再次给clientfd注册检测可写事件, 来接受socket上次没接收的数据</span></span><br><span class="line">                        client_fd_event.events = EPOLLIN | EPOLLOUT ;</span><br><span class="line">                        <span class="comment">// client_fd_event.events |= EPOLLET;</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_MOD, epoll_events[i].data.fd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;epoll_ctl successfully, mode: EPOLL_CTL_MOD, clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLOUT)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//只处理客户端fd的可写事件</span></span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd != listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 水平触发模式下，会一直触发，打印结果</span></span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;EPOLLOUT triggered,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLERR)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// TODO 暂不处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">close</span>(listenfd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>后端</tag>
-        <tag>linux</tag>
-        <tag>服务端开发</tag>
-        <tag>高性能</tag>
-        <tag>非阻塞</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ent实体框架学习</title>
-    <url>/2023/01/12/technology/go/ent/</url>
-    <content><![CDATA[<p><a href="https://github.com/ent/ent">https://github.com/ent/ent</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>go</tag>
-        <tag>实体</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>strtok源码</title>
     <url>/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -2582,6 +2550,38 @@
       </categories>
       <tags>
         <tag>c语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ent实体框架学习</title>
+    <url>/2023/01/12/technology/go/ent/</url>
+    <content><![CDATA[<p><a href="https://github.com/ent/ent">https://github.com/ent/ent</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>go</tag>
+        <tag>实体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>epoll的水平触发和边缘触发模式</title>
+    <url>/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>参考: <a href="https://cloud.tencent.com/developer/article/1636224">https://cloud.tencent.com/developer/article/1636224</a></p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证epoll的LT与ET模式的区别, epoll_server.cpp</span></span><br><span class="line"><span class="comment"> * zhangyl 2019.04.01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试ET模式(边缘触发模式)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_ET_MODE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个监听socket</span></span><br><span class="line">    <span class="keyword">int</span> listenfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (listenfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create listen socket error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置重用ip地址和端口号</span></span><br><span class="line">    <span class="keyword">int</span> on = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEPORT, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听socker设置为非阻塞的</span></span><br><span class="line">    <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(listenfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fcntl</span>(listenfd, F_SETFL, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;set listenfd to nonblock error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化服务器地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">bindaddr</span>;</span></span><br><span class="line">    bindaddr.sin_family = AF_INET;</span><br><span class="line">    bindaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY);</span><br><span class="line">    bindaddr.sin_port = <span class="built_in">htons</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">bind</span>(listenfd, (struct sockaddr*) &amp; bindaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(bindaddr)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bind listen socker error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//启动监听</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">listen</span>(listenfd, SOMAXCONN) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;listen error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建epollfd</span></span><br><span class="line">    <span class="keyword">int</span> epollfd = <span class="built_in">epoll_create</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (epollfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create epollfd error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    epoll_event listen_fd_event;</span><br><span class="line">    listen_fd_event.data.fd = listenfd;</span><br><span class="line">    listen_fd_event.events = EPOLLIN;</span><br><span class="line">    <span class="comment">//取消注释掉这一行，则使用ET模式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">    listen_fd_event.events |= EPOLLET;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听sokcet绑定到epollfd上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, listenfd, &amp;listen_fd_event) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;epoll_ctl error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        epoll_event epoll_events[<span class="number">1024</span>];</span><br><span class="line">        n = <span class="built_in">epoll_wait</span>(epollfd, epoll_events, <span class="number">1024</span>, <span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//被信号中断</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//出错,退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//超时,继续</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件可读</span></span><br><span class="line">            <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLIN)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd == listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//侦听socket,接受新连接</span></span><br><span class="line">                    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientaddr</span>;</span></span><br><span class="line">                    <span class="keyword">socklen_t</span> clientaddrlen = <span class="built_in"><span class="keyword">sizeof</span></span>(clientaddr);</span><br><span class="line">                    <span class="keyword">int</span> clientfd = <span class="built_in">accept</span>(listenfd, (struct sockaddr*) &amp; clientaddr, &amp;clientaddrlen);</span><br><span class="line">                    <span class="keyword">if</span> (clientfd != <span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(clientfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">                        <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">fcntl</span>(clientfd, F_SETFD, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;set clientfd to nonblocking error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            epoll_event client_fd_event;</span><br><span class="line">                            client_fd_event.data.fd = clientfd;</span><br><span class="line">                            <span class="comment">//同时侦听新来连接socket的读和写时间</span></span><br><span class="line">                            client_fd_event.events = EPOLLIN | EPOLLOUT;</span><br><span class="line">                            <span class="comment">//取消注释这一行，则使用ET模式</span></span><br><span class="line">                            client_fd_event.events |= EPOLLET;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, clientfd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;new client accepted,clientfd: &quot;</span> &lt;&lt; clientfd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;add client fd to epollfd error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                                <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;client fd: &quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot; recv data.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                    <span class="comment">//普通clientfd</span></span><br><span class="line">                    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">                    <span class="comment">// 边缘出发，必须一次性收完</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">do</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">                        <span class="keyword">if</span>(m &gt; <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">bzero</span>(recvbuf, <span class="built_in"><span class="keyword">sizeof</span></span>(recvbuf));</span><br><span class="line">                    &#125;<span class="keyword">while</span>(m &gt; <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">                    <span class="comment">// 水平触发，每次只收一个字节, 不影响</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//对端关闭了连接，从epollfd上移除clientfd</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (m &lt; <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//出错</span></span><br><span class="line">                        <span class="keyword">if</span> (errno != EWOULDBLOCK &amp;&amp; errno != EINTR)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//正常收到数据</span></span><br><span class="line">                        std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">                        epoll_event client_fd_event;</span><br><span class="line">                        client_fd_event.data.fd = epoll_events[i].data.fd;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEST_ET_MODE</span></span><br><span class="line">                        <span class="comment">// 水平触发模式下，需要再次给clientfd注册检测可写事件, 来接受socket上次没接收的数据</span></span><br><span class="line">                        client_fd_event.events = EPOLLIN | EPOLLOUT ;</span><br><span class="line">                        <span class="comment">// client_fd_event.events |= EPOLLET;</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_MOD, epoll_events[i].data.fd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;epoll_ctl successfully, mode: EPOLL_CTL_MOD, clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLOUT)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//只处理客户端fd的可写事件</span></span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd != listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 水平触发模式下，会一直触发，打印结果</span></span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;EPOLLOUT triggered,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLERR)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// TODO 暂不处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">close</span>(listenfd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>后端</tag>
+        <tag>linux</tag>
+        <tag>服务端开发</tag>
+        <tag>高性能</tag>
+        <tag>非阻塞</tag>
       </tags>
   </entry>
   <entry>
@@ -2627,6 +2627,21 @@
         <tag>技术</tag>
         <tag>生活</tag>
         <tag>职业</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>celery</title>
+    <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
+<p>Django集成celery示例： <a href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>celery</tag>
+        <tag>任务队列</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -2711,21 +2726,6 @@
         <tag>谷歌搜索</tag>
         <tag>搜索技巧</tag>
         <tag>信息</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>celery</title>
-    <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
-<p>Django集成celery示例： <a href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>celery</tag>
-        <tag>任务队列</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -2882,6 +2882,25 @@
       </tags>
   </entry>
   <entry>
+    <title>NFT学习</title>
+    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>NFT</tag>
+        <tag>ERC721</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入分析NFT合约源码——以Surge Women为例</title>
     <url>/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><p>github地址：<a href="https://github.com/youngqqcn/mynft">https://github.com/youngqqcn/mynft</a></p>
@@ -2931,30 +2950,11 @@
       </categories>
       <tags>
         <tag>区块链</tag>
+        <tag>NFT</tag>
+        <tag>ERC721</tag>
         <tag>智能合约</tag>
         <tag>源码分析</tag>
-        <tag>NFT</tag>
-        <tag>ERC721</tag>
         <tag>IPFS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NFT学习</title>
-    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>NFT</tag>
-        <tag>ERC721</tag>
       </tags>
   </entry>
   <entry>
@@ -2969,6 +2969,20 @@
       <tags>
         <tag>区块链</tag>
         <tag>比特币源码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v1学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -3014,38 +3028,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Uniswap-v1学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Uniswap-v2学习</title>
     <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Uniswap-v3学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
-]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -3087,6 +3072,115 @@
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v3学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Polymarket技术分析</title>
+    <url>/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>Polymarket技术分析</p>
+<p>polymarket介绍:</p>
+<ul>
+<li><a href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
+<p>关键概念:</p>
+<ul>
+<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
+<ul>
+<li>例如:<ul>
+<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
+<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
+</li>
+<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
+</li>
+<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
+<ul>
+<li>例如： 特朗普赢得2024大选的事件<ul>
+<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
+<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
+<ul>
+<li>例如:<ul>
+<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
+<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
+</ul>
+</li>
+<li>例如：<ul>
+<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
+<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
+<ul>
+<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
+</li>
+<li><p>例如:</p>
+<ul>
+<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
+<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
+</ul>
+</li>
+<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
+</li>
+<li><p>上面的例子: 形成对手单，有2种方式</p>
+<ul>
+<li>第一种: 直接方式<ul>
+<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
+</ul>
+</li>
+<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
+<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
+<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
+<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
+<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Polymarket</tag>
+        <tag>Solidity</tag>
+        <tag>prediction market</tag>
       </tags>
   </entry>
   <entry>
@@ -3192,100 +3286,6 @@
         <tag>区块链</tag>
         <tag>Solana</tag>
         <tag>开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Polymarket技术分析</title>
-    <url>/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p>Polymarket技术分析</p>
-<p>polymarket介绍:</p>
-<ul>
-<li><a href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
-<p>关键概念:</p>
-<ul>
-<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
-<ul>
-<li>例如:<ul>
-<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
-<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
-</li>
-<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
-</li>
-<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
-<ul>
-<li>例如： 特朗普赢得2024大选的事件<ul>
-<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
-<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
-<ul>
-<li>例如:<ul>
-<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
-<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
-</ul>
-</li>
-<li>例如：<ul>
-<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
-<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
-<ul>
-<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
-</li>
-<li><p>例如:</p>
-<ul>
-<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
-<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
-</ul>
-</li>
-<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
-</li>
-<li><p>上面的例子: 形成对手单，有2种方式</p>
-<ul>
-<li>第一种: 直接方式<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
-</ul>
-</li>
-<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
-<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
-<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
-<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Polymarket</tag>
-        <tag>Solidity</tag>
-        <tag>prediction market</tag>
       </tags>
   </entry>
   <entry>
@@ -4457,29 +4457,6 @@
       </tags>
   </entry>
   <entry>
-    <title>8_Solana-原生程序</title>
-    <url>/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h1 id="8-Solana程序开发-原生"><a href="#8-Solana程序开发-原生" class="headerlink" title="8_Solana程序开发(原生)"></a>8_Solana程序开发(原生)</h1><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h3><blockquote>
-<p><a href="https://solana.com/developers/guides/getstarted/hello-world-in-your-browser">https://solana.com/developers/guides/getstarted/hello-world-in-your-browser</a></p>
-</blockquote>
-<p><a href="https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet">https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet</a></p>
-<p><a href="https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet">https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet</a></p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> solana_program::&#123;</span><br><span class="line">    account_info::AccountInfo,</span><br><span class="line">    entrypoint,</span><br><span class="line">    entrypoint::ProgramResult,</span><br><span class="line">    pubkey::Pubkey,</span><br><span class="line">    msg,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declare and export the program&#x27;s entrypoint</span></span><br><span class="line">entrypoint!(process_instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// program entrypoint&#x27;s implementation</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">process_instruction</span></span>(</span><br><span class="line">    program_id: &amp;Pubkey,</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    instruction_data: &amp;[<span class="built_in">u8</span>]</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    <span class="comment">// log a message to the blockchain</span></span><br><span class="line">    msg!(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gracefully exit the program</span></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// create an empty transaction</span></span><br><span class="line"><span class="keyword">const</span> transaction = <span class="keyword">new</span> web3.Transaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add a hello world program instruction to the transaction</span></span><br><span class="line">transaction.add(</span><br><span class="line">  <span class="keyword">new</span> web3.TransactionInstruction(&#123;</span><br><span class="line">    keys: [],</span><br><span class="line">    programId: <span class="keyword">new</span> web3.PublicKey(pg.PROGRAM_ID),</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send the transaction to the Solana cluster</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Sending transaction...&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> txHash = <span class="keyword">await</span> web3.sendAndConfirmTransaction(</span><br><span class="line">  pg.connection,</span><br><span class="line">  transaction,</span><br><span class="line">  [pg.wallet.keypair],</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Transaction sent with hash:&quot;</span>, txHash);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>Token</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>9_Solana-Anchor安装</title>
     <url>/2024/07/09/technology/blockchain/solana/9_Solana-Anchor%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h3 id="搭建本地开发环境"><a href="#搭建本地开发环境" class="headerlink" title="搭建本地开发环境"></a>搭建本地开发环境</h3><blockquote>
@@ -4528,6 +4505,29 @@
 </ul>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序ID</span></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指令执行逻辑</span></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">mod</span> basic_1 &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">initialize</span></span>(ctx: Context&lt;Initialize&gt;, data: <span class="built_in">u64</span>) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> my_account = &amp;<span class="keyword">mut</span> ctx.accounts.my_account;</span><br><span class="line">        my_account.data = data;</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update</span></span>(ctx: Context&lt;Update&gt;, data: <span class="built_in">u64</span>) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> my_account = &amp;<span class="keyword">mut</span> ctx.accounts.my_account;</span><br><span class="line">        my_account.data = data;</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含了Initialize指令所需要的账户(my_account, user, system_program)</span></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Initialize</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(init, payer = user, space = 8 + 8)]</span></span><br><span class="line">    <span class="keyword">pub</span> my_account: Account&lt;<span class="symbol">&#x27;info</span>, MyAccount&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> user: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含了Update指令所需要的账户(my_account, user, system_program)</span></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Update</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> my_account: Account&lt;<span class="symbol">&#x27;info</span>, MyAccount&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据账户</span></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MyAccount</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">u64</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>Token</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>8_Solana-原生程序</title>
+    <url>/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="8-Solana程序开发-原生"><a href="#8-Solana程序开发-原生" class="headerlink" title="8_Solana程序开发(原生)"></a>8_Solana程序开发(原生)</h1><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h3><blockquote>
+<p><a href="https://solana.com/developers/guides/getstarted/hello-world-in-your-browser">https://solana.com/developers/guides/getstarted/hello-world-in-your-browser</a></p>
+</blockquote>
+<p><a href="https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet">https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet</a></p>
+<p><a href="https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet">https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet</a></p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> solana_program::&#123;</span><br><span class="line">    account_info::AccountInfo,</span><br><span class="line">    entrypoint,</span><br><span class="line">    entrypoint::ProgramResult,</span><br><span class="line">    pubkey::Pubkey,</span><br><span class="line">    msg,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declare and export the program&#x27;s entrypoint</span></span><br><span class="line">entrypoint!(process_instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// program entrypoint&#x27;s implementation</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">process_instruction</span></span>(</span><br><span class="line">    program_id: &amp;Pubkey,</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    instruction_data: &amp;[<span class="built_in">u8</span>]</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    <span class="comment">// log a message to the blockchain</span></span><br><span class="line">    msg!(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gracefully exit the program</span></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// create an empty transaction</span></span><br><span class="line"><span class="keyword">const</span> transaction = <span class="keyword">new</span> web3.Transaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add a hello world program instruction to the transaction</span></span><br><span class="line">transaction.add(</span><br><span class="line">  <span class="keyword">new</span> web3.TransactionInstruction(&#123;</span><br><span class="line">    keys: [],</span><br><span class="line">    programId: <span class="keyword">new</span> web3.PublicKey(pg.PROGRAM_ID),</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send the transaction to the Solana cluster</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Sending transaction...&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> txHash = <span class="keyword">await</span> web3.sendAndConfirmTransaction(</span><br><span class="line">  pg.connection,</span><br><span class="line">  transaction,</span><br><span class="line">  [pg.wallet.keypair],</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Transaction sent with hash:&quot;</span>, txHash);</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -4646,30 +4646,6 @@
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>ERC20</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>再次分析delegatecall和call的区别</title>
-    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
-<hr>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>代理合约</tag>
-        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>
@@ -4819,6 +4795,30 @@
         <tag>DeFi</tag>
         <tag>智能合约钱包</tag>
         <tag>MEV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>再次分析delegatecall和call的区别</title>
+    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
+<hr>
+<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>代理合约</tag>
+        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>
