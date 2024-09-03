@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>About Me |  yqq&#39;s blog</title>
+      <title>逆向分析pump.fun的BondingCurve算法 |  yqq&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -50,8 +50,8 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="page-"
-  class="article article-type-page"
+  id="post-technology/blockchain/web3/逆向分析pump.fun的BondingCurve算法"
+  class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
@@ -61,16 +61,78 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  About Me
+  逆向分析pump.fun的BondingCurve算法
 </h1>
  
 
       
     </header>
-       
+     
+    <div class="article-meta">
+      <a href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2024-09-03T12:17:01.000Z" itemprop="datePublished">2024-09-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">402</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
-  <p>address: Shenzhen,China<br>email: <a href="mailto:&#121;&#111;&#117;&#110;&#x67;&#x71;&#113;&#99;&#x6e;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#121;&#111;&#117;&#110;&#x67;&#x71;&#113;&#99;&#x6e;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a><br>skill: Blockchain, Bitcoin,Ethereum,Tendermint,Cosmos-SDK<br>researching: Oracle of blockchain, Subtrate, IPFS/Filecoin, Monero, Grin, Ethereum layer2 , Tor/I2P, Hyperledger Fabric, BCOS<br>programming: C/C++/Python/Golang/Rust</p>
+  <p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
+<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
+<p>可以看到 <code>onChange</code>事件处理函数:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
+<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
+<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
+<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
+<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> (e,n)=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">            , r = t.virtualSolReserves.add(e)</span><br><span class="line">            , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s);</span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据前面的分析,</p>
+<ul>
+<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是买入/卖出<ul>
+<li>true: buy</li>
+<li>false: sell</li>
+</ul>
+</li>
+<li>参数 <code>e</code> 是数量</li>
+</ul>
+<p>因此,<br>其中 i 是 bigint库</p>
+<p>n = y * x</p>
+<p>r = x + dx</p>
+<p>o = n/r  + 1</p>
+<p>a = x - o</p>
+<hr>
+<p>TODO</p>
  
       <!-- reward -->
       
@@ -123,17 +185,56 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/about/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nextjs/" rel="tag">nextjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solana/" rel="tag">solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+
     </footer>
   </div>
 
    
-  
+  <nav class="article-nav">
     
+    
+      <a href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">18_Solana高级交易Durable_Nonce</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
 </article>
 
 </section>
@@ -284,6 +385,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link

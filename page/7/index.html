@@ -104,6 +104,193 @@
     
     
     <article
+  id="post-technology/blockchain/solidity/分析MEV夹子机器人的技术细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/"
+    >分析MEV夹子机器人的技术细节</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2024-06-07T10:30:00.000Z" itemprop="datePublished">2024-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
+<li><code>A0: 1 USDT</code></li>
+<li><code>B0: 85.875  TXXC</code></li>
+<li><code>TXXC价格 = A0/B0 =  0.0116 USDT/TXXC</code></li>
+<li><a target="_blank" rel="noopener" href="https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default">https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default</a></li>
+</ul>
+<h2 id="机器人买入"><a href="#机器人买入" class="headerlink" title="机器人买入:"></a>机器人买入:</h2><ul>
+<li><p>该交易区块的第1个位置(给了 11Gwei)</p>
+</li>
+<li><p>MEV机器人的买入: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6">https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-20-57.png"></p>
+</li>
+<li><p>买入： <code>6.07 USDT</code>, 计算买入的 TXXC的数量和价格, ChatGPT的计算过程:</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-14-29.png"></p>
+</li>
+<li><p>ChatGPT的计算过程和计算结果完全正确：</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_15-17-35.png"></p>
+</li>
+</ul>
+<ul>
+<li>此时流动池中的状态</li>
+<li><code>A1: 7.07 USDT</code></li>
+<li><code>B1: 12.145 TXXC</code></li>
+<li>此时的价格 <code>7.07 / 12.145 = 0.5821  USDT/TXXC</code></li>
+</ul>
+<h2 id="我的添加流动性交易"><a href="#我的添加流动性交易" class="headerlink" title="我的添加流动性交易:"></a>我的添加流动性交易:</h2><ul>
+<li><p>该交易区块的第2个位置</p>
+</li>
+<li><p>源码： <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a></p>
+</li>
+<li><p>详细代码分析，见文末</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired, <span class="comment">// 希望投入的代币 A 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired, <span class="comment">// 希望投入的代币 B 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 A 的数量， 确保用户不会因为价格波动而损失太多代币A</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 B 的数量，确保用户不会因为价格波动而损失太多代币B</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to, <span class="comment">// 流动性代币接收者的地址。流动性代币是代表用户在流动池中所有权的代币。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline <span class="comment">// 交易的最后期限（时间戳）。确保交易在指定时间内完成，否则交易将被取消。</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>交易： <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74">https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-28-37.png"></p>
+</li>
+<li><p>计算:</p>
+<ul>
+<li><code>amountADesired</code>: <code>8.998834461493163430 USDT</code></li>
+<li><code>amountBDesired</code>: <code>7.73000000000000000000 TXXC</code></li>
+<li>因此<code>amountBOptimal = amountADesired * B1 / A1 = 8.998 * 12.1455 / 7.07 = 15.456</code></li>
+<li>满足 <code>if (amountBOptimal &lt;= amountBDesired) </code>, 所以<ul>
+<li>因此 <code>(amountA, amountB) = (amountADesired, amountBOptimal);</code></li>
+<li>即 <code>(amountA, amountB) = (8.998, 15.456);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其中 <code>quote</code>函数, 按照等比例增加, 这里只能近似:<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_18-35-24.png"></p>
+<ul>
+<li> <code>A2: 7.07 + 8.99 = 16.06 USDT</code></li>
+<li><code>B2: 12.145 + 15.3 = 27.445  TXXC</code></li>
+<li>此时价格  <code>0.5854 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="MEV机器人的卖出"><a href="#MEV机器人的卖出" class="headerlink" title="MEV机器人的卖出"></a>MEV机器人的卖出</h2><ul>
+<li><p>该交易区块的第3个位置</p>
+</li>
+<li><p>MEV机器人的卖出: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc">https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc</a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-29-28.png"></p>
+<ul>
+<li>此时MEV机器人全部卖出，<ul>
+<li><code>B3 = 27.45 + 66.5 + 3.5 = 97.45</code></li>
+<li><code>A3 =  k / B3 = (16.06*27.445) / 97.45  = 4.523</code></li>
+<li>此时的价格： <code>A3 / B3 = 4.523 / 97.45 = 0.0464 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>MEV机器人的获利：</p>
+<ul>
+<li>USDT: <code>16.06 - 4.523 - 6.07 = 5.467 USDT</code></li>
+<li>BNB手续费: <code>0.00475 BNB</code> , <code>0.0047 * 700</code> = <code>3.324 U</code><ul>
+<li>购买交易手续费:<code>0.00245 BNB</code><ul>
+<li>gas price: 11Gwei ， 一般是 1Gwei, 所以能排在第0个位置,</li>
+</ul>
+</li>
+<li>购买交易平台手续费: <code>0.002 BNB</code></li>
+<li>卖出交易手续费：<code>0.0003 BNB</code></li>
+</ul>
+</li>
+<li>合计： <code>5.467 - 3.324 = 2.1423</code></li>
+<li>MEV通过这一次交易，净赚<code>2.14 U</code></li>
+</ul>
+</li>
+<li><p>我损失的:</p>
+<ul>
+<li>USDT- <code> -5.467</code></li>
+<li>BNB: <code> +0.0026 BNB</code>, 约 <code>1.82U</code><ul>
+<li>池子是我建的，手续费归我</li>
+</ul>
+</li>
+<li>合计: <code> -3.647U</code></li>
+<li>我这笔交易损失: <code>3.647 U</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><ul>
+<li>添加流动性交易，没有设置滑点保护参数, <code>amountAMin</code> 和  <code>amountBMin</code>:<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-27-05.png"></li>
+<li>源码 <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given some amount of an asset and pair reserves, returns an equivalent amount of the other asset</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quote</span>(<span class="params">uint amountA, uint reserveA, uint reserveB</span>) <span class="title">internal</span> <span class="title">pure</span> <span class="title">returns</span> (<span class="params">uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(amountA &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_AMOUNT&#x27;</span>);</span><br><span class="line">    <span class="built_in">require</span>(reserveA &gt; <span class="number">0</span> &amp;&amp; reserveB &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_LIQUIDITY&#x27;</span>);</span><br><span class="line">    amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// **** ADD LIQUIDITY ****</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">internal</span> <span class="title">virtual</span> <span class="title">returns</span> (<span class="params">uint amountA, uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// create the pair if it doesn&#x27;t exist yet</span></span><br><span class="line">    <span class="keyword">if</span> (IPancakeFactory(factory).getPair(tokenA, tokenB) == address(<span class="number">0</span>)) &#123;</span><br><span class="line">        IPancakeFactory(factory).createPair(tokenA, tokenB);</span><br><span class="line">    &#125;</span><br><span class="line">    (uint reserveA, uint reserveB) = PancakeLibrary.getReserves(factory, tokenA, tokenB);</span><br><span class="line">    <span class="keyword">if</span> (reserveA == <span class="number">0</span> &amp;&amp; reserveB == <span class="number">0</span>) &#123;</span><br><span class="line">        (amountA, amountB) = (amountADesired, amountBDesired);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算 B的最小数量, 满足  A * B = k = A&#x27; * B&#x27; 的恒常等式</span></span><br><span class="line">        <span class="comment">// B&#x27; = A&#x27; * B</span></span><br><span class="line">        uint amountBOptimal = PancakeLibrary.quote(amountADesired, reserveA, reserveB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果 B的最有数量  小于 用户愿意投入的</span></span><br><span class="line">        <span class="keyword">if</span> (amountBOptimal &lt;= amountBDesired) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountBOptimal &gt;= amountBMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_B_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountADesired, amountBOptimal);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 A的最优数量</span></span><br><span class="line">            uint amountAOptimal = PancakeLibrary.quote(amountBDesired, reserveB, reserveA);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 必须满足： A的</span></span><br><span class="line">            assert(amountAOptimal &lt;= amountADesired);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountAOptimal &gt;= amountAMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_A_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountAOptimal, amountBDesired);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> <span class="title">virtual</span> <span class="title">override</span> <span class="title">ensure</span>(<span class="params">deadline</span>) <span class="title">returns</span> (<span class="params">uint amountA, uint amountB, uint liquidity</span>) </span>&#123;</span><br><span class="line">    (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);</span><br><span class="line">    address pair = PancakeLibrary.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);</span><br><span class="line">    liquidity = IPancakePair(pair).mint(to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="关于MEV的一些问题？"><a href="#关于MEV的一些问题？" class="headerlink" title="关于MEV的一些问题？"></a>关于MEV的一些问题？</h2><blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3163">https://learnblockchain.cn/article/3163</a></p>
+</blockquote>
+<ul>
+<li>交易顺序如何确定？<ul>
+<li>MEV在第一笔交易设置了非常搞的gas price</li>
+<li>矿工通过重组交易的执行顺序，可以获取收益<ul>
+<li>至于具体重组交易顺序的算法，需要进一步研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>如何防止MEV夹子机器人？<ul>
+<li>设置合适的滑点,<ul>
+<li>如果是添加流动性，要设置 <code>amountAMin</code>, <code>amountBMin</code></li>
+</ul>
+</li>
+<li>使用私密交易，用第三方的工具</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solidity/学习课程"
   class="article article-type-post"
   itemscope
@@ -274,67 +461,6 @@
 
     
     <article
-  id="post-technology/cpp/strtok源码"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
-    >strtok源码</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
-  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
   id="post-technology/cpp/P2P技术(UDP)打洞 "
   class="article article-type-post"
   itemscope
@@ -414,7 +540,7 @@
 
     
     <article
-  id="post-technology/blockchain/solidity/多笔交易打包"
+  id="post-technology/cpp/strtok源码"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -425,8 +551,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/"
-    >多笔交易打包</a> 
+  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
+    >strtok源码</a> 
 </h2>
  
 
@@ -434,8 +560,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/" class="article-date">
-  <time datetime="2024-03-06T16:00:00.000Z" itemprop="datePublished">2024-03-07</time>
+      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -445,14 +571,16 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
-</ul>
-<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
+  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
+
+
 <ul>
-<li><a target="_blank" rel="noopener" href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
+<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
 </ul>
- 
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
@@ -462,7 +590,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
 
     </footer>
   </div>
