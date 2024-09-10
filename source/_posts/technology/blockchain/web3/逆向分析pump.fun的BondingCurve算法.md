@@ -66,44 +66,55 @@ onChange:  es ? e=>{
 
 至此，我们已经找到pump.fun的bonding curve的算法实现函数:
 
-```js
- (e,n)=>{
-    let s, a;
-    if (e.eq(new i.BN(0)) || !t)
-        return new i.BN(0);
-    if (n) {
-        let n = t.virtualSolReserves.mul(t.virtualTokenReserves)
-            , r = t.virtualSolReserves.add(e)
-            , o = n.div(r).add(new i.BN(1));
-        a = t.virtualTokenReserves.sub(o),
-        a = i.BN.min(a, t.realTokenReserves),
-        s = e
-    } else
-        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(new i.BN(1)),
-        a = e;
-    let r = _(s);
-    return n ? a : s.add(r)
-}
-```
+
 
 根据前面的分析,
-- 参数 `n` 是个`bool`值， 表示的是买入/卖出
-  - true: buy
-  - false: sell
+- 参数 `n` 是个`bool`值， 表示的是按照sol还是按照token买入
 - 参数 `e` 是数量
 
 因此,
 其中 i 是 bigint库
 
-n = y * x
 
-r = x + dx
+```js
+ // 买入
+ function x(e,n)=>{
+    let s, a;
+    if (e.eq(new i.BN(0)) || !t)
+        return new i.BN(0);
+    if (n) {
+        // 按照 sol数量买入
+        let n = t.virtualSolReserves.mul(t.virtualTokenReserves)
+          , r = t.virtualSolReserves.add(e)
+          , o = n.div(r).add(new i.BN(1));
+        a = t.virtualTokenReserves.sub(o),
+        a = i.BN.min(a, t.realTokenReserves),
+        s = e
+    } else
+        // 按照 token数量买入
+        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(new i.BN(1)),
+        a = e;
+    let r = _(s); // 手续费
+    return n ? a : s.add(r) //SOL加上手续费
+}
 
-o = n/r  + 1
+// 卖出
+sellQuote: e=>{
+    if (e.eq(new i.BN(0)) || !t)
+        return new i.BN(0);
+    let n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))
+      , s = _(n); // 手续费
+    return n.sub(s) // 扣除手续费
+}
+```
 
-a = x - o
+
+|变量|变量全称|类型|说明（统一使用最小单位)|初始值|
+|---|----|----|-----|----|
+|Tv|virtualTokenReserves| u64 | 虚拟token库存量 | 1073000000 * 10^6|
+|Sv|virtualSolReserves|u64|虚拟SOL的库存量|30 * 10^9|
+|Tr| realTokenReserves | u64 |真实的token库存量 |793100000 * 10^6|
+|Sr| realSolReserves | u64 | 真实的SOL的库存量 | 0 * 10^9|
 
 
-----
-TODO
 
