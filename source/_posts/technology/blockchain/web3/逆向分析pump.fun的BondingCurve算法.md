@@ -219,9 +219,5 @@ $$
 ### 价格
 
 $$
-\begin{equation}
-
 p = \frac{S_v}{T_v}
-
-\end{equation}
 $$
