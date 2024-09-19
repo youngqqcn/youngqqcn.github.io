@@ -110,15 +110,120 @@ sellQuote: e=>{
 ```
 
 
-|变量|变量全称|类型|说明（统一使用最小单位)|初始值|
-|---|----|----|-----|----|
-|Tv|virtualTokenReserves| u64 | 虚拟token库存量 | 1073000000 * 10^6|
-|Sv|virtualSolReserves|u64|虚拟SOL的库存量|30 * 10^9|
-|Tr| realTokenReserves | u64 |真实的token库存量 |793100000 * 10^6|
-|Sr| realSolReserves | u64 | 真实的SOL的库存量 | 0 * 10^9|
+## Bonding Curve公式
 
+特别说明:
+- 前端计算使用BN:,
+  -  https://github.com/indutny/bn.js/
+  - 或者使用 anchor.BN
+- 合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可
+
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png)
+
+### 用户买入Token
+
+买入公式(按照SOL数量)
+$$
+\begin{equation}
+
+\Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg)
+
+\end{equation}
+$$
+
+买入公式(按照Token数量)
 
 
 $$
-y = x^2
+\begin{equation}
+
+\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1
+
+\end{equation}
+$$
+
+买入后状态更新：
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png)
+
+
+### 用户卖出Token
+
+$$
+\begin{equation}
+
+\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}}
+
+\end{equation}
+$$
+
+卖出后状态更新：
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png)
+
+
+---
+
+## 推导过程
+
+基础公式
+
+$$
+\begin{equation}
+
+T_v \times S_v = k
+
+\end{equation}
+$$
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png)
+
+
+### 买入Token(按照token数量)
+
+$$
+\begin{equation}
+\begin{align*}
+
+&(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v  \\
+
+
+&\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s} \\
+
+\end{align*}
+\end{equation}
+$$
+
+
+### 用户买入Token(按照SOL)
+
+$$
+\begin{equation}
+\begin{align*}
+
+&(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v \\
+
+&\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t} \\
+
+&\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} \\
+
+&\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} \\
+
+&\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} \\
+
+\end{align*}
+\end{equation}
+$$
+
+
+### 价格
+
+$$
+\begin{equation}
+\begin{align*}
+
+p = \frac{S_v}{T_v}
+
+\end{align*}
+\end{equation}
 $$
