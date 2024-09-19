@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">538</span>
+            <span class="post-count">754</span>
         </span>
     </span>
 
@@ -90,13 +90,15 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">3 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
@@ -124,46 +126,49 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<table>
-<thead>
-<tr>
-<th>变量</th>
-<th>变量全称</th>
-<th>类型</th>
-<th>说明（统一使用最小单位)</th>
-<th>初始值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Tv</td>
-<td>virtualTokenReserves</td>
-<td>u64</td>
-<td>虚拟token库存量</td>
-<td>1073000000 * 10^6</td>
-</tr>
-<tr>
-<td>Sv</td>
-<td>virtualSolReserves</td>
-<td>u64</td>
-<td>虚拟SOL的库存量</td>
-<td>30 * 10^9</td>
-</tr>
-<tr>
-<td>Tr</td>
-<td>realTokenReserves</td>
-<td>u64</td>
-<td>真实的token库存量</td>
-<td>793100000 * 10^6</td>
-</tr>
-<tr>
-<td>Sr</td>
-<td>realSolReserves</td>
-<td>u64</td>
-<td>真实的SOL的库存量</td>
-<td>0 * 10^9</td>
-</tr>
-</tbody></table>
-<p>$$<br>y = x^2<br>$$</p>
+<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
+<ul>
+<li>前端计算使用BN:,<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
+<li>或者使用 anchor.BN</li>
+</ul>
+</li>
+<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
+<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$<br>\begin{equation}</p>
+<p>\Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg)</p>
+<p>\end{equation}<br>$$</p>
+<p>买入公式(按照Token数量)</p>
+<p>$$<br>\begin{equation}</p>
+<p>\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1</p>
+<p>\end{equation}<br>$$</p>
+<p>买入后状态更新：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
+<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$<br>\begin{equation}</p>
+<p>\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}}</p>
+<p>\end{equation}<br>$$</p>
+<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
+<hr>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
+<p>$$<br>\begin{equation}</p>
+<p>T_v \times S_v = k</p>
+<p>\end{equation}<br>$$</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
+<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$<br>\begin{equation}<br>\begin{align*}</p>
+<p>&amp;(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v  \</p>
+<p>&amp;\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s} \</p>
+<p>\end{align*}<br>\end{equation}<br>$$</p>
+<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$<br>\begin{equation}<br>\begin{align*}</p>
+<p>&amp;(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v \</p>
+<p>&amp;\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} \</p>
+<p>\end{align*}<br>\end{equation}<br>$$</p>
+<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$<br>\begin{equation}<br>\begin{align*}</p>
+<p>p = \frac{S_v}{T_v}</p>
+<p>\end{align*}<br>\end{equation}<br>$$</p>
  
       <!-- reward -->
       
