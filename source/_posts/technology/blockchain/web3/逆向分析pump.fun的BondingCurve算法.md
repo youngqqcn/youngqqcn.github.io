@@ -3,6 +3,7 @@ title: 逆向分析pump.fun的BondingCurve算法
 date: 2024-09-03 20:17:01
 categories: 技术
 math: true
+mathjax: true
 tags:
     - web3
     - 技术
