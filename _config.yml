@@ -112,4 +112,4 @@ deploy:
   type: ''
 
 
-markdown: kramdown
+# markdown: kramdown
