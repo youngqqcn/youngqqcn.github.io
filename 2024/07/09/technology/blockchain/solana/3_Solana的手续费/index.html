@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">424</span>
+            <span class="post-count">422</span>
         </span>
     </span>
 
@@ -105,42 +105,33 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>Solana手续费</h1>
-<blockquote>
+  <h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
 <p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
 </blockquote>
 <ul>
-<li>
-<p>Transaction Fees(base fee) : 交易费</p>
-</li>
-<li>
-<p>Prioritization Fees : 可选的,加速交易的手续费</p>
-<ul>
+<li>Transaction Fees(base fee) : 交易费</li>
+<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
 <li>给矿工</li>
 </ul>
 </li>
-<li>
-<p>Rent: 账户租金(充值)</p>
-</li>
-<li>
-<p>交易手续费的分配：</p>
+<li>Rent: 账户租金(充值)</li>
+</ul>
+<ul>
+<li><p>交易手续费的分配：</p>
 <ul>
 <li><code>50%</code>: 交易费直接燃烧</li>
 <li><code>50%</code>: 给矿工</li>
 </ul>
 </li>
-<li>
-<p>交易中的每个签名需要支付<code>5000</code> lamports</p>
+<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
 </li>
-<li>
-<p>交易执行限制：</p>
+<li><p>交易执行限制：</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
 </blockquote>
 <ul>
 <li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
-<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU
-<ul>
+<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
 <li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
 <li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
 <li>关于调整交易的最大CU: <a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
@@ -148,26 +139,23 @@
 </li>
 </ul>
 </li>
-<li>
-<p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
+</ul>
+<ul>
+<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
 </li>
-<li>
-<p>Prioritization fee 的计算取决于：</p>
+<li><p>Prioritization fee 的计算取决于：</p>
 <ul>
 <li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
-<li><code>SetComputeUnitPrice</code> : CU价格,来加速
-<ul>
+<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
 <li>如果不提供此值， 则交易无priority fee</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>如何设置  <code>prioritization fee</code> ？</p>
+<li><p>如何设置  <code>prioritization fee</code> ？</p>
 <ul>
 <li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
-<li>注意：
-<ul>
+<li>注意：<ul>
 <li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
 <li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
 </ul>
@@ -175,11 +163,11 @@
 <li>更多：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
 </ul>
 </li>
-<li>
-<p>租金</p>
+</ul>
 <ul>
+<li>租金<ul>
 <li>获取租金豁免: <a target="_blank" rel="noopener" href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
-<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示&quot;account not found&quot;, 但是这个账户的历史交易仍然可以查询</li>
+<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
 </ul>
 </li>
 </ul>
@@ -578,19 +566,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

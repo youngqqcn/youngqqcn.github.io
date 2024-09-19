@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -104,7 +104,7 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>每一次长途旅行，都是一段难忘的人生经历。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
 <p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
  
       <!-- reward -->
@@ -501,19 +501,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

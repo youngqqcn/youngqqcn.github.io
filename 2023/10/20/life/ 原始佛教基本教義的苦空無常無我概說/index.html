@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -115,7 +115,7 @@
 <p>那麼，再看看每一個人有生必有死——由嬰兒、少年、中年到老年，日日都在變化；而每一個家庭都免不了有悲歡離合；一個國家也免不了有興衰。我們常常覺得童年的事歷歷如在眼前，但轉眼間已經大了、老了。再以器世間來說：也是日日有新變化——荒涼的變成熱鬧的，破壞的又有了新建設，高山夷為平地，大海變成良田，這些遷流、造作的，佛經上把它稱為<strong>行苦</strong>。</p>
 <p>有些人認為自己事事如意，不但有名譽地位，也有財產，眷屬美滿，兒女孝順，每天都享受看快樂的生活。但是我們要知道世間是無常的，我們可以看到多少有錢人在遇到生意失敗或意外的災難就傾家蕩產，又有多少美滿眷屬生離死別或成為怨偶，又有多少人在官場得意之餘身敗名裂，最近美國總統尼克森被迫辭職就是一個最鮮明的例子；又有多少人在歡樂時樂極生悲，所以縱然自己處在順境中，一旦樂境壞時也難免痛苦，這是佛經上所說的<strong>壞苦</strong>。</p>
 <p>以上所說的苦苦、行苦、壞苦佛經上稱為三苦。三苦是包括了世間與器世間的。</p>
-<p>如果單從人類的立場來說，最切要的是<strong>八苦(生，老，病，死，求不得，爱别离，怨憎会，五阴炽盛)</strong>。</p>
+<p>如果單從人類的立場來說，最切要的是**八苦(生，老，病，死，求不得，爱别离，怨憎会，五阴炽盛)**。</p>
 <p>有很多人認為<strong>生</strong>是值得喜悅的事，其實，一個新生命體的誕生，不只做母親的要受極大的痛苦，在佛經中說，嬰兒誕生時，由於有十個月的長久時間都是在溫暖的母胎中，一旦呱呱墮地，接觸到外面的冷空氣或堅硬的物體，他所感受的痛苦，就像鋼刀刺鼻一樣的難受。我們每一個人都是由母親十月懷胎生下來的，所以每一個人都曾經吃過這種苦頭，只是現在都忘記罷了。</p>
 <p>再說到<strong>老苦</strong>，一個人在年輕力壯時做什麼事都感到方便自在，但是一到年紀大了，種種毛病就都來了——往日能跑能跳的腿，到老了就不聽指揮了，走起路來步履蹣跚，牙齒也動搖了，耳朵也不管用了，眼睛的視力也減退了，一天到晚不是頭痛就是腰痛……人一到老就免不了這些痛苦。</p>
 <p>再其次說到<strong>病苦</strong>，一個人只要生到這個世界上來，都免不了有病魔的折磨，只不過是大病小病的差別罷了。我們只要有些頭痛、牙痛或肚痛就感到痛苦難當了，那些躺在醫院中患了絕症或重病的病人那就更不用說了。如果不信，各位只要到醫院去看一看那些開刀的、鋸腿的、斷手的……聽到他們的哀叫聲，真的像人間活地獄一樣，由此可見，不管是大病小病只要是病都不是好受的。</p>
@@ -532,19 +532,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

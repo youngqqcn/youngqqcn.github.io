@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -103,14 +103,10 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>佛家四大經典愛情故事之（一） 前世是誰埋了你<br>
-從前有個書生, 和未婚妻約好在某年某月某日結婚。到那一天, 未婚妻卻嫁給了別人。 書生受此打擊, 一病不起。家人用盡各種辦法都無能為力，眼看奄奄 一息。這時, 路過一游方僧人，得知情況,決定點化一下他。僧人到他床前, 從懷裡摸出一面鏡子叫書生看。 書生看到茫茫大海，一名遇害的女子一絲不掛地躺在海灘上。路過一人, 看一眼, 搖搖頭, 走了……又路過一人, 將衣服脫下,給女屍蓋上, 走了……再路過一人, 過去, 挖個坑, 小心翼翼把屍體掩埋了………</p>
-<p>疑惑間, 畫面切換. 書生看到自己的未婚妻. 洞房花燭，被她丈夫掀起蓋頭的瞬間……<br>
-　<br>
-　　書生不明所以。</p>
-<p>僧人解釋道：看到那具海灘上的女屍嗎？就是你未婚妻的前世。<br>
-你是第2個路過的人，曾給過他一件衣服。她今生和你相戀，只為還你一個情。</p>
-<p>但是她最終要報答一生一世的人，是最後那個把她掩埋的人，那人就是他現在的丈夫。書生大悟，唰地從床上坐起，病癒。</p>
+  <p>佛家四大經典愛情故事之（一） 前世是誰埋了你<br>從前有個書生, 和未婚妻約好在某年某月某日結婚。到那一天, 未婚妻卻嫁給了別人。 書生受此打擊, 一病不起。家人用盡各種辦法都無能為力，眼看奄奄 一息。這時, 路過一游方僧人，得知情況,決定點化一下他。僧人到他床前, 從懷裡摸出一面鏡子叫書生看。 書生看到茫茫大海，一名遇害的女子一絲不掛地躺在海灘上。路過一人, 看一眼, 搖搖頭, 走了……又路過一人, 將衣服脫下,給女屍蓋上, 走了……再路過一人, 過去, 挖個坑, 小心翼翼把屍體掩埋了………</p>
+<p>　　疑惑間, 畫面切換. 書生看到自己的未婚妻. 洞房花燭，被她丈夫掀起蓋頭的瞬間……<br>　<br>　　書生不明所以。</p>
+<p>　　僧人解釋道：看到那具海灘上的女屍嗎？就是你未婚妻的前世。<br>你是第2個路過的人，曾給過他一件衣服。她今生和你相戀，只為還你一個情。</p>
+<p>　　但是她最終要報答一生一世的人，是最後那個把她掩埋的人，那人就是他現在的丈夫。書生大悟，唰地從床上坐起，病癒。</p>
  
       <!-- reward -->
       
@@ -506,19 +502,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

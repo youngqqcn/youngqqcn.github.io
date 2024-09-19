@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -109,19 +109,15 @@
 <p><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/20977.html">https://coolshell.cn/articles/20977.html</a></p>
 </blockquote>
 <ul>
-<li>
-<p>第一，如果想要把控技术，应对这个世界的一些变化，<strong>需要大致知道这个世界的一些规律和发展趋势，另外还得认识自己</strong>，自己到底适合做什么？在这个趋势和规律下属于自己的发挥领域到底是什么？这是我们每个人都需要了解的。</p>
+<li><p>第一，如果想要把控技术，应对这个世界的一些变化，<strong>需要大致知道这个世界的一些规律和发展趋势，另外还得认识自己</strong>，自己到底适合做什么？在这个趋势和规律下属于自己的发挥领域到底是什么？这是我们每个人都需要了解的。</p>
 </li>
-<li>
-<p>第二，<strong>打牢基础，以不变应万变</strong>，不管世界怎样变化，我都能很快适应它。基础的重要程度对于你能够飞多高是相当有影响的，懂原理的人比不懂原理的人能做出来的事情或是能解决的问题完全是两个层级的。</p>
+<li><p>第二，<strong>打牢基础，以不变应万变</strong>，不管世界怎样变化，我都能很快适应它。基础的重要程度对于你能够飞多高是相当有影响的，懂原理的人比不懂原理的人能做出来的事情或是能解决的问题完全是两个层级的。</p>
 </li>
-<li>
-<p>第三，<strong>提升成长的效率</strong>，因为现在社会的节奏实在太快了，比二十年前快得太多，技术层出不穷，所以我们的成长也要更有效率。效率并不单指的快，效率是怎么样更有效，是有用功除以总功，怎么学到更有效的东西，或者怎么更有效学习，是我们需要掌握的另一关键。</p>
+<li><p>第三，<strong>提升成长的效率</strong>，因为现在社会的节奏实在太快了，比二十年前快得太多，技术层出不穷，所以我们的成长也要更有效率。效率并不单指的快，效率是怎么样更有效，是有用功除以总功，怎么学到更有效的东西，或者怎么更有效学习，是我们需要掌握的另一关键。</p>
 </li>
 </ul>
 <hr>
-<h2 id="打好基础">打好基础</h2>
-<ul>
+<h2 id="打好基础"><a href="#打好基础" class="headerlink" title="打好基础"></a>打好基础</h2><ul>
 <li>变化都是表面的东西，内在的东西其实并没有太多的变化。</li>
 <li>不懂原理，不懂科学方法，你就不可能成长上去的，</li>
 </ul>
@@ -132,8 +128,7 @@
 <li>中间件：消息队列，缓存系统，网关代理，调度系统 ……</li>
 <li>理论知识：算法和数据结构，数据库范式，网络七层模型，分布式系统……</li>
 </ul>
-<h2 id="学习效率">学习效率</h2>
-<ul>
+<h2 id="学习效率"><a href="#学习效率" class="headerlink" title="学习效率"></a>学习效率</h2><ul>
 <li>挑选信息源</li>
 <li>注重基础和原理</li>
 <li>使用知识图谱</li>
@@ -536,19 +531,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

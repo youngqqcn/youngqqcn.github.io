@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -105,27 +105,19 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>基于BondingCurve价格发现的代币</h1>
-<h2 id="相关链接">相关链接</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+  <h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
 </li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
 </li>
 </ul>
-<h2 id="关于抢跑问题">关于抢跑问题</h2>
-<ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
 <li>通过设置一个最大的gas price，可以避免抢跑问题</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
@@ -523,19 +515,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

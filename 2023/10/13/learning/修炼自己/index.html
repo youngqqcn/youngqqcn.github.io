@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -119,7 +119,7 @@
 <p>问题不是投入的多少，而是技术与操作。<strong>所有把市场当赌场的，最终的命运都只能是悲惨的。</strong></p>
 <p>对于市场上的众生，本ID给的第一忠告就是，<strong>把你的第一笔钱运作好，然后把本拿走，最后把这利润变成巨大的数字，这才是市场中的真正操作。</strong></p>
 <p><strong>市场上的真正成功，是以十年为单位的，无论你开始有多少钱，10年都足以让你变成上一个足够大的台阶</strong>，一笔0成本、0投入的钱，让你在市场中无比轻松。</p>
-<p>**绝大多数的人，因为贪婪而不断投入，又因为恐惧而落荒而逃。**但市场，进来一次，几乎就很难再离开了。落荒而逃的，最终都是在高潮中又被忽悠进来，最终还是青蛙给煮了，这种事情，难道还少见？</p>
+<p><strong>绝大多数的人，因为贪婪而不断投入，又因为恐惧而落荒而逃。</strong>但市场，进来一次，几乎就很难再离开了。落荒而逃的，最终都是在高潮中又被忽悠进来，最终还是青蛙给煮了，这种事情，难道还少见？</p>
 <p>还有不少的，以评价别人为事情，市场中，唯一的评价，就是你的操作，有那时间，练习一下操作吧，这才是市场中人干的事情。</p>
 <p>市场，不是选秀场，别把自己当超男超女或它们的粉丝。<strong>市场里，是刀和血</strong>，超男超女和粉丝，只有被煮的份。</p>
 <p>市场中，唯一需要考虑的，就是对操作水平的提高，这是一切的根本。别人，最多是你的陪练。</p>
@@ -521,19 +521,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

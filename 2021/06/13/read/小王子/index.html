@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -103,7 +103,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg" alt=""></p>
+  <p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
 <p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
 <p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
 <p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
@@ -503,19 +503,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">754</span>
+            <span class="post-count">750</span>
         </span>
     </span>
 
@@ -105,126 +105,70 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>找到 div id, 或者 用报错文本 进行全局搜索<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg" alt=""></p>
-<p>全局搜索<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png" alt=""></p>
+  <p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
+<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
 <p>可以看到 <code>onChange</code>事件处理函数:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
 <p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg" alt=""></p>
-<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg" alt=""></p>
-<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
+<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
+<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
 <p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
 <p>根据前面的分析,</p>
 <ul>
 <li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
 <li>参数 <code>e</code> 是数量</li>
 </ul>
-<p>因此,<br>
-其中 i 是 bigint库</p>
+<p>因此,<br>其中 i 是 bigint库</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="bonding-curve公式">Bonding Curve公式</h2>
-<p>特别说明:</p>
+
+
+<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
 <ul>
-<li>前端计算使用BN:,
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
-<li>或者使用 <a target="_blank" rel="noopener" href="http://anchor.BN">anchor.BN</a></li>
+<li>前端计算使用BN:,<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
+<li>或者使用 anchor.BN</li>
 </ul>
 </li>
 <li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png" alt=""></p>
-<h3 id="用户买入token">用户买入Token</h3>
-<p>买入公式(按照SOL数量)</p>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-
-\Delta{t} = T…'>\begin{equation}
-
-\Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg)
-
-\end{equation}
-</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
+<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$<br>\begin{equation}</p>
+<p>\Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg)</p>
+<p>\end{equation}<br>$$</p>
 <p>买入公式(按照Token数量)</p>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-
-\Delta{s} =  …'>\begin{equation}
-
-\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1
-
-\end{equation}
-</p>
+<p>$$<br>\begin{equation}</p>
+<p>\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1</p>
+<p>\end{equation}<br>$$</p>
 <p>买入后状态更新：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png" alt=""></p>
-<h3 id="用户卖出token">用户卖出Token</h3>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-
-\Delta{s} =  …'>\begin{equation}
-
-\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}}
-
-\end{equation}
-</p>
-<p>卖出后状态更新：<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
+<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$<br>\begin{equation}</p>
+<p>\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}}</p>
+<p>\end{equation}<br>$$</p>
+<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
 <hr>
-<h2 id="推导过程">推导过程</h2>
-<p>基础公式</p>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-
-T_v \times S_…'>\begin{equation}
-
-T_v \times S_v = k
-
-\end{equation}
-</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png" alt=""></p>
-<h3 id="买入token-按照token数量">买入Token(按照token数量)</h3>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-\begin{align*}…'>\begin{equation}
-\begin{align*}
-
-&amp;(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v  \\
-
-
-&amp;\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s} \\
-
-\end{align*}
-\end{equation}
-</p>
-<h3 id="用户买入token-按照sol">用户买入Token(按照SOL)</h3>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-\begin{align*}…'>\begin{equation}
-\begin{align*}
-
-&amp;(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v \\
-
-&amp;\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t} \\
-
-&amp;\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} \\
-
-&amp;\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} \\
-
-&amp;\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} \\
-
-\end{align*}
-\end{equation}
-</p>
-<h3 id="价格">价格</h3>
-<p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: equation at position 7: \begin{̲e̲q̲u̲a̲t̲i̲o̲n̲}̲
-\begin{align*}…'>\begin{equation}
-\begin{align*}
-
-p = \frac{S_v}{T_v}
-
-\end{align*}
-\end{equation}
-</p>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
+<p>$$<br>\begin{equation}</p>
+<p>T_v \times S_v = k</p>
+<p>\end{equation}<br>$$</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
+<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$<br>\begin{equation}<br>\begin{align*}</p>
+<p>&amp;(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v  \</p>
+<p>&amp;\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s} \</p>
+<p>\end{align*}<br>\end{equation}<br>$$</p>
+<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$<br>\begin{equation}<br>\begin{align*}</p>
+<p>&amp;(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v \</p>
+<p>&amp;\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} \</p>
+<p>&amp;\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} \</p>
+<p>\end{align*}<br>\end{equation}<br>$$</p>
+<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$<br>\begin{equation}</p>
+<p>p = \frac{S_v}{T_v}</p>
+<p>\end{equation}<br>$$</p>
  
       <!-- reward -->
       
@@ -611,19 +555,32 @@ p = \frac{S_v}{T_v}
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

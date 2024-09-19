@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -115,8 +115,7 @@
 <p>佛陀说：“我并没有叫你放下你的花瓶，我要你放下的是你的六根、六尘和六识。当你把这些统统放下，再没有什么了，你将从生死桎梏中解脱出来。”</p>
 <p>黑指婆罗门才了解佛陀放下的道理。</p>
 </blockquote>
-<p>“放下！”这是非常不容易做到的，吾人有了功名，就对功名放不下；有了金钱，就对金钱放不下，有了爱情，就对爱情放不下；有了事业，就对事业放不下。<br>
-吾人在肩上的重担，在心上的压力，岂止手上的花瓶？这些重担与压力，可以说使人生活过得非常艰苦。必要的时候，佛陀指示的“放下”，不失为一条幸福解脱之道！</p>
+<p>“放下！”这是非常不容易做到的，吾人有了功名，就对功名放不下；有了金钱，就对金钱放不下，有了爱情，就对爱情放不下；有了事业，就对事业放不下。<br>吾人在肩上的重担，在心上的压力，岂止手上的花瓶？这些重担与压力，可以说使人生活过得非常艰苦。必要的时候，佛陀指示的“放下”，不失为一条幸福解脱之道！</p>
  
       <!-- reward -->
       
@@ -512,19 +511,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

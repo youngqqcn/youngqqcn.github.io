@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -109,6 +109,7 @@
 <hr>
 <p>第1种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> a = b;</span><br><span class="line"></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125; &quot;</span>, a);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;b = &#123;&#125;&quot;</span>, b);</span><br><span class="line"><span class="comment">// println!(&quot;*a = &#123;&#125;&quot;, *a); // error:  type `&#123;integer&#125;` cannot be dereferenced</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="number">2</span>;</span><br><span class="line"><span class="comment">// a = c; // error: cannot assign twice to immutable variable</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>let a = b;</code> 是将<code>b</code>的值拷贝给<code>a</code>。 注意，不是移动！</li>
 <li><code>a</code> 和 <code>b</code>一样， 也是<code>不可变的整型变量</code>， <code>a</code>不是<code>b</code>引用，也不是<code>b</code>的move</li>
@@ -116,6 +117,7 @@
 <hr>
 <p>第2种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> a = &amp;b;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;, b = &#123;&#125;&quot;</span>, *a, b);</span><br><span class="line"></span><br><span class="line"><span class="comment">// *a = 99; // `a` is a `&amp;` reference, so the data it refers to cannot be written</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>b</code>是<code>不可变整型变量</code></li>
 <li><code>a</code>是<code>b</code>的<code>不可变引用</code>, 因此<code>*a</code>(即<code>a</code>所引用的内容)不能被修改</li>
@@ -123,6 +125,7 @@
 <hr>
 <p>第3种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> a = &amp;b;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b); <span class="comment">//  ok， 自动解引用</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;*a = &#123;&#125;, b = &#123;&#125;&quot;</span>, *a, b); <span class="comment">// ok，手动解引用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="number">3</span>;</span><br><span class="line">a = &amp;c;  <span class="comment">// 修改 a 的指向</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;&quot;</span>, a);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>可以将<code>引用</code>理解为C语言中的<code>指针</code>, 很像 <code>const</code>修饰的原理</p>
 <ul>
 <li><code>let mut a = &amp;b; </code> 其中 <code>a</code>是指向<code>不可变变量b</code>的<code>可变引用</code>， 即<code>b</code>的内容不能被改变， 但是，<code>a</code>本身的“指向”可以变</li>
@@ -131,14 +134,17 @@
 <hr>
 <p>第4种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> a = &amp;<span class="keyword">mut</span> b; <span class="comment">// error:  cannot borrow `b` as mutable, as it is not declared as mutable</span></span><br></pre></td></tr></table></figure>
+
 <p>不能对<code>不可变变量</code>进行<code>可变</code>借用</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> a = &amp;<span class="keyword">mut</span> b;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;xxx===&gt; a = &#123;&#125;&quot;</span>, a);</span><br><span class="line"><span class="comment">// println!(&quot;xxx===&gt; a = &#123;&#125;, b = &#123;&#125;&quot;, a, b); // error, 不能同时可变引用和不可引用</span></span><br><span class="line"><span class="comment">// println!(&quot;b = &#123;&#125;&quot;, b); //error, 不能同时可变引用和不可引用</span></span><br><span class="line">*a = <span class="number">99</span>;</span><br><span class="line"><span class="comment">// println!(&quot;xxx===&gt; a = &#123;&#125;, b = &#123;&#125;&quot;, a, b); // error，  不能同时可变引用和不可引用</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;xxx===&gt; a = &#123;&#125;&quot;</span>, a);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;b = &#123;&#125;&quot;</span>, b); <span class="comment">// 可变引用用完了， 原来的不可变引用可以继续使用了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// a = &amp;mut c;  // error, cannot assign twice to immutable variable `a`</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>a</code>是指向<code>可变变量b</code>的<code>不可变引用</code>， 即<code>a</code>的指向不能变， 所指向的内容（值）<code>*a</code>是可以变的</li>
 </ul>
 <hr>
 <p>第5种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> a = b; <span class="comment">// 将b的值进行了拷贝</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;===&gt; a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;===&gt; a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>let mut a = b;</code> 是将<code>b</code>的值拷贝到<code>a</code>， 不是move！ 因此，互不影响</li>
 <li><code>a</code>是<code>可变整型变量</code></li>
@@ -146,12 +152,14 @@
 <hr>
 <p>第6种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> &amp;(<span class="keyword">mut</span> a) = &amp;b;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;+++ a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br><span class="line">a  = <span class="number">999</span>;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;+++ a = &#123;&#125;, b = &#123;&#125;&quot;</span>, a, b);</span><br><span class="line"><span class="comment">// println!(&quot;+++ a = &#123;&#125;, b = &#123;&#125;&quot;, *a, b); // type `&#123;integer&#125;` cannot be dereferenced</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>let &amp;(mut a) = &amp;b;</code> 可以“约”多余符号，等效于 <code>let mut a = b;</code>, 因此效果同上例(第5种), 不赘述</li>
 </ul>
 <hr>
 <p>第7种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> a = &amp;<span class="keyword">mut</span> c;</span><br><span class="line">*a = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;&quot;</span>, *a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> d = <span class="number">33</span>;</span><br><span class="line">a = &amp;<span class="keyword">mut</span> d; <span class="comment">// ok</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;&quot;</span>, *a);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>如果理解上面提到集中情况， 很容易理解此种变化</li>
 <li><code>a</code> 是指向 <code>可变整型变量c</code>的<code>可变整型变量的可变引用</code></li>
@@ -160,6 +168,7 @@
 <hr>
 <p>第8种</p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// let ref mut a  = b;  // 错，同 let a = &amp;mut b;</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="keyword">ref</span> <span class="keyword">mut</span> a = c; <span class="comment">// 等效于   let a = &amp;mut c;</span></span><br><span class="line">*a = <span class="number">99</span>;</span><br><span class="line"><span class="comment">// println!(&quot;a = &#123;&#125;, c = &#123;&#125;&quot;, *a, c); // error,  c已经被可变借用了，不能和可变借用同时存在</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;a = &#123;&#125;&quot;</span>, *a);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;c = &#123;&#125;&quot;</span>, c); <span class="comment">// 可变借用用完之后，  c不可变引用又可以使用了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> d = <span class="number">777</span>;</span><br><span class="line"><span class="comment">// a = &amp;mut d; // error, cannot assign twice to immutable variable `a`</span></span><br><span class="line"><span class="comment">// println!(&quot;a = &#123;&#125;&quot;, a);</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>let ref mut a = c;</code>  等效于 <code>let a = &amp;mut c;</code></li>
 </ul>
@@ -558,19 +567,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    </head>
   </html>
 </html>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">104</span>
+            <span class="post-count">108</span>
         </span>
     </span>
 
@@ -109,21 +109,20 @@
 </ul>
 <p>核心：允许用户自定义价格区间来提供流动性，提供资本利用率</p>
 <p>核心公式:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-liquidity.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-liquidity.png"></p>
 <ul>
 <li><code>L</code>: <code>流动性</code></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-constant.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-constant.png"></p>
 <ul>
-<li><code>x'</code>: 虚拟资产x</li>
-<li><code>y'</code>: 虚拟资产y</li>
+<li><code>x&#39;</code>: 虚拟资产x</li>
+<li><code>y&#39;</code>: 虚拟资产y</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20240730-191613.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg" alt=""></p>
-<p>增加了虚拟资产<code>x'</code>和 <code>y'</code>之后 ,</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png" alt=""></p>
-<p>用户可以将流动性集中，这样提供资金利用率（有交易，就有手续费）<br>
-<img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-positions.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20240730-191613.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg"></p>
+<p>增加了虚拟资产<code>x&#39;</code>和 <code>y&#39;</code>之后 ,</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png"></p>
+<p>用户可以将流动性集中，这样提供资金利用率（有交易，就有手续费）<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-positions.png"></p>
  
       <!-- reward -->
       
@@ -519,19 +518,32 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
- 
-    
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
-        
-    
- 
+
 <!-- busuanzi  -->
 
 <!-- ClickLove -->
