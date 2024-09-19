@@ -112,5 +112,5 @@ deploy:
   type: ''
 
 
-# markdown: kramdown
+# https://github.com/shen-yu/hexo-theme-ayer/issues/20
 mathjax: true
