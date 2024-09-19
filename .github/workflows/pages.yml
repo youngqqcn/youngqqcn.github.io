@@ -23,6 +23,8 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
+      - name: xxx
+        run: npm un hexo-renderer-marked -S && npm i hexo-renderer-markdown-it-katex -S
       - name: Build
         run: npm run build
       - name: Deploy
