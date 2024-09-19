@@ -126,24 +126,12 @@ sellQuote: e=>{
 ### 用户买入Token
 
 买入公式(按照SOL数量)
-$$
-\begin{equation}
-
-\Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg)
-
-\end{equation}
-$$
+$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$
 
 买入公式(按照Token数量)
 
 
-$$
-\begin{equation}
-
-\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1
-
-\end{equation}
-$$
+$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$
 
 买入后状态更新：
 
@@ -152,13 +140,7 @@ $$
 
 ### 用户卖出Token
 
-$$
-\begin{equation}
-
-\Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}}
-
-\end{equation}
-$$
+$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$
 
 卖出后状态更新：
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png)
@@ -170,52 +152,31 @@ $$
 
 基础公式
 
-$$
-\begin{equation}
-
-T_v \times S_v = k
-
-\end{equation}
-$$
 
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png)
 
 
 ### 买入Token(按照token数量)
 
-$$
-\begin{equation}
-\begin{align*}
-
-&(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v  \\
+$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$
 
 
-&\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s} \\
+$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$
 
-\end{align*}
-\end{equation}
-$$
 
 
 ### 用户买入Token(按照SOL)
 
-$$
-\begin{equation}
-\begin{align*}
+$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$
 
-&(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v \\
+$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$
 
-&\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t} \\
+$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$
 
-&\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} \\
+$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$
 
-&\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} \\
+$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$
 
-&\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} \\
-
-\end{align*}
-\end{equation}
-$$
 
 
 ### 价格
