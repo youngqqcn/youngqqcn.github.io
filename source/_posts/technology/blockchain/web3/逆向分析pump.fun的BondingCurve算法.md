@@ -10,7 +10,6 @@ tags:
     - nextjs
 ---
 
-$$y=x^2$$
 
 找到 div id, 或者 用报错文本 进行全局搜索
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg)
