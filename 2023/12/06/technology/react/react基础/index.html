@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">569</span>
+            <span class="post-count">571</span>
         </span>
     </span>
 
@@ -105,23 +105,27 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="react中文教程"><a href="#react中文教程" class="headerlink" title="react中文教程"></a>react中文教程</h1><ul>
+  <h1>react中文教程</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn">https://zh-hans.react.dev/learn</a></li>
 </ul>
-<h1 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h1><ul>
+<h1>React环境搭建</h1>
+<ul>
 <li>Ubuntu： <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions#ubuntu-versions">https://github.com/nodesource/distributions#ubuntu-versions</a></li>
 <li>全局安装脚手架: <code>npm i -g create-react-app</code></li>
 <li>直接创建项目: <code>npx create-react-app my-app</code></li>
 </ul>
-<h1 id="antd使用"><a href="#antd使用" class="headerlink" title="antd使用"></a>antd使用</h1><blockquote>
+<h1>antd使用</h1>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/components/overview-cn">https://ant-design.antgroup.com/components/overview-cn</a></p>
 </blockquote>
 <ul>
 <li>全局安装  <code>npm install antd-init -g</code></li>
 <li>antd-init</li>
-<li>npm install antd –save</li>
+<li>npm install antd --save</li>
 </ul>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
+<h1>React</h1>
+<p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
 <p>想象一下，你的组件是厨房里的厨师，用食材制作出美味的菜肴。在这个场景中，React 是服务员，负责提出顾客的要求，并给顾客上菜。这个请求和服务 UI 的过程有三个步骤：</p>
 <ul>
 <li>触发渲染（将食客的订单送到厨房）</li>
@@ -133,9 +137,8 @@
 <li>与普通 JavaScript 变量不同，React 状态的行为更像一个快照。设置它并不改变你已有的状态变量，而是触发一次重新渲染。这在一开始可能会让人感到惊讶！</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="更新数组"><a href="#更新数组" class="headerlink" title="更新数组"></a>更新数组</h2><table>
+<h2 id="更新数组">更新数组</h2>
+<table>
 <thead>
 <tr>
 <th></th>
@@ -143,7 +146,8 @@
 <th>推荐使用 (会返回一个新数组）</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>添加元素</td>
 <td>push，unshift</td>
 <td>concat，[…arr] 展开语法（例子）</td>
@@ -163,15 +167,19 @@
 <td>reverse，sort</td>
 <td>先将数组复制一份（例子）</td>
 </tr>
-</tbody></table>
-<h2 id="Context使用场景"><a href="#Context使用场景" class="headerlink" title="Context使用场景"></a>Context使用场景</h2><h2 id="ref-和-state-的不同之处"><a href="#ref-和-state-的不同之处" class="headerlink" title="ref 和 state 的不同之处"></a>ref 和 state 的不同之处</h2><table>
+</tbody>
+</table>
+<h2 id="context使用场景">Context使用场景</h2>
+<h2 id="ref-和-state-的不同之处">ref 和 state 的不同之处</h2>
+<table>
 <thead>
 <tr>
 <th>ref</th>
 <th>state</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>useRef(initialValue)</code>返回 <code>&#123; current: initialValue &#125;</code></td>
 <td><code>useState(initialValue)</code> 返回 state 变量的当前值和一个 <code>state</code> 设置函数 <code>( [value, setValue])</code></td>
 </tr>
@@ -187,8 +195,10 @@
 <td>你不应在渲染期间读取（或写入） <code>current</code> 值。</td>
 <td>你可以随时读取 <code>state</code>。但是，每次渲染都有自己不变的 <code>state</code> 快照。</td>
 </tr>
-</tbody></table>
-<h2 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</tbody>
+</table>
+<h2 id="effect">Effect</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -584,32 +594,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

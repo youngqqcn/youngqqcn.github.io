@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -106,10 +106,30 @@
   <blockquote>
 <p>如果有来生</p>
 <p>三毛</p>
-<p>如果有来生，要做一棵树，<br>站成永恒。没有悲欢的姿势，<br>一半在尘土里安详，<br>一半在风里飞扬；<br>一半洒落荫凉，<br>一半沐浴阳光。<br>非常沉默、非常骄傲。<br>从不依靠、从不寻找。</p>
-<p>如果有来生，要化成一阵风，<br>一瞬间也能成为永恒。<br>没有善感的情怀，没有多情的眼睛。<br>一半在雨里洒脱，<br>一半在春光里旅行；<br>寂寞了，孤自去远行，<br>把淡淡的思念统统带走，<br>从不思念、从不爱恋；</p>
-<p>如果有来生，要做一只鸟，<br>飞越永恒，没有迷途的苦恼。<br>东方有火红的希望，<br>南方有温暖的巢床，<br>向西逐退残阳，向北唤醒芬芳。</p>
-<p>如果有来生，<br>希望每次相遇，<br>都能化为永恒。</p>
+<p>如果有来生，要做一棵树，<br>
+站成永恒。没有悲欢的姿势，<br>
+一半在尘土里安详，<br>
+一半在风里飞扬；<br>
+一半洒落荫凉，<br>
+一半沐浴阳光。<br>
+非常沉默、非常骄傲。<br>
+从不依靠、从不寻找。</p>
+<p>如果有来生，要化成一阵风，<br>
+一瞬间也能成为永恒。<br>
+没有善感的情怀，没有多情的眼睛。<br>
+一半在雨里洒脱，<br>
+一半在春光里旅行；<br>
+寂寞了，孤自去远行，<br>
+把淡淡的思念统统带走，<br>
+从不思念、从不爱恋；</p>
+<p>如果有来生，要做一只鸟，<br>
+飞越永恒，没有迷途的苦恼。<br>
+东方有火红的希望，<br>
+南方有温暖的巢床，<br>
+向西逐退残阳，向北唤醒芬芳。</p>
+<p>如果有来生，<br>
+希望每次相遇，<br>
+都能化为永恒。</p>
 </blockquote>
  
       <!-- reward -->
@@ -506,32 +526,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

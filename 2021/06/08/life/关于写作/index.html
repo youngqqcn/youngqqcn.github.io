@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -105,9 +105,9 @@
        
   <p>坚持每周写点东西。</p>
 <p>今天是2021年6月8号，2021高考第二天。今天讨论一下关于写作的问题，当然，这里所指的写作不是文学创作那种，而是指文字组织和表述能力。</p>
-<p>为什么要坚持每周写点东西呢？ </p>
+<p>为什么要坚持每周写点东西呢？</p>
 <ul>
-<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等； </li>
+<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等；</li>
 <li>第二，作为一种激励方法，让自己保持发现生活中的美好心态，坚持一些好的习惯，比如阅读和锻炼身体。有效输入才能保证有效输出。</li>
 </ul>
 <p>如果是为了做某事而做某事，那样可能就会忘记初衷是什么。阅读的目的不是单纯的阅读，也是一种思考，正所谓“学而不思则罔，死而不学则殆”。所以，也不要为了写点东西而写点东西，一定要有自己的东西，要有自己的思考。</p>
@@ -515,32 +515,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

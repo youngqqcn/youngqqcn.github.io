@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -108,66 +108,88 @@
   <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/program-architecture">https://www.soldev.app/course/program-architecture</a></p>
 </blockquote>
-<h3 id="处理大账户-Dealing-With-Large-Accounts"><a href="#处理大账户-Dealing-With-Large-Accounts" class="headerlink" title="处理大账户 Dealing With Large Accounts"></a>处理大账户 Dealing With Large Accounts</h3><ul>
-<li>Solana上存储每个字节都需要支付相应的租金</li>
-<li>大数据限制:<ul>
+<h3 id="处理大账户-dealing-with-large-accounts">处理大账户 Dealing With Large Accounts</h3>
+<ul>
+<li>
+<p>Solana上存储每个字节都需要支付相应的租金</p>
+</li>
+<li>
+<p>大数据限制:</p>
+<ul>
 <li>Stack(栈)限制: <code>4KB</code></li>
-<li>Heap(堆)限制: <code>32KB</code><ul>
+<li>Heap(堆)限制: <code>32KB</code>
+<ul>
 <li><code>Box</code>: 小于<code>32KB</code></li>
 <li><code>zero copy</code>: 处理大于<code>32KB</code></li>
 </ul>
 </li>
-<li> 大于 <code>10KB</code>的账户，CPI有限制</li>
+<li>大于 <code>10KB</code>的账户，CPI有限制</li>
 </ul>
 </li>
-</ul>
+<li>
+<p>Anchor中字段大小:</p>
 <ul>
-<li><p>Anchor中字段大小:</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://book.anchor-lang.com/anchor_references/space.html">https://book.anchor-lang.com/anchor_references/space.html</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://book.anchor-lang.com/anchor_references/space.html">https://book.anchor-lang.com/anchor_references/space.html</a></p>
 </li>
-<li><p><code>String</code>: <code>4 + 字符串字节长度</code></p>
+<li>
+<p><code>String</code>: <code>4 + 字符串字节长度</code></p>
 </li>
-<li><p><code>Vec&lt;T&gt;</code>:     <code>4 + (space(T) * amount)</code></p>
+<li>
+<p><code>Vec&lt;T&gt;</code>: 	<code>4 + (space(T) * amount)</code></p>
 </li>
-<li><p><code>Pubkey</code>:    <code>32</code></p>
+<li>
+<p><code>Pubkey</code>:	<code>32</code></p>
 </li>
-<li><p><code>Option&lt;T&gt;</code>    <code>1 + (space(T))</code></p>
+<li>
+<p><code>Option&lt;T&gt;</code>	<code>1 + (space(T))</code></p>
 </li>
-<li><p><code>Enum</code>    : <code>1 + 最大变量的size</code></p>
+<li>
+<p><code>Enum</code>	: <code>1 + 最大变量的size</code></p>
 </li>
-<li><p><code>f32</code> 和 <code>f64</code> : 会序列化失败 <code>NaN</code></p>
+<li>
+<p><code>f32</code> 和 <code>f64</code> : 会序列化失败 <code>NaN</code></p>
 </li>
 </ul>
 </li>
-</ul>
-<ul>
-<li><p>Box，在堆上分配内存</p>
-  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> big_data: [<span class="built_in">u8</span>; <span class="number">5000</span>], <span class="comment">// 5000字节超出了solana的4KB栈限制，因此使用Heap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeFunctionContext</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> some_big_data: <span class="built_in">Box</span>&lt;Account&lt;<span class="symbol">&#x27;info</span>, SomeBigDataStruct&gt;&gt;, <span class="comment">// 在堆上分配内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Zero Copy</p>
+<li>
+<p>Box，在堆上分配内存</p>
+  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> big_data: [<span class="built_in">u8</span>; <span class="number">5000</span>], <span class="comment">// 5000字节超出了solana的4KB栈限制，因此使用Heap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeFunctionContext</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> some_big_data: <span class="built_in">Box</span>&lt;Account&lt;<span class="symbol">&#x27;info</span>, SomeBigDataStruct&gt;&gt;, <span class="comment">// 在堆上分配内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Zero Copy</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html">https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html</a></p>
 </blockquote>
-  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account(zero_copy)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeReallyBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> really_big_data: [<span class="built_in">u128</span>; <span class="number">1024</span>], <span class="comment">// 16,384 bytes</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ConceptZeroCopy</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(zero)]</span></span><br><span class="line">    <span class="keyword">pub</span> some_really_big_data: AccountLoader&lt;<span class="symbol">&#x27;info</span>, SomeReallyBigDataStruct&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account(zero_copy)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeReallyBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> really_big_data: [<span class="built_in">u128</span>; <span class="number">1024</span>], <span class="comment">// 16,384 bytes</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ConceptZeroCopy</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(zero)]</span></span><br><span class="line">    <span class="keyword">pub</span> some_really_big_data: AccountLoader&lt;<span class="symbol">&#x27;info</span>, SomeReallyBigDataStruct&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="处理账户-Dealing-With-Accounts"><a href="#处理账户-Dealing-With-Accounts" class="headerlink" title="处理账户 Dealing With Accounts"></a>处理账户 Dealing With Accounts</h3><ul>
-<li><p><strong>数据顺序</strong>: <code>变长</code>字段放在账户结构尾部</p>
+<h3 id="处理账户-dealing-with-accounts">处理账户 Dealing With Accounts</h3>
+<ul>
+<li>
+<p><strong>数据顺序</strong>: <code>变长</code>字段放在账户结构尾部</p>
 <ul>
 <li>因为变长的字段放在签名，通过filter查询后面的字段时，无法确定偏移量offset，</li>
 </ul>
 </li>
-<li><p><strong>预留字段</strong>: 为账户增加一个预留字段</p>
+<li>
+<p><strong>预留字段</strong>: 为账户增加一个预留字段</p>
 <ul>
-<li>v1版本<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V1</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">128</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>v2版本:   v1 和 2 版本是兼容的<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V2</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> experience: <span class="built_in">u64</span>,  <span class="comment">// 新增</span></span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">120</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>v1版本<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V1</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">128</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>v2版本:   v1 和 2 版本是兼容的<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V2</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> experience: <span class="built_in">u64</span>,  <span class="comment">// 新增</span></span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">120</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p><strong>数据优化</strong>: 通过优化账户数据结构节约空间</p>
+<li>
+<p><strong>数据优化</strong>: 通过优化账户数据结构节约空间</p>
 <ul>
-<li>例如: 能用 <code>u8</code>的，就不要用<code>u64</code> ,<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BadGameFlags</span></span> &#123; <span class="comment">// 8 bytes , 每个 bool 是一个字节</span></span><br><span class="line">    <span class="keyword">pub</span> is_frozen: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_poisoned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_burning: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_blessed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_cursed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_stunned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_slowed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_bleeding: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化后:</span></span><br><span class="line"><span class="keyword">const</span> IS_FROZEN_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> IS_POISONED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BURNING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLESSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> IS_CURSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> IS_STUNNED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> IS_SLOWED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">6</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLEEDING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> NO_EFFECT_FLAG: <span class="built_in">u8</span> = <span class="number">0b00000000</span>;</span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GoodGameFlags</span></span> &#123; <span class="comment">// 1 byte</span></span><br><span class="line">    <span class="keyword">pub</span> status_flags: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>例如: 能用 <code>u8</code>的，就不要用<code>u64</code> ,<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BadGameFlags</span></span> &#123; <span class="comment">// 8 bytes , 每个 bool 是一个字节</span></span><br><span class="line">    <span class="keyword">pub</span> is_frozen: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_poisoned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_burning: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_blessed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_cursed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_stunned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_slowed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_bleeding: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化后:</span></span><br><span class="line"><span class="keyword">const</span> IS_FROZEN_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> IS_POISONED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BURNING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLESSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> IS_CURSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> IS_STUNNED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> IS_SLOWED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">6</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLEEDING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> NO_EFFECT_FLAG: <span class="built_in">u8</span> = <span class="number">0b00000000</span>;</span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GoodGameFlags</span></span> &#123; <span class="comment">// 1 byte</span></span><br><span class="line">    <span class="keyword">pub</span> status_flags: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p><strong>PDA账户结构设计</strong>:</p>
+<li>
+<p><strong>PDA账户结构设计</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -176,7 +198,8 @@
 <th>应用场景</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>One-Per-Program (全局账户)</td>
 <td><code>seeds=[b&quot;global config&quot;]</code></td>
 <td>全局配置</td>
@@ -196,10 +219,12 @@
 <td><code>seeds=[b&quot;ATA Account&quot;, owner.key().as_ref(), mint.key().as_ref()]</code></td>
 <td>SPL Token的 ATA</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </li>
 </ul>
-<h3 id="处理并发-Dealing-With-Concurrency"><a href="#处理并发-Dealing-With-Concurrency" class="headerlink" title="处理并发 Dealing With Concurrency"></a>处理并发 Dealing With Concurrency</h3><ul>
+<h3 id="处理并发-dealing-with-concurrency">处理并发 Dealing With Concurrency</h3>
+<ul>
 <li>solana的交易可以并行处理</li>
 <li>对于互不关联账户的交易，都是并行处理</li>
 <li>对于<code>共享</code>的账户的<code>写入</code>的交易，采用类似<code>互斥量</code>机制，因此是串行的</li>
@@ -210,14 +235,12 @@
 </ul>
 <p>例如:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
 <p>优化成</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |    &lt;--- 交易内执行</span><br><span class="line"> V      V          V</span><br><span class="line">[PA]   [PB]       [PX]  &lt;--- 和用户账户关联的PDA账户</span><br><span class="line"> |      |          |    &lt;--- 异步执行</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>这样， 每个用户的交易 只会和自己账户关联的PDA账户有交互，而不会互相影响</p>
 <hr>
-<h3 id="状态压缩-State-Compression"><a href="#状态压缩-State-Compression" class="headerlink" title="状态压缩 State Compression"></a>状态压缩 State Compression</h3><blockquote>
+<h3 id="状态压缩-state-compression">状态压缩 State Compression</h3>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/generalized-state-compression">https://www.soldev.app/course/generalized-state-compression</a></p>
 </blockquote>
 <ul>
@@ -618,32 +641,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

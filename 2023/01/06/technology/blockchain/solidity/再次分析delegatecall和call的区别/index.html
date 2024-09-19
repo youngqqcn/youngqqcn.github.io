@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">332</span>
+            <span class="post-count">333</span>
         </span>
     </span>
 
@@ -107,15 +107,14 @@
        
   <p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
 <hr>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="delegatecall">delegatecall:</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp" alt=""></p>
+<h4 id="call">call</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp" alt=""></p>
  
       <!-- reward -->
       
@@ -511,32 +510,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->

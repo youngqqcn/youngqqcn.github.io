@@ -35,7 +35,7 @@
 
       <!-- mermaid -->
       
-    </head>
+    <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -105,66 +105,74 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="谷歌高级搜索技巧"><a href="#谷歌高级搜索技巧" class="headerlink" title="谷歌高级搜索技巧"></a>谷歌高级搜索技巧</h1><ul>
-<li><p>精确搜索:</p>
+  <h1>谷歌高级搜索技巧</h1>
+<ul>
+<li>
+<p>精确搜索:</p>
 <ul>
 <li><code>&quot;&quot;</code></li>
 <li>检索结果中只显示包含确切内容</li>
 <li>例如： “全世界无产阶级联合起来”</li>
 </ul>
 </li>
-<li><p>排除内容：</p>
+<li>
+<p>排除内容：</p>
 <ul>
 <li><code>-</code></li>
 <li>去除搜索结果中不想要的内容</li>
 <li>示例：  <code>JavaScript -wiki</code></li>
 </ul>
 </li>
-<li><p>模糊搜索：</p>
+<li>
+<p>模糊搜索：</p>
 <ul>
 <li><code>*</code></li>
 <li>模糊匹配</li>
 <li>示例： <code>锄*日*</code></li>
 </ul>
 </li>
-<li><p>指定范围</p>
+<li>
+<p>指定范围</p>
 <ul>
 <li><code>...</code></li>
 <li>指定搜索结果的范围：时间范围，版本范围等等</li>
 <li>示例： <code>NFT ticketing 2021...2022</code></li>
 </ul>
 </li>
-<li><p>指定站点</p>
+<li>
+<p>指定站点</p>
 <ul>
 <li><code>site:</code></li>
 <li>指定在某个网站内进行搜索</li>
 <li>示例： <code>site:http://w3schools.com javascript Array</code></li>
 </ul>
 </li>
-<li><p>搜索指定文件类型</p>
+<li>
+<p>搜索指定文件类型</p>
 <ul>
 <li><code>filetype:</code></li>
 <li>指定搜索结果的文件类型</li>
 <li>示例： <code>filetype:pdf 西游记</code>,  可以搜索西游记相关的pdf文件</li>
 </ul>
 </li>
-<li><p>多个关键词（与）</p>
+<li>
+<p>多个关键词（与）</p>
 <ul>
 <li><code>AND</code></li>
 <li>搜索多个关键词</li>
 <li>示例： <code>React AND CSS</code></li>
 </ul>
 </li>
-</ul>
-<ul>
-<li><p>多个关键词（或）</p>
+<li>
+<p>多个关键词（或）</p>
 <ul>
 <li><code>OR</code></li>
 <li>搜索多个关键词</li>
 <li>示例： <code>React OR CSS</code></li>
 </ul>
 </li>
-<li><p>指定时间范围</p>
+<li>
+<p>指定时间范围</p>
 <ul>
 <li><code>AFTER: </code> 或 <code>BEFORE: </code></li>
 <li>指定搜索结果的时间范围</li>
@@ -571,32 +579,19 @@
     viewer_init()
 </script> 
 <!-- MathJax -->
- <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true,
-  };
-</script>
 
 <!-- Katex -->
-
+ 
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css">
+        
+    
+ 
 <!-- busuanzi  -->
 
 <!-- ClickLove -->
