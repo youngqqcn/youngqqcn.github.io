@@ -220,10 +220,8 @@ $$
 
 $$
 \begin{equation}
-\begin{align*}
 
 p = \frac{S_v}{T_v}
 
-\end{align*}
 \end{equation}
 $$
