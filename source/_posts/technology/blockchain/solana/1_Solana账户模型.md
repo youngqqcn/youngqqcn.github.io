@@ -30,9 +30,11 @@ tags:
     - 功能:
       - 创建新账户, **只有 System Program 可以创建新账户**
       - 分配新账户的权限，一旦创建新账户，**就可以转移账户权限给其他程序**
-        > 为自定义程序创建一个数据账户(Data Account)，可以分为2步：
+        > (**非常重要!!**)为自定义程序创建一个数据账户(Data Account)，可以分为2步：
         > - 1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序
         > - 2, 调用自定义程序(此时是账户的owner)初始化该账户的数据
+        >
+        > 详细源码分析见: [19_solana的SPL-Token-Mint创建流程](19_solana的SPL-Token-Mint创建流程.md)
       - 分配数据空间
       - 转移普通账户(owner是 System Program)的余额
       - 仅owner是 System Program 可以支付手续费
