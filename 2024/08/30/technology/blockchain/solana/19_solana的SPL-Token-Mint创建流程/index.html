@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> yqq&#39;s blog</title>
+      <title>19_solana的SPL Token Mint创建流程 |  yqq&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -48,328 +48,8 @@
         style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
       
     <main class="content on">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover5.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">yqq&#39;s blog</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['Hello,world!', '', ''],
-        startDelay: 0,
-        typeSpeed: 150,
-        loop: false,
-        backSpeed: 10000000,
-        showCursor: false
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-technology/spider/微信小程序爬虫"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/"
-    >微信小程序爬虫</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/" class="article-date">
-  <time datetime="2024-09-24T09:43:00.000Z" itemprop="datePublished">2024-09-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>这里以 Windows 微信小程序作为分析对象。</p>
-<p>分析步骤：</p>
-<ul>
-<li>通过 Charles 抓包分析微信小程序的鉴权和api路径</li>
-<li>获取登陆态token</li>
-<li>使用token请求api</li>
-</ul>
-<hr>
-<h3 id="Charles-安装并设置"><a href="#Charles-安装并设置" class="headerlink" title="Charles 安装并设置"></a>Charles 安装并设置</h3><ul>
-<li><p>安装 Charles</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
-</ul>
-</li>
-<li><p>并注册(可跳过)</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://inused.github.io/pages/file/tool/CharlesKeygen.html">https://inused.github.io/pages/file/tool/CharlesKeygen.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>设置证书:</p>
-<blockquote>
-<p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/HeyShHeyou/article/details/90045204">https://blog.csdn.net/HeyShHeyou/article/details/90045204</a></p>
-</blockquote>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles1.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles2.jpg"></p>
-</li>
-<li><p>设置代理:</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles3.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles4.jpg"></p>
-</li>
-</ul>
-<ul>
-<li>重启 Charles, 打开PC微信</li>
-</ul>
-<h3 id="PC-Windows-微信小程序抓包"><a href="#PC-Windows-微信小程序抓包" class="headerlink" title="PC(Windows)微信小程序抓包"></a>PC(Windows)微信小程序抓包</h3><p>打开微信小程序</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app1.jpg"></p>
-<h3 id="关于微信授权登录的流程"><a href="#关于微信授权登录的流程" class="headerlink" title="关于微信授权登录的流程"></a>关于微信授权登录的流程</h3><blockquote>
-<p>官方文档: <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-miniapp-login-flow.jpg"></p>
-<h3 id="实际案例：微信小程序登录"><a href="#实际案例：微信小程序登录" class="headerlink" title="实际案例：微信小程序登录"></a>实际案例：微信小程序登录</h3><p>授权登录<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login2.jpg"></p>
-<p>业务接口:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login3.jpg"></p>
-<p>直接使用token请求api</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-request1.jpg"></p>
-<h3 id="编写python程序请求api"><a href="#编写python程序请求api" class="headerlink" title="编写python程序请求api"></a>编写python程序请求api</h3><p>略。 和普通python爬虫一样。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/" rel="tag">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/web3/逆向分析pump.fun的BondingCurve算法"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/"
-    >逆向分析pump.fun的BondingCurve算法</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/" class="article-date">
-  <time datetime="2024-09-03T12:17:01.000Z" itemprop="datePublished">2024-09-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
-<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
-<p>可以看到 <code>onChange</code>事件处理函数:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
-<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
-<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
-<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
-<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
-<p>根据前面的分析,</p>
-<ul>
-<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
-<li>参数 <code>e</code> 是数量</li>
-</ul>
-<p>因此,<br>其中 i 是 bigint库</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
-<ul>
-<li>前端计算使用BN:,<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
-<li>或者使用 anchor.BN</li>
-</ul>
-</li>
-<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
-<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$</p>
-<p>买入公式(按照Token数量)</p>
-<p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$</p>
-<p>买入后状态更新：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
-<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$</p>
-<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
-<hr>
-<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
-<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$</p>
-<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$</p>
-<p>$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$</p>
-<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$p = \frac{S_v}{T_v}$$</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nextjs/" rel="tag">nextjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solana/" rel="tag">solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solana/18_Solana高级交易Durable_Nonce"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/"
-    >18_Solana高级交易Durable_Nonce</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/" class="article-date">
-  <time datetime="2024-08-30T03:34:00.000Z" itemprop="datePublished">2024-08-30</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>官方文档:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/introduction-to-durable-nonces">https://solana.com/developers/guides/advanced/introduction-to-durable-nonces</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/0xproflupin/solana-durable-nonces">https://github.com/0xproflupin/solana-durable-nonces</a></li>
-</ul>
-<p><strong>本质问题： 如何避免双花？</strong></p>
-<p>Recent Blockhash 做了时间戳，也充当了唯一标识(类似ETH的nonce)的作用, 防止双花</p>
-<p><strong>有了 Recent Blockhash 为什么还需要 Durable Nonce?</strong></p>
-<p>Recent Blockhash 的窗口是 150个区块(约 150 * 0.4 = 60s), 因此，签名之后的交易必须在一分钟内被提交执行，否则交易就会过期。</p>
-<p>几个特殊场景:</p>
-<ul>
-<li>大批量交易, 不想因为blockhash重复而失败 ?</li>
-<li>多重签名交易？</li>
-<li>离线签名？</li>
-</ul>
-<p>因此，就需要 Durable Nonce 方案, nonce 是 32字节, 其作用就是确保交易的唯一</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
+      <section class="outer">
+  <article
   id="post-technology/blockchain/solana/19_solana的SPL-Token-Mint创建流程"
   class="article article-type-post"
   itemscope
@@ -380,10 +60,9 @@
     
     <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/08/30/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/"
-    >19_solana的SPL Token Mint创建流程</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  19_solana的SPL Token Mint创建流程
+</h1>
  
 
       
@@ -396,9 +75,32 @@
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
@@ -461,161 +163,110 @@
     
     <footer class="article-footer">
        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/08/30/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
 
     </footer>
   </div>
 
    
+  <nav class="article-nav">
     
-</article>
-
+      <a href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            18_Solana高级交易Durable_Nonce
+          
+        </div>
+      </a>
     
-    <article
-  id="post-technology/blockchain/prediction/Polymarket技术分析"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"
-    >Polymarket技术分析</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2024-08-12T11:00:00.000Z" itemprop="datePublished">2024-08-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Polymarket技术分析</p>
-<p>polymarket介绍:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
-<p>关键概念:</p>
-<ul>
-<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
-<ul>
-<li>例如:<ul>
-<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
-<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
-</li>
-<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
-</li>
-<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
-<ul>
-<li>例如： 特朗普赢得2024大选的事件<ul>
-<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
-<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
-<ul>
-<li>例如:<ul>
-<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
-<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
-</ul>
-</li>
-<li>例如：<ul>
-<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
-<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
-<ul>
-<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
-</li>
-<li><p>例如:</p>
-<ul>
-<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
-<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
-</ul>
-</li>
-<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
-</li>
-<li><p>上面的例子: 形成对手单，有2种方式</p>
-<ul>
-<li>第一种: 直接方式<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
-</ul>
-</li>
-<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
-<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
-<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
-<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
+      <a href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Polymarket技术分析</div>
+      </a>
     
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Polymarket/" rel="tag">Polymarket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prediction-market/" rel="tag">prediction market</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
-  
-</section>
-</div>
 
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -763,6 +414,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link

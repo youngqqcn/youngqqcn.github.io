@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -138,11 +138,12 @@
 <li>功能:<ul>
 <li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
 <li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
-<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
 <ul>
 <li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
 <li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
 </ul>
+<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
 </blockquote>
 </li>
 <li>分配数据空间</li>
