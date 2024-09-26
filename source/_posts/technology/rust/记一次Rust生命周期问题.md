@@ -111,7 +111,7 @@ error: could not compile `anchor-token-staking-yqq` (lib) due to 3 previous erro
 
 
 **原因： 返回局部变量的引用.**  即返回临时变量`seeds`的引用， 而seeds在函数结束之后就被释放了。
-  - 深层次的原因：seeds中包含了对 `self.stake_token_mint.key().as_ref()` 引用，而 `self.stake_token_mint`
+  - 深层次的原因：seeds中包含了对 `self.stake_token_mint.key().as_ref()` 引用, 而这是一个临时引用
 
 
 下面这段代码是可以的， 因为 `"POOL_AUTH"`具有静态生命周期，在整个运行期间都有效，因此，seeds的生命周期静态生命周期。
