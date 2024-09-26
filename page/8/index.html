@@ -104,7 +104,7 @@
     
     
     <article
-  id="post-technology/cpp/P2P技术(UDP)打洞 "
+  id="post-technology/blockchain/solana/3_Solana的手续费"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -115,8 +115,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/05/14/technology/cpp/P2P%E6%8A%80%E6%9C%AF(UDP)%E6%89%93%E6%B4%9E%20/"
-    >P2P技术(UDP)打洞</a> 
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/"
+    >3_Solana的手续费</a> 
 </h2>
  
 
@@ -124,8 +124,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/05/14/technology/cpp/P2P%E6%8A%80%E6%9C%AF(UDP)%E6%89%93%E6%B4%9E%20/" class="article-date">
-  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
+      <a href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/" class="article-date">
+  <time datetime="2024-07-09T11:31:00.000Z" itemprop="datePublished">2024-07-09</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -135,289 +135,301 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <ul>
-<li><p>文章: <a target="_blank" rel="noopener" href="https://evilpan.com/2015/10/31/p2p-over-middle-box/">https://evilpan.com/2015/10/31/p2p-over-middle-box/</a></p>
-</li>
-<li><p>示例: <a target="_blank" rel="noopener" href="https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/">https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/</a></p>
-</li>
-</ul>
-<p>其中最终核心的就是:</p>
-<h2 id="端点在不同的NAT之后"><a href="#端点在不同的NAT之后" class="headerlink" title="端点在不同的NAT之后"></a>端点在不同的NAT之后</h2><p>假设客户端A和客户端B的地址都是内网地址,且在不同的NAT后面. A、B上运行的P2P应用程序和服务器S都使用了UDP端口1234,A和B分别初始化了 与Server的UDP通信,地址映射如图所示:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">                            Server S</span><br><span class="line">                        18.181.0.31:1234</span><br><span class="line">                               |</span><br><span class="line">                               |</span><br><span class="line">        +----------------------+----------------------+</span><br><span class="line">        |                                             |</span><br><span class="line">      NAT A                                         NAT B</span><br><span class="line">155.99.25.11:62000                            138.76.29.7:31000</span><br><span class="line">        |                                             |</span><br><span class="line">        |                                             |</span><br><span class="line">     Client A                                      Client B</span><br><span class="line">  10.0.0.1:1234                                 10.1.1.3:1234</span><br></pre></td></tr></table></figure>
-
-
-<p>现在假设客户端A打算与客户端B直接建立一个UDP通信会话. 如果A直接给B的公网地址138.76.29.7:31000发送UDP数据,NAT B将很可能会无视进入的 数据（除非是Full Cone NAT）,因为源地址和端口与S不匹配,而最初只与S建立过会话. B往A直接发信息也类似.</p>
-<p><strong>假设A开始给B的公网地址发送UDP数据的同时,给服务器S发送一个中继请求,要求B开始给A的公网地址发送UDP信息. A往B的输出信息会导致NAT A打开 一个A的内网地址与与B的外网地址之间的新通讯会话, B往A亦然.</strong> 一旦新的UDP会话在两个方向都打开之后,客户端A和客户端B就能直接通讯, 而无须再通过引导服务器S了.</p>
-<p>UDP打洞技术有许多有用的性质. 一旦一个的P2P链接建立,链接的双方都能反过来作为“引导服务器”来帮助其他中间件后的客户端进行打洞, 极大减少了服务器的负载. 应用程序不需要知道中间件具体是什么（如果有的话）,因为以上的过程在没有中间件或者有多个中间件的情况下 也一样能建立通信链路.</p>
+  <h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
 <ul>
-<li><p>服务端： <a target="_blank" rel="noopener" href="https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/blob/master/p2pchat/server.c">https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/blob/master/p2pchat/server.c</a></p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_message</span><span class="params">(<span class="keyword">int</span> sock, <span class="keyword">endpoint_t</span> from, Message msg)</span> </span>&#123;</span><br><span class="line">    log_debug(<span class="string">&quot;RECV %d bytes FROM %s: %s %s&quot;</span>, msg.head.length,</span><br><span class="line">            ep_tostring(from), strmtype(msg.head.type), msg.body);</span><br><span class="line">    <span class="keyword">switch</span>(msg.head.type) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> MTYPE_LOGIN: <span class="comment">// 登录, 记录客户端的地址</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> == eplist_add(g_client_pool, from)) &#123;</span><br><span class="line">                    log_info(<span class="string">&quot;%s logged in&quot;</span>, ep_tostring(from));</span><br><span class="line">                    udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Login success!&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    log_warn(<span class="string">&quot;%s failed to login&quot;</span>, ep_tostring(from));</span><br><span class="line">                    udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Login failed&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> MTYPE_PUNCH: <span class="comment">// UDP打洞核心逻辑</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">endpoint_t</span> other = ep_fromstring(msg.body);</span><br><span class="line">                log_info(<span class="string">&quot;punching to %s&quot;</span>, ep_tostring(other));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 向目的地址发送打洞PUNCH消息, 并将源地址作为消息体，发给目的地址</span></span><br><span class="line">                udp_send_text(sock, other, MTYPE_PUNCH, ep_tostring(from));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 向源地址发送一个消息, 源地址收到不会回复</span></span><br><span class="line">                udp_send_text(sock, from, MTYPE_TEXT, <span class="string">&quot;punch request sent&quot;</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PING:</span><br><span class="line">            udp_send_text(sock, from, MTYPE_PONG, <span class="literal">NULL</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PONG:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Unkown command&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>Transaction Fees(base fee) : 交易费</li>
+<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
+<li>给矿工</li>
+</ul>
+</li>
+<li>Rent: 账户租金(充值)</li>
 </ul>
 <ul>
-<li><p>客户端：</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_message</span><span class="params">(<span class="keyword">endpoint_t</span> from, Message msg)</span> </span>&#123;</span><br><span class="line">    log_debug(<span class="string">&quot;RECV %d bytes FROM %s: %s %s&quot;</span>, msg.head.length,</span><br><span class="line">            ep_tostring(from), strmtype(msg.head.type), msg.body);</span><br><span class="line">    <span class="comment">// from server</span></span><br><span class="line">    <span class="keyword">if</span> (ep_equal(g_server, from)) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (msg.head.type) &#123;</span><br><span class="line">            <span class="keyword">case</span> MTYPE_PUNCH: <span class="comment">// 收到服务端的打洞请求，</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">endpoint_t</span> peer = ep_fromstring(msg.body);</span><br><span class="line">                    log_info(<span class="string">&quot;%s on call, replying...&quot;</span>, ep_tostring(peer));</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 给源地址回复一条消息,</span></span><br><span class="line">                    udp_send_text(g_clientfd, peer, MTYPE_REPLY, <span class="literal">NULL</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MTYPE_REPLY:</span><br><span class="line">                log_info(<span class="string">&quot;SERVER: %s&quot;</span>, msg.body);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// from peer</span></span><br><span class="line">    <span class="keyword">switch</span> (msg.head.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_TEXT:</span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s): %s&quot;</span>, ep_tostring(from), msg.body);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_REPLY: <span class="comment">// UDP打洞打通了</span></span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) replied, you can talk now&quot;</span>, ep_tostring(from));</span><br><span class="line">            eplist_add(g_peers, from);</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PUNCH:</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            * Usually we can&#x27;t recevie punch request from other peer directly,</span></span><br><span class="line"><span class="comment">            * but it could happen when it come after we reply the punch request from server,</span></span><br><span class="line"><span class="comment">            * or there&#x27;s a tunnel already.</span></span><br><span class="line"><span class="comment">            * */</span></span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) punched&quot;</span>, ep_tostring(from));</span><br><span class="line">            udp_send_text(g_clientfd, from, MTYPE_TEXT, <span class="string">&quot;I SEE YOU&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PING:</span><br><span class="line">            udp_send_text(g_clientfd, from, MTYPE_PONG, <span class="literal">NULL</span>);</span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) pinged&quot;</span>, ep_tostring(from));</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>交易手续费的分配：</p>
+<ul>
+<li><code>50%</code>: 交易费直接燃烧</li>
+<li><code>50%</code>: 给矿工</li>
+</ul>
+</li>
+<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
+</li>
+<li><p>交易执行限制：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
+<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
+<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
+<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
+<li>关于调整交易的最大CU: <a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
+</li>
+<li><p>Prioritization fee 的计算取决于：</p>
+<ul>
+<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
+<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
+<li>如果不提供此值， 则交易无priority fee</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何设置  <code>prioritization fee</code> ？</p>
+<ul>
+<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
+<li>注意：<ul>
+<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
+<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
+</ul>
+</li>
+<li>更多：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>租金<ul>
+<li>获取租金豁免: <a target="_blank" rel="noopener" href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
+<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/2_Solana交易和指令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/"
+    >2_Solana交易和指令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/" class="article-date">
+  <time datetime="2024-07-09T11:15:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions">https://solana.com/docs/core/transactions</a></p>
+</blockquote>
+<p>关键细节：</p>
+<ul>
+<li><strong>执行顺序</strong>： 如果交易包含多个指令，按照顺序执行（指令添加到交易中的顺序）</li>
+<li><strong>原子性</strong>： 交易是原子性，只有当全部指令都执行成功，交易才成功，否则交易执行失败</li>
+</ul>
+<p>关键点:</p>
+<ul>
+<li>交易由不同指令组成，这些指令用来与链上不同的程序进行交互， 不同的指令代表不同的操作</li>
+<li>每个指令指定3个要素, 见下文的<code>CompiledInstruction</code>结构体：<ul>
+<li>程序id索引</li>
+<li>账户列表, 即指令所涉及的账户</li>
+<li>输入数据</li>
+</ul>
+</li>
+<li>交易中的指令，按照顺序执行</li>
+<li>交易是原子性的</li>
+<li>一笔交易最大为<strong>1232 bytes</strong><ul>
+<li>Solana最大传输单元是1280字节, 这个值跟IPV6的MTU(最小传输单元) 一样， 为了UDP传输的效率。 详细见： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions#transaction-size">https://solana.com/docs/core/transactions#transaction-size</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><ul>
+<li><code>recent_blockhash</code>用作交易的时间戳, 交易最大的age是 150 区块 （约1分钟），超过150区块就视为过期， 过期交易将不能执行<ul>
+<li>可以通过<code>getLatestBlockHash</code>获取最新区块hash</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/transaction-simple.svg"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/tx_format.png"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/src/transaction/mod.rs#L173</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// A set of signatures of a serialized [`Message`], signed by the first</span></span><br><span class="line">    <span class="comment">/// keys of the `Message`&#x27;s [`account_keys`], where the number of signatures</span></span><br><span class="line">    <span class="comment">/// is equal to [`num_required_signatures`] of the `Message`&#x27;s</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`].</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// [`account_keys`]: Message::account_keys</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`]: crate::message::MessageHeader</span></span><br><span class="line">    <span class="comment">/// [`num_required_signatures`]: crate::message::MessageHeader::num_required_signatures</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The message to sign.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> message: Message,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Message</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The message header, identifying signed and read-only `account_keys`.</span></span><br><span class="line">    <span class="comment">/// Header values only describe static `account_keys`, they do not describe</span></span><br><span class="line">    <span class="comment">/// any additional account keys loaded via address table lookups.</span></span><br><span class="line">    <span class="keyword">pub</span> header: MessageHeader,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有的需要使用到的账户数组</span></span><br><span class="line">    <span class="comment">/// List of accounts loaded by this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> account_keys: <span class="built_in">Vec</span>&lt;Pubkey&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用做交易的时间戳，也用于防止重复交易和过期交易</span></span><br><span class="line">    <span class="comment">// 交易最大的age是 150 区块 （约1分钟）</span></span><br><span class="line">    <span class="comment">/// The blockhash of a recent block.</span></span><br><span class="line">    <span class="keyword">pub</span> recent_blockhash: Hash,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指令合集</span></span><br><span class="line">    <span class="comment">/// Instructions that invoke a designated program, are executed in sequence,</span></span><br><span class="line">    <span class="comment">/// and committed in one atomic transaction if all succeed.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// # Notes</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Program indexes must index into the list of message `account_keys` because</span></span><br><span class="line">    <span class="comment">/// program id&#x27;s cannot be dynamically loaded from a lookup table.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Account indexes must index into the list of addresses</span></span><br><span class="line">    <span class="comment">/// constructed from the concatenation of three key lists:</span></span><br><span class="line">    <span class="comment">///   1) message `account_keys`</span></span><br><span class="line">    <span class="comment">///   2) ordered list of keys loaded from `writable` lookup table indexes</span></span><br><span class="line">    <span class="comment">///   3) ordered list of keys loaded from `readable` lookup table indexes</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> instructions: <span class="built_in">Vec</span>&lt;CompiledInstruction&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// List of address table lookups used to load additional accounts</span></span><br><span class="line">    <span class="comment">/// for this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> address_table_lookups: <span class="built_in">Vec</span>&lt;MessageAddressTableLookup&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">VersionedMessage</span></span> &#123;</span><br><span class="line">    Legacy(LegacyMessage),</span><br><span class="line">    V0(v0::Message),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">VersionedTransaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// List of signatures</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line">    <span class="comment">/// Message to sign.</span></span><br><span class="line">    <span class="keyword">pub</span> message: VersionedMessage,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息头</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/message/mod.rs#L96</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MessageHeader</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The number of signatures required for this message to be considered</span></span><br><span class="line">    <span class="comment">/// valid. The signers of those signatures must match the first</span></span><br><span class="line">    <span class="comment">/// `num_required_signatures` of [`Message::account_keys`].</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="keyword">pub</span> num_required_signatures: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_signed_accounts` of the signed keys are read-only</span></span><br><span class="line">    <span class="comment">/// accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_signed_accounts: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_unsigned_accounts` of the unsigned keys are</span></span><br><span class="line">    <span class="comment">/// read-only accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_unsigned_accounts: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/legacy_message.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/message_header.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compat_array_of_account_addresses.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compact_array_of_ixs.png"></p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/instruction.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交易中的结构是 CompiledInstruction</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">CompiledInstruction</span></span> &#123;</span><br><span class="line">    <span class="comment">// 索引</span></span><br><span class="line">    <span class="comment">/// Index into the transaction keys array indicating the program account that executes this instruction.</span></span><br><span class="line">    <span class="keyword">pub</span> program_id_index: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要和合约交互账户</span></span><br><span class="line">    <span class="comment">/// Ordered indices into the transaction keys array indicating which accounts to pass to the program.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入数据</span></span><br><span class="line">    <span class="comment">/// The program input data.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instruction 是底层的数据结构</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L329</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Instruction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Pubkey of the program that executes this instruction.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> program_id: Pubkey,</span><br><span class="line">    <span class="comment">/// Metadata describing accounts that should be passed to the program.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;AccountMeta&gt;,</span><br><span class="line">    <span class="comment">/// Opaque data passed to the program for its own interpretation.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AccountMeta"><a href="#AccountMeta" class="headerlink" title="AccountMeta"></a>AccountMeta</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/accountmeta.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L539</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AccountMeta</span></span> &#123;</span><br><span class="line">    <span class="comment">/// An account&#x27;s public key.</span></span><br><span class="line">    <span class="keyword">pub</span> pubkey: Pubkey,</span><br><span class="line">    <span class="comment">/// True if an `Instruction` requires a `Transaction` signature matching `pubkey`.</span></span><br><span class="line">    <span class="keyword">pub</span> is_signer: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// True if the account data or metadata may be mutated during program execution.</span></span><br><span class="line">    <span class="keyword">pub</span> is_writable: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="转移-SOL的交易示例图："><a href="#转移-SOL的交易示例图：" class="headerlink" title="转移 SOL的交易示例图："></a>转移 SOL的交易示例图：</h3><ul>
+<li><p>结构图</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer.svg"></p>
+</li>
+</ul>
+<ul>
+<li><p>SOL转账交易执行流程：</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer-process.svg"></p>
+</li>
 </ul>
 <hr>
-<p>以上的代码我在本地和2台服务做了测试，成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">            Server(腾讯云服务器)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ClientA(本机)            ClientB(aws服务器 )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/udp_punch.jpg"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT/" rel="tag">NAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P/" rel="tag">P2P</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDP/" rel="tag">UDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/cpp/strtok源码"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
-    >strtok源码</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
-  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solidity/多笔交易打包"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/"
-    >多笔交易打包</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/" class="article-date">
-  <time datetime="2024-03-06T16:00:00.000Z" itemprop="datePublished">2024-03-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
-</ul>
-<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/react/react基础"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/"
-    >react基础</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time datetime="2023-12-06T03:42:37.000Z" itemprop="datePublished">2023-12-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="react中文教程"><a href="#react中文教程" class="headerlink" title="react中文教程"></a>react中文教程</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn">https://zh-hans.react.dev/learn</a></li>
-</ul>
-<h1 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h1><ul>
-<li>Ubuntu： <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions#ubuntu-versions">https://github.com/nodesource/distributions#ubuntu-versions</a></li>
-<li>全局安装脚手架: <code>npm i -g create-react-app</code></li>
-<li>直接创建项目: <code>npx create-react-app my-app</code></li>
-</ul>
-<h1 id="antd使用"><a href="#antd使用" class="headerlink" title="antd使用"></a>antd使用</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/components/overview-cn">https://ant-design.antgroup.com/components/overview-cn</a></p>
+<h2 id="交易确认-amp-过期"><a href="#交易确认-amp-过期" class="headerlink" title="交易确认&amp;过期"></a>交易确认&amp;过期</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/confirmation">https://solana.com/docs/advanced/confirmation</a></p>
 </blockquote>
 <ul>
-<li>全局安装  <code>npm install antd-init -g</code></li>
-<li>antd-init</li>
-<li>npm install antd –save</li>
+<li>过期时间 <code>151</code>个区块, 每个区块<code>400ms</code>, 即 <code>60s</code></li>
+<li>交易中的recentBlockHash必须是151区块内, 否则将是过期交易</li>
 </ul>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
-<p>想象一下，你的组件是厨房里的厨师，用食材制作出美味的菜肴。在这个场景中，React 是服务员，负责提出顾客的要求，并给顾客上菜。这个请求和服务 UI 的过程有三个步骤：</p>
+<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
+<li><p>建议1： 调用<code>getLatestBlockhash</code>时， 推荐使用 <code>confired</code></p>
 <ul>
-<li>触发渲染（将食客的订单送到厨房）</li>
-<li>渲染组件（在厨房准备订单）</li>
-<li>提交到 DOM（将订单送到桌前）</li>
+<li><code>proceeded</code>: 已处理, 很激进，速度最快，但有可能被跳过<ul>
+<li>用这种级别的交易中，有约<code>5%</code>交易会被验证节点丢弃</li>
 </ul>
-<p>作为快照的状态</p>
+</li>
+<li><code>confirmed</code>: 已被多个验证节点确认, 折衷方案<ul>
+<li>这个级别，比较稳妥，因为被多个节点确认，之后被丢弃的几率很小</li>
+</ul>
+</li>
+<li><code>finalized</code>: 最终确认, 太保守, 交易不会被丢弃<ul>
+<li>即<code>32</code>个slot确认, 需要<code>12.8s</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>建议2：在<code>sendTransaction</code>和 <code>simulateTransaction</code>时使用， 要设置相同的 <code>preflightCommitment</code>, 即都设置 <code>confirmed</code></p>
+</li>
+<li><p>建议3：使用可靠的RPC节点，不要用落后的RPC节点</p>
+</li>
+<li><p>建议4：不要用过期的blockhash, 而是在签名前实时获取最新的blockHash</p>
+</li>
+<li><p>前端应用要一直轮询最新的区块hash, 确保用户在触发交易时，获取的区块是最新的</p>
+</li>
+<li><p>钱包要一直轮询最新的区块hash, 并刷新交易中的区块hash,确保用户签名时用的是最新的区块hash</p>
+</li>
+<li><p>建议5：使用健康的RPC节点获取区块hash</p>
+</li>
+<li><p>其他建议</p>
+</li>
+</ul>
+<hr>
+<h2 id="Solana交易重试"><a href="#Solana交易重试" class="headerlink" title="Solana交易重试"></a>Solana交易重试</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/retry">https://solana.com/docs/advanced/retry</a></p>
+</blockquote>
 <ul>
-<li>与普通 JavaScript 变量不同，React 状态的行为更像一个快照。设置它并不改变你已有的状态变量，而是触发一次重新渲染。这在一开始可能会让人感到惊讶！</li>
+<li>RPC节点会尝试重新广播</li>
+<li>开发者可以实现自定义的重新广播逻辑</li>
+<li>开发者可以利用 <code>sendTransaction</code>的 <code>maxRetries</code>参数</li>
+<li>开发者在提交交易前，应该执行预检(preflight), 如: <code>simulattionTransaction</code></li>
+<li>在对重试交易进行签名交易前，<strong>必须</strong>确保之前那笔交易中的区块hash已经过期，<ul>
+<li>否则存在发起2笔交易的风险</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="更新数组"><a href="#更新数组" class="headerlink" title="更新数组"></a>更新数组</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>避免使用 (会改变原始数组)</th>
-<th>推荐使用 (会返回一个新数组）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>添加元素</td>
-<td>push，unshift</td>
-<td>concat，[…arr] 展开语法（例子）</td>
-</tr>
-<tr>
-<td>删除元素</td>
-<td>pop，shift，splice</td>
-<td>filter，slice（例子）</td>
-</tr>
-<tr>
-<td>替换元素</td>
-<td>splice，arr[i] = … 赋值</td>
-<td>map（例子）</td>
-</tr>
-<tr>
-<td>排序</td>
-<td>reverse，sort</td>
-<td>先将数组复制一份（例子）</td>
-</tr>
-</tbody></table>
-<h2 id="Context使用场景"><a href="#Context使用场景" class="headerlink" title="Context使用场景"></a>Context使用场景</h2><h2 id="ref-和-state-的不同之处"><a href="#ref-和-state-的不同之处" class="headerlink" title="ref 和 state 的不同之处"></a>ref 和 state 的不同之处</h2><table>
-<thead>
-<tr>
-<th>ref</th>
-<th>state</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>useRef(initialValue)</code>返回 <code>&#123; current: initialValue &#125;</code></td>
-<td><code>useState(initialValue)</code> 返回 state 变量的当前值和一个 <code>state</code> 设置函数 <code>( [value, setValue])</code></td>
-</tr>
-<tr>
-<td>更改时不会触发重新渲染</td>
-<td>更改时触发重新渲染。</td>
-</tr>
-<tr>
-<td>可变 —— 你可以在渲染过程之外修改和更新 <code>current</code> 的值。</td>
-<td>“不可变” —— 你必须使用 <code>state</code> 设置函数来修改 <code>state</code> 变量，从而排队重新渲染。</td>
-</tr>
-<tr>
-<td>你不应在渲染期间读取（或写入） <code>current</code> 值。</td>
-<td>你可以随时读取 <code>state</code>。但是，每次渲染都有自己不变的 <code>state</code> 快照。</td>
-</tr>
-</tbody></table>
-<h2 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="交易的流程"><a href="#交易的流程" class="headerlink" title="交易的流程"></a>交易的流程</h3><p>Solana<strong>没有交易池(mempool, txpool)</strong>, 所有的交易都会转发给leaders节点执行</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tx-journey.png"></p>
+<p>Transaction Processing Unit (TPU) 处理交易的阶段：</p>
+<ul>
+<li>Fetch Stage</li>
+<li>SigVerify Stage</li>
+<li>Banking Stage</li>
+<li>Proof of History Service</li>
+<li>Broadcast Stage</li>
+</ul>
+<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tpu-jito-labs.png)
+</code></pre>
+<h3 id="交易被丢弃的几种情况"><a href="#交易被丢弃的几种情况" class="headerlink" title="交易被丢弃的几种情况"></a>交易被丢弃的几种情况</h3><ul>
+<li>第1种： 开发者引用过期区块hash, 提交交易时被RPC pool丢弃 ，这种是最常见的<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-via-rpc-pool.png"></li>
+</ul>
+<ul>
+<li>第2种： 临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-pre-process.png"></li>
+</ul>
+<ul>
+<li>第3种：  临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png"></li>
+</ul>
+<hr>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<h2 id="Versioned-Transaction"><a href="#Versioned-Transaction" class="headerlink" title="Versioned Transaction"></a>Versioned Transaction</h2><p>Solana有2种不同的交易类型：</p>
+<ul>
+<li><code>legacy</code>: older transaction format with no additional benefit</li>
+<li><code>0</code>: added support for Address Lookup Tables</li>
+</ul>
+<p>具体例子：<a target="_blank" rel="noopener" href="https://www.solanazh.com/course/7-1">https://www.solanazh.com/course/7-1</a></p>
+<h2 id="Address-Lookup-Tables"><a href="#Address-Lookup-Tables" class="headerlink" title="Address Lookup Tables"></a>Address Lookup Tables</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<ul>
+<li><p>每个交易最大1232字节，因此，<strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址(每个地址32字节)</p>
+</li>
+<li><p>使用 Versioned Transaction 和 Address Lookup Tables, 可以将<strong>每笔交易</strong>能包含的地址提升到 <code>256</code>个地址</p>
+<ul>
+<li>一个LookupTable 账户最多可以存放<code>256</code>个地址<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>地址压缩： 在所有地址都存在链上之后， 每个地址(32字节)只需用一个索引(1字节)进行地址定位即可</p>
+<ul>
+<li>先把地址存在链上,获得一个lookupTableAccount</li>
+<li>然后通过索引来获取lookupTableAccount中的地址</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Solana共识"><a href="#Solana共识" class="headerlink" title="Solana共识"></a>Solana共识</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/developers/evm-to-svm/consensus">https://solana.com/developers/evm-to-svm/consensus</a></p>
+</blockquote>
+<ul>
+<li>Solana的共识: 基于<code>Tower BFT + PoH</code>的<code>PoS</code><ul>
+<li>PoS是solana的上层出块的共识协议</li>
+<li>PoS之下是 Tower BFT<ul>
+<li><code>Tower BFT = PBFT + PoH</code></li>
+<li><code>PoH(Proof of History) </code>: 作为全局网络时钟，以决定区块/交易/数据的顺序, 因此Solana可以快速决定区块/交易/数据的先后顺序，并且验证节点可以快速解决分叉</li>
+<li>每个交易包含了<code>recentBlockhash</code>, 即最近的 150个区块内的区块hash, 这个hash用来决定交易执行先后顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
  
       <!-- reward -->
       
@@ -428,7 +440,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%A0%88/" rel="tag">全栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
 
     </footer>
   </div>
@@ -439,7 +451,7 @@
 
     
     <article
-  id="post-life/爱因斯坦与佛陀"
+  id="post-technology/blockchain/solana/1_Solana账户模型"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -450,8 +462,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/"
-    >爱因斯坦与佛陀</a> 
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/"
+    >1_Solana账户模型</a> 
 </h2>
  
 
@@ -459,51 +471,152 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/" class="article-date">
-  <time datetime="2023-10-23T13:55:00.000Z" itemprop="datePublished">2023-10-23</time>
+      <a href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2024-07-09T10:52:00.000Z" itemprop="datePublished">2024-07-09</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <blockquote>
-<p>转载自： <a target="_blank" rel="noopener" href="https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/">https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/</a></p>
+  <h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
+<li><p>官方文档(推荐)：<a target="_blank" rel="noopener" href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
+</li>
+<li><p>账户模型:</p>
+<ul>
+<li>推荐: <a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
+<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
+<li><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+</ul>
+</li>
+<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
+</li>
+<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
+<ul>
+<li>可升级(整体)： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
+<li>不可变(字节码不可变): <a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
+</ul>
+</li>
+<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
+<ul>
+<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
+</ul>
+</li>
+<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
+</li>
+<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
+<li>System Program:<ul>
+<li>功能:<ul>
+<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
+<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
+<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
 </blockquote>
-<p>“Buddhism has the characteristics of what would be expected in a cosmic religion for the future: It transcends a personal God avoids dogmas and theology; it covers both the natural and spiritual; and it is based on a religious sense aspiring from the experience of all things, natural and spiritual, as a meaningful unity.</p>
-<p>“If there is any religion that would cope with modern scientific needs it would be Buddhism.  . (Albert Einstein)</p>
-<p>Albert Einstein is possibly the greatest scientist mankind has ever produced. His general theory of relatively created a revolutionary change on how scientists have viewed the world. He discovered that time and space is always related to the observer. His famous equation  E=MC2  revealed that matter and energy are interchangeable forms of same substance. Einstein being a genius did not confine his interest only on science. The views he has expressed on Religion, philosophy and politics indicates that he was a great thinker who tried to bridge the gap between science and philosophy or religion. Buddha gave us a great teaching which would lead to tap the maximum potential of the mind which will eventually lead to the understanding of everything happening around us and finally to liberate from the cycle of Sansara (Cycle of Birth and death). The difference between Einstein and Buddha is that while former was keen in finding answers to the phenomenon of outside world, Buddha used his own powers of observation within his mind (introspection), intellect and reasoning, grounded in reality, to guide him to his enlightenment. Both Buddha and Einstein did their research on a scientific basis. Buddha advised his followers NOT to accept what he was teaching them at face value or to take his beliefs “on faith.” Rather, he counseled them to test his theories for themselves, and if they didn’t prove true, then reject them.  Buddha found what he was looking for. Einstein after all his discoveries has to admit mankind does not have the wisdom to understand the all the mysteries of the nature. The purpose of this article is to examine the relevancy of some of Einstein’s statement to Buddhist teachings and also to present Einstein’s view about the religion.</p>
-<p>Einstein upheld the need for morality and rightness of the mankind. But he believed that morality should not come from fear or punishment expected from ‘God” or any other force. He said – A man’s ethical behavior should be based effectually on sympathy, education, and social ties and needs; no religious basis is necessary. Man would indeed be in a poor way if he had to be restrained by fear of punishment and hope of reward after death. If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed- (Albert Einstein, “Religion and Science”, New York Times Magazine, 9 November 1930</p>
-<p>Einstein denied the existence of a personal God but he could not provide an answer behind the beauty and methodical way universe has been formed. This he expressed in following way.</p>
-<p>I do not believe in a personal God and I have never denied this but have expressed it clearly. If something is in me which can be called religious then it is the unbounded admiration for the structure of the world so far as our science can reveal it. I believe in Spinoza’s God who reveals himself in the orderly harmony of what exists, not in a God who concerns himself with the fates and actions of human beings.  (Albert Einstein, 1954)</p>
-<p>Who is this Spinoza’s God Einstein is refereeing to?  Spinoza was a Dutch philosopher, who claimed that God is nothing but the NATURE According to Spinoza there is mass, energy, atoms, molecules, life, thought, people, societies, galaxies and perhaps even multiple universes but there is nothing outside nature, including spiritual visions and other phenomena we don’t yet understand. If they exist, they are part of nature.  According to Buddhism there are five natural laws at work in the cosmos that cause things to happen, called the Five Niyamas. . Karma is only one of these factors. Present circumstances are the result of countless factors that are always in flux. There is no single cause that makes everything to be the way it is</p>
-<p>The following statement clearly indicates that although Einstein rejected God he is not an atheist.</p>
-<p>I have repeatedly said that in my opinion the idea of a personal God is a childlike one, but I do not share the crusading spirit of the professional atheist whose fervor is mostly due to a painful act of liberation from the fetters of religious indoctrination received in youth. I prefer an attitude of humility corresponding to the weakness of our intellectual understanding of nature and of our own being.</p>
-<p>Buddha rejected the traditional Hindu view that world was a creation by God and also rejected materialism of atheists. He became the first philosopher to reject the belief ‘Soul’ is a permanent entity. It appears that Einstein accepted both these positions. In the above statement, Einstein was humble enough to admit the inadequacy or limitations of his knowledge to find the answer to the ‘mysteries’ of the world.</p>
-<p>Just examine following statement of Einstein</p>
-<p>“A human being is part of the whole, called by us ‘Universe’; a part limited in time and space.  He experiences himself, his thoughts and feelings as something separated from the rest – a kind of optical delusion of his consciousness.  This delusion is a kind of prison for us, restricting us to our personal desires and affection for a few persons nearest us.  Our task must be to free ourselves from this prison by widening our circle of compassion to embrace all living creatures and the whole nature in its beauty.  Nobody is able to achieve this completely but striving for such achievement is, in itself, a part of the liberation and a foundation for inner security.”</p>
-<p>Physical concepts are free creations of the human mind, and are not, however it may seem, uniquely determined by the external world. -Einstein</p>
-<p>It is amazing to know that Buddha, 2500 years back, expressed almost the same view in different words   “All such notions as causation, succession, atoms, primary elements…are all figments of the imagination and manifestations of the mind. – -Buddha</p>
-<p>According to Buddha, Self is not a rational concept. Self is only an emotional feeling- Therefore consciousness is an illusion and the feeling of ‘Self” is only an activity of brain. People live unconsciously in dream like state believing their existence. As a result they become attached to names and forms, not realising that they have no more basis than the activities of the mind itself. Buddha declared that due to this error in view, liberation of the mankind would be blocked. Buddha called it ignorance what Einstein described it as a delusion of consciousness. Buddha’s solution to free us from prison is by developing and purification of mind, following a clear path towards it (8 FP and 4NT). Buddha’s path also involves widening selfless compassion to all human beings. According to Buddha the attachment (Lust) brings suffering and would also prevent one from escaping the prison.  Einstein says that this prison restricts   our affection only to our loved ones (Becoming Selfish). He suggests that to free from the prison the compassion should embrace all living creatures. (It is interesting Einstein did not confine compassion only to human beings)</p>
-<p>Einstein’s attempt to discover the mystery of the world can be seen from this statement.</p>
-<p>The most beautiful and most profound experience is the sensation of the mystical. It is the sower of all true science. He to whom this emotion is a stranger, who can no longer wonder and stand rapt in awe, is as good as dead. To know that what is impenetrable to us really exists, manifesting itself as the highest wisdom and the most radiant beauty which our dull faculties can comprehend only in their primitive forms – this knowledge, this feeling is at the center of true religiousness.  (Albert Einstein – The Merging of Spirit and Science)</p>
-<p>Here again Einstein admits that human mind cannot comprehend all the mysteries of the world. But he admired the beauty and methodical way nature operates it. He admitted the answer comes with more wisdom and he also termed it as true religiousness.  Buddha’s approach for what Einstein has been looking could be evident from following interesting Dialogue between Buddha and one of his disciples.</p>
-<p>“Most respected one; can you please tell me what the size of the universe is?”</p>
-<p>Buddha replied:</p>
-<p>“Will the size of the universe help you end suffering?”</p>
-<p>The disciple answered:</p>
-<p>“No, most respected one”</p>
-<p>Buddha then answered:</p>
-<p>“So why are you asking questions of little importance and not ask questions on the ending of suffering?</p>
-<p>Buddhism avoids speculative metaphysical questions as irrelevant distractions. According to Buddhism, nothing happens without a cause; therefore the universe is infinite with no real beginning. However, it does run in cycles, so there can be a beginning for each particular era.</p>
-<p>This Parable of the arrow has often been used to illustrate the Buddha’s teachings that “practitioners who concern themselves with the origins of the universe and other topics are missing the point of religious practice.”</p>
-<p>Suppose someone was hit by a poisoned arrow and his friends and relatives found a doctor able to remove the arrow. If this man were to say, ‘I will not have this arrow taken out until I know whether the person who had shot it was a priest, a prince or a merchant, his name and his family. I will not have it taken out until I know what kind of bow was used and whether the arrowhead was an ordinary one or an iron one.’ That person would die before all these things are ever known to</p>
-<p>In short, work on being here (The Present moment) before you consider why or how you came to be here.</p>
-<p>Once Bertrand Russell   explained why he accepts the Buddhist view on origin of the world. -” Among the founders of all religions in this world, I respect only one man — the Buddha. The main reason was that the Buddha did not make statements regarding the origin of the world. The Buddha was the only teacher who realised the true nature of the world.” (Bertrand Russell)</p>
-<p>It is interesting to note that Modern scientists and psychologists pay great attention to research on brain and mind.  Buddhist mediation methods of loving kindness, breathing mediation and mindfulness are widely used in western medicine and psychology. It would be great if more scientists like Einstein come forward to bridge the gap between the science and eastern philosophy in future.</p>
+</li>
+<li>分配数据空间</li>
+<li>转移普通账户(owner是 System Program)的余额</li>
+<li>仅owner是 System Program 可以支付手续费</li>
+</ul>
+</li>
+<li>Program id: <code>11111111111111111111111111111111</code></li>
+<li>Instructions: SystemInstruction</li>
+</ul>
+</li>
+<li>BPF Loader Program<ul>
+<li>功能：<ul>
+<li>是所有自定义程序的owner</li>
+<li>Deploys, upgrades, and executes programs on the chain.</li>
+</ul>
+</li>
+<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
+<li>Instructions: LoaderInstruction</li>
+</ul>
+</li>
+<li>SPL Token<ul>
+<li>TODO  :</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
+<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
+<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
+<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
+</blockquote>
+<ul>
+<li><p>不可变性:</p>
+<ul>
+<li>可执行账户完全不可变</li>
+</ul>
+</li>
+<li><p><strong>数据分配</strong></p>
+<ul>
+<li>仅<code>System Program</code> 可以更改账户数据大小</li>
+<li>新分配的账户数据总是归零的</li>
+<li>账户数据大小不可缩小<blockquote>
+<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据</p>
+<ul>
+<li>每个账户最多 10MB 数据（代码 或 状态）</li>
+<li>只有账户的owner才可以修改数据</li>
+<li>账户只有处于数据归零状态下才可以分配新的owner</li>
+</ul>
+</li>
+<li><p>余额</p>
+<ul>
+<li>只有账户的owner可以减少余额</li>
+<li>任何程序账户都可以账户增加余额（转移）<blockquote>
+<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>所有权</p>
+<ul>
+<li>只有账户owner可以制定新的账户owner</li>
+</ul>
+</li>
+<li><p>租金</p>
+<ul>
+<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
+<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
+</ul>
+</li>
+<li><p>余额为0的账户</p>
+<ul>
+<li>余额为0的账户，在交易执行后会被系统删除</li>
+<li>一个交易中可以创建临时余额为0的账户</li>
+</ul>
+</li>
+<li><p>新的执行账户</p>
+<ul>
+<li>只有制定的loader program可以修改账户的可执行状态</li>
+</ul>
+</li>
+</ul>
  
       <!-- reward -->
       
@@ -514,7 +627,338 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%96%E7%95%8C/" rel="tag">世界</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6/" rel="tag">科学</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/0_Solana开发资源"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/"
+    >0_Solana开发资源</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/" class="article-date">
+  <time datetime="2024-07-08T01:53:00.000Z" itemprop="datePublished">2024-07-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Solana开发资源"><a href="#Solana开发资源" class="headerlink" title="Solana开发资源"></a>Solana开发资源</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98">https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98</a><br><a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx">https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx</a></p>
+</blockquote>
+<ul>
+<li>Rust:<ul>
+<li>Rust共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/rust-co-learn">https://github.com/CreatorsDAO/rust-co-learn</a></li>
+</ul>
+</li>
+<li>Solana<ul>
+<li>开发课程: <a target="_blank" rel="noopener" href="https://www.soldev.app/course">https://www.soldev.app/course</a><ul>
+<li>中文: <a target="_blank" rel="noopener" href="https://www.solanazh.com/">https://www.solanazh.com/</a></li>
+</ul>
+</li>
+<li>Solana官方开发文档：<a target="_blank" rel="noopener" href="https://docs.solana.com/developers">https://docs.solana.com/developers</a></li>
+<li>Cookbook: <a target="_blank" rel="noopener" href="https://solanacookbook.com/">https://solanacookbook.com/</a></li>
+<li>开发者: <a target="_blank" rel="noopener" href="https://github.com/solana-developers">https://github.com/solana-developers</a></li>
+<li>工具库: <a target="_blank" rel="noopener" href="https://github.com/solana-developers/solana-tools">https://github.com/solana-developers/solana-tools</a></li>
+<li>Solana程序示例： <a target="_blank" rel="noopener" href="https://github.com/solana-developers/program-examples">https://github.com/solana-developers/program-examples</a></li>
+<li>Anchor初步Counter示例：<a target="_blank" rel="noopener" href="https://github.com/solana-developers/anchor-starter/tree/main">https://github.com/solana-developers/anchor-starter/tree/main</a></li>
+<li>Solana生态工具： <a target="_blank" rel="noopener" href="https://solana.com/ecosystem">https://solana.com/ecosystem</a></li>
+<li>706共学社：<ul>
+<li>Solana共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn">https://github.com/CreatorsDAO/solana-co-learn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Anchor<ul>
+<li>官方文档: <a target="_blank" rel="noopener" href="https://www.anchor-lang.com/">https://www.anchor-lang.com/</a></li>
+<li>官方示例: <a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/examples/tutorial">https://github.com/coral-xyz/anchor/tree/master/examples/tutorial</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="开源-Solana-DEX"><a href="#开源-Solana-DEX" class="headerlink" title="开源 Solana DEX"></a>开源 Solana DEX</h2><ul>
+<li>Openbook<ul>
+<li>官网： <a target="_blank" rel="noopener" href="https://prism.ag/trade/">https://prism.ag/trade/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/program">https://github.com/openbook-dex/program</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/openbook-v2">https://github.com/openbook-dex/openbook-v2</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/scripts-v2">https://github.com/openbook-dex/scripts-v2</a></li>
+</ul>
+</li>
+<li>Raydium:<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://raydium.io/swap/">https://raydium.io/swap/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-cp-swap">https://github.com/raydium-io/raydium-cp-swap</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-amm">https://github.com/raydium-io/raydium-amm</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-contract-instructions/">https://github.com/raydium-io/raydium-contract-instructions/</a></li>
+</ul>
+</li>
+<li>Mango Dex:<ul>
+<li><a target="_blank" rel="noopener" href="https://app.mango.markets/zh">https://app.mango.markets/zh</a></li>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/blockworks-foundation/mango-v4/tree/dev">https://github.com/blockworks-foundation/mango-v4/tree/dev</a></li>
+</ul>
+</li>
+<li>Serum Dex:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/project-serum/serum-dex/">https://github.com/project-serum/serum-dex/</a></li>
+</ul>
+</li>
+<li>Jupiter:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/jup-ag/sol-swap-cpi">https://github.com/jup-ag/sol-swap-cpi</a></li>
+<li><a target="_blank" rel="noopener" href="https://station.jup.ag/docs">https://station.jup.ag/docs</a></li>
+<li>Jupiter API构建交易： <a target="_blank" rel="noopener" href="https://station.jup.ag/docs/apis/swap-api">https://station.jup.ag/docs/apis/swap-api</a></li>
+</ul>
+</li>
+<li>Anchor交易相关示例:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/swap">https://github.com/coral-xyz/anchor/tree/master/tests/swap</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/escrow">https://github.com/coral-xyz/anchor/tree/master/tests/escrow</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool">https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs">https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs</a></li>
+</ul>
+</li>
+<li>其他:<ul>
+<li>pump.fun自动买卖机器人: <a target="_blank" rel="noopener" href="https://github.com/pumppumps/pumpfun-bump-bot/tree/main">https://github.com/pumppumps/pumpfun-bump-bot/tree/main</a></li>
+<li>Raydium交易: <a target="_blank" rel="noopener" href="https://github.com/henrytirla/Solana-Raydium-Trading/tree/master">https://github.com/henrytirla/Solana-Raydium-Trading/tree/master</a></li>
+<li>swap前端: <a target="_blank" rel="noopener" href="https://github.com/atillabirer/solana-nextjs-dex/tree/main">https://github.com/atillabirer/solana-nextjs-dex/tree/main</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Solana节点搭建"><a href="#Solana节点搭建" class="headerlink" title="Solana节点搭建"></a>Solana节点搭建</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/operations/requirements">https://docs.solanalabs.com/operations/requirements</a></li>
+</ul>
+<p>RPC节点最低配置:</p>
+<ul>
+<li><p>CPU:  32核+</p>
+</li>
+<li><p>RAM:  512GB+</p>
+</li>
+<li><p>Disk: 2TB+</p>
+</li>
+<li><p>Network: 10GBit/s+</p>
+</li>
+<li><p>预估服务器费用(年): 13万RMB左右</p>
+</li>
+</ul>
+<h2 id="使用-solana-keygen-生成与-Phantom一致的地址"><a href="#使用-solana-keygen-生成与-Phantom一致的地址" class="headerlink" title="使用 solana-keygen 生成与 Phantom一致的地址"></a>使用 <code>solana-keygen</code> 生成与 Phantom一致的地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new --word-count 12 --no-bip39-passphrase --derivation-path &quot;m&#x2F;44&#39;&#x2F;501&#39;&#x2F;0&#39;&#x2F;0&#39;&quot; --outfile .&#x2F;mynew-address.json</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/分析MEV夹子机器人的技术细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/"
+    >分析MEV夹子机器人的技术细节</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2024-06-07T10:30:00.000Z" itemprop="datePublished">2024-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
+<li><code>A0: 1 USDT</code></li>
+<li><code>B0: 85.875  TXXC</code></li>
+<li><code>TXXC价格 = A0/B0 =  0.0116 USDT/TXXC</code></li>
+<li><a target="_blank" rel="noopener" href="https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default">https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default</a></li>
+</ul>
+<h2 id="机器人买入"><a href="#机器人买入" class="headerlink" title="机器人买入:"></a>机器人买入:</h2><ul>
+<li><p>该交易区块的第1个位置(给了 11Gwei)</p>
+</li>
+<li><p>MEV机器人的买入: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6">https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-20-57.png"></p>
+</li>
+<li><p>买入： <code>6.07 USDT</code>, 计算买入的 TXXC的数量和价格, ChatGPT的计算过程:</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-14-29.png"></p>
+</li>
+<li><p>ChatGPT的计算过程和计算结果完全正确：</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_15-17-35.png"></p>
+</li>
+</ul>
+<ul>
+<li>此时流动池中的状态</li>
+<li><code>A1: 7.07 USDT</code></li>
+<li><code>B1: 12.145 TXXC</code></li>
+<li>此时的价格 <code>7.07 / 12.145 = 0.5821  USDT/TXXC</code></li>
+</ul>
+<h2 id="我的添加流动性交易"><a href="#我的添加流动性交易" class="headerlink" title="我的添加流动性交易:"></a>我的添加流动性交易:</h2><ul>
+<li><p>该交易区块的第2个位置</p>
+</li>
+<li><p>源码： <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a></p>
+</li>
+<li><p>详细代码分析，见文末</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired, <span class="comment">// 希望投入的代币 A 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired, <span class="comment">// 希望投入的代币 B 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 A 的数量， 确保用户不会因为价格波动而损失太多代币A</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 B 的数量，确保用户不会因为价格波动而损失太多代币B</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to, <span class="comment">// 流动性代币接收者的地址。流动性代币是代表用户在流动池中所有权的代币。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline <span class="comment">// 交易的最后期限（时间戳）。确保交易在指定时间内完成，否则交易将被取消。</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>交易： <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74">https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-28-37.png"></p>
+</li>
+<li><p>计算:</p>
+<ul>
+<li><code>amountADesired</code>: <code>8.998834461493163430 USDT</code></li>
+<li><code>amountBDesired</code>: <code>7.73000000000000000000 TXXC</code></li>
+<li>因此<code>amountBOptimal = amountADesired * B1 / A1 = 8.998 * 12.1455 / 7.07 = 15.456</code></li>
+<li>满足 <code>if (amountBOptimal &lt;= amountBDesired) </code>, 所以<ul>
+<li>因此 <code>(amountA, amountB) = (amountADesired, amountBOptimal);</code></li>
+<li>即 <code>(amountA, amountB) = (8.998, 15.456);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其中 <code>quote</code>函数, 按照等比例增加, 这里只能近似:<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_18-35-24.png"></p>
+<ul>
+<li> <code>A2: 7.07 + 8.99 = 16.06 USDT</code></li>
+<li><code>B2: 12.145 + 15.3 = 27.445  TXXC</code></li>
+<li>此时价格  <code>0.5854 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="MEV机器人的卖出"><a href="#MEV机器人的卖出" class="headerlink" title="MEV机器人的卖出"></a>MEV机器人的卖出</h2><ul>
+<li><p>该交易区块的第3个位置</p>
+</li>
+<li><p>MEV机器人的卖出: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc">https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc</a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-29-28.png"></p>
+<ul>
+<li>此时MEV机器人全部卖出，<ul>
+<li><code>B3 = 27.45 + 66.5 + 3.5 = 97.45</code></li>
+<li><code>A3 =  k / B3 = (16.06*27.445) / 97.45  = 4.523</code></li>
+<li>此时的价格： <code>A3 / B3 = 4.523 / 97.45 = 0.0464 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>MEV机器人的获利：</p>
+<ul>
+<li>USDT: <code>16.06 - 4.523 - 6.07 = 5.467 USDT</code></li>
+<li>BNB手续费: <code>0.00475 BNB</code> , <code>0.0047 * 700</code> = <code>3.324 U</code><ul>
+<li>购买交易手续费:<code>0.00245 BNB</code><ul>
+<li>gas price: 11Gwei ， 一般是 1Gwei, 所以能排在第0个位置,</li>
+</ul>
+</li>
+<li>购买交易平台手续费: <code>0.002 BNB</code></li>
+<li>卖出交易手续费：<code>0.0003 BNB</code></li>
+</ul>
+</li>
+<li>合计： <code>5.467 - 3.324 = 2.1423</code></li>
+<li>MEV通过这一次交易，净赚<code>2.14 U</code></li>
+</ul>
+</li>
+<li><p>我损失的:</p>
+<ul>
+<li>USDT- <code> -5.467</code></li>
+<li>BNB: <code> +0.0026 BNB</code>, 约 <code>1.82U</code><ul>
+<li>池子是我建的，手续费归我</li>
+</ul>
+</li>
+<li>合计: <code> -3.647U</code></li>
+<li>我这笔交易损失: <code>3.647 U</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><ul>
+<li>添加流动性交易，没有设置滑点保护参数, <code>amountAMin</code> 和  <code>amountBMin</code>:<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-27-05.png"></li>
+<li>源码 <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given some amount of an asset and pair reserves, returns an equivalent amount of the other asset</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quote</span>(<span class="params">uint amountA, uint reserveA, uint reserveB</span>) <span class="title">internal</span> <span class="title">pure</span> <span class="title">returns</span> (<span class="params">uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(amountA &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_AMOUNT&#x27;</span>);</span><br><span class="line">    <span class="built_in">require</span>(reserveA &gt; <span class="number">0</span> &amp;&amp; reserveB &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_LIQUIDITY&#x27;</span>);</span><br><span class="line">    amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// **** ADD LIQUIDITY ****</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">internal</span> <span class="title">virtual</span> <span class="title">returns</span> (<span class="params">uint amountA, uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// create the pair if it doesn&#x27;t exist yet</span></span><br><span class="line">    <span class="keyword">if</span> (IPancakeFactory(factory).getPair(tokenA, tokenB) == address(<span class="number">0</span>)) &#123;</span><br><span class="line">        IPancakeFactory(factory).createPair(tokenA, tokenB);</span><br><span class="line">    &#125;</span><br><span class="line">    (uint reserveA, uint reserveB) = PancakeLibrary.getReserves(factory, tokenA, tokenB);</span><br><span class="line">    <span class="keyword">if</span> (reserveA == <span class="number">0</span> &amp;&amp; reserveB == <span class="number">0</span>) &#123;</span><br><span class="line">        (amountA, amountB) = (amountADesired, amountBDesired);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算 B的最小数量, 满足  A * B = k = A&#x27; * B&#x27; 的恒常等式</span></span><br><span class="line">        <span class="comment">// B&#x27; = A&#x27; * B</span></span><br><span class="line">        uint amountBOptimal = PancakeLibrary.quote(amountADesired, reserveA, reserveB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果 B的最有数量  小于 用户愿意投入的</span></span><br><span class="line">        <span class="keyword">if</span> (amountBOptimal &lt;= amountBDesired) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountBOptimal &gt;= amountBMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_B_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountADesired, amountBOptimal);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 A的最优数量</span></span><br><span class="line">            uint amountAOptimal = PancakeLibrary.quote(amountBDesired, reserveB, reserveA);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 必须满足： A的</span></span><br><span class="line">            assert(amountAOptimal &lt;= amountADesired);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountAOptimal &gt;= amountAMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_A_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountAOptimal, amountBDesired);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> <span class="title">virtual</span> <span class="title">override</span> <span class="title">ensure</span>(<span class="params">deadline</span>) <span class="title">returns</span> (<span class="params">uint amountA, uint amountB, uint liquidity</span>) </span>&#123;</span><br><span class="line">    (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);</span><br><span class="line">    address pair = PancakeLibrary.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);</span><br><span class="line">    liquidity = IPancakePair(pair).mint(to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="关于MEV的一些问题？"><a href="#关于MEV的一些问题？" class="headerlink" title="关于MEV的一些问题？"></a>关于MEV的一些问题？</h2><blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3163">https://learnblockchain.cn/article/3163</a></p>
+</blockquote>
+<ul>
+<li>交易顺序如何确定？<ul>
+<li>MEV在第一笔交易设置了非常搞的gas price</li>
+<li>矿工通过重组交易的执行顺序，可以获取收益<ul>
+<li>至于具体重组交易顺序的算法，需要进一步研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>如何防止MEV夹子机器人？<ul>
+<li>设置合适的滑点,<ul>
+<li>如果是添加流动性，要设置 <code>amountAMin</code>, <code>amountBMin</code></li>
+</ul>
+</li>
+<li>使用私密交易，用第三方的工具</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
 
     </footer>
   </div>
@@ -530,7 +974,7 @@
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
   </nav>
   
 </section>

@@ -104,7 +104,7 @@
     
     
     <article
-  id="post-life/六世达赖"
+  id="post-technology/react/react基础"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -115,8 +115,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2023/10/20/life/%E5%85%AD%E4%B8%96%E8%BE%BE%E8%B5%96/"
-    >六世达赖</a> 
+  <a class="article-title" href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/"
+    >react基础</a> 
 </h2>
  
 
@@ -124,36 +124,101 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/20/life/%E5%85%AD%E4%B8%96%E8%BE%BE%E8%B5%96/" class="article-date">
-  <time datetime="2023-10-20T08:39:01.000Z" itemprop="datePublished">2023-10-20</time>
+      <a href="/2023/12/06/technology/react/react%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2023-12-06T03:42:37.000Z" itemprop="datePublished">2023-12-06</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>六世达赖<br>仓央嘉措</p>
-<p>美人不是母胎生，应是桃花树长成，</p>
-<p>已恨桃花容易落，落花比汝尚多情。</p>
-<p>静时修止动修观，历历情人挂目前，</p>
-<p>若将此心以学道，即生成佛有何难？</p>
-<p>结尽同心缔尽缘，此生虽短意缠绵，</p>
-<p>与卿再世相逢日，玉树临风一少年。</p>
-<p>不观生灭与无常，但逐轮回向死亡，</p>
-<p>绝顶聪明矜世智，叹他于此总茫茫。</p>
-<p>山头野马性难驯，机陷犹堪制彼身，</p>
-<p>自叹神通空具足，不能调伏枕边人。</p>
-<p>欲倚绿窗伴卿卿，颇悔今生误道行。</p>
-<p>有心持钵丛林去，又负美人一片情。</p>
-<p>静坐修观法眼开，祈求三宝降灵台，</p>
-<p>观中诸圣何曾见？不请情人却自来。</p>
-<p>入山投谒得道僧，求教上师说因明。</p>
-<p>争奈相思无拘检，意马心猿到卿卿。</p>
-<p>曾虑多情损梵行，入山又恐别倾城，</p>
-<p>世间安得两全法，不负如来不负卿。</p>
+  <h1 id="react中文教程"><a href="#react中文教程" class="headerlink" title="react中文教程"></a>react中文教程</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zh-hans.react.dev/learn">https://zh-hans.react.dev/learn</a></li>
+</ul>
+<h1 id="React环境搭建"><a href="#React环境搭建" class="headerlink" title="React环境搭建"></a>React环境搭建</h1><ul>
+<li>Ubuntu： <a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions#ubuntu-versions">https://github.com/nodesource/distributions#ubuntu-versions</a></li>
+<li>全局安装脚手架: <code>npm i -g create-react-app</code></li>
+<li>直接创建项目: <code>npx create-react-app my-app</code></li>
+</ul>
+<h1 id="antd使用"><a href="#antd使用" class="headerlink" title="antd使用"></a>antd使用</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/components/overview-cn">https://ant-design.antgroup.com/components/overview-cn</a></p>
+</blockquote>
+<ul>
+<li>全局安装  <code>npm install antd-init -g</code></li>
+<li>antd-init</li>
+<li>npm install antd –save</li>
+</ul>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>在你的组件显示在屏幕上之前，它们必须由 React 进行渲染。理解这个过程中的步骤有助于你思考你的代码如何执行并解释其行为。</p>
+<p>想象一下，你的组件是厨房里的厨师，用食材制作出美味的菜肴。在这个场景中，React 是服务员，负责提出顾客的要求，并给顾客上菜。这个请求和服务 UI 的过程有三个步骤：</p>
+<ul>
+<li>触发渲染（将食客的订单送到厨房）</li>
+<li>渲染组件（在厨房准备订单）</li>
+<li>提交到 DOM（将订单送到桌前）</li>
+</ul>
+<p>作为快照的状态</p>
+<ul>
+<li>与普通 JavaScript 变量不同，React 状态的行为更像一个快照。设置它并不改变你已有的状态变量，而是触发一次重新渲染。这在一开始可能会让人感到惊讶！</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br><span class="line">setScore(score + <span class="number">1</span>); <span class="comment">// setScore(0 + 1);</span></span><br><span class="line"><span class="built_in">console</span>.log(score);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="更新数组"><a href="#更新数组" class="headerlink" title="更新数组"></a>更新数组</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>避免使用 (会改变原始数组)</th>
+<th>推荐使用 (会返回一个新数组）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>添加元素</td>
+<td>push，unshift</td>
+<td>concat，[…arr] 展开语法（例子）</td>
+</tr>
+<tr>
+<td>删除元素</td>
+<td>pop，shift，splice</td>
+<td>filter，slice（例子）</td>
+</tr>
+<tr>
+<td>替换元素</td>
+<td>splice，arr[i] = … 赋值</td>
+<td>map（例子）</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>reverse，sort</td>
+<td>先将数组复制一份（例子）</td>
+</tr>
+</tbody></table>
+<h2 id="Context使用场景"><a href="#Context使用场景" class="headerlink" title="Context使用场景"></a>Context使用场景</h2><h2 id="ref-和-state-的不同之处"><a href="#ref-和-state-的不同之处" class="headerlink" title="ref 和 state 的不同之处"></a>ref 和 state 的不同之处</h2><table>
+<thead>
+<tr>
+<th>ref</th>
+<th>state</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>useRef(initialValue)</code>返回 <code>&#123; current: initialValue &#125;</code></td>
+<td><code>useState(initialValue)</code> 返回 state 变量的当前值和一个 <code>state</code> 设置函数 <code>( [value, setValue])</code></td>
+</tr>
+<tr>
+<td>更改时不会触发重新渲染</td>
+<td>更改时触发重新渲染。</td>
+</tr>
+<tr>
+<td>可变 —— 你可以在渲染过程之外修改和更新 <code>current</code> 的值。</td>
+<td>“不可变” —— 你必须使用 <code>state</code> 设置函数来修改 <code>state</code> 变量，从而排队重新渲染。</td>
+</tr>
+<tr>
+<td>你不应在渲染期间读取（或写入） <code>current</code> 值。</td>
+<td>你可以随时读取 <code>state</code>。但是，每次渲染都有自己不变的 <code>state</code> 快照。</td>
+</tr>
+</tbody></table>
+<h2 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  setCount(count + <span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -164,7 +229,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%B1%E6%83%85/" rel="tag">爱情</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%A0%88/" rel="tag">全栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
 
     </footer>
   </div>
@@ -175,7 +240,7 @@
 
     
     <article
-  id="post-life/虚云和尚开示录"
+  id="post-life/爱因斯坦与佛陀"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -186,8 +251,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2023/10/19/life/%E8%99%9A%E4%BA%91%E5%92%8C%E5%B0%9A%E5%BC%80%E7%A4%BA%E5%BD%95/"
-    >虚云和尚开示录</a> 
+  <a class="article-title" href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/"
+    >爱因斯坦与佛陀</a> 
 </h2>
  
 
@@ -195,8 +260,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/19/life/%E8%99%9A%E4%BA%91%E5%92%8C%E5%B0%9A%E5%BC%80%E7%A4%BA%E5%BD%95/" class="article-date">
-  <time datetime="2023-10-19T06:49:01.000Z" itemprop="datePublished">2023-10-19</time>
+      <a href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/" class="article-date">
+  <time datetime="2023-10-23T13:55:00.000Z" itemprop="datePublished">2023-10-23</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
@@ -207,49 +272,39 @@
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
-<p>转载自：<a target="_blank" rel="noopener" href="http://read.goodweb.net.cn/news/news_view.asp?newsid=2081">http://read.goodweb.net.cn/news/news_view.asp?newsid=2081</a></p>
+<p>转载自： <a target="_blank" rel="noopener" href="https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/">https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/</a></p>
 </blockquote>
-<p>虚云和尚开示录<br>蒋中和笔记</p>
-<p>蔡日新整理</p>
-<p>二十二日，师开示云：‘修道不难，但能<strong>放下万缘，人法双绝，四相皆空，平平实实做去即得</strong>。’并举某僧行相为例，其人耳聋，目不识丁，貌极苦恼，由师度脱者。</p>
-<p>二十三日，师开示谓有道无道，明眼人一看便知。并举某某评某邑令、某僧，评某长老之骨为证。</p>
-<p>二十四日，师召寺中四众训话，略谓‘时局日益紧急，生死自有命定，躲脱不是祸，是祸躲不脱，大家毋庸惶惧忧虑，可安心在此，勇猛办道。兹有数事告示大众，望深信而笃行之。一者从今晚起，每日早午斋后及晚香时，齐在祖殿同念观世音菩萨一枝香，一日三次，普为大地众生消弭劫难。二者重要行李收藏起来，寄居男女居士皆装成僧尼模样。三者敌人或匪或盗，万一来此，大家照常安居，毋庸惊恐，和平相待，勿与计较。彼若要东西或粮食，任其拿去，不必与争。’大家听已，皆静心安居。自廿八夕起，全寺僧俗在祖殿齐念观世音菩萨。至三十日，师开示凡三次。第一次讲说举行念观音祈求息灾救民缘起，及观音菩萨本迹与灵感，大略根据《楞严经》。第二次说观音灵感事迹。第三次说念观音之方法：一、至诚利众；二、心口相应；三、反闻念性。</p>
-<p>七月二日，师开示云：‘傅大士曰：“有物先天地，无形本寂寥；能为万象主，不逐四时凋。”此物即诸法实相，一切含生所同具，在凡不灭，在圣不增，所谓心佛众生，三无差别。<strong>众生若能放下识情，显了真性，即是见性成佛</strong>。上根利器之人，一闻即悟，即悟即证，不假修为，说修行都是不得已也。’</p>
-<p>三日，大众急念观音后，师开示云：‘敌人之不退，国难之不消，固由众业所感，亦由吾人平日缺乏道德，临事不够诚心，大家须力行忏悔，具足诚心。’</p>
-<p>五日，师开示云：‘佛菩萨岂要人念？只缘众生障重，佛菩萨指示种种法门。念佛菩萨圣号，不过令众生澄清妄念，彻见本来耳。所谓清珠投于浊水，浊水不得不清；佛号投于妄心，妄心不得不净。盖人如果以一菩萨之圣号，都摄六根，净念相继，则当下自与佛菩萨无异。’</p>
-<p>六日，师开示<strong>心即是佛，放下一切，立地成佛，平常心是道</strong>，要能直下承当，及善于保养道体等等圆顿道理。</p>
-<p>七日，师开示云：‘修行须<strong>放下一切</strong>方能入道，否则徒劳无益。要知众生本妙明心，原与诸佛无异，只因无始以来为妄想尘劳百般缠绕，不能显现，所以沉沦苦海，流浪生死，不能出离。诸佛悯之，不得已开示种种修行法门，无非令众生解脱。<strong>所谓放下一切，是放下甚么呢？内六根、外六尘、中六识，这一十八界都要放下，其他名利、恩爱、毁誉、得失，乃至一切财物、性命都要放下。总之，身心世界都要放下，因为这些都是如梦如幻、如电如泡，无可留恋，执之即成障道因缘。故统要放下，连此放下之念亦无，一放下一切放下，一时放下、永久放下、尽未来际都放下，如此放下干净了、长永了，本妙明心显现，即与诸佛无异。’说毕，并举例以证明之。</strong></p>
-<p>八日，师开示云：‘若明白了如来大意，则只要保养，随时随处，无不是道。若不明白如来大意，则是懵懵修行，随时随处皆有堕坑落堑之虞。’并举鹿足仙人恨天致旱及饮酒贪色犯戒公案为证。</p>
-<p>九日，师开示修行必须<strong>无我</strong>，以此身心奉尘刹。并举持地菩萨及修滇缅路高山上之某菩萨为例。</p>
-<p>十日，师开示云：‘古人曰：修行有三不足，不足食，不足衣，不足睡。不足食，取止饥<strong>不宜过饱</strong>，更不能求美味；衣取御寒，宜服粪扫衣，更<strong>不能贪求美备</strong>；睡取调倦，<strong>不宜久睡</strong>。盖久眠长愚痴，多衣增挂虑，过饱不便用功。’</p>
-<p>十一日，师开示云：‘修行须<strong>别真伪邪正</strong>，不然差之毫厘，失之千里，不惟徒劳无益，且错因果。昔常有人做到坐脱立亡地步，或金骨子成堆，犹被正眼人目为邪魔外道。何况不明如来宗趣，盲修瞎练，背道而驰者乎？所以古人修行必依止善知识，有所发明必经大善知识印可，方为正道。’</p>
-<p>十二日，师开示云：‘古人曰：<strong>修行容易，习气难除</strong>，习气不除总是闲。吾人修行，究竟所为何事？原不过出离生死。但习气是吾人羁绊，若习气毛病未除得尽，生死必然难逃。即如圆泽禅师那样用功，仍不免落入胞胎。今人习气毛病，毫不打算扫除，那里有了生脱死之分呢？’</p>
-<p>十三日，师开示大众：‘要注意僧仪，上殿合掌当胸，五指并拢，两掌心贴拢，中间不可离开，此为转十恶为十善之义。二足成八字形，身体正直，眼观鼻、鼻观心，两眼不得张大，不得左顾右盼。此等僧仪很是重要，且为除习气之重要事件。’</p>
-<p>十五日，师开示云：‘世间不明佛法之人，往往以善因而招恶果。如各地乩坛常假托佛祖语言劝世，但其中常有颠倒本末、错误因果，致成妄语欺人，或谤佛谤法者，深可惧也。’</p>
-<p>十六日，师开示云：‘吾人念观音圣号，久而国难民灾不能消除。一由众生定业所感，难以移易；一由吾人心未至诚统一，效力不大。望大家从此要至诚恳切，并念念观自在。’</p>
-<p>十七日，师开示云：‘真心为无价之宝，贤愚凡圣、天堂地狱、秽土净土，皆由他造作。佛祖教人显了真心，证自性佛。<strong>人能将种种习气断尽，则真心自显，自佛即证。</strong>’</p>
-<p>二十三日，师开示云：‘从释迦佛应世起，正法千年，像法千年，像法后为末法一万年。正法时期，闻法悟道者遍处皆是；像法时期，闻法悟道者亦有所在；<strong>而今末法时期</strong>，人根陋劣，心术浇薄，漫说众人，<strong>即出家僧人，亦是有名无实</strong>，并且不知出家为何事，根本上谈不到修行，证道者更无一闻矣。佛法至此，那得不衰！真堪痛哭。’</p>
-<p>二十五日，师开示云：‘诸人望我开示，其实佛菩萨及祖师对诸人时时在开示也。每日殿堂课诵各种咒愿，及钟鼓磬锤等，无一非佛菩萨祖师至精至贵之语声。诸人若能耳闻、口诵、心惟、行笃，成佛有余，岂待多说？说若不行，说亦无益。’</p>
-<p>二十六日，师开示云：‘<strong>妄念人人皆有，然妄念起时，我自知之。知而不随，是谓不相续，不相续则我不为妄转</strong>；纵有妄念起灭，亦不过如浮云之点太虚，而太虚固不变也。<strong>佛说一切法皆为对治妄念，妄念若无，则法不必用。</strong>然凡夫流浪生死，<strong>无始劫来习染已深，若不假佛法修治，则生死无由解脱。</strong>但习那一法就要<strong>尽此一生习去，不可朝三暮四，徒费心力。</strong>’又曰：‘今生能做和尚，皆是过去培有善根，否则必不得出家做和尚也。和尚不是穷苦人做的，若是穷苦人做的，何以乞丐不做和尚？和尚不是富贵人做的，若是富贵人做的，何以未见富贵人去做和尚？有的居士于富贵功名也能放下，也能吃长素，也能打坐，也能礼佛诵经，对佛法也能懂能讲，但要他做和尚则不肯也。足见做和尚不容易，那怕就是一个苦恼和尚，都有他前生的栽培。不过，既已做了和尚，就不可虚过，到宝山空手而回。’</p>
-<p>二十七日，师开示云：‘古人说：<strong>人寿不满百，常怀千岁忧。贪名贪利，终身忙碌，为己、为子孙，一到腊月三十大限到来，总是一场空。</strong>转过身来，得人身者少，堕三途者多。故吾人今日披得袈裟，实由前生栽培，即当猛省努力，不可轻易放过，必于此生了脱生死，以除永久尔后重苦。否则，袈裟下一失人身，则过去之栽培、今生之劳苦，皆成白费，岂不惜哉！’又曰：‘了则业障本来空，未了还须偿宿债。梁武帝前身为樵夫，以取笠为佛像遮雨，又以鲜花供佛，遂感得做皇帝之报。惟以逼死一猴，致遭侯景之叛而死。虽有菩萨化身如志公等拥护之，亦不能解其定业。虽然罪福惟心所造，了则本来空，故修行人不可不求了脱也。’</p>
-<p>二十九日，师开示云：‘修行必须识得心。古人云：人若识得心，大地无寸土。要知为圣为凡，成佛做众生，皆是此心。此心不明，修行无益。此心向何处找寻？<strong>但能放下万缘，善恶都莫思，一念不生</strong>，即真心现前，此心一时现前，时时现前，永远现前，不为尘劳污染，即我是现成之佛。’</p>
-<p>三十一日，师开示<strong>心即是佛，放下即成之理</strong>，至圆至妙。并举飞钵禅师神通妙用，不可思议。</p>
-<p>八月一日，师开示谓说法者必因有听法受法者而说，若机不相应则不说，说亦无益也。</p>
-<p>二日，师开示：三界不安，犹如火宅，了生脱死，实为重要。非大加忏悔，勇猛精进，刻骨铭心，不容易得到了脱。并广引前生出家苦修、来生得福招堕者为证，闻者悚然。</p>
-<p>三日，师开示云：‘十法界唯心所造，四圣六凡皆是自作自受，大修行人惟愿成就阿耨多罗三藐三菩提，余皆不取也。’又详述三界六道轮回事理，苦乐升降因果。</p>
-<p>七日，是日为旧历六月十九日。师开示云：‘观音菩萨于长劫前已成佛，现在二月十九日、六月十九日、九月十九日是诞辰、成道、涅磐等日，乃出自香山记，盖观音化身也。’</p>
-<p>十日，师开示云：‘<strong>凡情不尽，习气不除，终不能成佛。命根未断，妄念仍起，生死真不得了。故修行非用实在功夫，将凡情习气及命根彻底掀翻不成。</strong>’并举释迦佛往劫及因中种种苦行为例。</p>
-<p>十二日，师示众：痛论生死事大，无常迅速，一失人身，万劫难复，<strong>此身不向今生度，更向何生度此身之旨</strong>。言之痛切，闻者悚然。</p>
-<p>十四日，师示众：‘说一切皆空，理甚明白，世人不悟，迷惑颠倒，真可怜悯。’</p>
-<p>十六日，师开示云：‘学佛一法，亦易亦难。从言教上解悟，此理甚为容易，所谓言下顿悟。如用功得当，即<strong>亲见到自己本来面目</strong>，亦不为难。<strong>但要得到真实受用，不为一切境界所转，随时随地自己作得主张，能够解脱自在，造次颠沛都能如是，那就非年久月深、无明烦恼断尽、习气毛病扫清不可。由事上磨练，确实证悟，此则为难也</strong>。又断无明烦恼，除习气毛病，莫若严持戒律；戒律清净，无明烦恼习气毛病自除。若不持戒律，纵修习有成，亦是天魔外道。’</p>
-<p>十七日，师开示云：‘参学虚云者有三要：<strong>一者要有好眼目，能辨邪正；二者要有好耳，能分清浊；三者要有大肚，能包容一切。具此三要，参学者方能得实益。否则自己无主，为他所转，未有不上当者</strong>。’又谓《心灯录序》记梦事及全书皆只言此‘我’，不妥。</p>
-<p>十九日，师开示云：‘<strong>心佛众生，三无差别。吾人本来是佛</strong>，何以佛有无量智慧、无量神通、无量光明，而吾人无之？良由吾人自己不信自己，把自己作贱，所以开的众生知见。无明烦恼、贪嗔痴爱、贡高我慢、欺诳嫉妒，种种迷愚，将自佛盖覆，不得现成。因此，<strong>佛制戒律，就是要佛弟子遵守，藉此除却一切习气毛病。习气毛病一除，佛性现前，自然成佛</strong>。’</p>
-<p>二十二日，师开示‘放下十八界，独头一真如’之理事，至为详晰。是日，中和于散香后，至方丈顶礼，陈述四根本大愿：一者消灭无量劫罪孽，二者证遍法界三身，三者严净十方世界，四者普度一切众生。四此生志愿——建设新宁远，建设新湖南，建设新中国，建立新世界。师对于根本四愿赞成；对于此生志愿，谓做不到。并说明人心复杂、众生难调，及自古以来兴败成亡、以善因而招恶果，种种情形，意欲中和速了生死，急求出离三界，果有愿再来不迟。</p>
-<p>二十三日，晨起于诸佛菩萨前荐香礼拜，礼辞虚老和尚及大众。出山门时，师嘱云：‘若不赴渝，在家无事，可再来。’余应诺。智慧和尚述虚老和尚异事，云：‘一日，戴季陶居士率男女老幼多人礼和尚于南华寺，和尚以一小壶水轮酌三周未尽，以一叠瓜子遍散诸人不竭。及大众辞出，以烛于大风中照大众，由方丈室出山门，火不熄灭。众皆心异之。’又云：‘某巨室有怪异人，不敢居，旋迎和尚居住，自此无复变异。初来云门时，遇狐跪伏，和尚为授三皈依，乃去。’</p>
-<p>【整理后记】</p>
-<p>虚云法师是近代不可多得的高僧，他老人家的道范久传缁素。湖南宁远蒋中和居士之所记，仅是民国三十三年五月廿二日至八月廿三日一夏，即可令人久读不厌，如同亲承虚老法炙。又因虚老一生事略颇多，而他老寂后无人及时整理(当时之政策亦不容作此等事)，故今所辑之虚老语录及年谱，仍恐有疏略之处。为此，谨将宁远蒋中和居士所记虚老的这段事略加以标点，整理付梓，以供虚老研究者一新材料。在整理中，严格依原笔记之格式体例，个别地方需要说明，则略插夹注。</p>
-<p>蒋中和居士事略一时未及查确，蒋氏此笔记后为邱毅居士所保存。一九九二年，邱居士生西，此笔记则落入吾手中，今誊录之时，不昧前贤功德。尤其是文革劫火有甚秦嬴，邱居士能冒生命危险保存，其精神颇可旌于后世也。</p>
-<p>蒋居士之笔记在记年上用的民国(民国三十三年即１９４４年)，而在记月记日上又是用的西历。今略查实，此笔记所记内容为１９４４年５月２２日(即农历闰四月初一日)至８月２３日(农历七月初五日)这段时间的，因所记事迹皆蒋居士所身经目验，故其文献价值弥足珍贵。</p>
+<p>“Buddhism has the characteristics of what would be expected in a cosmic religion for the future: It transcends a personal God avoids dogmas and theology; it covers both the natural and spiritual; and it is based on a religious sense aspiring from the experience of all things, natural and spiritual, as a meaningful unity.</p>
+<p>“If there is any religion that would cope with modern scientific needs it would be Buddhism.  . (Albert Einstein)</p>
+<p>Albert Einstein is possibly the greatest scientist mankind has ever produced. His general theory of relatively created a revolutionary change on how scientists have viewed the world. He discovered that time and space is always related to the observer. His famous equation  E=MC2  revealed that matter and energy are interchangeable forms of same substance. Einstein being a genius did not confine his interest only on science. The views he has expressed on Religion, philosophy and politics indicates that he was a great thinker who tried to bridge the gap between science and philosophy or religion. Buddha gave us a great teaching which would lead to tap the maximum potential of the mind which will eventually lead to the understanding of everything happening around us and finally to liberate from the cycle of Sansara (Cycle of Birth and death). The difference between Einstein and Buddha is that while former was keen in finding answers to the phenomenon of outside world, Buddha used his own powers of observation within his mind (introspection), intellect and reasoning, grounded in reality, to guide him to his enlightenment. Both Buddha and Einstein did their research on a scientific basis. Buddha advised his followers NOT to accept what he was teaching them at face value or to take his beliefs “on faith.” Rather, he counseled them to test his theories for themselves, and if they didn’t prove true, then reject them.  Buddha found what he was looking for. Einstein after all his discoveries has to admit mankind does not have the wisdom to understand the all the mysteries of the nature. The purpose of this article is to examine the relevancy of some of Einstein’s statement to Buddhist teachings and also to present Einstein’s view about the religion.</p>
+<p>Einstein upheld the need for morality and rightness of the mankind. But he believed that morality should not come from fear or punishment expected from ‘God” or any other force. He said – A man’s ethical behavior should be based effectually on sympathy, education, and social ties and needs; no religious basis is necessary. Man would indeed be in a poor way if he had to be restrained by fear of punishment and hope of reward after death. If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed- (Albert Einstein, “Religion and Science”, New York Times Magazine, 9 November 1930</p>
+<p>Einstein denied the existence of a personal God but he could not provide an answer behind the beauty and methodical way universe has been formed. This he expressed in following way.</p>
+<p>I do not believe in a personal God and I have never denied this but have expressed it clearly. If something is in me which can be called religious then it is the unbounded admiration for the structure of the world so far as our science can reveal it. I believe in Spinoza’s God who reveals himself in the orderly harmony of what exists, not in a God who concerns himself with the fates and actions of human beings.  (Albert Einstein, 1954)</p>
+<p>Who is this Spinoza’s God Einstein is refereeing to?  Spinoza was a Dutch philosopher, who claimed that God is nothing but the NATURE According to Spinoza there is mass, energy, atoms, molecules, life, thought, people, societies, galaxies and perhaps even multiple universes but there is nothing outside nature, including spiritual visions and other phenomena we don’t yet understand. If they exist, they are part of nature.  According to Buddhism there are five natural laws at work in the cosmos that cause things to happen, called the Five Niyamas. . Karma is only one of these factors. Present circumstances are the result of countless factors that are always in flux. There is no single cause that makes everything to be the way it is</p>
+<p>The following statement clearly indicates that although Einstein rejected God he is not an atheist.</p>
+<p>I have repeatedly said that in my opinion the idea of a personal God is a childlike one, but I do not share the crusading spirit of the professional atheist whose fervor is mostly due to a painful act of liberation from the fetters of religious indoctrination received in youth. I prefer an attitude of humility corresponding to the weakness of our intellectual understanding of nature and of our own being.</p>
+<p>Buddha rejected the traditional Hindu view that world was a creation by God and also rejected materialism of atheists. He became the first philosopher to reject the belief ‘Soul’ is a permanent entity. It appears that Einstein accepted both these positions. In the above statement, Einstein was humble enough to admit the inadequacy or limitations of his knowledge to find the answer to the ‘mysteries’ of the world.</p>
+<p>Just examine following statement of Einstein</p>
+<p>“A human being is part of the whole, called by us ‘Universe’; a part limited in time and space.  He experiences himself, his thoughts and feelings as something separated from the rest – a kind of optical delusion of his consciousness.  This delusion is a kind of prison for us, restricting us to our personal desires and affection for a few persons nearest us.  Our task must be to free ourselves from this prison by widening our circle of compassion to embrace all living creatures and the whole nature in its beauty.  Nobody is able to achieve this completely but striving for such achievement is, in itself, a part of the liberation and a foundation for inner security.”</p>
+<p>Physical concepts are free creations of the human mind, and are not, however it may seem, uniquely determined by the external world. -Einstein</p>
+<p>It is amazing to know that Buddha, 2500 years back, expressed almost the same view in different words   “All such notions as causation, succession, atoms, primary elements…are all figments of the imagination and manifestations of the mind. – -Buddha</p>
+<p>According to Buddha, Self is not a rational concept. Self is only an emotional feeling- Therefore consciousness is an illusion and the feeling of ‘Self” is only an activity of brain. People live unconsciously in dream like state believing their existence. As a result they become attached to names and forms, not realising that they have no more basis than the activities of the mind itself. Buddha declared that due to this error in view, liberation of the mankind would be blocked. Buddha called it ignorance what Einstein described it as a delusion of consciousness. Buddha’s solution to free us from prison is by developing and purification of mind, following a clear path towards it (8 FP and 4NT). Buddha’s path also involves widening selfless compassion to all human beings. According to Buddha the attachment (Lust) brings suffering and would also prevent one from escaping the prison.  Einstein says that this prison restricts   our affection only to our loved ones (Becoming Selfish). He suggests that to free from the prison the compassion should embrace all living creatures. (It is interesting Einstein did not confine compassion only to human beings)</p>
+<p>Einstein’s attempt to discover the mystery of the world can be seen from this statement.</p>
+<p>The most beautiful and most profound experience is the sensation of the mystical. It is the sower of all true science. He to whom this emotion is a stranger, who can no longer wonder and stand rapt in awe, is as good as dead. To know that what is impenetrable to us really exists, manifesting itself as the highest wisdom and the most radiant beauty which our dull faculties can comprehend only in their primitive forms – this knowledge, this feeling is at the center of true religiousness.  (Albert Einstein – The Merging of Spirit and Science)</p>
+<p>Here again Einstein admits that human mind cannot comprehend all the mysteries of the world. But he admired the beauty and methodical way nature operates it. He admitted the answer comes with more wisdom and he also termed it as true religiousness.  Buddha’s approach for what Einstein has been looking could be evident from following interesting Dialogue between Buddha and one of his disciples.</p>
+<p>“Most respected one; can you please tell me what the size of the universe is?”</p>
+<p>Buddha replied:</p>
+<p>“Will the size of the universe help you end suffering?”</p>
+<p>The disciple answered:</p>
+<p>“No, most respected one”</p>
+<p>Buddha then answered:</p>
+<p>“So why are you asking questions of little importance and not ask questions on the ending of suffering?</p>
+<p>Buddhism avoids speculative metaphysical questions as irrelevant distractions. According to Buddhism, nothing happens without a cause; therefore the universe is infinite with no real beginning. However, it does run in cycles, so there can be a beginning for each particular era.</p>
+<p>This Parable of the arrow has often been used to illustrate the Buddha’s teachings that “practitioners who concern themselves with the origins of the universe and other topics are missing the point of religious practice.”</p>
+<p>Suppose someone was hit by a poisoned arrow and his friends and relatives found a doctor able to remove the arrow. If this man were to say, ‘I will not have this arrow taken out until I know whether the person who had shot it was a priest, a prince or a merchant, his name and his family. I will not have it taken out until I know what kind of bow was used and whether the arrowhead was an ordinary one or an iron one.’ That person would die before all these things are ever known to</p>
+<p>In short, work on being here (The Present moment) before you consider why or how you came to be here.</p>
+<p>Once Bertrand Russell   explained why he accepts the Buddhist view on origin of the world. -” Among the founders of all religions in this world, I respect only one man — the Buddha. The main reason was that the Buddha did not make statements regarding the origin of the world. The Buddha was the only teacher who realised the true nature of the world.” (Bertrand Russell)</p>
+<p>It is interesting to note that Modern scientists and psychologists pay great attention to research on brain and mind.  Buddhist mediation methods of loving kindness, breathing mediation and mindfulness are widely used in western medicine and psychology. It would be great if more scientists like Einstein come forward to bridge the gap between the science and eastern philosophy in future.</p>
  
       <!-- reward -->
       
@@ -260,7 +315,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E7%A4%BA/" rel="tag">开示</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E4%BA%91%E8%80%81%E5%92%8C%E5%B0%9A/" rel="tag">虚云老和尚</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%96%E7%95%8C/" rel="tag">世界</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6/" rel="tag">科学</a></li></ul>
 
     </footer>
   </div>
@@ -271,7 +326,7 @@
 
     
     <article
-  id="post-learning/放下"
+  id="post-technology/cpp/epoll的水平触发和边缘触发模式"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -282,8 +337,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2023/10/19/learning/%E6%94%BE%E4%B8%8B/"
-    >放下</a> 
+  <a class="article-title" href="/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/"
+    >epoll的水平触发和边缘触发模式</a> 
 </h2>
  
 
@@ -291,31 +346,21 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/19/learning/%E6%94%BE%E4%B8%8B/" class="article-date">
-  <time datetime="2023-10-19T06:39:01.000Z" itemprop="datePublished">2023-10-19</time>
+      <a href="/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2023-10-22T16:00:00.000Z" itemprop="datePublished">2023-10-23</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>外六尘（指眼、耳、鼻、舌、身、意等六根所相应的六种对境，也是六识所感觉、认识的六种境界），内六根（眼、耳、鼻、舌、身、意），中六识（视觉、听觉、嗅觉、味觉、触觉、知觉）</p>
-<blockquote>
-<p>佛陀住世时，有一位名叫黑指的婆罗门来到佛前，运用神通，两手拿了两个花瓶，前来献佛。</p>
-<p>佛对黑指婆罗门说：“放下！”</p>
-<p>婆罗门把他左手拿的那个花瓶放下。</p>
-<p>佛陀又说：“放下！”</p>
-<p>婆罗门又把他右手拿的那花瓶放下。</p>
-<p>然而，佛陀还是对他说：“放下！”</p>
-<p>这时黑指婆罗门说：“我已经两手空空，没有什么可以再放下了，请问现在你要我放下什么？”</p>
-<p>佛陀说：“我并没有叫你放下你的花瓶，我要你放下的是你的六根、六尘和六识。当你把这些统统放下，再没有什么了，你将从生死桎梏中解脱出来。”</p>
-<p>黑指婆罗门才了解佛陀放下的道理。</p>
+  <blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1636224">https://cloud.tencent.com/developer/article/1636224</a></p>
 </blockquote>
-<p>“放下！”这是非常不容易做到的，吾人有了功名，就对功名放不下；有了金钱，就对金钱放不下，有了爱情，就对爱情放不下；有了事业，就对事业放不下。<br>吾人在肩上的重担，在心上的压力，岂止手上的花瓶？这些重担与压力，可以说使人生活过得非常艰苦。必要的时候，佛陀指示的“放下”，不失为一条幸福解脱之道！</p>
- 
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证epoll的LT与ET模式的区别, epoll_server.cpp</span></span><br><span class="line"><span class="comment"> * zhangyl 2019.04.01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试ET模式(边缘触发模式)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_ET_MODE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个监听socket</span></span><br><span class="line">    <span class="keyword">int</span> listenfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (listenfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create listen socket error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置重用ip地址和端口号</span></span><br><span class="line">    <span class="keyword">int</span> on = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEPORT, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听socker设置为非阻塞的</span></span><br><span class="line">    <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(listenfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fcntl</span>(listenfd, F_SETFL, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;set listenfd to nonblock error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化服务器地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">bindaddr</span>;</span></span><br><span class="line">    bindaddr.sin_family = AF_INET;</span><br><span class="line">    bindaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY);</span><br><span class="line">    bindaddr.sin_port = <span class="built_in">htons</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">bind</span>(listenfd, (struct sockaddr*) &amp; bindaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(bindaddr)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bind listen socker error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//启动监听</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">listen</span>(listenfd, SOMAXCONN) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;listen error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建epollfd</span></span><br><span class="line">    <span class="keyword">int</span> epollfd = <span class="built_in">epoll_create</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (epollfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create epollfd error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    epoll_event listen_fd_event;</span><br><span class="line">    listen_fd_event.data.fd = listenfd;</span><br><span class="line">    listen_fd_event.events = EPOLLIN;</span><br><span class="line">    <span class="comment">//取消注释掉这一行，则使用ET模式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">    listen_fd_event.events |= EPOLLET;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听sokcet绑定到epollfd上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, listenfd, &amp;listen_fd_event) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;epoll_ctl error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        epoll_event epoll_events[<span class="number">1024</span>];</span><br><span class="line">        n = <span class="built_in">epoll_wait</span>(epollfd, epoll_events, <span class="number">1024</span>, <span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//被信号中断</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//出错,退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//超时,继续</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件可读</span></span><br><span class="line">            <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLIN)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd == listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//侦听socket,接受新连接</span></span><br><span class="line">                    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientaddr</span>;</span></span><br><span class="line">                    <span class="keyword">socklen_t</span> clientaddrlen = <span class="built_in"><span class="keyword">sizeof</span></span>(clientaddr);</span><br><span class="line">                    <span class="keyword">int</span> clientfd = <span class="built_in">accept</span>(listenfd, (struct sockaddr*) &amp; clientaddr, &amp;clientaddrlen);</span><br><span class="line">                    <span class="keyword">if</span> (clientfd != <span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(clientfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">                        <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">fcntl</span>(clientfd, F_SETFD, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;set clientfd to nonblocking error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            epoll_event client_fd_event;</span><br><span class="line">                            client_fd_event.data.fd = clientfd;</span><br><span class="line">                            <span class="comment">//同时侦听新来连接socket的读和写时间</span></span><br><span class="line">                            client_fd_event.events = EPOLLIN | EPOLLOUT;</span><br><span class="line">                            <span class="comment">//取消注释这一行，则使用ET模式</span></span><br><span class="line">                            client_fd_event.events |= EPOLLET;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, clientfd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;new client accepted,clientfd: &quot;</span> &lt;&lt; clientfd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;add client fd to epollfd error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                                <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;client fd: &quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot; recv data.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                    <span class="comment">//普通clientfd</span></span><br><span class="line">                    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">                    <span class="comment">// 边缘出发，必须一次性收完</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">do</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">                        <span class="keyword">if</span>(m &gt; <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">bzero</span>(recvbuf, <span class="built_in"><span class="keyword">sizeof</span></span>(recvbuf));</span><br><span class="line">                    &#125;<span class="keyword">while</span>(m &gt; <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">                    <span class="comment">// 水平触发，每次只收一个字节, 不影响</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//对端关闭了连接，从epollfd上移除clientfd</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (m &lt; <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//出错</span></span><br><span class="line">                        <span class="keyword">if</span> (errno != EWOULDBLOCK &amp;&amp; errno != EINTR)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//正常收到数据</span></span><br><span class="line">                        std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">                        epoll_event client_fd_event;</span><br><span class="line">                        client_fd_event.data.fd = epoll_events[i].data.fd;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEST_ET_MODE</span></span><br><span class="line">                        <span class="comment">// 水平触发模式下，需要再次给clientfd注册检测可写事件, 来接受socket上次没接收的数据</span></span><br><span class="line">                        client_fd_event.events = EPOLLIN | EPOLLOUT ;</span><br><span class="line">                        <span class="comment">// client_fd_event.events |= EPOLLET;</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_MOD, epoll_events[i].data.fd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;epoll_ctl successfully, mode: EPOLL_CTL_MOD, clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLOUT)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//只处理客户端fd的可写事件</span></span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd != listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 水平触发模式下，会一直触发，打印结果</span></span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;EPOLLOUT triggered,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLERR)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// TODO 暂不处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">close</span>(listenfd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
@@ -325,7 +370,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%BE%E4%B8%8B/" rel="tag">放下</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">服务端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%9E%E9%98%BB%E5%A1%9E/" rel="tag">非阻塞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/" rel="tag">高性能</a></li></ul>
 
     </footer>
   </div>
@@ -336,7 +381,7 @@
 
     
     <article
-  id="post-life/塔勒布智慧箴言录"
+  id="post-life/佛教中“空”的本义是什么"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -347,8 +392,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2023/10/19/life/%E5%A1%94%E5%8B%92%E5%B8%83%E6%99%BA%E6%85%A7%E7%AE%B4%E8%A8%80%E5%BD%95/"
-    >塔勒布智慧箴言录</a> 
+  <a class="article-title" href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/"
+    >佛教中“空”的本义是什么</a> 
 </h2>
  
 
@@ -356,8 +401,67 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/19/life/%E5%A1%94%E5%8B%92%E5%B8%83%E6%99%BA%E6%85%A7%E7%AE%B4%E8%A8%80%E5%BD%95/" class="article-date">
-  <time datetime="2023-10-19T02:39:01.000Z" itemprop="datePublished">2023-10-19</time>
+      <a href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/" class="article-date">
+  <time datetime="2023-10-20T10:50:01.000Z" itemprop="datePublished">2023-10-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>一切万有都是缘起，这就是佛教“空”之本义，“无”之真意。</p>
+<p>空，是佛教对世界一切事物本质最简要的描述，是释迦世尊洞彻世界万物缘起的结论。故《心经》开头就说：“观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如此。”</p>
+<p>但社会上很多人都误解了佛教的“空”字。有人反问说：“我们每天吃的、穿的、用的，以及看到的一切，难道都是空的吗？”说这话的人也许没认真思维，难道佛教徒糊涂到连日常生活都搞不清楚吗？！佛教所说的“空”，根本不是有人所认为的“没有”的意思，也与社会上常听到的“人生到头一场空”的“空”字意思有别，“一场空”的“空”字，是得不到的意思。</p>
+<p><strong>佛教所说的“空”，是对世间事物变化过程的描述，准确地讲，是万事万物最终要变化、要毁坏的意思，是对缘起法最本质的体证。佛教认为世上任何一种事物，都是由因缘和合而成，都是由各种条件和合而成，或其它事物变化而来，最后又变化为另外的事物</strong>。</p>
+<p>成、住、坏、空，是世上一切事物发展变化的必然，有生就有死，有成就有坏。<strong>佛教所说的空，是指事物的本性是空的，而不是指事物的外相也是空</strong>。比如我们的一辈子，父母亲生下我们时，佛法上说是四大五蕴和合而成，按科学说法，是碳、氢、氧等基本元素构成，然后长大成人，然后衰老，最后死亡，一切都是变化的，我们的一生也就是在这样的因缘变化中过去了。正是在这个意思上，我们说人生是空的，一切都是缘起性空。</p>
+<p>所以佛法教导我们，<strong>做人不要执着于外相上的缘起缘灭，执着就苦，就起烦恼</strong>。但也不要因为认识到人生是空的，就悲观绝望，这就落入了顽空，这也是一种固执。因为“性空”并不否定相上的缘起，相是存在的，它刹那生灭变化。</p>
+<p>一个人认识到人生的空苦，而又不落入顽空，确实需要智慧。如何获得这种智慧？这正是佛教所要解决、所能解决的。通过学佛，修戒定慧三学，体证般若的智慧，达到改变我们苦空人生的目的。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-life/星云大师——空"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/"
+    >空</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/" class="article-date">
+  <time datetime="2023-10-20T10:50:01.000Z" itemprop="datePublished">2023-10-20</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
@@ -368,101 +472,54 @@
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/583095827">https://zhuanlan.zhihu.com/p/583095827</a></p>
+<p>转载自，星云大师《佛学》丛书：<a target="_blank" rel="noopener" href="http://www.masterhsingyun.org/article/article.jsp?index=7&amp;item=61&amp;bookid=2c907d4945216fae014569962c35052c&amp;ch=4&amp;se=1&amp;f=1">http://www.masterhsingyun.org/article/article.jsp?index=7&amp;item=61&amp;bookid=2c907d4945216fae014569962c35052c&amp;ch=4&amp;se=1&amp;f=1</a></p>
 </blockquote>
-<ul>
-<li><p>卡尔·马克思（一个有远见的人）发现，要更好地控制一个奴隶，你可以说服他相信他其实是个雇员。</p>
-</li>
-<li><p>科技和奴隶制的区别在于，奴隶很清楚自己并不自由。</p>
-</li>
-<li><p>让人上瘾的东西，害处最大的三种是海洛因、碳水化合物和月薪。</p>
-</li>
-<li><p><strong>制药公司更擅长发明和已有药物匹配的疾病，而不是发明治疗已有疾病的药物。</strong></p>
-</li>
-<li><p>科学需要你了解世界，商业需要你让别人误解世界。</p>
-</li>
-<li><p>教育只能让聪明人变得比之前聪明一点儿，却会让傻瓜变得比之前危险很多。</p>
-</li>
-<li><p>要是早晨起床时，你就能预测这一天会是什么样子，那么你已经开始靠近死亡了——预测得越准确，你离死亡就越近。</p>
-</li>
-<li><p>现代社会给我们的双重惩罚是，既让我们衰老得更早，又让我们活得更长。</p>
-</li>
-<li><p>你是否真的喜欢一本书，判断标准是你是否会重读它（以及重读了多少遍）；你是否真的喜欢一个人的陪伴，判断标准是你是否愿意再次遇见他——剩下的都是空话，或者是那种现在被称为“自尊”的情绪。</p>
-</li>
-<li><p>年轻人的智慧跟老人的轻佻一样不讨人喜欢。</p>
-</li>
-<li><p>我们将那些把自己当成世界中心的人称为自恋者；将那些把自己和另一个人当成世界中心的人称为恋人。</p>
-</li>
-<li><p>只有当你可以自由地做任何事情，不需要明显的目的、理由和别人的要求时，你才算真正存在于这世上。</p>
-</li>
-<li><p>还没有被凡俗玷染的媒体就只剩下书籍了，你看到的其他媒体都试图通过广告来操控你</p>
-</li>
-<li><p>命运惩罚贪婪者的方式是让他贫穷，惩罚特别贪婪者的方式是让他富有。</p>
-</li>
-<li><p>“财富”是一个没有意义的词，因为它没法准确衡量；不如换用“缺乏财富”这个词，意思是在任一时刻，你所拥有的和你想要拥有的之间的差距。</p>
-</li>
-<li><p><strong>他们生下来被放在盒子里，回到家住在盒子里，学习时勾选一个个的“盒子”，乘着盒子去上班，工作时坐在盒子里，开着盒子去超市买装在盒子里的食物，乘着盒子去健身房，谈论跳出思维的“盒子”，死后被放在盒子里。这些都是符合欧几里得定义的、四四方方的、表面平滑的盒子。</strong></p>
-</li>
-<li><p>20世纪宣告了社会乌托邦的破产，21世纪将会宣告科技乌托邦的破产。</p>
-</li>
-<li><p>网络让人们“彼此相连”，在信息和伪社会的层面上营造出了一种怪异的滥交氛围，这让人每次下线的时候都感觉自己重新变得干净了。</p>
-</li>
-<li><p>在绝大多数争论中，人们似乎都在试图说服对方，但他们其实最多只能说服自己。</p>
-</li>
-<li><p>现代生活会用愚人的方式解释各种活动：现在我们“为了锻炼而散步”，而不是毫无理由地“散步”；我们做事总会有某些隐藏的原因。</p>
-</li>
-<li><p><strong>人们在战争中摧毁彼此，在和平时摧毁自己。</strong></p>
-</li>
-<li><p>科技可以让愚人的生活在各个方面出现退化（甚至陷入危机），同时又让他相信自己的生活正在变得更“有效率”。</p>
-</li>
-<li><p>只有在任何领域都不跟任何人攀比，你才算拥有真正的生活。</p>
-</li>
-<li><p>有些书的内容没法总结（真正的文学和诗歌），有些书可以被压缩至大约10页，大多数书都可以直接压缩至零页。</p>
-</li>
-<li><p>信息指数增长的时代，就像一个语言失禁的人：他的话越来越多，听他说话的人却越来越少。</p>
-</li>
-<li><p><strong>过去，绝大多数人都是愚昧无知的，约千分之一的人有足够的文化，值得与之对话。今天，文盲率大幅下降，但由于社会进步、媒体和经济的影响，只有万分之一的人值得与之对话。</strong></p>
-</li>
-<li><p><strong>愚人很重要的特点就是，意识不到你不喜欢的东西可能有人会喜欢（你今后也有可能会喜欢），反之亦然。</strong></p>
-</li>
-<li><p><strong>我们会不自觉地放大自己跟朋友的相同之处，跟陌生人的不同之处，跟敌人的相反之处。</strong></p>
-</li>
-<li><p><strong>你想做你自己，表现出独特性；群体（学校、规则、工作、技术）则希望你像被阉割了一般，成为一个普通人。</strong></p>
-</li>
-<li><p>愚人的陷阱是，你会关注你知道而别人不知道的事情，而不是反过来。</p>
-</li>
-<li><p><strong>头脑清晰是勇敢行动的结果，而不是反过来（自苏格拉底的时代以来，人们最大的错误就是，认为缺乏清晰的头脑是各种弊病的根源，而不是反过来。）</strong></p>
-</li>
-<li><p><strong>绝大多数沉迷于信息—网络—媒体—报纸的人都很难接受，获得智慧的（主要）方法是从头脑中除去垃圾信息。</strong></p>
-</li>
-<li><p><strong>更优秀的人能容忍别人轻微的反复无常，但不能容忍别人严重的自相矛盾；弱者能容忍别人严重的自相矛盾，但不能容忍别人轻微的反复无常。</strong></p>
-</li>
-<li><p>要衡量一个人的价值，就考虑一下你第一次见到他时的印象，和最近一次见到他时的印象有多大的差别。</p>
-</li>
-<li><p><strong>你只能说服那些认为自己在被说服后可以获益的人。</strong></p>
-</li>
-<li><p><strong>你或许会因为年老而失去力量，但不会因此而失去智慧。</strong></p>
-</li>
-<li><p>平整的地面、竞技体育和专项工作会使头脑和身体僵化，竞争激烈的学术环境则会使灵魂僵化。</p>
-</li>
-<li><p><strong>我们需要杰出的智慧和自控力才能承认，许多事情的逻辑是我们所不了解的，并且比我们自己的逻辑更加明智。</strong></p>
-</li>
-<li><p><strong>知识是我们减掉的内容（什么行不通，什么不该做），不是我们增加的内容（什么该做）</strong></p>
-</li>
-<li><p><strong>我们认为聪明就是注意到有关系的事情（探测模式）；在复杂的世界里，聪明就是忽略无关的事情（避免错误模式）。</strong></p>
-</li>
-<li><p><strong>要判断一个人是否极度愚蠢（或者极度聪明），就看经济和政治新闻对他来说是否有意义。</strong></p>
-</li>
-<li><p>愚人认为你可以用金钱治疗贪婪，用毒品治疗毒瘾，用专家治疗专业问题，用银行家治疗银行业问题，用经济学家治疗经济学问题，用欠债治疗债务危机。</p>
-</li>
-<li><p>简单总结一下股票市场：参与者平静地在即将被宰割的队伍后排队等待，还以为自己是为了百老汇的表演而排队。</p>
-</li>
-<li><p>让我们脆弱的是，组织机构不可能拥有跟个人同样的美德（有荣誉感、诚实、勇敢、忠诚、坚忍）。</p>
-</li>
-</ul>
-<ul>
-<li>互联网打破了公私之间的壁垒，过去那些私下里一时冲动的和不雅的表达现在都通过文字呈现出来</li>
-</ul>
+<h2 id="壹‧前言"><a href="#壹‧前言" class="headerlink" title="壹‧前言"></a>壹‧前言</h2><p>　　自古以來，佛門就有「空門」之稱，因為「空」是佛教最重要的教義之一，也是佛法不共其他宗教及世間學說的特質。當初佛陀在菩提樹下、金剛座上證悟成佛，他所證悟的宇宙真理是「緣起」，緣起就是說世間一切存有的事物都是因緣所成，沒有實在的自性可言，這種諸法自性了不可得的特質就稱為「空」。因此，「空」可以說是佛教的言語中最接近諸法實相的名詞，然而一般人不了解「空」的真義，誤解佛教是消極避世的宗教。事實上，「空」蘊含無限，真空才能生妙有；「空」並不是無，而是要我們大破大立，空去一切有無對待，空去一切差別觀念，甚至連這個「空」也要空去，然後才能享有一個大解脫、大自在、空有不二的世界。</p>
+<h2 id="貳‧空的真義"><a href="#貳‧空的真義" class="headerlink" title="貳‧空的真義"></a>貳‧空的真義</h2><p>　　《中論‧觀四諦品》說：「以有空義故，一切法得成；若無空義故，一切則不成。」「空」是建立萬有的要素，以棉布為例，從緣起法來看，布是空的，因為布只是因緣和合的假相，譬如布的原料是來自棉紗，棉紗是由棉花的纖維紡成，棉花又採自棉種子，種子須要有土地、陽光、空氣、水分、肥料等的栽培灌溉，才能萌芽、成長、開花、結果，既而果熟開裂，種子密生棉毛，則可供紡紗。因此，棉布是棉籽結合了宇宙萬有的因緣而成，所以我們從「萬有的因緣」上看，它的自性就是「空」，這就是所謂的「真空能生妙有」。</p>
+<p>　　再以我們的身體為例，鼻孔不空就不能呼吸，耳朵不空就不能聽聞，乃至全身的毛孔細胞、五臟六腑如果不空，就無法生存。有了「空」，生命才能延續；心中有了「空」，才能「心包太虛，量周沙界」；世界有了「空」，才能生出宇宙萬物。所以，空是宇宙之體，是人生之本，是萬有之源。</p>
+<p>　　「空」是真理的極致，「空」能將印證真理的「三法印」統一起來，例如：</p>
+<p>　　1.世間沒有永恒性的東西。世事變化多端，這是「諸行無常」，也就是「無常苦空」。</p>
+<p>　　2.世間沒有獨存性的東西。萬物相生相成，這是「諸法無我」，也就是「緣起性空」。</p>
+<p>　　3.世間沒有實有性的東西。一切如夢幻泡影，這是「涅槃寂靜」，也就是「妙有真空」。</p>
+<p>　　「空」是一種最深刻、最奧妙的哲學，如果想用一句話來表達，事實上是不可能的。《釋摩訶衍論》中曾論「虛空十義」，雖然不能將絕對超越的「空」義淋漓盡致地描繪出來，但在人類所能理解的語言中，已經算是很接近了。所謂「虛空十義」如次：</p>
+<p>　　1.「空」有無障礙的意思，如虛空，雖遍一切處，但絕不障礙任何一色法。</p>
+<p>　　2.「空」有周遍的意思，如虛空，遍滿一切，無所不至。</p>
+<p>　　3.「空」有平等的意思，如虛空，無有簡擇，於一切平等。</p>
+<p>　　4.「空」有廣大的意思，如虛空，廣大、無垠、無際。</p>
+<p>　　5.「空」有無形相的意思，如虛空，無有形狀相貌。</p>
+<p>　　6.「空」有清淨的意思，如虛空，恒常清淨，無有垢染塵累。</p>
+<p>　　7.「空」有不動的意思，如虛空，恒常寂止，離一切生滅成壞之相。</p>
+<p>　　8.「空」有絕對否定的意思，把一切有限量的事理徹底否定、消滅。</p>
+<p>　　9.「空」有空空的意思，徹底否定一切自性和摧毀一切空執。</p>
+<p>　　10.「空」有不可得的意思，如虛空，不可取得，不可把捉。</p>
+<h2 id="參‧空的種類"><a href="#參‧空的種類" class="headerlink" title="參‧空的種類"></a>參‧空的種類</h2><p>　　在佛教的經論中，有關「空」的分類很多，計有二空、三空、四空、六空、七空、十空、十一空、十六空、十八空：：等等。大體而言，可歸納為人空、法空、勝義空三種。</p>
+<p>　　1.人空：又稱為我空、生空等。即有情眾生的生命，是依因緣和合而成，沒有實體可得，僅僅是假合的存在而已。</p>
+<p>　　2.法空：由有情生命出發，空義進一步擴及萬法，便有所謂的「法空」。即諸法是因緣和合而成，沒有實體的存在，所以又稱為法無我。</p>
+<p>　　3.勝義空：是將人空、法空及其他一切執著也一起空掉的「空」；是一種既不住於有，也不住於空，超越一切有無對待，而達到隨緣放曠，任運自由的境界。又稱第一義空、實相空，也就是涅槃寂靜的意思。</p>
+<p>　　《大智度論》卷三十一說：「涅槃中亦無涅槃相，涅槃空是第一義空。……能使諸法實相空，是名為第一義空。」在勝義空下，連涅槃都不住著了，世間上還有什麼不能超越的呢？</p>
+<h2 id="肆‧如何認識空"><a href="#肆‧如何認識空" class="headerlink" title="肆‧如何認識空"></a>肆‧如何認識空</h2><p>　　在一般人的觀念裡，「空」和「有」是截然不同的兩種觀念，「有」的絕對不是「空」，「空」的絕對不是「有」。但是，佛教認為「空」和「有」是一體的兩面，諸法所以是空，是由於無自性可得；諸法所以是有，是由於相用不是空無的。</p>
+<p>　　如何才能認識「空」呢？從諸法的相用上可以認識「空」性：</p>
+<p>　　1.從相續假看空：世間沒有恒久不變的東西，一切現象只不過是相續的存在，無時無刻不在剎那生滅之中。譬如我們身體細胞的新陳代謝，不斷地進行更新；世間上的人事更替，所謂「長江後浪推前浪，一代新人換舊人」，說明了世間的事事物物是相續假有，無常而沒有實體，從這種相續無常的現象上，可以了解「有即是空」的真諦。</p>
+<p>　　2.從循環假看空：因果故空。宇宙萬物，世間諸法，都離不開因果的法則，因為果，果為因。如一粒種子，有了陽光、空氣、水分、泥土等外緣後，於是發芽、開花，乃至結果。種子是因，結成的果實是果；如果再以結成的果實接受外緣，再一次的開花結果，則原有的果，又是另一個新生命的因，因因果果，相關相涉。因此，從這個循環的假相中，可以認識空。</p>
+<p>　　3.從和合假看空：緣起故空。諸法因緣和合而生，譬如人是由皮肉、筋骨、血液等和合而成；如果把各種組織分開，人的自體無從可得。因此，從和合之中，可以瞭解空。</p>
+<p>　　4.從相對假看空：相待故空。世間萬物都是相互對待的，譬如有三層樓，一人在二樓，有人從一樓上到二樓來，二樓是「上」，一樓是「下」；三樓的人下到二樓來，此時原是「上」的二樓變成「下」，三樓才是「上」。由此可知，所謂上下的對待，是一種假相，所以是空。</p>
+<p>　　5.從相狀假看空：無標準故空。以點燈為例，蠟燭、煤油燈、電燈的亮度是沒有一定標準的，如果從蠟燭先看，認為燭光很亮，再看電燈，燭光的亮度就顯得不夠了，「亮」這個相狀是無標準的，所以從無標準的相狀上，也可知道是空。</p>
+<p>　　6.從名詞假看空：但有假名故空。宇宙間諸法萬象，各有不同的稱呼，而這些名稱都是假有，所以是空。譬如一塊布，穿在上身的叫做衣服；穿在下身的叫做褲子；穿在腳上的叫做襪子；戴在頭上的叫做帽子。同樣是一塊布，卻可以有各種不同的名稱，這些名詞原來也都是假名而已，因此是空。</p>
+<p>　　7.從認識不同看空：心境無定準故空。下雪的夜晚，詩人坐在窗前，詩興大發，歎為奇景，自語道：「若再下它三尺，景色將更綺麗。」此時，屈居於破屋簷下的乞丐，縮著身子，不勝酷寒，感歎的說：「大雪紛紛飄滿天，老天又降殺人刀，再落三尺方為景，我輩怎得到明朝？」同樣的事物，因心境的不同，就有不同的看法，由此可知，從不同的認識中，也可以了知空。</p>
+<h2 id="伍‧空的妙用"><a href="#伍‧空的妙用" class="headerlink" title="伍‧空的妙用"></a>伍‧空的妙用</h2><p>　　《大乘密嚴經》說：「離空無有色，離色無有空，如月與光明，始終恒不異；諸法亦如是，空性與之一，展轉無差別，所為皆得成。」萬法惟其性空，才能生起宇宙萬有；萬有徒具假相，才能顯示自性本空。因此，有不是空以外的有，空也不是有以外的空，空與有是相融相即的。</p>
+<p>　　有人說：「空，是佛教的Ｘ光。」這句話實在很有道理。因為藉著Ｘ光的透視，可以讓我們看清體內的五臟六腑；同樣的，經由空性，我們便能洞悉諸法的實相。</p>
+<p>　　「空」是什麼？空就是「○」，○本身什麼都沒有，但若將○放在一的後面，則成為「一○」；若將○放在一○的後面，則成為「一○○」；放在一○○的後面，則成「一○○○」。由此可知，一個「○」，你說它沒有用，它卻能生起大作用。「空」也是如此，若說空是什麼都沒有，其實，空在宇宙世間卻能包含萬有。</p>
+<p>　　「空」是什麼？空是數學中的「Ｘ」──未知數；它能代表很多的數字。</p>
+<p>　　「空」是可以從日常生活中體驗的，例如：「女嬰」日漸長大，就稱為「女孩」；成長到十幾歲，就成為「少女」；到了二、三十歲，就稱她為「小姐」；嫁了人，又成為某某「太太」；生兒育女，就是「媽媽」；兒女婚嫁，就多了「婆婆」、「岳母」，乃至「奶奶」等等稱呼。從這些名詞的轉移上，我們認識到「空」的真諦。</p>
+<p>　　其他如前後、高低、上下、美醜、老少、大小……等等，也都是相對的概念，並沒有絕對的標準，只不過是「假名」而已。《金剛經》上說「實相非相」，又說「法無定法」。唯有「空」才是實相，才是定法。見到了「空」，我們才能如實的認識世間；瞭解了「空」，我們就能跳出有無的對待，而擁有一片更寬廣的世界。「空」真是妙用無窮！</p>
+<h2 id="陸‧結語"><a href="#陸‧結語" class="headerlink" title="陸‧結語"></a>陸‧結語</h2><p>　　一般人以為佛教講「空」，是要人否定一切；其實佛教的空，並不是否定一切，相反的，「空」是諸法所以成就的根據。「空」並不是頑空，是具有建設性的，譬如，沒有空間就不能建房子；袋子不空，便不能裝東西；宇宙不空，人類就無法生存，所以要「空」才能「有」。宇宙萬法就是建立在這個空義上，因為「空」並不是虛無，而是一切法之所依，是一切法不離的真性，是一切法存在與活動的原理。換句話說，如果沒有空性，一切法就不能從緣而有，也不可能有生有滅。</p>
+<p>　　所以，「空」不是消極避世的代名詞；它具有革命性與建設性的意義；當我們認識了空，就能捨棄過去舊有的執著，以嶄新的角度來審視宇宙萬有；當我們瞭解了空，就能蠲除既有的成見，從頭開始反省自己的人生。所謂「平常一樣窗前月，才有梅花便不同」，如果我們有了空的體驗，就能與宇宙萬物融為一體，「空」對於人生實在是太重要了！</p>
+<p>…………</p>
+<p>一、何謂空？</p>
+<p>二、如何認識空？</p>
+<p>三、如何從日常生活體驗空？</p>
+<p>四、舉例說明空的妙用。</p>
+<p>…………</p>
  
       <!-- reward -->
       
@@ -473,80 +530,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag">工作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-learning/缠中说禅《临江仙》注解"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/13/learning/%E7%BC%A0%E4%B8%AD%E8%AF%B4%E7%A6%85%E3%80%8A%E4%B8%B4%E6%B1%9F%E4%BB%99%E3%80%8B%E6%B3%A8%E8%A7%A3/"
-    >缠中说禅《临江仙》注解</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/13/learning/%E7%BC%A0%E4%B8%AD%E8%AF%B4%E7%A6%85%E3%80%8A%E4%B8%B4%E6%B1%9F%E4%BB%99%E3%80%8B%E6%B3%A8%E8%A7%A3/" class="article-date">
-  <time datetime="2023-10-13T08:12:21.000Z" itemprop="datePublished">2023-10-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>缠中说禅《临江仙》注解</p>
-<blockquote>
-<p>临江仙（缠师开博词）</p>
-<p>浊水倾波三万里，愀然独坐孤峰。龙潜狮睡候飙风。无情皆竖子，有泪亦英雄。</p>
-<p>长剑倚天星斗烂，古今过眼成空。乾坤俯仰任穷通。半轮沧海上，一苇大江东。</p>
-</blockquote>
-<p>人间四月，芳菲已尽，落花有意，流水无情。</p>
-<p>缠师驾鹤西去，徒留弟子追忆，忽忽已历十数载。荏苒时光，幼者少，少者壮，壮者垂垂老矣。</p>
-<p>忆往昔，缠师业成于北京大学数学系，自谓“喜欢数学的女孩”，宗教文化、诗词歌赋、文史哲学、音乐艺术、数理科技等无所不精，狂放不羁，博学多才，尤其股海弄潮，天纵奇才，无人不知，无人不晓。</p>
-<p>初读开博词《临江仙》，吾深为震撼，词风慷慨傲气，雄视古今，皓然磅礴。</p>
-<p>今吾有幸，得偿所愿，数月后将至京幾，求学于北京大学，拙注《临江仙》于斯，缅忆大师。</p>
-<p>人间疾苦，岂止三万里浊水？战争，疫病，天灾，人性，世间浊物何曾休。非但无歇，反要倾波助澜，涌然乱窜。</p>
-<p>伏闻悲天悯人者，必常愀然。范文正公有言，居庙堂之高则忧其民，处江湖之远则忧其君。今浊水漫漫，仁者能毋忧？忧既忧矣，不能与浊水相伴左右，寻一峰一亭，且必得是孤峰，必得是凌绝顶，必得是独坐。心境如此，愀然高尚之谓也。</p>
-<p>韬光养晦，潜龙勿用，时机未熟，雄师假寐。成大事者，不宜急躁冒进，须知那专打出头之鸟的枪口，须知那专摧林中秀木的狂风。</p>
-<p>然龙凤之躯，又岂能籍籍无名，终身怀才不遇？飙风既至，机不可失，一朝腾飞，有何不可？</p>
-<p>人非草木，孰能无情？</p>
-<p>智者虑远，事事尽皆胸中韬略，不为一时感情左右，心狠手辣之时亦有，然人不可无情。无情者与草木何异？行尸走肉一竖子也。</p>
-<p>常言道，男儿有泪不轻弹，英雄有情，有义，有所思，有所泪，又何曾误了一世英名。</p>
-<p>漫漫长夜，仰首星河，星汉灿烂，千年一瞬。凡夫竖子也罢，英雄豪杰亦然，终究是历史长河中的水花，过眼成空，终有一日俱往矣。每念及此，又忆《兰亭集序》所言，心甚痛哉！</p>
-<p>天地乾坤，俯仰穷通，顺逆交替，福祸相依，此阴阳之道也。物极必反，阴阳平衡，善恶又何曾全然对立。</p>
-<p>俯观人之一生，原是半轮明月初升，每个生命个体，随着一维之时间，一苇而东。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E7%BC%A0%E4%B8%AD%E8%AF%B4%E7%A6%85%EF%BC%9A%E6%95%99%E4%BD%A0%E7%82%92%E8%82%A1%E7%A5%A8108%E8%AF%BE%E3%80%8B/" rel="tag">《缠中说禅：教你炒股票108课》</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%97%E8%AF%8D/" rel="tag">诗词</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
 
     </footer>
   </div>
@@ -562,7 +546,7 @@
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
   </nav>
   
 </section>

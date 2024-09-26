@@ -104,7 +104,7 @@
     
     
     <article
-  id="post-technology/blockchain/solidity/ERC20高级充币归集技术"
+  id="post-technology/rust/1_Rust核心_生命周期"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -115,8 +115,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/"
-    >ERC20高级充币归集技术</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/1_Rust%E6%A0%B8%E5%BF%83_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+    >1_Rust核心_生命周期</a> 
 </h2>
  
 
@@ -124,8 +124,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/" class="article-date">
-  <time datetime="2024-08-12T10:07:00.000Z" itemprop="datePublished">2024-08-12</time>
+      <a href="/2024/09/26/technology/rust/1_Rust%E6%A0%B8%E5%BF%83_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
+  <time datetime="2024-09-26T08:47:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -135,69 +135,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="核心技术概括"><a href="#核心技术概括" class="headerlink" title="核心技术概括:"></a>核心技术概括:</h3><ul>
-<li>使用 <code>CREATE2</code>派生确定的充币地址(合约)</li>
-<li>归集时在合约中 使用相同的 salt 和 hash, 创建充币地址(合约)<ul>
-<li>在合约中执行 ERC20的 approve，授权本合约</li>
-<li>调用 <code>selfdestruct</code>销毁合约</li>
-</ul>
-</li>
-<li>转移使用<code>transferFrom</code>转移充币地址中的ERC20代币</li>
-</ul>
-<hr>
-<h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><ul>
-<li>  充币 USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967">https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967</a></li>
-<li>归集(操作)USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7">https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7</a><ul>
-<li>  实际上是跨链</li>
-</ul>
-</li>
-</ul>
-<h4 id="技术点剖析"><a href="#技术点剖析" class="headerlink" title="技术点剖析:"></a>技术点剖析:</h4><ul>
-<li>  充币地址(接收地址)是一个”临时”合约地址</li>
-<li>  “临时”地址可以派生出来</li>
-<li>  且，”归集”合约可以操作 “临时”地址进行 <code>approve</code>操作</li>
-<li>  <code>approve</code>完成后即自毁(<code>selfdestruct</code>)了临时合约地址</li>
-</ul>
-<h4 id="合约代码分析"><a href="#合约代码分析" class="headerlink" title="合约代码分析:"></a>合约代码分析:</h4><ul>
-<li>合约代码: <a target="_blank" rel="noopener" href="https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171">https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171</a></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function that bridges taking amount from the t2bAddress where the user funds are parked.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bridgeERC20</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 fees,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nonce,</span></span></span><br><span class="line"><span class="function"><span class="params">    bytes calldata bridgeData,</span></span></span><br><span class="line"><span class="function"><span class="params">    bytes calldata signature</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> </span>&#123;</span><br><span class="line">    <span class="comment">// recovering signer.</span></span><br><span class="line">    address recoveredSigner = ECDSA.recover(</span><br><span class="line">        keccak256(</span><br><span class="line">            abi.encodePacked(</span><br><span class="line">                <span class="string">&quot;\x19Ethereum Signed Message:\n32&quot;</span>,</span><br><span class="line">                keccak256(</span><br><span class="line">                    abi.encode(</span><br><span class="line">                        address(<span class="built_in">this</span>),</span><br><span class="line">                        nonce,</span><br><span class="line">                        block.chainid, <span class="comment">// uint256</span></span><br><span class="line">                        fees,</span><br><span class="line">                        bridgeData</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        signature</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (signerAddress != recoveredSigner) revert SignerMismatch();</span><br><span class="line">    <span class="comment">// nonce is used by gated roles and we don&#x27;t expect nonce to reach the max value of uint256</span></span><br><span class="line">    unchecked &#123;</span><br><span class="line">        <span class="keyword">if</span> (nonce != nextNonce[signerAddress]++) revert InvalidNonce();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bridgeVerifiers[uint32(bytes4(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))] == address(<span class="number">0</span>))</span><br><span class="line">        revert UnsupportedBridge();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    (bool parseSuccess, bytes memory parsedData) = bridgeVerifiers[</span><br><span class="line">        uint32(bytes4(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))</span><br><span class="line">    ].call(bridgeData[<span class="number">4</span>:bridgeData.length - <span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!parseSuccess) revert VerificationCallFailed();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    IT2BRequest.T2BRequest memory t2bRequest = abi.decode(</span><br><span class="line">        parsedData,</span><br><span class="line">        (IT2BRequest.T2BRequest)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取派生地址</span></span><br><span class="line">    address t2bAddress = getAddressFor(</span><br><span class="line">        t2bRequest.recipient,</span><br><span class="line">        t2bRequest.toChainId</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断 allowance</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        ERC20(t2bRequest.token).allowance(t2bAddress, address(<span class="built_in">this</span>)) &lt;</span><br><span class="line">        t2bRequest.amount</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 计算salt</span></span><br><span class="line">        bytes32 uniqueSalt = keccak256(</span><br><span class="line">            abi.encode(t2bRequest.recipient, t2bRequest.toChainId)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用 CREATE2 创建临时地址</span></span><br><span class="line">        <span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(address(<span class="built_in">this</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将派生地址的 ERC20代币转移</span></span><br><span class="line">    ERC20(t2bRequest.token).safeTransferFrom(</span><br><span class="line">        t2bAddress,</span><br><span class="line">        address(<span class="built_in">this</span>),</span><br><span class="line">        t2bRequest.amount + fees</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... 其他代码, 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 部署派生地址</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deployApprovalContract</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address receiver,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 toChainId</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">address approvalAddress</span>) </span>&#123;</span><br><span class="line">    bytes32 uniqueSalt = keccak256(abi.encode(receiver, toChainId));</span><br><span class="line">    approvalAddress = address(<span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(address(<span class="built_in">this</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取派生地址</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAddressFor</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address receiver,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 toChainId</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">address</span>) </span>&#123;</span><br><span class="line">    bytes32 salt = keccak256(abi.encode(receiver, toChainId));</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">        address(</span><br><span class="line">            uint160(</span><br><span class="line">                uint256(</span><br><span class="line">                    keccak256(</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 可以看下文的  CreateAddress2的实现</span></span><br><span class="line">                        abi.encodePacked(</span><br><span class="line">                            bytes1(<span class="number">0xff</span>), <span class="comment">// 固定的</span></span><br><span class="line">                            address(<span class="built_in">this</span>), <span class="comment">// 本合约地址</span></span><br><span class="line">                            salt, <span class="comment">// salt</span></span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 合约代码的 hash</span></span><br><span class="line">                            keccak256(</span><br><span class="line">                                abi.encodePacked(</span><br><span class="line">                                    type(T2BApproval).creationCode, <span class="comment">// 合约代码</span></span><br><span class="line">                                    abi.encode(address(<span class="built_in">this</span>)) <span class="comment">// 合约</span></span><br><span class="line">                                )</span><br><span class="line">                            )</span><br><span class="line">                        )</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>  <code>T2BApproval</code> 派生地址合约</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">contract T2BApproval &#123;</span><br><span class="line">    using SafeTransferLib <span class="keyword">for</span> ERC20;</span><br><span class="line"></span><br><span class="line">    error ZeroAddress();</span><br><span class="line">    error InvalidTokenAddress();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constructor</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">address _t2bRouter</span>)</span> &#123;</span><br><span class="line">        <span class="comment">// Set T2b Router.</span></span><br><span class="line">        IT2BRouter t2bRouter = IT2BRouter(_t2bRouter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set Max Approvals for supported tokens.</span></span><br><span class="line">        uint256 tokenIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t2bRouter.supportedTokens(tokenIndex) != address(<span class="number">0</span>)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 进行 approve操作</span></span><br><span class="line">            ERC20(t2bRouter.supportedTokens(tokenIndex)).safeApprove(</span><br><span class="line">                address(t2bRouter),</span><br><span class="line">                type(uint256).max</span><br><span class="line">            );</span><br><span class="line">            unchecked &#123;</span><br><span class="line">                ++tokenIndex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 销毁</span></span><br><span class="line">        selfdestruct(payable(msg.sender));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>安全性:</p>
-<ul>
-<li><code> new T2BApproval&#123;salt: uniqueSalt&#125;(address(this));</code><ul>
-<li>CREATE2 生成的地址是基于<code>部署者地址</code>、<code>salt</code>、<code>合约字节码的哈希</code>计算的。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743">https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743</a></li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  scope.Contract 是本合约地址</span></span><br><span class="line"><span class="comment">// input  合约代码</span></span><br><span class="line">res, addr, returnGas, suberr := interpreter.evm.Create2(scope.Contract, input, gas, &amp;endowment, &amp;salt)</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587</a></li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create2 creates a new contract using code as deployment code.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The different between Create2 with Create is Create2 uses keccak256(0xff ++ msg.sender ++ salt ++ keccak256(init_code))[12:]</span></span><br><span class="line"><span class="comment">// instead of the usual sender-and-nonce-hash as the address where the contract is initialized at.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(evm *EVM)</span> <span class="title">Create2</span><span class="params">(caller ContractRef, code []<span class="keyword">byte</span>, gas <span class="keyword">uint64</span>, endowment *uint256.Int, salt *uint256.Int)</span></span></span><br><span class="line"> (ret []<span class="keyword">byte</span>, contractAddr common.Address, leftOverGas <span class="keyword">uint64</span>, err error) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约代码的hash</span></span><br><span class="line">	codeAndHash := &amp;codeAndHash&#123;code: code&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	contractAddr = crypto.CreateAddress2(caller.Address(), salt.Bytes32(), codeAndHash.Hash().Bytes())</span><br><span class="line">	<span class="keyword">return</span> evm.create(caller, codeAndHash, gas, endowment, contractAddr, CREATE2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125">https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125</a></li>
-</ul>
-<p>生成地址</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CreateAddress2 creates an ethereum address given the address bytes, initial</span></span><br><span class="line"><span class="comment">// contract code hash and a salt.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateAddress2</span><span class="params">(b common.Address, salt [32]<span class="keyword">byte</span>, inithash []<span class="keyword">byte</span>)</span> <span class="title">common</span>.<span class="title">Address</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> common.BytesToAddress(Keccak256([]<span class="keyword">byte</span>&#123;<span class="number">0xff</span>&#125;, b.Bytes(), salt[:], inithash)[<span class="number">12</span>:])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>略 <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448</a></li>
-</ul>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -208,7 +146,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC20/" rel="tag">ERC20</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -219,7 +157,7 @@
 
     
     <article
-  id="post-technology/other/程序员如何把控自己的职业"
+  id="post-technology/rust/0_Rust核心_基础"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -230,8 +168,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/08/02/technology/other/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%8C%E4%B8%9A/"
-    >程序员如何把控自己的职业</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/"
+    >0_Rust核心_基础</a> 
 </h2>
  
 
@@ -239,8 +177,61 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/08/02/technology/other/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%8C%E4%B8%9A/" class="article-date">
-  <time datetime="2024-08-02T12:37:00.000Z" itemprop="datePublished">2024-08-02</time>
+      <a href="/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2024-09-26T08:46:00.000Z" itemprop="datePublished">2024-09-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><a target="_blank" rel="noopener" href="https://course.rs/">https://course.rs/</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/19_solana的SPL-Token-Mint创建流程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/25/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/"
+    >19_solana的SPL Token Mint创建流程</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/09/25/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time datetime="2024-09-25T03:34:00.000Z" itemprop="datePublished">2024-09-25</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -251,117 +242,55 @@
     <div class="article-entry" itemprop="articleBody">
        
   <blockquote>
-<p><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/20977.html">https://coolshell.cn/articles/20977.html</a></p>
+<p>问题: 为什么创建token mint时，除了提供mint的pubkey之外，还需要提供mint的私钥来签名？</p>
 </blockquote>
+<p>分析 <code>spl-token</code>库中的 <code>createMint</code>函数，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">createMint</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    connection: Connection,</span></span></span><br><span class="line"><span class="function"><span class="params">    payer: Signer,</span></span></span><br><span class="line"><span class="function"><span class="params">    mintAuthority: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    freezeAuthority: PublicKey | <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    decimals: number,</span></span></span><br><span class="line"><span class="function"><span class="params">    keypair = Keypair.generate(),</span></span></span><br><span class="line"><span class="function"><span class="params">    confirmOptions?: ConfirmOptions,</span></span></span><br><span class="line"><span class="function"><span class="params">    programId = TOKEN_PROGRAM_ID</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">Promise</span>&lt;<span class="title">PublicKey</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> lamports = <span class="keyword">await</span> getMinimumBalanceForRentExemptMint(connection);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> transaction = <span class="keyword">new</span> Transaction().add(</span><br><span class="line">        SystemProgram.createAccount(&#123;</span><br><span class="line">            fromPubkey: payer.publicKey,</span><br><span class="line">            newAccountPubkey: keypair.publicKey,</span><br><span class="line">            space: MINT_SIZE,</span><br><span class="line">            lamports,</span><br><span class="line">            programId,</span><br><span class="line">        &#125;),</span><br><span class="line">        createInitializeMint2Instruction(keypair.publicKey, decimals, mintAuthority, freezeAuthority, programId)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> sendAndConfirmTransaction(</span><br><span class="line">        connection,</span><br><span class="line">        transaction,</span><br><span class="line">        [</span><br><span class="line">            payer, <span class="comment">// 支付手续费</span></span><br><span class="line">            keypair <span class="comment">// 问题：为什么需要提供 mint的私钥签名？</span></span><br><span class="line">        ],</span><br><span class="line">        confirmOptions</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keypair.publicKey;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createInitializeMint2Instruction</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    mint: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    decimals: number,</span></span></span><br><span class="line"><span class="function"><span class="params">    mintAuthority: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    freezeAuthority: PublicKey | <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    programId = TOKEN_PROGRAM_ID</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">TransactionInstruction</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> keys = [&#123;</span><br><span class="line">        pubkey: mint,</span><br><span class="line">        isSigner: <span class="literal">false</span>,</span><br><span class="line">        isWritable: <span class="literal">true</span>  <span class="comment">// 为什么是Writeable?</span></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> data = Buffer.alloc(initializeMint2InstructionData.span);</span><br><span class="line">    initializeMint2InstructionData.encode(</span><br><span class="line">        &#123;</span><br><span class="line">            instruction: TokenInstruction.InitializeMint2,</span><br><span class="line">            decimals,</span><br><span class="line">            mintAuthority,</span><br><span class="line">            freezeAuthority,</span><br><span class="line">        &#125;,</span><br><span class="line">        data</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TransactionInstruction(&#123; keys, programId, data &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中, 包含了2条指令</p>
 <ul>
-<li><p>第一，如果想要把控技术，应对这个世界的一些变化，<strong>需要大致知道这个世界的一些规律和发展趋势，另外还得认识自己</strong>，自己到底适合做什么？在这个趋势和规律下属于自己的发挥领域到底是什么？这是我们每个人都需要了解的。</p>
+<li><p><code>SystemProgram.createAccount</code>:</p>
+<ul>
+<li>说明：<strong>只用</strong> SytemProgram可以创建新账户</li>
+<li>源码: <a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L145">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L145</a></li>
+</ul>
 </li>
-<li><p>第二，<strong>打牢基础，以不变应万变</strong>，不管世界怎样变化，我都能很快适应它。基础的重要程度对于你能够飞多高是相当有影响的，懂原理的人比不懂原理的人能做出来的事情或是能解决的问题完全是两个层级的。</p>
+<li><p><code>createInitializeMint2Instruction</code>:</p>
+<ul>
+<li>源码: <a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/1044fe47f7bf005b64c11a8a867b911ae13ae442/token/program/src/processor.rs#L29">https://github.com/solana-labs/solana-program-library/blob/1044fe47f7bf005b64c11a8a867b911ae13ae442/token/program/src/processor.rs#L29</a></li>
+</ul>
 </li>
-<li><p>第三，<strong>提升成长的效率</strong>，因为现在社会的节奏实在太快了，比二十年前快得太多，技术层出不穷，所以我们的成长也要更有效率。效率并不单指的快，效率是怎么样更有效，是有用功除以总功，怎么学到更有效的东西，或者怎么更有效学习，是我们需要掌握的另一关键。</p>
-</li>
+</ul>
+<p>我们逐个分析</p>
+<p>首先我们分析 <code>SystemProgram.createAccount</code>的源码</p>
+<p>客户端源码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> createAccount(params: CreateAccountParams): TransactionInstruction;</span><br><span class="line"></span><br><span class="line">type CreateAccountParams = &#123;</span><br><span class="line">    <span class="comment">/** The account that will transfer lamports to the created account */</span></span><br><span class="line">    fromPubkey: PublicKey;</span><br><span class="line">    <span class="comment">/** Public key of the created account */</span></span><br><span class="line">    newAccountPubkey: PublicKey;</span><br><span class="line">    <span class="comment">/** Amount of lamports to transfer to the created account */</span></span><br><span class="line">    lamports: number;</span><br><span class="line">    <span class="comment">/** Amount of space in bytes to allocate to the created account */</span></span><br><span class="line">    space: number;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里 programId, 即 TOKEN_PROGRAM_ID , TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</span></span><br><span class="line">    <span class="comment">/** Public key of the program to assign as the owner of the created account */</span></span><br><span class="line">    programId: PublicKey;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>根据代码注释可知， 其中 <code>programId</code>被用作 <code>owner</code>， 即 Token Mint账户的<code>owner</code>, 即: <code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[allow(clippy::too_many_arguments)]</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">create_account</span></span>(</span><br><span class="line">    from_account_index: IndexOfAccount,</span><br><span class="line">    to_account_index: IndexOfAccount,</span><br><span class="line">    to_address: &amp;Address,</span><br><span class="line">    lamports: <span class="built_in">u64</span>,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    owner: &amp;Pubkey, <span class="comment">// 根据上面分析可知，owner即是 TOKEN_PROGRAM_ID</span></span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">    transaction_context: &amp;TransactionContext,</span><br><span class="line">    instruction_context: &amp;InstructionContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// if it looks like the `to` account is already in use, bail</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> to = instruction_context</span><br><span class="line">            .try_borrow_instruction_account(transaction_context, to_account_index)?;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果账户已经存在，则不能创建</span></span><br><span class="line">        <span class="keyword">if</span> to.get_lamports() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            ic_msg!(</span><br><span class="line">                invoke_context,</span><br><span class="line">                <span class="string">&quot;Create Account: account &#123;:?&#125; already in use&quot;</span>,</span><br><span class="line">                to_address</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::AccountAlreadyInUse.into());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 注意， 到此处为止， token mint的owner 是 SYSTEM_PROGRAM_ID</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 分配空间， 并指派owner权限</span></span><br><span class="line">        allocate_and_assign(&amp;<span class="keyword">mut</span> to, to_address, space, owner, signers, invoke_context)?;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意， 到这里为止， token mint的owner 已经是 owner, 即 TOKEN_PROGRAM_ID</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 交租金</span></span><br><span class="line">    transfer(</span><br><span class="line">        from_account_index,</span><br><span class="line">        to_account_index,</span><br><span class="line">        lamports,</span><br><span class="line">        invoke_context,</span><br><span class="line">        transaction_context,</span><br><span class="line">        instruction_context,</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码 https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L132</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">allocate_and_assign</span></span>(</span><br><span class="line">    to: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    to_address: &amp;Address,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    owner: &amp;Pubkey,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// 为新账户分配空间</span></span><br><span class="line">    allocate(to, to_address, space, signers, invoke_context)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为新账户指派owner</span></span><br><span class="line">    assign(to, to_address, owner, signers, invoke_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  源码  https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L70</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">allocate</span></span>(</span><br><span class="line">    account: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    address: &amp;Address,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要 Token Mint账户的签名</span></span><br><span class="line">    <span class="keyword">if</span> !address.is_signer(signers) &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: &#x27;to&#x27; account &#123;:?&#125; must sign&quot;</span>,</span><br><span class="line">            address</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(InstructionError::MissingRequiredSignature);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if it looks like the `to` account is already in use, bail</span></span><br><span class="line">    <span class="comment">//   (note that the id check is also enforced by message_processor)</span></span><br><span class="line">    <span class="keyword">if</span> !account.get_data().is_empty() || !system_program::check_id(account.get_owner()) &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: account &#123;:?&#125; already in use&quot;</span>,</span><br><span class="line">            address</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::AccountAlreadyInUse.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> space &gt; MAX_PERMITTED_DATA_LENGTH &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: requested &#123;&#125;, max allowed &#123;&#125;&quot;</span>,</span><br><span class="line">            space,</span><br><span class="line">            MAX_PERMITTED_DATA_LENGTH</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::InvalidAccountDataLength.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置账户空间</span></span><br><span class="line">    account.set_data_length(space <span class="keyword">as</span> <span class="built_in">usize</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//  源码  https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L112</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">assign</span></span>(</span><br><span class="line">    account: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    address: &amp;Address,</span><br><span class="line">    owner: &amp;Pubkey,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// no work to do, just return</span></span><br><span class="line">    <span class="keyword">if</span> account.get_owner() == owner &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Ok</span>(());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要 Token Mint账户的签名</span></span><br><span class="line">    <span class="keyword">if</span> !address.is_signer(signers) &#123;</span><br><span class="line">        ic_msg!(invoke_context, <span class="string">&quot;Assign: account &#123;:?&#125; must sign&quot;</span>, address);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(InstructionError::MissingRequiredSignature);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置owner</span></span><br><span class="line">    account.set_owner(&amp;owner.to_bytes())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>从上面2处对Token Mint的账户判断 <code>address.is_signer(signers)</code>， 即需要token mint的签名。</p>
+<p>到此为止， token mint的账户已经完成了创建，并且AccountInfo中的owner已经设置为 <code>TOKEN_PROGRAM_ID</code></p>
+<p>接下来，需要对 Token Mint账户的 AccountInfo中的data进行初始化，即对 Mint进行初始化</p>
+<p>因为，此时 Token mint的账户的owner是 TOKEN_PROGRAM_ID, 因此， TOKEN程序是有权限直接修改 token mint的</p>
+<p>解析来我们再分析<code>createInitializeMint2Instruction</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/// Processes an [InitializeMint2](enum.TokenInstruction.html) instruction.</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">process_initialize_mint2</span></span>(</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    decimals: <span class="built_in">u8</span>,</span><br><span class="line">    mint_authority: Pubkey,</span><br><span class="line">    freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    Self::_process_initialize_mint(accounts, decimals, mint_authority, freeze_authority, <span class="literal">false</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">_process_initialize_mint</span></span>(</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    decimals: <span class="built_in">u8</span>,</span><br><span class="line">    mint_authority: Pubkey,</span><br><span class="line">    freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">    rent_sysvar_account: <span class="built_in">bool</span>,</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    <span class="keyword">let</span> account_info_iter = &amp;<span class="keyword">mut</span> accounts.iter();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">let</span> mint_info = next_account_info(account_info_iter)?;</span><br><span class="line">    <span class="keyword">let</span> mint_data_len = mint_info.data_len();</span><br><span class="line">    <span class="keyword">let</span> rent = <span class="keyword">if</span> rent_sysvar_account &#123;</span><br><span class="line">        Rent::from_account_info(next_account_info(account_info_iter)?)?</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Rent::get()?</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> mint = Mint::unpack_unchecked(&amp;mint_info.data.borrow())?;</span><br><span class="line">    <span class="keyword">if</span> mint.is_initialized &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(TokenError::AlreadyInUse.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> !rent.is_exempt(mint_info.lamports(), mint_data_len) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(TokenError::NotRentExempt.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mint.mint_authority = COption::<span class="literal">Some</span>(mint_authority);</span><br><span class="line">    mint.decimals = decimals;</span><br><span class="line">    mint.is_initialized = <span class="literal">true</span>;</span><br><span class="line">    mint.freeze_authority = freeze_authority;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将mint结构体，序列化到 mint_info.data， 这里需要提供mint_info的写入权限</span></span><br><span class="line">    Mint::pack(mint, &amp;<span class="keyword">mut</span> mint_info.data.borrow_mut())?;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>至此，我们完整地分析了Token Mint的创建细节。</p>
+<p>总结一下:</p>
+<ul>
+<li>第1步， 通过调用系统程序的 <code>create_account</code> 创建新的<code>mint</code>账户，并分配空间，转入租金，并将owner设置为 Token Program</li>
+<li>第2步， 通过 Token Program的 <code>process_initialize_mint2</code> 指令，对<code>mint</code>账户进行初始化</li>
 </ul>
 <hr>
-<h2 id="打好基础"><a href="#打好基础" class="headerlink" title="打好基础"></a>打好基础</h2><ul>
-<li>变化都是表面的东西，内在的东西其实并没有太多的变化。</li>
-<li>不懂原理，不懂科学方法，你就不可能成长上去的，</li>
-</ul>
-<p>技术的基础，我会把其它成四类：</p>
-<ul>
-<li>程序语言：语言的原理，类库的实现，编程技术（并发、异步等），编程范式，设计模式……</li>
-<li>系统原理：计算机系统，操作系统，网络协议，数据库原理……</li>
-<li>中间件：消息队列，缓存系统，网关代理，调度系统 ……</li>
-<li>理论知识：算法和数据结构，数据库范式，网络七层模型，分布式系统……</li>
-</ul>
-<h2 id="学习效率"><a href="#学习效率" class="headerlink" title="学习效率"></a>学习效率</h2><ul>
-<li>挑选信息源</li>
-<li>注重基础和原理</li>
-<li>使用知识图谱</li>
-<li>举一反三</li>
-<li>总结归纳</li>
-<li>实践和坚持</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-learning/技术管理"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/"
-    >技术管理</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/" class="article-date">
-  <time datetime="2024-08-02T12:00:00.000Z" itemprop="datePublished">2024-08-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%A1%E7%90%86/">管理</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/20765.html">https://coolshell.cn/articles/20765.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/4951.html">https://coolshell.cn/articles/4951.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer">https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer</a></li>
-</ul>
+<p>最后，我们回答一下，文章开头的问题：</p>
+<blockquote>
+<p>问：为什么创建token mint账户时，除了提供mint的pubkey之外，还需要提供mint的私钥来签名？<br>答：因为在第1步调用系统程序的<code>create_account</code>时， 转移mint账户权限时需要校验账户签名，因此需要传入 mint的私钥。在<code>create_account</code>结束之后，mint账户的owner已经变成了 Token Program, 此后，就不再需要 mint的私钥了。</p>
 </blockquote>
-<h2 id="宏观管理"><a href="#宏观管理" class="headerlink" title="宏观管理"></a>宏观管理</h2><ul>
-<li>努力找到好的人<ul>
-<li>能独挡一面的人。这样交给他的事能独立完成，没有路能自己找路，这样可以省很多管理成本。</li>
-<li>沟通能力很强的人。一方面，他们把模糊的事能变清楚，另一方面，他能有效地说服他人。不然就会非常扯皮和消耗时间。</li>
-<li>能自管理和自驱动。不能自管理和自驱的人，会增加大量的管理和教育成本。能自驱动的人，都是对负责的事情有认同的人。</li>
-</ul>
-</li>
-<li>设定共同的目标和使命</li>
-<li>倾向使用小团队</li>
-</ul>
-<h2 id="微观实战"><a href="#微观实战" class="headerlink" title="微观实战"></a>微观实战</h2><blockquote>
-<p>主动，自我驱动，自我管理</p>
-</blockquote>
-<ul>
-<li>文档驱动：文档写作是一种深度思考，当你把你脑子里想的东西写下来的时候，你就会发现你的思考更多了</li>
-<li>自动化和简化: 如：自动化测试，自动化部署</li>
-<li>Owner文化: <strong>每件事都要定义一个Owner</strong></li>
-<li>Review文化: 很多人以为开会讨论有个议题就行了，其实不够，有效率的开会讨论需要的是议案，而且还是高质量的议案！</li>
-<li>目标承诺: 要有工作计划和工作目标, 每个人自己给自己制定的计划最好是在1-2周内。</li>
-<li>自我管理:</li>
-<li>知识分享会:</li>
-</ul>
+<hr>
+<p>(完)</p>
  
       <!-- reward -->
       
@@ -372,7 +301,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag">工作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
 
     </footer>
   </div>
@@ -383,7 +312,7 @@
 
     
     <article
-  id="post-life/纪念陈皓先生"
+  id="post-technology/spider/微信小程序爬虫"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -394,8 +323,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/08/02/life/%E7%BA%AA%E5%BF%B5%E9%99%88%E7%9A%93%E5%85%88%E7%94%9F/"
-    >纪念陈皓先生</a> 
+  <a class="article-title" href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/"
+    >微信小程序爬虫</a> 
 </h2>
  
 
@@ -403,61 +332,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/08/02/life/%E7%BA%AA%E5%BF%B5%E9%99%88%E7%9A%93%E5%85%88%E7%94%9F/" class="article-date">
-  <time datetime="2024-08-02T12:00:00.000Z" itemprop="datePublished">2024-08-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><a target="_blank" rel="noopener" href="https://github.com/megaease/Remembering-Haoel">https://github.com/megaease/Remembering-Haoel</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/defi/Uniswap-v1学习"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/"
-    >Uniswap-v1学习</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2024-07-30T16:00:00.000Z" itemprop="datePublished">2024-07-31</time>
+      <a href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/" class="article-date">
+  <time datetime="2024-09-24T09:43:00.000Z" itemprop="datePublished">2024-09-24</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -467,7 +343,52 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>这里以 Windows 微信小程序作为分析对象。</p>
+<p>分析步骤：</p>
+<ul>
+<li>通过 Charles 抓包分析微信小程序的鉴权和api路径</li>
+<li>获取登陆态token</li>
+<li>使用token请求api</li>
+</ul>
+<hr>
+<h3 id="Charles-安装并设置"><a href="#Charles-安装并设置" class="headerlink" title="Charles 安装并设置"></a>Charles 安装并设置</h3><ul>
+<li><p>安装 Charles</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
+</ul>
+</li>
+<li><p>并注册(可跳过)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://inused.github.io/pages/file/tool/CharlesKeygen.html">https://inused.github.io/pages/file/tool/CharlesKeygen.html</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>设置证书:</p>
+<blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/HeyShHeyou/article/details/90045204">https://blog.csdn.net/HeyShHeyou/article/details/90045204</a></p>
+</blockquote>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles1.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles2.jpg"></p>
+</li>
+<li><p>设置代理:</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles3.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles4.jpg"></p>
+</li>
+</ul>
+<ul>
+<li>重启 Charles, 打开PC微信</li>
+</ul>
+<h3 id="PC-Windows-微信小程序抓包"><a href="#PC-Windows-微信小程序抓包" class="headerlink" title="PC(Windows)微信小程序抓包"></a>PC(Windows)微信小程序抓包</h3><p>打开微信小程序</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app1.jpg"></p>
+<h3 id="关于微信授权登录的流程"><a href="#关于微信授权登录的流程" class="headerlink" title="关于微信授权登录的流程"></a>关于微信授权登录的流程</h3><blockquote>
+<p>官方文档: <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-miniapp-login-flow.jpg"></p>
+<h3 id="实际案例：微信小程序登录"><a href="#实际案例：微信小程序登录" class="headerlink" title="实际案例：微信小程序登录"></a>实际案例：微信小程序登录</h3><p>授权登录<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login2.jpg"></p>
+<p>业务接口:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login3.jpg"></p>
+<p>直接使用token请求api</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-request1.jpg"></p>
+<h3 id="编写python程序请求api"><a href="#编写python程序请求api" class="headerlink" title="编写python程序请求api"></a>编写python程序请求api</h3><p>略。 和普通python爬虫一样。</p>
+ 
       <!-- reward -->
       
     </div>
@@ -477,7 +398,108 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E8%80%85/" rel="tag">开发者</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%87%91%E8%9E%8D/" rel="tag">金融</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/" rel="tag">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/web3/逆向分析pump.fun的BondingCurve算法"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/"
+    >逆向分析pump.fun的BondingCurve算法</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2024-09-03T12:17:01.000Z" itemprop="datePublished">2024-09-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
+<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
+<p>可以看到 <code>onChange</code>事件处理函数:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
+<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
+<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
+<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
+<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
+<p>根据前面的分析,</p>
+<ul>
+<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
+<li>参数 <code>e</code> 是数量</li>
+</ul>
+<p>因此,<br>其中 i 是 bigint库</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
+<ul>
+<li>前端计算使用BN:,<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
+<li>或者使用 anchor.BN</li>
+</ul>
+</li>
+<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
+<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$</p>
+<p>买入公式(按照Token数量)</p>
+<p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$</p>
+<p>买入后状态更新：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
+<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$</p>
+<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
+<hr>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
+<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$</p>
+<p>$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$</p>
+<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$</p>
+<p>$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$</p>
+<p>$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$</p>
+<p>$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$</p>
+<p>$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$</p>
+<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$p = \frac{S_v}{T_v}$$</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nextjs/" rel="tag">nextjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solana/" rel="tag">solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
 
     </footer>
   </div>
@@ -493,7 +515,7 @@
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>

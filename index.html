@@ -104,7 +104,7 @@
     
     
     <article
-  id="post-technology/blockchain/solana/19_solana的SPL-Token-Mint创建流程"
+  id="post-technology/rust/6_Rust核心_宏"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -115,8 +115,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/09/25/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/"
-    >19_solana的SPL Token Mint创建流程</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/6_Rust%E6%A0%B8%E5%BF%83_%E5%AE%8F/"
+    >6_Rust核心_宏</a> 
 </h2>
  
 
@@ -124,8 +124,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/09/25/technology/blockchain/solana/19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time datetime="2024-09-25T03:34:00.000Z" itemprop="datePublished">2024-09-25</time>
+      <a href="/2024/09/26/technology/rust/6_Rust%E6%A0%B8%E5%BF%83_%E5%AE%8F/" class="article-date">
+  <time datetime="2024-09-26T08:52:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -135,56 +135,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <blockquote>
-<p>问题: 为什么创建token mint时，除了提供mint的pubkey之外，还需要提供mint的私钥来签名？</p>
-</blockquote>
-<p>分析 <code>spl-token</code>库中的 <code>createMint</code>函数，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">createMint</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    connection: Connection,</span></span></span><br><span class="line"><span class="function"><span class="params">    payer: Signer,</span></span></span><br><span class="line"><span class="function"><span class="params">    mintAuthority: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    freezeAuthority: PublicKey | <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    decimals: number,</span></span></span><br><span class="line"><span class="function"><span class="params">    keypair = Keypair.generate(),</span></span></span><br><span class="line"><span class="function"><span class="params">    confirmOptions?: ConfirmOptions,</span></span></span><br><span class="line"><span class="function"><span class="params">    programId = TOKEN_PROGRAM_ID</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">Promise</span>&lt;<span class="title">PublicKey</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> lamports = <span class="keyword">await</span> getMinimumBalanceForRentExemptMint(connection);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> transaction = <span class="keyword">new</span> Transaction().add(</span><br><span class="line">        SystemProgram.createAccount(&#123;</span><br><span class="line">            fromPubkey: payer.publicKey,</span><br><span class="line">            newAccountPubkey: keypair.publicKey,</span><br><span class="line">            space: MINT_SIZE,</span><br><span class="line">            lamports,</span><br><span class="line">            programId,</span><br><span class="line">        &#125;),</span><br><span class="line">        createInitializeMint2Instruction(keypair.publicKey, decimals, mintAuthority, freezeAuthority, programId)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> sendAndConfirmTransaction(</span><br><span class="line">        connection,</span><br><span class="line">        transaction,</span><br><span class="line">        [</span><br><span class="line">            payer, <span class="comment">// 支付手续费</span></span><br><span class="line">            keypair <span class="comment">// 问题：为什么需要提供 mint的私钥签名？</span></span><br><span class="line">        ],</span><br><span class="line">        confirmOptions</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keypair.publicKey;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createInitializeMint2Instruction</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    mint: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    decimals: number,</span></span></span><br><span class="line"><span class="function"><span class="params">    mintAuthority: PublicKey,</span></span></span><br><span class="line"><span class="function"><span class="params">    freezeAuthority: PublicKey | <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    programId = TOKEN_PROGRAM_ID</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">TransactionInstruction</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> keys = [&#123;</span><br><span class="line">        pubkey: mint,</span><br><span class="line">        isSigner: <span class="literal">false</span>,</span><br><span class="line">        isWritable: <span class="literal">true</span>  <span class="comment">// 为什么是Writeable?</span></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> data = Buffer.alloc(initializeMint2InstructionData.span);</span><br><span class="line">    initializeMint2InstructionData.encode(</span><br><span class="line">        &#123;</span><br><span class="line">            instruction: TokenInstruction.InitializeMint2,</span><br><span class="line">            decimals,</span><br><span class="line">            mintAuthority,</span><br><span class="line">            freezeAuthority,</span><br><span class="line">        &#125;,</span><br><span class="line">        data</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TransactionInstruction(&#123; keys, programId, data &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>其中, 包含了2条指令</p>
-<ul>
-<li><p><code>SystemProgram.createAccount</code>:</p>
-<ul>
-<li>说明：<strong>只用</strong> SytemProgram可以创建新账户</li>
-<li>源码: <a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L145">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L145</a></li>
-</ul>
-</li>
-<li><p><code>createInitializeMint2Instruction</code>:</p>
-<ul>
-<li>源码: <a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/1044fe47f7bf005b64c11a8a867b911ae13ae442/token/program/src/processor.rs#L29">https://github.com/solana-labs/solana-program-library/blob/1044fe47f7bf005b64c11a8a867b911ae13ae442/token/program/src/processor.rs#L29</a></li>
-</ul>
-</li>
-</ul>
-<p>我们逐个分析</p>
-<p>首先我们分析 <code>SystemProgram.createAccount</code>的源码</p>
-<p>客户端源码:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> createAccount(params: CreateAccountParams): TransactionInstruction;</span><br><span class="line"></span><br><span class="line">type CreateAccountParams = &#123;</span><br><span class="line">    <span class="comment">/** The account that will transfer lamports to the created account */</span></span><br><span class="line">    fromPubkey: PublicKey;</span><br><span class="line">    <span class="comment">/** Public key of the created account */</span></span><br><span class="line">    newAccountPubkey: PublicKey;</span><br><span class="line">    <span class="comment">/** Amount of lamports to transfer to the created account */</span></span><br><span class="line">    lamports: number;</span><br><span class="line">    <span class="comment">/** Amount of space in bytes to allocate to the created account */</span></span><br><span class="line">    space: number;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里 programId, 即 TOKEN_PROGRAM_ID , TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</span></span><br><span class="line">    <span class="comment">/** Public key of the program to assign as the owner of the created account */</span></span><br><span class="line">    programId: PublicKey;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>根据代码注释可知， 其中 <code>programId</code>被用作 <code>owner</code>， 即 Token Mint账户的<code>owner</code>, 即: <code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[allow(clippy::too_many_arguments)]</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">create_account</span></span>(</span><br><span class="line">    from_account_index: IndexOfAccount,</span><br><span class="line">    to_account_index: IndexOfAccount,</span><br><span class="line">    to_address: &amp;Address,</span><br><span class="line">    lamports: <span class="built_in">u64</span>,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    owner: &amp;Pubkey, <span class="comment">// 根据上面分析可知，owner即是 TOKEN_PROGRAM_ID</span></span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">    transaction_context: &amp;TransactionContext,</span><br><span class="line">    instruction_context: &amp;InstructionContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// if it looks like the `to` account is already in use, bail</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> to = instruction_context</span><br><span class="line">            .try_borrow_instruction_account(transaction_context, to_account_index)?;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果账户已经存在，则不能创建</span></span><br><span class="line">        <span class="keyword">if</span> to.get_lamports() &gt; <span class="number">0</span> &#123;</span><br><span class="line">            ic_msg!(</span><br><span class="line">                invoke_context,</span><br><span class="line">                <span class="string">&quot;Create Account: account &#123;:?&#125; already in use&quot;</span>,</span><br><span class="line">                to_address</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::AccountAlreadyInUse.into());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 注意， 到此处为止， token mint的owner 是 SYSTEM_PROGRAM_ID</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 分配空间， 并指派owner权限</span></span><br><span class="line">        allocate_and_assign(&amp;<span class="keyword">mut</span> to, to_address, space, owner, signers, invoke_context)?;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意， 到这里为止， token mint的owner 已经是 owner, 即 TOKEN_PROGRAM_ID</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 交租金</span></span><br><span class="line">    transfer(</span><br><span class="line">        from_account_index,</span><br><span class="line">        to_account_index,</span><br><span class="line">        lamports,</span><br><span class="line">        invoke_context,</span><br><span class="line">        transaction_context,</span><br><span class="line">        instruction_context,</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码 https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L132</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">allocate_and_assign</span></span>(</span><br><span class="line">    to: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    to_address: &amp;Address,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    owner: &amp;Pubkey,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// 为新账户分配空间</span></span><br><span class="line">    allocate(to, to_address, space, signers, invoke_context)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为新账户指派owner</span></span><br><span class="line">    assign(to, to_address, owner, signers, invoke_context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  源码  https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L70</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">allocate</span></span>(</span><br><span class="line">    account: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    address: &amp;Address,</span><br><span class="line">    space: <span class="built_in">u64</span>,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要 Token Mint账户的签名</span></span><br><span class="line">    <span class="keyword">if</span> !address.is_signer(signers) &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: &#x27;to&#x27; account &#123;:?&#125; must sign&quot;</span>,</span><br><span class="line">            address</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(InstructionError::MissingRequiredSignature);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if it looks like the `to` account is already in use, bail</span></span><br><span class="line">    <span class="comment">//   (note that the id check is also enforced by message_processor)</span></span><br><span class="line">    <span class="keyword">if</span> !account.get_data().is_empty() || !system_program::check_id(account.get_owner()) &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: account &#123;:?&#125; already in use&quot;</span>,</span><br><span class="line">            address</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::AccountAlreadyInUse.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> space &gt; MAX_PERMITTED_DATA_LENGTH &#123;</span><br><span class="line">        ic_msg!(</span><br><span class="line">            invoke_context,</span><br><span class="line">            <span class="string">&quot;Allocate: requested &#123;&#125;, max allowed &#123;&#125;&quot;</span>,</span><br><span class="line">            space,</span><br><span class="line">            MAX_PERMITTED_DATA_LENGTH</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(SystemError::InvalidAccountDataLength.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置账户空间</span></span><br><span class="line">    account.set_data_length(space <span class="keyword">as</span> <span class="built_in">usize</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//  源码  https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/system/src/system_processor.rs#L112</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">assign</span></span>(</span><br><span class="line">    account: &amp;<span class="keyword">mut</span> BorrowedAccount,</span><br><span class="line">    address: &amp;Address,</span><br><span class="line">    owner: &amp;Pubkey,</span><br><span class="line">    signers: &amp;HashSet&lt;Pubkey&gt;,</span><br><span class="line">    invoke_context: &amp;InvokeContext,</span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(), InstructionError&gt; &#123;</span><br><span class="line">    <span class="comment">// no work to do, just return</span></span><br><span class="line">    <span class="keyword">if</span> account.get_owner() == owner &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Ok</span>(());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要 Token Mint账户的签名</span></span><br><span class="line">    <span class="keyword">if</span> !address.is_signer(signers) &#123;</span><br><span class="line">        ic_msg!(invoke_context, <span class="string">&quot;Assign: account &#123;:?&#125; must sign&quot;</span>, address);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(InstructionError::MissingRequiredSignature);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置owner</span></span><br><span class="line">    account.set_owner(&amp;owner.to_bytes())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>从上面2处对Token Mint的账户判断 <code>address.is_signer(signers)</code>， 即需要token mint的签名。</p>
-<p>到此为止， token mint的账户已经完成了创建，并且AccountInfo中的owner已经设置为 <code>TOKEN_PROGRAM_ID</code></p>
-<p>接下来，需要对 Token Mint账户的 AccountInfo中的data进行初始化，即对 Mint进行初始化</p>
-<p>因为，此时 Token mint的账户的owner是 TOKEN_PROGRAM_ID, 因此， TOKEN程序是有权限直接修改 token mint的</p>
-<p>解析来我们再分析<code>createInitializeMint2Instruction</code></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/// Processes an [InitializeMint2](enum.TokenInstruction.html) instruction.</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">process_initialize_mint2</span></span>(</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    decimals: <span class="built_in">u8</span>,</span><br><span class="line">    mint_authority: Pubkey,</span><br><span class="line">    freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    Self::_process_initialize_mint(accounts, decimals, mint_authority, freeze_authority, <span class="literal">false</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">_process_initialize_mint</span></span>(</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    decimals: <span class="built_in">u8</span>,</span><br><span class="line">    mint_authority: Pubkey,</span><br><span class="line">    freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">    rent_sysvar_account: <span class="built_in">bool</span>,</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    <span class="keyword">let</span> account_info_iter = &amp;<span class="keyword">mut</span> accounts.iter();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">let</span> mint_info = next_account_info(account_info_iter)?;</span><br><span class="line">    <span class="keyword">let</span> mint_data_len = mint_info.data_len();</span><br><span class="line">    <span class="keyword">let</span> rent = <span class="keyword">if</span> rent_sysvar_account &#123;</span><br><span class="line">        Rent::from_account_info(next_account_info(account_info_iter)?)?</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Rent::get()?</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> mint = Mint::unpack_unchecked(&amp;mint_info.data.borrow())?;</span><br><span class="line">    <span class="keyword">if</span> mint.is_initialized &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(TokenError::AlreadyInUse.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> !rent.is_exempt(mint_info.lamports(), mint_data_len) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(TokenError::NotRentExempt.into());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mint.mint_authority = COption::<span class="literal">Some</span>(mint_authority);</span><br><span class="line">    mint.decimals = decimals;</span><br><span class="line">    mint.is_initialized = <span class="literal">true</span>;</span><br><span class="line">    mint.freeze_authority = freeze_authority;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将mint结构体，序列化到 mint_info.data， 这里需要提供mint_info的写入权限</span></span><br><span class="line">    Mint::pack(mint, &amp;<span class="keyword">mut</span> mint_info.data.borrow_mut())?;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>至此，我们完整地分析了Token Mint的创建细节。</p>
-<p>总结一下:</p>
-<ul>
-<li>第1步， 通过调用系统程序的 <code>create_account</code> 创建新的<code>mint</code>账户，并分配空间，转入租金，并将owner设置为 Token Program</li>
-<li>第2步， 通过 Token Program的 <code>process_initialize_mint2</code> 指令，对<code>mint</code>账户进行初始化</li>
-</ul>
-<hr>
-<p>最后，我们回答一下，文章开头的问题：</p>
-<blockquote>
-<p>问：为什么创建token mint账户时，除了提供mint的pubkey之外，还需要提供mint的私钥来签名？<br>答：因为在第1步调用系统程序的<code>create_account</code>时， 转移mint账户权限时需要校验账户签名，因此需要传入 mint的私钥。在<code>create_account</code>结束之后，mint账户的owner已经变成了 Token Program, 此后，就不再需要 mint的私钥了。</p>
-</blockquote>
-<hr>
-<p>(完)</p>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -195,7 +146,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -206,7 +157,7 @@
 
     
     <article
-  id="post-technology/spider/微信小程序爬虫"
+  id="post-technology/rust/5_Rust核心_异步编程"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -217,8 +168,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/"
-    >微信小程序爬虫</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/5_Rust%E6%A0%B8%E5%BF%83_%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"
+    >5_Rust核心_异步编程</a> 
 </h2>
  
 
@@ -226,8 +177,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/" class="article-date">
-  <time datetime="2024-09-24T09:43:00.000Z" itemprop="datePublished">2024-09-24</time>
+      <a href="/2024/09/26/technology/rust/5_Rust%E6%A0%B8%E5%BF%83_%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2024-09-26T08:51:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -237,51 +188,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>这里以 Windows 微信小程序作为分析对象。</p>
-<p>分析步骤：</p>
-<ul>
-<li>通过 Charles 抓包分析微信小程序的鉴权和api路径</li>
-<li>获取登陆态token</li>
-<li>使用token请求api</li>
-</ul>
-<hr>
-<h3 id="Charles-安装并设置"><a href="#Charles-安装并设置" class="headerlink" title="Charles 安装并设置"></a>Charles 安装并设置</h3><ul>
-<li><p>安装 Charles</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
-</ul>
-</li>
-<li><p>并注册(可跳过)</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://inused.github.io/pages/file/tool/CharlesKeygen.html">https://inused.github.io/pages/file/tool/CharlesKeygen.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>设置证书:</p>
-<blockquote>
-<p>参考： <a target="_blank" rel="noopener" href="https://blog.csdn.net/HeyShHeyou/article/details/90045204">https://blog.csdn.net/HeyShHeyou/article/details/90045204</a></p>
-</blockquote>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles1.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles2.jpg"></p>
-</li>
-<li><p>设置代理:</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles3.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles4.jpg"></p>
-</li>
-</ul>
-<ul>
-<li>重启 Charles, 打开PC微信</li>
-</ul>
-<h3 id="PC-Windows-微信小程序抓包"><a href="#PC-Windows-微信小程序抓包" class="headerlink" title="PC(Windows)微信小程序抓包"></a>PC(Windows)微信小程序抓包</h3><p>打开微信小程序</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app1.jpg"></p>
-<h3 id="关于微信授权登录的流程"><a href="#关于微信授权登录的流程" class="headerlink" title="关于微信授权登录的流程"></a>关于微信授权登录的流程</h3><blockquote>
-<p>官方文档: <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-miniapp-login-flow.jpg"></p>
-<h3 id="实际案例：微信小程序登录"><a href="#实际案例：微信小程序登录" class="headerlink" title="实际案例：微信小程序登录"></a>实际案例：微信小程序登录</h3><p>授权登录<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login2.jpg"></p>
-<p>业务接口:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login3.jpg"></p>
-<p>直接使用token请求api</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-request1.jpg"></p>
-<h3 id="编写python程序请求api"><a href="#编写python程序请求api" class="headerlink" title="编写python程序请求api"></a>编写python程序请求api</h3><p>略。 和普通python爬虫一样。</p>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -292,7 +199,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles/" rel="tag">Charles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -303,7 +210,7 @@
 
     
     <article
-  id="post-technology/blockchain/web3/逆向分析pump.fun的BondingCurve算法"
+  id="post-technology/rust/4_Rust核心_错误处理"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -314,8 +221,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/"
-    >逆向分析pump.fun的BondingCurve算法</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"
+    >4_Rust核心_错误处理</a> 
 </h2>
  
 
@@ -323,8 +230,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/" class="article-date">
-  <time datetime="2024-09-03T12:17:01.000Z" itemprop="datePublished">2024-09-03</time>
+      <a href="/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2024-09-26T08:50:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -334,55 +241,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
-<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
-<p>可以看到 <code>onChange</code>事件处理函数:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
-<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
-<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
-<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
-<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
-<p>根据前面的分析,</p>
-<ul>
-<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
-<li>参数 <code>e</code> 是数量</li>
-</ul>
-<p>因此,<br>其中 i 是 bigint库</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
-<ul>
-<li>前端计算使用BN:,<ul>
-<li> <a target="_blank" rel="noopener" href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
-<li>或者使用 anchor.BN</li>
-</ul>
-</li>
-<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
-<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$</p>
-<p>买入公式(按照Token数量)</p>
-<p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$</p>
-<p>买入后状态更新：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
-<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$</p>
-<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
-<hr>
-<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
-<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$</p>
-<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$</p>
-<p>$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$</p>
-<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$p = \frac{S_v}{T_v}$$</p>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -393,7 +252,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nextjs/" rel="tag">nextjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solana/" rel="tag">solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web3/" rel="tag">web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -404,7 +263,7 @@
 
     
     <article
-  id="post-technology/blockchain/solana/18_Solana高级交易Durable_Nonce"
+  id="post-technology/rust/3_Rust核心_并发编程"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -415,8 +274,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/"
-    >18_Solana高级交易Durable_Nonce</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/3_Rust%E6%A0%B8%E5%BF%83_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"
+    >3_Rust核心_并发编程</a> 
 </h2>
  
 
@@ -424,8 +283,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/" class="article-date">
-  <time datetime="2024-08-30T03:34:00.000Z" itemprop="datePublished">2024-08-30</time>
+      <a href="/2024/09/26/technology/rust/3_Rust%E6%A0%B8%E5%BF%83_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2024-09-26T08:49:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -435,22 +294,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>官方文档:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/introduction-to-durable-nonces">https://solana.com/developers/guides/advanced/introduction-to-durable-nonces</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/0xproflupin/solana-durable-nonces">https://github.com/0xproflupin/solana-durable-nonces</a></li>
-</ul>
-<p><strong>本质问题： 如何避免双花？</strong></p>
-<p>Recent Blockhash 做了时间戳，也充当了唯一标识(类似ETH的nonce)的作用, 防止双花</p>
-<p><strong>有了 Recent Blockhash 为什么还需要 Durable Nonce?</strong></p>
-<p>Recent Blockhash 的窗口是 150个区块(约 150 * 0.4 = 60s), 因此，签名之后的交易必须在一分钟内被提交执行，否则交易就会过期。</p>
-<p>几个特殊场景:</p>
-<ul>
-<li>大批量交易, 不想因为blockhash重复而失败 ?</li>
-<li>多重签名交易？</li>
-<li>离线签名？</li>
-</ul>
-<p>因此，就需要 Durable Nonce 方案, nonce 是 32字节, 其作用就是确保交易的唯一</p>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -461,7 +305,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -472,7 +316,7 @@
 
     
     <article
-  id="post-technology/blockchain/prediction/Polymarket技术分析"
+  id="post-technology/rust/2_Rust核心_智能指针"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -483,8 +327,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"
-    >Polymarket技术分析</a> 
+  <a class="article-title" href="/2024/09/26/technology/rust/2_Rust%E6%A0%B8%E5%BF%83_%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"
+    >2_Rust核心_智能指针</a> 
 </h2>
  
 
@@ -492,8 +336,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2024-08-12T11:00:00.000Z" itemprop="datePublished">2024-08-12</time>
+      <a href="/2024/09/26/technology/rust/2_Rust%E6%A0%B8%E5%BF%83_%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="article-date">
+  <time datetime="2024-09-26T08:48:00.000Z" itemprop="datePublished">2024-09-26</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -503,87 +347,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>Polymarket技术分析</p>
-<p>polymarket介绍:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
-<p>关键概念:</p>
-<ul>
-<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
-<ul>
-<li>例如:<ul>
-<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
-<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
-</li>
-<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
-</li>
-<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
-<ul>
-<li>例如： 特朗普赢得2024大选的事件<ul>
-<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
-<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
-<ul>
-<li>例如:<ul>
-<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
-<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
-</ul>
-</li>
-<li>例如：<ul>
-<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
-<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
-<ul>
-<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
-</li>
-<li><p>例如:</p>
-<ul>
-<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
-<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
-</ul>
-</li>
-<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
-</li>
-<li><p>上面的例子: 形成对手单，有2种方式</p>
-<ul>
-<li>第一种: 直接方式<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
-</ul>
-</li>
-<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
-<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
-<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
-<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  <p>TODO</p>
  
       <!-- reward -->
       
@@ -594,7 +358,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Polymarket/" rel="tag">Polymarket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prediction-market/" rel="tag">prediction market</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
 
     </footer>
   </div>
@@ -610,7 +374,7 @@
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
