@@ -1526,19 +1526,6 @@
       </tags>
   </entry>
   <entry>
-    <title>空杯心态</title>
-    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
-    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爱因斯坦与佛陀</title>
     <url>/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/</url>
     <content><![CDATA[<blockquote>
@@ -1584,6 +1571,19 @@
         <tag>佛学</tag>
         <tag>科学</tag>
         <tag>世界</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>空杯心态</title>
+    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
+    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -2310,6 +2310,30 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode算法题.md</title>
+    <url>/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/</url>
+    <content><![CDATA[<p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
+<p>刷题的代码和笔记都会提交到</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
+</ul>
+<p>刷题计划表:</p>
+<p><a href="https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md">https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>github非常有价值的项目1</title>
     <url>/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/</url>
     <content><![CDATA[<h3 id="PaddleOCR"><a href="#PaddleOCR" class="headerlink" title="PaddleOCR"></a>PaddleOCR</h3><ul>
@@ -2345,30 +2369,6 @@
         <tag>github</tag>
         <tag>新技术</tag>
         <tag>技术趋势</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode算法题.md</title>
-    <url>/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/</url>
-    <content><![CDATA[<p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
-<p>刷题的代码和笔记都会提交到</p>
-<ul>
-<li><a href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
-</ul>
-<p>参考</p>
-<ul>
-<li><a href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
-</ul>
-<p>刷题计划表:</p>
-<p><a href="https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md">https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>算法</tag>
-        <tag>刷题</tag>
       </tags>
   </entry>
   <entry>
@@ -2630,21 +2630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>celery</title>
-    <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
-<p>Django集成celery示例： <a href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>celery</tag>
-        <tag>任务队列</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>谷歌高级搜索技巧</title>
     <url>/2023/08/15/technology/other/%E8%B0%B7%E6%AD%8C%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h1 id="谷歌高级搜索技巧"><a href="#谷歌高级搜索技巧" class="headerlink" title="谷歌高级搜索技巧"></a>谷歌高级搜索技巧</h1><ul>
@@ -2726,6 +2711,21 @@
         <tag>谷歌搜索</tag>
         <tag>搜索技巧</tag>
         <tag>信息</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>celery</title>
+    <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
+<p>Django集成celery示例： <a href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>celery</tag>
+        <tag>任务队列</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -4873,6 +4873,23 @@
 <ul>
 <li>略 <a href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448</a></li>
 </ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>智能合约</tag>
+        <tag>ERC20</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ERC20高级充币归集技术</title>
+    <url>/2024/08/12/technology/blockchain/solidity/Foundry%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>Foundry</p>
+<p><a href="https://book.getfoundry.sh/getting-started/installation">https://book.getfoundry.sh/getting-started/installation</a></p>
+<p><a href="https://github.com/foundry-rs/foundry">https://github.com/foundry-rs/foundry</a></p>
+<p>TODO</p>
 ]]></content>
       <categories>
         <category>技术</category>
