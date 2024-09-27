@@ -7,12 +7,10 @@ mermaid: true
 ---
 
 
+```mermaid
+graph LR;
+    A--->B
 ```
----
-title: Node
----
-flowchart LR
-    id
 
 
 
