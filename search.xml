@@ -235,6 +235,21 @@
       </categories>
   </entry>
   <entry>
+    <title>学习</title>
+    <url>/2021/04/27/learning/index/</url>
+    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
+<p>2021的学习计划:</p>
+<ul>
+<li>积极心理学课程(哈佛)</li>
+<li>英语</li>
+<li>经济学概论课程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2022技术学习</title>
     <url>/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
@@ -256,21 +271,6 @@
         <tag>前端</tag>
         <tag>全栈</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>学习</title>
-    <url>/2021/04/27/learning/index/</url>
-    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
-<p>2021的学习计划:</p>
-<ul>
-<li>积极心理学课程(哈佛)</li>
-<li>英语</li>
-<li>经济学概论课程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
   </entry>
   <entry>
     <title>东南亚Web3调研</title>
@@ -2230,6 +2230,44 @@
       </tags>
   </entry>
   <entry>
+    <title>github非常有价值的项目1</title>
+    <url>/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/</url>
+    <content><![CDATA[<h3 id="PaddleOCR"><a href="#PaddleOCR" class="headerlink" title="PaddleOCR"></a>PaddleOCR</h3><ul>
+<li>仓库链接：<a href="https://github.com/PaddlePaddle/PaddleOCR">https://github.com/PaddlePaddle/PaddleOCR</a></li>
+<li>说明：基于深度学习的OCR库</li>
+</ul>
+<h3 id="Web-Dev-For-Beginners"><a href="#Web-Dev-For-Beginners" class="headerlink" title="Web-Dev-For-Beginners"></a>Web-Dev-For-Beginners</h3><ul>
+<li>仓库链接：<a href="https://github.com/microsoft/Web-Dev-For-Beginners">https://github.com/microsoft/Web-Dev-For-Beginners</a></li>
+<li>说明：微软出品的零基础学习网站开发</li>
+</ul>
+<h3 id="full-blockchain-solidity-course-js"><a href="#full-blockchain-solidity-course-js" class="headerlink" title="full-blockchain-solidity-course-js"></a>full-blockchain-solidity-course-js</h3><ul>
+<li><a href="https://github.com/smartcontractkit/full-blockchain-solidity-course-js">https://github.com/smartcontractkit/full-blockchain-solidity-course-js</a></li>
+<li>说明：全栈智能合约开发课程</li>
+</ul>
+<h3 id="Deep-Learning-with-TensorFlow-book"><a href="#Deep-Learning-with-TensorFlow-book" class="headerlink" title="Deep-Learning-with-TensorFlow-book"></a>Deep-Learning-with-TensorFlow-book</h3><ul>
+<li><a href="https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book">https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book</a></li>
+<li>说明：深度学习教程</li>
+</ul>
+<h3 id="HowToCook"><a href="#HowToCook" class="headerlink" title="HowToCook"></a>HowToCook</h3><ul>
+<li><a href="https://github.com/Anduin2017/HowToCook">https://github.com/Anduin2017/HowToCook</a></li>
+<li>说明：做菜</li>
+</ul>
+<h3 id="ML-For-Beginners"><a href="#ML-For-Beginners" class="headerlink" title="ML-For-Beginners"></a>ML-For-Beginners</h3><ul>
+<li><a href="https://github.com/microsoft/ML-For-Beginners">https://github.com/microsoft/ML-For-Beginners</a></li>
+<li>说明：机器学习入门教程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>github</tag>
+        <tag>新技术</tag>
+        <tag>技术趋势</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Rust借用分析</title>
     <url>/2022/11/13/technology/Rust%E5%80%9F%E7%94%A8%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p>可以把Rust中的借用，理解为C语言中的指针， <code>mut</code>, <code>&amp;</code>,  可变借用、不可变借用这些比较绕的概念，可以理解为C语言中的<code>const</code>修饰符(尽管，C语言中的<code>const</code>只是做一个“约定”, 这里只是为了方便理解， 不必纠结)。</p>
@@ -2307,44 +2345,6 @@
       </categories>
       <tags>
         <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>github非常有价值的项目1</title>
-    <url>/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/</url>
-    <content><![CDATA[<h3 id="PaddleOCR"><a href="#PaddleOCR" class="headerlink" title="PaddleOCR"></a>PaddleOCR</h3><ul>
-<li>仓库链接：<a href="https://github.com/PaddlePaddle/PaddleOCR">https://github.com/PaddlePaddle/PaddleOCR</a></li>
-<li>说明：基于深度学习的OCR库</li>
-</ul>
-<h3 id="Web-Dev-For-Beginners"><a href="#Web-Dev-For-Beginners" class="headerlink" title="Web-Dev-For-Beginners"></a>Web-Dev-For-Beginners</h3><ul>
-<li>仓库链接：<a href="https://github.com/microsoft/Web-Dev-For-Beginners">https://github.com/microsoft/Web-Dev-For-Beginners</a></li>
-<li>说明：微软出品的零基础学习网站开发</li>
-</ul>
-<h3 id="full-blockchain-solidity-course-js"><a href="#full-blockchain-solidity-course-js" class="headerlink" title="full-blockchain-solidity-course-js"></a>full-blockchain-solidity-course-js</h3><ul>
-<li><a href="https://github.com/smartcontractkit/full-blockchain-solidity-course-js">https://github.com/smartcontractkit/full-blockchain-solidity-course-js</a></li>
-<li>说明：全栈智能合约开发课程</li>
-</ul>
-<h3 id="Deep-Learning-with-TensorFlow-book"><a href="#Deep-Learning-with-TensorFlow-book" class="headerlink" title="Deep-Learning-with-TensorFlow-book"></a>Deep-Learning-with-TensorFlow-book</h3><ul>
-<li><a href="https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book">https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book</a></li>
-<li>说明：深度学习教程</li>
-</ul>
-<h3 id="HowToCook"><a href="#HowToCook" class="headerlink" title="HowToCook"></a>HowToCook</h3><ul>
-<li><a href="https://github.com/Anduin2017/HowToCook">https://github.com/Anduin2017/HowToCook</a></li>
-<li>说明：做菜</li>
-</ul>
-<h3 id="ML-For-Beginners"><a href="#ML-For-Beginners" class="headerlink" title="ML-For-Beginners"></a>ML-For-Beginners</h3><ul>
-<li><a href="https://github.com/microsoft/ML-For-Beginners">https://github.com/microsoft/ML-For-Beginners</a></li>
-<li>说明：机器学习入门教程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>学习</tag>
-        <tag>github</tag>
-        <tag>新技术</tag>
-        <tag>技术趋势</tag>
       </tags>
   </entry>
   <entry>
@@ -2535,7 +2535,21 @@
   <entry>
     <title>Rust/Go/Python调用C++</title>
     <url>/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Node</span><br><span class="line">---</span><br><span class="line">flowchart LR</span><br><span class="line">    id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 关于 &#96;extern &quot;C&quot;&#96;的作用</span><br><span class="line"></span><br><span class="line">C++导出函数给其他语言使用必须使用&#96;C语言&#96;格式的函数,</span><br><span class="line"></span><br><span class="line">-   原因: C++&#96;函数名&#96;在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的&#96;函数名&#96;保持一致</span><br><span class="line">    -   了解更多： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;xiangtingshen&#x2F;p&#x2F;10980055.html</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;cpp</span><br><span class="line"></span><br><span class="line">#ifndef __XXXX_H</span><br><span class="line">#define  __XXXX_H</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">extern &quot;C&quot; &#123;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 需要导出的C++函数</span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#endif &#x2F;&#x2F; __XXXX_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<pre class="mermaid">graph LR;
+    A--->B</pre>
+
+
+
+
+
+<h2 id="关于-extern-quot-C-quot-的作用"><a href="#关于-extern-quot-C-quot-的作用" class="headerlink" title="关于 extern &quot;C&quot;的作用"></a>关于 <code>extern &quot;C&quot;</code>的作用</h2><p>C++导出函数给其他语言使用必须使用<code>C语言</code>格式的函数,</p>
+<ul>
+<li>原因: C++<code>函数名</code>在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的<code>函数名</code>保持一致<ul>
+<li>  了解更多： <a href="https://www.cnblogs.com/xiangtingshen/p/10980055.html">https://www.cnblogs.com/xiangtingshen/p/10980055.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  __XXXX_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要导出的C++函数</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __XXXX_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="如何解决-C-中-class-的导出问题"><a href="#如何解决-C-中-class-的导出问题" class="headerlink" title="如何解决 C++中 class 的导出问题"></a>如何解决 C++中 class 的导出问题</h2><p>因为 C++的函数只能以 C 语言的格式导出，即使用<code>extern &quot;C&quot;</code> , 那么如何处理 类方法的导出？</p>
 <p><strong>解决方案： 增加一个中间层(抽象层)</strong></p>
@@ -2871,9 +2885,9 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>0_Rust核心_基础</title>
-    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
+    <title>1_Rust核心_生命周期</title>
+    <url>/2024/09/26/technology/rust/1_Rust%E6%A0%B8%E5%BF%83_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    <content><![CDATA[<p>TODO</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -2883,9 +2897,9 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>1_Rust核心_生命周期</title>
-    <url>/2024/09/26/technology/rust/1_Rust%E6%A0%B8%E5%BF%83_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
-    <content><![CDATA[<p>TODO</p>
+    <title>0_Rust核心_基础</title>
+    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -2907,8 +2921,8 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>3_Rust核心_并发编程</title>
-    <url>/2024/09/26/technology/rust/3_Rust%E6%A0%B8%E5%BF%83_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</url>
+    <title>4_Rust核心_错误处理</title>
+    <url>/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<p>TODO</p>
 ]]></content>
       <categories>
@@ -2919,8 +2933,8 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>4_Rust核心_错误处理</title>
-    <url>/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</url>
+    <title>3_Rust核心_并发编程</title>
+    <url>/2024/09/26/technology/rust/3_Rust%E6%A0%B8%E5%BF%83_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<p>TODO</p>
 ]]></content>
       <categories>
@@ -4945,30 +4959,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>再次分析delegatecall和call的区别</title>
-    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
-<hr>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>代理合约</tag>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分析MEV夹子机器人的技术细节</title>
     <url>/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/</url>
     <content><![CDATA[<h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
@@ -5115,6 +5105,30 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>DeFi</tag>
         <tag>智能合约钱包</tag>
         <tag>MEV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>再次分析delegatecall和call的区别</title>
+    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
+<hr>
+<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>代理合约</tag>
+        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>

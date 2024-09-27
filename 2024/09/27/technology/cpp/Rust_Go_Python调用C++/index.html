@@ -83,7 +83,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">393</span>
+            <span class="post-count">369</span>
         </span>
     </span>
 
@@ -107,7 +107,21 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Node</span><br><span class="line">---</span><br><span class="line">flowchart LR</span><br><span class="line">    id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 关于 &#96;extern &quot;C&quot;&#96;的作用</span><br><span class="line"></span><br><span class="line">C++导出函数给其他语言使用必须使用&#96;C语言&#96;格式的函数,</span><br><span class="line"></span><br><span class="line">-   原因: C++&#96;函数名&#96;在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的&#96;函数名&#96;保持一致</span><br><span class="line">    -   了解更多： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;xiangtingshen&#x2F;p&#x2F;10980055.html</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;cpp</span><br><span class="line"></span><br><span class="line">#ifndef __XXXX_H</span><br><span class="line">#define  __XXXX_H</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">extern &quot;C&quot; &#123;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 需要导出的C++函数</span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#endif &#x2F;&#x2F; __XXXX_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <pre class="mermaid">graph LR;
+    A--->B</pre>
+
+
+
+
+
+<h2 id="关于-extern-quot-C-quot-的作用"><a href="#关于-extern-quot-C-quot-的作用" class="headerlink" title="关于 extern &quot;C&quot;的作用"></a>关于 <code>extern &quot;C&quot;</code>的作用</h2><p>C++导出函数给其他语言使用必须使用<code>C语言</code>格式的函数,</p>
+<ul>
+<li>原因: C++<code>函数名</code>在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的<code>函数名</code>保持一致<ul>
+<li>  了解更多： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiangtingshen/p/10980055.html">https://www.cnblogs.com/xiangtingshen/p/10980055.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  __XXXX_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要导出的C++函数</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __XXXX_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="如何解决-C-中-class-的导出问题"><a href="#如何解决-C-中-class-的导出问题" class="headerlink" title="如何解决 C++中 class 的导出问题"></a>如何解决 C++中 class 的导出问题</h2><p>因为 C++的函数只能以 C 语言的格式导出，即使用<code>extern &quot;C&quot;</code> , 那么如何处理 类方法的导出？</p>
 <p><strong>解决方案： 增加一个中间层(抽象层)</strong></p>
