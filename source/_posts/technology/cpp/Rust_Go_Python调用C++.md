@@ -3,14 +3,9 @@ date: 2024-9-27 17:27
 title: Rust/Go/Python调用C++
 tags: C++
 categories: 技术
-mermaid: true
 ---
 
 
-```mermaid
-graph LR;
-    A--->B
-```
 
 
 
