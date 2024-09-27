@@ -339,7 +339,10 @@
 <li><code>Commit</code>阶段： 将铭文写入UTXO,这个UTXO的接受地址必须是<code>Taproot(P2TR)</code>类型,因为需要用到<code>Tapscript</code></li>
 <li><code>Reveal</code>阶段： 使用掉UTXO，并转给目的接收地址, 目的接受地址必须也是<code>Taproot(P2TR)</code></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">graph LR</span><br><span class="line">    A--Commit阶段: 把铭文内容写入UTXO中--&gt;B</span><br><span class="line">    B--Reveal阶段: 把带有铭文的UTXO使用掉--&gt;C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="mermaid">
+graph LR
+    A--Commit阶段: 把铭文内容写入UTXO中-->B
+    B--Reveal阶段: 把带有铭文的UTXO使用掉-->C</pre>
 
 
 
