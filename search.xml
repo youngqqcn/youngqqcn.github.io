@@ -613,49 +613,6 @@
       </tags>
   </entry>
   <entry>
-    <title>技术管理</title>
-    <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<blockquote>
-<ul>
-<li><a href="https://coolshell.cn/articles/20765.html">https://coolshell.cn/articles/20765.html</a></li>
-<li><a href="https://coolshell.cn/articles/4951.html">https://coolshell.cn/articles/4951.html</a></li>
-<li><a href="https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer">https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer</a></li>
-</ul>
-</blockquote>
-<h2 id="宏观管理"><a href="#宏观管理" class="headerlink" title="宏观管理"></a>宏观管理</h2><ul>
-<li>努力找到好的人<ul>
-<li>能独挡一面的人。这样交给他的事能独立完成，没有路能自己找路，这样可以省很多管理成本。</li>
-<li>沟通能力很强的人。一方面，他们把模糊的事能变清楚，另一方面，他能有效地说服他人。不然就会非常扯皮和消耗时间。</li>
-<li>能自管理和自驱动。不能自管理和自驱的人，会增加大量的管理和教育成本。能自驱动的人，都是对负责的事情有认同的人。</li>
-</ul>
-</li>
-<li>设定共同的目标和使命</li>
-<li>倾向使用小团队</li>
-</ul>
-<h2 id="微观实战"><a href="#微观实战" class="headerlink" title="微观实战"></a>微观实战</h2><blockquote>
-<p>主动，自我驱动，自我管理</p>
-</blockquote>
-<ul>
-<li>文档驱动：文档写作是一种深度思考，当你把你脑子里想的东西写下来的时候，你就会发现你的思考更多了</li>
-<li>自动化和简化: 如：自动化测试，自动化部署</li>
-<li>Owner文化: <strong>每件事都要定义一个Owner</strong></li>
-<li>Review文化: 很多人以为开会讨论有个议题就行了，其实不够，有效率的开会讨论需要的是议案，而且还是高质量的议案！</li>
-<li>目标承诺: 要有工作计划和工作目标, 每个人自己给自己制定的计划最好是在1-2周内。</li>
-<li>自我管理:</li>
-<li>知识分享会:</li>
-</ul>
-]]></content>
-      <categories>
-        <category>管理</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>生活</tag>
-        <tag>管理</tag>
-        <tag>工作</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>放下</title>
     <url>/2023/10/19/learning/%E6%94%BE%E4%B8%8B/</url>
     <content><![CDATA[<p>外六尘（指眼、耳、鼻、舌、身、意等六根所相应的六种对境，也是六识所感觉、认识的六种境界），内六根（眼、耳、鼻、舌、身、意），中六识（视觉、听觉、嗅觉、味觉、触觉、知觉）</p>
@@ -720,6 +677,49 @@
         <tag>税务</tag>
         <tag>储蓄</tag>
         <tag>财务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>技术管理</title>
+    <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li><a href="https://coolshell.cn/articles/20765.html">https://coolshell.cn/articles/20765.html</a></li>
+<li><a href="https://coolshell.cn/articles/4951.html">https://coolshell.cn/articles/4951.html</a></li>
+<li><a href="https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer">https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer</a></li>
+</ul>
+</blockquote>
+<h2 id="宏观管理"><a href="#宏观管理" class="headerlink" title="宏观管理"></a>宏观管理</h2><ul>
+<li>努力找到好的人<ul>
+<li>能独挡一面的人。这样交给他的事能独立完成，没有路能自己找路，这样可以省很多管理成本。</li>
+<li>沟通能力很强的人。一方面，他们把模糊的事能变清楚，另一方面，他能有效地说服他人。不然就会非常扯皮和消耗时间。</li>
+<li>能自管理和自驱动。不能自管理和自驱的人，会增加大量的管理和教育成本。能自驱动的人，都是对负责的事情有认同的人。</li>
+</ul>
+</li>
+<li>设定共同的目标和使命</li>
+<li>倾向使用小团队</li>
+</ul>
+<h2 id="微观实战"><a href="#微观实战" class="headerlink" title="微观实战"></a>微观实战</h2><blockquote>
+<p>主动，自我驱动，自我管理</p>
+</blockquote>
+<ul>
+<li>文档驱动：文档写作是一种深度思考，当你把你脑子里想的东西写下来的时候，你就会发现你的思考更多了</li>
+<li>自动化和简化: 如：自动化测试，自动化部署</li>
+<li>Owner文化: <strong>每件事都要定义一个Owner</strong></li>
+<li>Review文化: 很多人以为开会讨论有个议题就行了，其实不够，有效率的开会讨论需要的是议案，而且还是高质量的议案！</li>
+<li>目标承诺: 要有工作计划和工作目标, 每个人自己给自己制定的计划最好是在1-2周内。</li>
+<li>自我管理:</li>
+<li>知识分享会:</li>
+</ul>
+]]></content>
+      <categories>
+        <category>管理</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>生活</tag>
+        <tag>管理</tag>
+        <tag>工作</tag>
       </tags>
   </entry>
   <entry>
@@ -1282,29 +1282,6 @@
       </tags>
   </entry>
   <entry>
-    <title>几个改变</title>
-    <url>/2023/09/21/life/%E5%87%A0%E4%B8%AA%E6%94%B9%E5%8F%98/</url>
-    <content><![CDATA[<ul>
-<li>练习八段锦</li>
-<li>练习波比跳</li>
-<li>关注股市：美股，港股，A股<ul>
-<li>怎么购买港股？美股？</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>投资</tag>
-        <tag>生活</tag>
-        <tag>股市</tag>
-        <tag>健身</tag>
-        <tag>健康</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>塔勒布智慧箴言录</title>
     <url>/2023/10/19/life/%E5%A1%94%E5%8B%92%E5%B8%83%E6%99%BA%E6%85%A7%E7%AE%B4%E8%A8%80%E5%BD%95/</url>
     <content><![CDATA[<blockquote>
@@ -1461,6 +1438,29 @@
         <tag>社会</tag>
         <tag>人性</tag>
         <tag>利益</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>几个改变</title>
+    <url>/2023/09/21/life/%E5%87%A0%E4%B8%AA%E6%94%B9%E5%8F%98/</url>
+    <content><![CDATA[<ul>
+<li>练习八段锦</li>
+<li>练习波比跳</li>
+<li>关注股市：美股，港股，A股<ul>
+<li>怎么购买港股？美股？</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>投资</tag>
+        <tag>生活</tag>
+        <tag>股市</tag>
+        <tag>健身</tag>
+        <tag>健康</tag>
       </tags>
   </entry>
   <entry>
@@ -1987,25 +1987,6 @@
       </tags>
   </entry>
   <entry>
-    <title>小王子</title>
-    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
-<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
-<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
-<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
-<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>阅读</tag>
-        <tag>小说</tag>
-        <tag>童话</tag>
-        <tag>经典</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>幸福的方法</title>
     <url>/2021/06/01/read/%E5%B9%B8%E7%A6%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>坚持每周都写点东西, 发布到这里. </p>
@@ -2052,6 +2033,25 @@
       </categories>
       <tags>
         <tag>积极心理学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小王子</title>
+    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
+<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
+<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
+<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
+<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>阅读</tag>
+        <tag>小说</tag>
+        <tag>童话</tag>
+        <tag>经典</tag>
       </tags>
   </entry>
   <entry>
@@ -2310,30 +2310,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode算法题.md</title>
-    <url>/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/</url>
-    <content><![CDATA[<p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
-<p>刷题的代码和笔记都会提交到</p>
-<ul>
-<li><a href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
-</ul>
-<p>参考</p>
-<ul>
-<li><a href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
-</ul>
-<p>刷题计划表:</p>
-<p><a href="https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md">https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>算法</tag>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>github非常有价值的项目1</title>
     <url>/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/</url>
     <content><![CDATA[<h3 id="PaddleOCR"><a href="#PaddleOCR" class="headerlink" title="PaddleOCR"></a>PaddleOCR</h3><ul>
@@ -2369,6 +2345,30 @@
         <tag>github</tag>
         <tag>新技术</tag>
         <tag>技术趋势</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode算法题.md</title>
+    <url>/2021/05/20/technology/leetcode%E7%AE%97%E6%B3%95%E9%A2%98/</url>
+    <content><![CDATA[<p>从今天开始, 每天做一题, 每天将代码提交,并更新此篇文章中的进度 坚持到到9月24日</p>
+<p>刷题的代码和笔记都会提交到</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/LeetCodeNotes">https://github.com/youngqqcn/LeetCodeNotes</a></li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://github.com/youngqqcn/leetcode-master">https://github.com/youngqqcn/leetcode-master</a></li>
+</ul>
+<p>刷题计划表:</p>
+<p><a href="https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md">https://github.com/youngqqcn/LeetCodeNotes/blob/master/README.md</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>刷题</tag>
       </tags>
   </entry>
   <entry>
@@ -2533,22 +2533,47 @@
       </tags>
   </entry>
   <entry>
-    <title>epoll的水平触发和边缘触发模式</title>
-    <url>/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<blockquote>
-<p>参考: <a href="https://cloud.tencent.com/developer/article/1636224">https://cloud.tencent.com/developer/article/1636224</a></p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证epoll的LT与ET模式的区别, epoll_server.cpp</span></span><br><span class="line"><span class="comment"> * zhangyl 2019.04.01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试ET模式(边缘触发模式)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_ET_MODE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个监听socket</span></span><br><span class="line">    <span class="keyword">int</span> listenfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (listenfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create listen socket error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置重用ip地址和端口号</span></span><br><span class="line">    <span class="keyword">int</span> on = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEPORT, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听socker设置为非阻塞的</span></span><br><span class="line">    <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(listenfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fcntl</span>(listenfd, F_SETFL, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;set listenfd to nonblock error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化服务器地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">bindaddr</span>;</span></span><br><span class="line">    bindaddr.sin_family = AF_INET;</span><br><span class="line">    bindaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY);</span><br><span class="line">    bindaddr.sin_port = <span class="built_in">htons</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">bind</span>(listenfd, (struct sockaddr*) &amp; bindaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(bindaddr)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bind listen socker error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//启动监听</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">listen</span>(listenfd, SOMAXCONN) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;listen error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建epollfd</span></span><br><span class="line">    <span class="keyword">int</span> epollfd = <span class="built_in">epoll_create</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (epollfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create epollfd error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    epoll_event listen_fd_event;</span><br><span class="line">    listen_fd_event.data.fd = listenfd;</span><br><span class="line">    listen_fd_event.events = EPOLLIN;</span><br><span class="line">    <span class="comment">//取消注释掉这一行，则使用ET模式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">    listen_fd_event.events |= EPOLLET;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听sokcet绑定到epollfd上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, listenfd, &amp;listen_fd_event) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;epoll_ctl error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        epoll_event epoll_events[<span class="number">1024</span>];</span><br><span class="line">        n = <span class="built_in">epoll_wait</span>(epollfd, epoll_events, <span class="number">1024</span>, <span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//被信号中断</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//出错,退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//超时,继续</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件可读</span></span><br><span class="line">            <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLIN)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd == listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//侦听socket,接受新连接</span></span><br><span class="line">                    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientaddr</span>;</span></span><br><span class="line">                    <span class="keyword">socklen_t</span> clientaddrlen = <span class="built_in"><span class="keyword">sizeof</span></span>(clientaddr);</span><br><span class="line">                    <span class="keyword">int</span> clientfd = <span class="built_in">accept</span>(listenfd, (struct sockaddr*) &amp; clientaddr, &amp;clientaddrlen);</span><br><span class="line">                    <span class="keyword">if</span> (clientfd != <span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(clientfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">                        <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">fcntl</span>(clientfd, F_SETFD, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;set clientfd to nonblocking error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            epoll_event client_fd_event;</span><br><span class="line">                            client_fd_event.data.fd = clientfd;</span><br><span class="line">                            <span class="comment">//同时侦听新来连接socket的读和写时间</span></span><br><span class="line">                            client_fd_event.events = EPOLLIN | EPOLLOUT;</span><br><span class="line">                            <span class="comment">//取消注释这一行，则使用ET模式</span></span><br><span class="line">                            client_fd_event.events |= EPOLLET;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, clientfd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;new client accepted,clientfd: &quot;</span> &lt;&lt; clientfd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;add client fd to epollfd error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                                <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;client fd: &quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot; recv data.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                    <span class="comment">//普通clientfd</span></span><br><span class="line">                    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">                    <span class="comment">// 边缘出发，必须一次性收完</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">do</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">                        <span class="keyword">if</span>(m &gt; <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">bzero</span>(recvbuf, <span class="built_in"><span class="keyword">sizeof</span></span>(recvbuf));</span><br><span class="line">                    &#125;<span class="keyword">while</span>(m &gt; <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">                    <span class="comment">// 水平触发，每次只收一个字节, 不影响</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//对端关闭了连接，从epollfd上移除clientfd</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (m &lt; <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//出错</span></span><br><span class="line">                        <span class="keyword">if</span> (errno != EWOULDBLOCK &amp;&amp; errno != EINTR)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//正常收到数据</span></span><br><span class="line">                        std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">                        epoll_event client_fd_event;</span><br><span class="line">                        client_fd_event.data.fd = epoll_events[i].data.fd;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEST_ET_MODE</span></span><br><span class="line">                        <span class="comment">// 水平触发模式下，需要再次给clientfd注册检测可写事件, 来接受socket上次没接收的数据</span></span><br><span class="line">                        client_fd_event.events = EPOLLIN | EPOLLOUT ;</span><br><span class="line">                        <span class="comment">// client_fd_event.events |= EPOLLET;</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_MOD, epoll_events[i].data.fd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;epoll_ctl successfully, mode: EPOLL_CTL_MOD, clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLOUT)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//只处理客户端fd的可写事件</span></span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd != listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 水平触发模式下，会一直触发，打印结果</span></span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;EPOLLOUT triggered,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLERR)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// TODO 暂不处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">close</span>(listenfd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Rust/Go/Python调用C++</title>
+    <url>/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/</url>
+    <content><![CDATA[<h2 id="关于-extern-quot-C-quot-的作用"><a href="#关于-extern-quot-C-quot-的作用" class="headerlink" title="关于 extern &quot;C&quot;的作用"></a>关于 <code>extern &quot;C&quot;</code>的作用</h2><p>C++导出函数给其他语言使用必须使用<code>C语言</code>格式的函数,</p>
+<ul>
+<li>原因: C++<code>函数名</code>在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的<code>函数名</code>保持一致<ul>
+<li>  了解更多： <a href="https://www.cnblogs.com/xiangtingshen/p/10980055.html">https://www.cnblogs.com/xiangtingshen/p/10980055.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  __XXXX_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要导出的C++函数</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __XXXX_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="如何解决-C-中-class-的导出问题"><a href="#如何解决-C-中-class-的导出问题" class="headerlink" title="如何解决 C++中 class 的导出问题"></a>如何解决 C++中 class 的导出问题</h2><p>因为 C++的函数只能以 C 语言的格式导出，即使用<code>extern &quot;C&quot;</code> , 那么如何处理 类方法的导出？</p>
+<p><strong>解决方案： 增加一个中间层(抽象层)</strong></p>
+<p>例如， C++的<code>class MyData</code>实现了细节， 那么可以增加一个 C 语言风格的结构体指针 <code>struct Data</code>，利用 Data 将 MyData 的方法实现封装(wrapper)</p>
+<p>示例代码:</p>
+<p><code>mydata.h</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span> &#123;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>mydata.cc</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;mydata.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyData::doSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>封装抽象层: <code>data.h</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __DATA_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __DATA_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Data</span> <span class="title">Data</span>;</span></span><br><span class="line">    <span class="comment">// 导出的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __DATA_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>data.cc</code> 对调用不可见</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指针类型转换, 对调用不可见</span></span><br><span class="line">    ((MyData *)p)-&gt;<span class="built_in">doSomething</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>示意图:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">graph LR</span><br><span class="line"></span><br><span class="line">Rust[Rust调用]--data.h--&gt;data.cc[抽象层: data.cc]-.-&gt;mydata[实现层: mydata.h&#x2F;mydata.cc]</span><br><span class="line"></span><br><span class="line">Go[Go调用]--data.h--&gt;data.cc</span><br><span class="line"></span><br><span class="line">Python[Python调用] --data.h--&gt;data.cc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>详细代码:</p>
+<p><a href="https://github.com/youngqqcn/call-cpp-dylib/">https://github.com/youngqqcn/call-cpp-dylib/</a></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
         <tag>C++</tag>
-        <tag>后端</tag>
-        <tag>linux</tag>
-        <tag>服务端开发</tag>
-        <tag>高性能</tag>
-        <tag>非阻塞</tag>
       </tags>
   </entry>
   <entry>
@@ -2569,6 +2594,25 @@
       </categories>
       <tags>
         <tag>c语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>epoll的水平触发和边缘触发模式</title>
+    <url>/2023/10/22/technology/cpp/epoll%E7%9A%84%E6%B0%B4%E5%B9%B3%E8%A7%A6%E5%8F%91%E5%92%8C%E8%BE%B9%E7%BC%98%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<blockquote>
+<p>参考: <a href="https://cloud.tencent.com/developer/article/1636224">https://cloud.tencent.com/developer/article/1636224</a></p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证epoll的LT与ET模式的区别, epoll_server.cpp</span></span><br><span class="line"><span class="comment"> * zhangyl 2019.04.01</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/epoll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;poll.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试ET模式(边缘触发模式)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_ET_MODE</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建一个监听socket</span></span><br><span class="line">    <span class="keyword">int</span> listenfd = <span class="built_in">socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (listenfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create listen socket error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置重用ip地址和端口号</span></span><br><span class="line">    <span class="keyword">int</span> on = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEPORT, (<span class="keyword">char</span>*)&amp; on, <span class="built_in"><span class="keyword">sizeof</span></span>(on));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听socker设置为非阻塞的</span></span><br><span class="line">    <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(listenfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">fcntl</span>(listenfd, F_SETFL, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;set listenfd to nonblock error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化服务器地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">bindaddr</span>;</span></span><br><span class="line">    bindaddr.sin_family = AF_INET;</span><br><span class="line">    bindaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY);</span><br><span class="line">    bindaddr.sin_port = <span class="built_in">htons</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">bind</span>(listenfd, (struct sockaddr*) &amp; bindaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(bindaddr)) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bind listen socker error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//启动监听</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">listen</span>(listenfd, SOMAXCONN) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;listen error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建epollfd</span></span><br><span class="line">    <span class="keyword">int</span> epollfd = <span class="built_in">epoll_create</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (epollfd == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;create epollfd error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    epoll_event listen_fd_event;</span><br><span class="line">    listen_fd_event.data.fd = listenfd;</span><br><span class="line">    listen_fd_event.events = EPOLLIN;</span><br><span class="line">    <span class="comment">//取消注释掉这一行，则使用ET模式</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">    listen_fd_event.events |= EPOLLET;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将监听sokcet绑定到epollfd上去</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, listenfd, &amp;listen_fd_event) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;epoll_ctl error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">close</span>(listenfd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        epoll_event epoll_events[<span class="number">1024</span>];</span><br><span class="line">        n = <span class="built_in">epoll_wait</span>(epollfd, epoll_events, <span class="number">1024</span>, <span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//被信号中断</span></span><br><span class="line">            <span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//出错,退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//超时,继续</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件可读</span></span><br><span class="line">            <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLIN)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd == listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//侦听socket,接受新连接</span></span><br><span class="line">                    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">clientaddr</span>;</span></span><br><span class="line">                    <span class="keyword">socklen_t</span> clientaddrlen = <span class="built_in"><span class="keyword">sizeof</span></span>(clientaddr);</span><br><span class="line">                    <span class="keyword">int</span> clientfd = <span class="built_in">accept</span>(listenfd, (struct sockaddr*) &amp; clientaddr, &amp;clientaddrlen);</span><br><span class="line">                    <span class="keyword">if</span> (clientfd != <span class="number">-1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">int</span> oldSocketFlag = <span class="built_in">fcntl</span>(clientfd, F_GETFL, <span class="number">0</span>);</span><br><span class="line">                        <span class="keyword">int</span> newSocketFlag = oldSocketFlag | O_NONBLOCK;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">fcntl</span>(clientfd, F_SETFD, newSocketFlag) == <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;set clientfd to nonblocking error.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        &#123;</span><br><span class="line">                            epoll_event client_fd_event;</span><br><span class="line">                            client_fd_event.data.fd = clientfd;</span><br><span class="line">                            <span class="comment">//同时侦听新来连接socket的读和写时间</span></span><br><span class="line">                            client_fd_event.events = EPOLLIN | EPOLLOUT;</span><br><span class="line">                            <span class="comment">//取消注释这一行，则使用ET模式</span></span><br><span class="line">                            client_fd_event.events |= EPOLLET;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_ADD, clientfd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;new client accepted,clientfd: &quot;</span> &lt;&lt; clientfd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">else</span></span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;add client fd to epollfd error&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                                <span class="built_in">close</span>(clientfd);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;client fd: &quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot; recv data.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">                    <span class="comment">//普通clientfd</span></span><br><span class="line">                    <span class="keyword">char</span> recvbuf[<span class="number">1024</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_ET_MODE</span></span><br><span class="line">                    <span class="comment">// 边缘出发，必须一次性收完</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">do</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">                        <span class="keyword">if</span>(m &gt; <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">bzero</span>(recvbuf, <span class="built_in"><span class="keyword">sizeof</span></span>(recvbuf));</span><br><span class="line">                    &#125;<span class="keyword">while</span>(m &gt; <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">                    <span class="comment">// 水平触发，每次只收一个字节, 不影响</span></span><br><span class="line">                    <span class="keyword">int</span> m = <span class="built_in">recv</span>(epoll_events[i].data.fd, recvbuf, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">                    <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//对端关闭了连接，从epollfd上移除clientfd</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (m &lt; <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//出错</span></span><br><span class="line">                        <span class="keyword">if</span> (errno != EWOULDBLOCK &amp;&amp; errno != EINTR)</span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_DEL, epoll_events[i].data.fd, <span class="literal">NULL</span>) != <span class="number">-1</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                std::cout &lt;&lt; <span class="string">&quot;client disconnected,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="built_in">close</span>(epoll_events[i].data.fd);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//正常收到数据</span></span><br><span class="line">                        std::cout &lt;&lt; <span class="string">&quot;recv from client:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; recvbuf &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">                        epoll_event client_fd_event;</span><br><span class="line">                        client_fd_event.data.fd = epoll_events[i].data.fd;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TEST_ET_MODE</span></span><br><span class="line">                        <span class="comment">// 水平触发模式下，需要再次给clientfd注册检测可写事件, 来接受socket上次没接收的数据</span></span><br><span class="line">                        client_fd_event.events = EPOLLIN | EPOLLOUT ;</span><br><span class="line">                        <span class="comment">// client_fd_event.events |= EPOLLET;</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">epoll_ctl</span>(epollfd, EPOLL_CTL_MOD, epoll_events[i].data.fd, &amp;client_fd_event) != <span class="number">-1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            std::cout &lt;&lt; <span class="string">&quot;epoll_ctl successfully, mode: EPOLL_CTL_MOD, clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                        &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLOUT)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//只处理客户端fd的可写事件</span></span><br><span class="line">                <span class="keyword">if</span> (epoll_events[i].data.fd != listenfd)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// 水平触发模式下，会一直触发，打印结果</span></span><br><span class="line">                    std::cout &lt;&lt; <span class="string">&quot;EPOLLOUT triggered,clientfd:&quot;</span> &lt;&lt; epoll_events[i].data.fd &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (epoll_events[i].events &amp; EPOLLERR)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// TODO 暂不处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">close</span>(listenfd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>后端</tag>
+        <tag>linux</tag>
+        <tag>服务端开发</tag>
+        <tag>高性能</tag>
+        <tag>非阻塞</tag>
       </tags>
   </entry>
   <entry>
@@ -3184,6 +3228,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Uniswap-v3学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Uniswap-v3分析</title>
     <url>/2024/07/29/technology/blockchain/defi/Uniswap-v3%E5%85%AC%E5%BC%8F/</url>
     <content><![CDATA[<ul>
@@ -3214,21 +3273,6 @@
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Uniswap-v3学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -3836,6 +3880,29 @@
       </tags>
   </entry>
   <entry>
+    <title>17_Solana程序安全审计-openbook-dex</title>
+    <url>/2024/07/30/technology/blockchain/solana/17_Solana%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1-openbook-dex/</url>
+    <content><![CDATA[<blockquote>
+<p>审计报告: <a href="https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf">https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf</a></p>
+</blockquote>
+<ul>
+<li>place_order方法缺少下单方向检查，黑客可以下反方向的单， 导致用户的下单金额被盗</li>
+</ul>
+<p>漏洞修复:</p>
+<p><a href="https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753">https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>Anchor</tag>
+        <tag>安全</tag>
+        <tag>审计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>16_Solana_程序安全实践指南</title>
     <url>/2024/07/26/technology/blockchain/solana/16_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<p>官方列出的安全例子:</p>
@@ -3893,29 +3960,6 @@
         <tag>Token</tag>
         <tag>安全</tag>
         <tag>架构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>17_Solana程序安全审计-openbook-dex</title>
-    <url>/2024/07/30/technology/blockchain/solana/17_Solana%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1-openbook-dex/</url>
-    <content><![CDATA[<blockquote>
-<p>审计报告: <a href="https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf">https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf</a></p>
-</blockquote>
-<ul>
-<li>place_order方法缺少下单方向检查，黑客可以下反方向的单， 导致用户的下单金额被盗</li>
-</ul>
-<p>漏洞修复:</p>
-<p><a href="https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753">https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>Anchor</tag>
-        <tag>安全</tag>
-        <tag>审计</tag>
       </tags>
   </entry>
   <entry>
@@ -4530,36 +4574,6 @@
       </tags>
   </entry>
   <entry>
-    <title>6_Solana的跨程序调用CPI</title>
-    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
-    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
-</blockquote>
-<ul>
-<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
-</li>
-<li><p>CPI调用栈高度限制: <code>5</code></p>
-<ul>
-<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>7_Solana的Token</title>
     <url>/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/</url>
     <content><![CDATA[<h1 id="Solana的Token"><a href="#Solana的Token" class="headerlink" title="Solana的Token"></a>Solana的Token</h1><blockquote>
@@ -4692,6 +4706,36 @@
       </tags>
   </entry>
   <entry>
+    <title>6_Solana的跨程序调用CPI</title>
+    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
+    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>8_Solana-原生程序</title>
     <url>/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<h1 id="8-Solana程序开发-原生"><a href="#8-Solana程序开发-原生" class="headerlink" title="8_Solana程序开发(原生)"></a>8_Solana程序开发(原生)</h1><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h3><blockquote>
@@ -4809,6 +4853,23 @@
   </entry>
   <entry>
     <title>ERC20高级充币归集技术</title>
+    <url>/2024/08/12/technology/blockchain/solidity/Foundry%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>Foundry</p>
+<p><a href="https://book.getfoundry.sh/getting-started/installation">https://book.getfoundry.sh/getting-started/installation</a></p>
+<p><a href="https://github.com/foundry-rs/foundry">https://github.com/foundry-rs/foundry</a></p>
+<p>TODO</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>智能合约</tag>
+        <tag>ERC20</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ERC20高级充币归集技术</title>
     <url>/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h3 id="核心技术概括"><a href="#核心技术概括" class="headerlink" title="核心技术概括:"></a>核心技术概括:</h3><ul>
 <li>使用 <code>CREATE2</code>派生确定的充币地址(合约)</li>
@@ -4873,23 +4934,6 @@
 <ul>
 <li>略 <a href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448</a></li>
 </ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>智能合约</tag>
-        <tag>ERC20</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ERC20高级充币归集技术</title>
-    <url>/2024/08/12/technology/blockchain/solidity/Foundry%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>Foundry</p>
-<p><a href="https://book.getfoundry.sh/getting-started/installation">https://book.getfoundry.sh/getting-started/installation</a></p>
-<p><a href="https://github.com/foundry-rs/foundry">https://github.com/foundry-rs/foundry</a></p>
-<p>TODO</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -5318,6 +5362,69 @@
       </tags>
   </entry>
   <entry>
+    <title>逆向分析pump.fun的BondingCurve算法</title>
+    <url>/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
+<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
+<p>可以看到 <code>onChange</code>事件处理函数:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
+<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
+<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
+<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
+<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
+<p>根据前面的分析,</p>
+<ul>
+<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
+<li>参数 <code>e</code> 是数量</li>
+</ul>
+<p>因此,<br>其中 i 是 bigint库</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
+<ul>
+<li>前端计算使用BN:,<ul>
+<li> <a href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
+<li>或者使用 anchor.BN</li>
+</ul>
+</li>
+<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
+<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$</p>
+<p>买入公式(按照Token数量)</p>
+<p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$</p>
+<p>买入后状态更新：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
+<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$</p>
+<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
+<hr>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
+<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$</p>
+<p>$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$</p>
+<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$</p>
+<p>$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$</p>
+<p>$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$</p>
+<p>$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$</p>
+<p>$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$</p>
+<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$p = \frac{S_v}{T_v}$$</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>web3</tag>
+        <tag>solana</tag>
+        <tag>nextjs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深度解析Optimism窃取事件</title>
     <url>/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<h1 id="深度解析Optimism窃取事件"><a href="#深度解析Optimism窃取事件" class="headerlink" title="深度解析Optimism窃取事件"></a>深度解析Optimism窃取事件</h1><p>本文在这篇文章<a href="https://www.techflow520.com/news/920">深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击</a>加以梳理，并配有详细的示例代码，示例代码会放在github上。</p>
@@ -5422,69 +5529,6 @@
         <tag>Web3</tag>
         <tag>Optimism</tag>
         <tag>黑客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逆向分析pump.fun的BondingCurve算法</title>
-    <url>/2024/09/03/technology/blockchain/web3/%E9%80%86%E5%90%91%E5%88%86%E6%9E%90pump.fun%E7%9A%84BondingCurve%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>找到 div id, 或者 用报错文本 进行全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump2.jpg"></p>
-<p>全局搜索<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump3.png"></p>
-<p>可以看到 <code>onChange</code>事件处理函数:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump4.jpg"></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">onChange:  es ? <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(t)) &#123;</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    g(t),</span><br><span class="line">    f(I(<span class="keyword">new</span> ex.BN(<span class="built_in">Math</span>.floor(<span class="number">1e9</span> * t)), !<span class="number">0</span>).toNumber() / <span class="number">1e6</span>)</span><br><span class="line">&#125;</span><br><span class="line">: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> t;</span><br><span class="line">    <span class="keyword">if</span> (et)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> n = <span class="built_in">parseFloat</span>(e.target.value);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(n)) &#123;</span><br><span class="line">        f(<span class="string">&quot;&quot;</span>),</span><br><span class="line">        g(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    f(n);</span><br><span class="line">    <span class="keyword">let</span> s = <span class="keyword">new</span> ex.BN(<span class="number">1e6</span> * n);</span><br><span class="line">    t = u ? I(s, !<span class="number">1</span>) : A(s),</span><br><span class="line">    g((<span class="number">0</span>,</span><br><span class="line">    p.s)(t))</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>可知， 函数<code>I</code>正是算法函数的实现, 接下来，需要定位 <code>I</code>函数的位置，</p>
-<p>我们在 <code>onChange</code>函数中打两个断点, 然后在输入框输入数量，触发执行到断点处</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump5.jpg"></p>
-<p>此时，将鼠标放置在<code>I</code>上就可以查看函数的位置:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump6.jpg"></p>
-<p>或者，直接在调试窗口的下方控制台，直接输入 <code>I</code>， 然后双击输出， 也可以查看<code>I</code>的定义,<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pump7.jpg"></p>
-<p>至此，我们已经找到pump.fun的bonding curve的算法实现函数:</p>
-<p>根据前面的分析,</p>
-<ul>
-<li>参数 <code>n</code> 是个<code>bool</code>值， 表示的是按照sol还是按照token买入</li>
-<li>参数 <code>e</code> 是数量</li>
-</ul>
-<p>因此,<br>其中 i 是 bigint库</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// 买入</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params">e,n</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> s, a;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (n) &#123;</span><br><span class="line">        <span class="comment">// 按照 sol数量买入</span></span><br><span class="line">        <span class="keyword">let</span> n = t.virtualSolReserves.mul(t.virtualTokenReserves)</span><br><span class="line">          , r = t.virtualSolReserves.add(e)</span><br><span class="line">          , o = n.div(r).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>));</span><br><span class="line">        a = t.virtualTokenReserves.sub(o),</span><br><span class="line">        a = i.BN.min(a, t.realTokenReserves),</span><br><span class="line">        s = e</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 按照 token数量买入</span></span><br><span class="line">        s = (e = i.BN.min(e, t.realTokenReserves)).mul(t.virtualSolReserves).div(t.virtualTokenReserves.sub(e)).add(<span class="keyword">new</span> i.BN(<span class="number">1</span>)),</span><br><span class="line">        a = e;</span><br><span class="line">    <span class="keyword">let</span> r = _(s); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n ? a : s.add(r) <span class="comment">//SOL加上手续费</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卖出</span></span><br><span class="line">sellQuote: <span class="function"><span class="params">e</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e.eq(<span class="keyword">new</span> i.BN(<span class="number">0</span>)) || !t)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> i.BN(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> n = e.mul(t.virtualSolReserves).div(t.virtualTokenReserves.add(e))</span><br><span class="line">      , s = _(n); <span class="comment">// 手续费</span></span><br><span class="line">    <span class="keyword">return</span> n.sub(s) <span class="comment">// 扣除手续费</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Bonding-Curve公式"><a href="#Bonding-Curve公式" class="headerlink" title="Bonding Curve公式"></a>Bonding Curve公式</h2><p>特别说明:</p>
-<ul>
-<li>前端计算使用BN:,<ul>
-<li> <a href="https://github.com/indutny/bn.js/">https://github.com/indutny/bn.js/</a></li>
-<li>或者使用 anchor.BN</li>
-</ul>
-</li>
-<li>合约计算过程中使用 u128 , 最终计算结果保存在数据账户使用u64即可</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_0.png"></p>
-<h3 id="用户买入Token"><a href="#用户买入Token" class="headerlink" title="用户买入Token"></a>用户买入Token</h3><p>买入公式(按照SOL数量)<br>$$ \Delta{t} = T_v - \bigg ( \frac{S_v \times T_v}{S_v + \Delta{s}} + 1 \bigg) $$</p>
-<p>买入公式(按照Token数量)</p>
-<p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v - \Delta{t}} + 1 $$</p>
-<p>买入后状态更新：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_1.png"></p>
-<h3 id="用户卖出Token"><a href="#用户卖出Token" class="headerlink" title="用户卖出Token"></a>用户卖出Token</h3><p>$$ \Delta{s} =  \frac{\Delta{t} \times S_v }{T_v + \Delta{t}} $$</p>
-<p>卖出后状态更新：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_2.png"></p>
-<hr>
-<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>基础公式</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/0919_3.png"></p>
-<h3 id="买入Token-按照token数量"><a href="#买入Token-按照token数量" class="headerlink" title="买入Token(按照token数量)"></a>买入Token(按照token数量)</h3><p>$$(T_v - \Delta t)(S_v + \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta t = T_v - \frac{T_v \times S_v}{S_v + \Delta s}$$</p>
-<h3 id="用户买入Token-按照SOL"><a href="#用户买入Token-按照SOL" class="headerlink" title="用户买入Token(按照SOL)"></a>用户买入Token(按照SOL)</h3><p>$$(T_v + \Delta t)(S_v - \Delta s) = k = T_v \times S_v$$</p>
-<p>$$\Delta s = S_v - \frac{T_v \times S_v}{T_v + \Delta t}$$</p>
-<p>$$\Delta s =  \frac{S_v \times (T_v +\Delta t) - T_v \times S_v}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times T_v + S_v \times \Delta t - T_v \times S}{T_v + \Delta t} $$</p>
-<p>$$\Delta s =  \frac{S_v \times \Delta t }{T_v + \Delta t} $$</p>
-<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p>$$p = \frac{S_v}{T_v}$$</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>web3</tag>
-        <tag>solana</tag>
-        <tag>nextjs</tag>
       </tags>
   </entry>
   <entry>
