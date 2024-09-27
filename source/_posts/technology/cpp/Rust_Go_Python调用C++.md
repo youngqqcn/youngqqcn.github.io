@@ -6,6 +6,18 @@ categories: 技术
 mermaid: true
 ---
 
+
+```
+---
+title: Node
+---
+flowchart LR
+    id
+
+
+
+
+
 ## 关于 `extern "C"`的作用
 
 C++导出函数给其他语言使用必须使用`C语言`格式的函数,
