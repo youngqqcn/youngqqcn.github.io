@@ -356,6 +356,15 @@ boogie /version
 
 
 
+常用的关键词：
+
+- `let`:
+- `aborts_if`: 条件中断
+- `let post` : **函数执行后**获取值
+- `ensures`: **函数执行成功后**必须满足的条件
+
+
+
 关于move spec形式化验证 与 单元测试的区别：
 - ChatGPT的回答：https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583
 - Move Spec 和单元测试是互补的。Move Spec 可以提供形式化的**逻辑保障**，而单元测试则用来确保代码在实际运行环境中表现正确。
@@ -415,3 +424,4 @@ spec deposit {
 
 
 可以通过 move  provier 的提示来增加
+
