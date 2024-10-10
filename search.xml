@@ -1601,28 +1601,6 @@
       </tags>
   </entry>
   <entry>
-    <title>近期感悟</title>
-    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
-<ul>
-<li>没有人陪你成长，有些路只能一个人走</li>
-<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
-<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
-<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
-<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
-<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>虚云和尚开示录</title>
     <url>/2023/10/19/life/%E8%99%9A%E4%BA%91%E5%92%8C%E5%B0%9A%E5%BC%80%E7%A4%BA%E5%BD%95/</url>
     <content><![CDATA[<blockquote>
@@ -1679,6 +1657,28 @@
         <tag>学佛</tag>
         <tag>虚云老和尚</tag>
         <tag>开示</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近期感悟</title>
+    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
+<ul>
+<li>没有人陪你成长，有些路只能一个人走</li>
+<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
+<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
+<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
+<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
+<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -2603,19 +2603,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>ent实体框架学习</title>
-    <url>/2023/01/12/technology/go/ent/</url>
-    <content><![CDATA[<p><a href="https://github.com/ent/ent">https://github.com/ent/ent</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>go</tag>
-        <tag>实体</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>strtok源码</title>
     <url>/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -2633,6 +2620,19 @@ Python[Python调用] --data.h-->data.cc</pre>
       </categories>
       <tags>
         <tag>c语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ent实体框架学习</title>
+    <url>/2023/01/12/technology/go/ent/</url>
+    <content><![CDATA[<p><a href="https://github.com/ent/ent">https://github.com/ent/ent</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>go</tag>
+        <tag>实体</tag>
       </tags>
   </entry>
   <entry>
@@ -3444,6 +3444,14 @@ Python[Python调用] --data.h-->data.cc</pre>
 
 
 <p>形式化验证用于验证逻辑是否</p>
+<p>常用的关键词：</p>
+<ul>
+<li><code>let</code>:</li>
+<li><code>aborts_if</code>: 条件中断</li>
+<li><code>let post</code> : <strong>函数执行后</strong>获取值</li>
+<li><code>ensures</code>: <strong>函数执行成功后</strong>必须满足的条件</li>
+<li><code>ensures result</code>:  result是函数的返回值, <code>ensures result</code>即判断函数执行后的返回值</li>
+</ul>
 <p>关于move spec形式化验证 与 单元测试的区别：</p>
 <ul>
 <li>ChatGPT的回答：<a href="https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583">https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583</a></li>
