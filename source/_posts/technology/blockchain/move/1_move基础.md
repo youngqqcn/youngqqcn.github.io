@@ -362,6 +362,7 @@ boogie /version
 - `aborts_if`: 条件中断
 - `let post` : **函数执行后**获取值
 - `ensures`: **函数执行成功后**必须满足的条件
+- `ensures result`:  result是函数的返回值, `ensures result`即判断函数执行后的返回值
 
 
 
