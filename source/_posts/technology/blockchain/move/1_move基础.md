@@ -332,3 +332,86 @@ module StateExample {
 }
 
 ```
+
+
+
+## 形式化验证
+
+https://github.com/move-language/move/blob/main/language/move-prover/doc/user/spec-lang.md
+
+`move prove`
+
+
+```
+# 在move的根目录下执行
+./scripts/dev_setup.sh -yp
+source ~/.profile
+
+# 检查 boogie是否按照
+boogie /version
+```
+
+
+形式化验证用于验证逻辑是否
+
+
+
+关于move spec形式化验证 与 单元测试的区别：
+- ChatGPT的回答：https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583
+- Move Spec 和单元测试是互补的。Move Spec 可以提供形式化的**逻辑保障**，而单元测试则用来确保代码在实际运行环境中表现正确。
+- 重点放在关键性质上：形式化验证特别适合那些涉及**安全性、资金管理、状态变化一致性**等至关重要的合约部分，而单元测试则适合验证合约中常见的逻辑操作和具体功能。
+
+
+例如：
+
+```rust
+spec withdraw {
+    let balance = global<Balance<CoinType>>(addr).coin.value;
+    // 判断资源是否存在
+    aborts_if !exists<Balance<CoinType>>(addr);
+    // 校验balance
+    aborts_if balance < amount;
+
+    // 检查执行后的状态
+    let post balance_post = global<Balance<CoinType>>(addr).coin.value;
+    // 余额检查
+    ensures balance_post == balance - amount;
+    // 检查返回值
+    ensures result == Coin<CoinType> { value: amount };
+}
+```
+
+
+
+**特别注意**： 在 Move 的形式化验证中，**每一个**可能的 abort（异常中断）都需要在 spec 规范中通过 aborts_if 子句来描述。当你编写了涉及可能导致 abort 的操作时，Move Prover 需要你为这些操作提供明确的终止条件。
+
+
+例如：
+
+```rust
+fun deposit<CoinType>(addr: address, check: Coin<CoinType>) acquires Balance{
+    let balance = balance_of<CoinType>(addr);
+    let balance_ref = &mut borrow_global_mut<Balance<CoinType>>(addr).coin.value;
+    let Coin { value } = check;
+    *balance_ref = balance + value;
+}
+
+spec deposit {
+    let balance = global<Balance<CoinType>>(addr).coin.value;
+    let check_value = check.value;
+
+    // 对应 borrow_global<Balance<CoinType>>(owner).coin.value
+    aborts_if !exists<Balance<CoinType>>(addr);
+
+    // 对应 *balance_ref = balance + value;
+    aborts_if balance + check_value > MAX_U64;
+
+    let post balance_post = global<Balance<CoinType>>(addr).coin.value;
+    ensures balance_post == balance + check_value;
+}
+```
+
+其中2个 `aborts_if` 缺一不可，必须都存在
+
+
+可以通过 move  provier 的提示来增加
