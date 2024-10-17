@@ -235,6 +235,21 @@
       </categories>
   </entry>
   <entry>
+    <title>学习</title>
+    <url>/2021/04/27/learning/index/</url>
+    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
+<p>2021的学习计划:</p>
+<ul>
+<li>积极心理学课程(哈佛)</li>
+<li>英语</li>
+<li>经济学概论课程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2022技术学习</title>
     <url>/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
@@ -256,21 +271,6 @@
         <tag>前端</tag>
         <tag>全栈</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>学习</title>
-    <url>/2021/04/27/learning/index/</url>
-    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
-<p>2021的学习计划:</p>
-<ul>
-<li>积极心理学课程(哈佛)</li>
-<li>英语</li>
-<li>经济学概论课程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
   </entry>
   <entry>
     <title>东南亚Web3调研</title>
@@ -572,6 +572,47 @@
       </tags>
   </entry>
   <entry>
+    <title>帕金森定律</title>
+    <url>/2022/12/23/learning/%E5%B8%95%E9%87%91%E6%A3%AE%E5%AE%9A%E5%BE%8B/</url>
+    <content><![CDATA[<h2 id="帕金森十大定律"><a href="#帕金森十大定律" class="headerlink" title="帕金森十大定律"></a>帕金森十大定律</h2><blockquote>
+<p>来源：百度百科</p>
+</blockquote>
+<h3 id="定律1——冗员增加原理："><a href="#定律1——冗员增加原理：" class="headerlink" title="定律1——冗员增加原理："></a>定律1——冗员增加原理：</h3><ul>
+<li>官员数量增加与工作量并无关系，而是由两个源动因造成的。每一个官员都希望增加部属而不是对手（如“投票”）；</li>
+<li>官员们彼此为对方制造工作</li>
+</ul>
+<h3 id="定律2——中间派决定原理："><a href="#定律2——中间派决定原理：" class="headerlink" title="定律2——中间派决定原理："></a>定律2——中间派决定原理：</h3><p>中间派是指对决定的内容不十分清楚的、意志薄弱、耳朵不大灵光的人，他们在组织的“票决制”议程中具有举足轻重的作用。为了争取中间派的支持，双方颇费心机进行争取，特别是双方势均力敌的情况下。所以，不是竞争对手而是中间派成了主角。</p>
+<h3 id="定律3——鸡毛蒜皮定律："><a href="#定律3——鸡毛蒜皮定律：" class="headerlink" title="定律3——鸡毛蒜皮定律："></a>定律3——鸡毛蒜皮定律：</h3><p>大部分官员由不懂得百万、千万元而只懂得千元的人组成，以至于讨论各种财政议案所费的时间与涉及的金额呈反比，即涉及的金额越大，讨论的时间越短，反之时间则越长，越是鸡毛蒜皮的事情越花费很多时间。</p>
+<h3 id="定律4——无效率系数："><a href="#定律4——无效率系数：" class="headerlink" title="定律4——无效率系数："></a>定律4——无效率系数：</h3><p>由于复杂的利益关系，决策性委员会多的非必要成员愈来愈多，以至于会议开始变质，变得效率低下。于是，不得不在委员会重新设立核心决策委员会或核心决策团体。</p>
+<h3 id="定律5——人事遴选庸才："><a href="#定律5——人事遴选庸才：" class="headerlink" title="定律5——人事遴选庸才："></a>定律5——人事遴选庸才：</h3><p>人们设计了许多的人事遴选方法，但大部分测试都是徒劳无功的，最终不得不靠偶然性标准遴选。</p>
+<h3 id="定律6——办公场合的豪华程度与机关的事业和效率呈反比："><a href="#定律6——办公场合的豪华程度与机关的事业和效率呈反比：" class="headerlink" title="定律6——办公场合的豪华程度与机关的事业和效率呈反比："></a>定律6——办公场合的豪华程度与机关的事业和效率呈反比：</h3><p>事业处于成长期的机关一般没有足够的兴趣和时间设计完美无缺的总部。所以，“设计完美乃是凋零的象征”，“完美就是结局，结局就是死亡”。</p>
+<h3 id="定律7——鸡尾酒会公式："><a href="#定律7——鸡尾酒会公式：" class="headerlink" title="定律7——鸡尾酒会公式："></a>定律7——鸡尾酒会公式：</h3><p>会议与鸡尾酒会（饭局）同在，不同重要性的人物参加鸡尾酒会，会在不同的时间出现，并站在不同的位置上。把会场从左到右分为A-F六段，从进门处到最远端分为1-8八段，则可划分出48个区域；在假定酒会开始的时间为H，且最后一名客人离开的时间是最初一名客人进场后2小时20分钟，则，重要人物都会在H+75至H+90的时间在E/7区域集合，最重要的人物自然会在其中。</p>
+<h3 id="定律8——嫉妒症（分三个时期）："><a href="#定律8——嫉妒症（分三个时期）：" class="headerlink" title="定律8——嫉妒症（分三个时期）："></a>定律8——嫉妒症（分三个时期）：</h3><p>在嫉妒症流行的机关里，高级主管辛苦而迟钝，中层干部勾心斗角，底层人员垂头丧气而不务正业。</p>
+<ul>
+<li>第一阶段，出现了既无能又好嫉妒的人物，即患上了“庸妒症（平庸而嫉妒）”；</li>
+<li>第二阶段，这些庸妒症患者不幸进入或原本就在高层，尽一切可能手段排斥比自己强的人，拒绝提升能力强的人；“愚蠢比赛”；</li>
+<li>第三阶段，机关仿佛被喷了DDT，凡才智者一概不得入内，机关病入膏肓，此时的机关已经无药可救了。</li>
+</ul>
+<h3 id="定律9——财不外露"><a href="#定律9——财不外露" class="headerlink" title="定律9——财不外露"></a>定律9——财不外露</h3><p>财不外露</p>
+<h3 id="定律10——延迟退休："><a href="#定律10——延迟退休：" class="headerlink" title="定律10——延迟退休："></a>定律10——延迟退休：</h3><p>一般退休的年龄是R，在前3年（R-3）人的精力会开始减退；问题在于如何挑选合适的接替者，工作表现越优秀，任职时间越长，越难寻得合适的接替者，而在位者总会设法阻止职位较低的人接近自己的职位，以至不得不延长自己的退休时间。</p>
+<h2 id="如何预防？"><a href="#如何预防？" class="headerlink" title="如何预防？"></a>如何预防？</h2><ul>
+<li>建立学习型的组织，持续学习新东西</li>
+<li>招聘人员要公开透明，不能全权交由直接上级，防止招聘能力低下的人</li>
+<li>建立人才培养计划</li>
+<li>定期考核</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>心理学效应</tag>
+        <tag>帕金森定律</tag>
+        <tag>官僚主义</tag>
+        <tag>效率</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>技术管理</title>
     <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<blockquote>
@@ -612,47 +653,6 @@
         <tag>生活</tag>
         <tag>管理</tag>
         <tag>工作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>帕金森定律</title>
-    <url>/2022/12/23/learning/%E5%B8%95%E9%87%91%E6%A3%AE%E5%AE%9A%E5%BE%8B/</url>
-    <content><![CDATA[<h2 id="帕金森十大定律"><a href="#帕金森十大定律" class="headerlink" title="帕金森十大定律"></a>帕金森十大定律</h2><blockquote>
-<p>来源：百度百科</p>
-</blockquote>
-<h3 id="定律1——冗员增加原理："><a href="#定律1——冗员增加原理：" class="headerlink" title="定律1——冗员增加原理："></a>定律1——冗员增加原理：</h3><ul>
-<li>官员数量增加与工作量并无关系，而是由两个源动因造成的。每一个官员都希望增加部属而不是对手（如“投票”）；</li>
-<li>官员们彼此为对方制造工作</li>
-</ul>
-<h3 id="定律2——中间派决定原理："><a href="#定律2——中间派决定原理：" class="headerlink" title="定律2——中间派决定原理："></a>定律2——中间派决定原理：</h3><p>中间派是指对决定的内容不十分清楚的、意志薄弱、耳朵不大灵光的人，他们在组织的“票决制”议程中具有举足轻重的作用。为了争取中间派的支持，双方颇费心机进行争取，特别是双方势均力敌的情况下。所以，不是竞争对手而是中间派成了主角。</p>
-<h3 id="定律3——鸡毛蒜皮定律："><a href="#定律3——鸡毛蒜皮定律：" class="headerlink" title="定律3——鸡毛蒜皮定律："></a>定律3——鸡毛蒜皮定律：</h3><p>大部分官员由不懂得百万、千万元而只懂得千元的人组成，以至于讨论各种财政议案所费的时间与涉及的金额呈反比，即涉及的金额越大，讨论的时间越短，反之时间则越长，越是鸡毛蒜皮的事情越花费很多时间。</p>
-<h3 id="定律4——无效率系数："><a href="#定律4——无效率系数：" class="headerlink" title="定律4——无效率系数："></a>定律4——无效率系数：</h3><p>由于复杂的利益关系，决策性委员会多的非必要成员愈来愈多，以至于会议开始变质，变得效率低下。于是，不得不在委员会重新设立核心决策委员会或核心决策团体。</p>
-<h3 id="定律5——人事遴选庸才："><a href="#定律5——人事遴选庸才：" class="headerlink" title="定律5——人事遴选庸才："></a>定律5——人事遴选庸才：</h3><p>人们设计了许多的人事遴选方法，但大部分测试都是徒劳无功的，最终不得不靠偶然性标准遴选。</p>
-<h3 id="定律6——办公场合的豪华程度与机关的事业和效率呈反比："><a href="#定律6——办公场合的豪华程度与机关的事业和效率呈反比：" class="headerlink" title="定律6——办公场合的豪华程度与机关的事业和效率呈反比："></a>定律6——办公场合的豪华程度与机关的事业和效率呈反比：</h3><p>事业处于成长期的机关一般没有足够的兴趣和时间设计完美无缺的总部。所以，“设计完美乃是凋零的象征”，“完美就是结局，结局就是死亡”。</p>
-<h3 id="定律7——鸡尾酒会公式："><a href="#定律7——鸡尾酒会公式：" class="headerlink" title="定律7——鸡尾酒会公式："></a>定律7——鸡尾酒会公式：</h3><p>会议与鸡尾酒会（饭局）同在，不同重要性的人物参加鸡尾酒会，会在不同的时间出现，并站在不同的位置上。把会场从左到右分为A-F六段，从进门处到最远端分为1-8八段，则可划分出48个区域；在假定酒会开始的时间为H，且最后一名客人离开的时间是最初一名客人进场后2小时20分钟，则，重要人物都会在H+75至H+90的时间在E/7区域集合，最重要的人物自然会在其中。</p>
-<h3 id="定律8——嫉妒症（分三个时期）："><a href="#定律8——嫉妒症（分三个时期）：" class="headerlink" title="定律8——嫉妒症（分三个时期）："></a>定律8——嫉妒症（分三个时期）：</h3><p>在嫉妒症流行的机关里，高级主管辛苦而迟钝，中层干部勾心斗角，底层人员垂头丧气而不务正业。</p>
-<ul>
-<li>第一阶段，出现了既无能又好嫉妒的人物，即患上了“庸妒症（平庸而嫉妒）”；</li>
-<li>第二阶段，这些庸妒症患者不幸进入或原本就在高层，尽一切可能手段排斥比自己强的人，拒绝提升能力强的人；“愚蠢比赛”；</li>
-<li>第三阶段，机关仿佛被喷了DDT，凡才智者一概不得入内，机关病入膏肓，此时的机关已经无药可救了。</li>
-</ul>
-<h3 id="定律9——财不外露"><a href="#定律9——财不外露" class="headerlink" title="定律9——财不外露"></a>定律9——财不外露</h3><p>财不外露</p>
-<h3 id="定律10——延迟退休："><a href="#定律10——延迟退休：" class="headerlink" title="定律10——延迟退休："></a>定律10——延迟退休：</h3><p>一般退休的年龄是R，在前3年（R-3）人的精力会开始减退；问题在于如何挑选合适的接替者，工作表现越优秀，任职时间越长，越难寻得合适的接替者，而在位者总会设法阻止职位较低的人接近自己的职位，以至不得不延长自己的退休时间。</p>
-<h2 id="如何预防？"><a href="#如何预防？" class="headerlink" title="如何预防？"></a>如何预防？</h2><ul>
-<li>建立学习型的组织，持续学习新东西</li>
-<li>招聘人员要公开透明，不能全权交由直接上级，防止招聘能力低下的人</li>
-<li>建立人才培养计划</li>
-<li>定期考核</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>心理学效应</tag>
-        <tag>帕金森定律</tag>
-        <tag>官僚主义</tag>
-        <tag>效率</tag>
       </tags>
   </entry>
   <entry>
@@ -702,6 +702,24 @@
         <tag>公司</tag>
         <tag>国际</tag>
         <tag>税务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理财知识学习</title>
+    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>TODO</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>保险</tag>
+        <tag>理财</tag>
+        <tag>投资</tag>
+        <tag>风险</tag>
+        <tag>税务</tag>
+        <tag>储蓄</tag>
+        <tag>财务</tag>
       </tags>
   </entry>
   <entry>
@@ -767,24 +785,6 @@
         <tag>学习笔记</tag>
         <tag>心理学</tag>
         <tag>幸福</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>理财知识学习</title>
-    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>TODO</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>保险</tag>
-        <tag>理财</tag>
-        <tag>投资</tag>
-        <tag>风险</tag>
-        <tag>税务</tag>
-        <tag>储蓄</tag>
-        <tag>财务</tag>
       </tags>
   </entry>
   <entry>
@@ -1220,6 +1220,36 @@
       </tags>
   </entry>
   <entry>
+    <title>关于写作</title>
+    <url>/2021/06/08/life/%E5%85%B3%E4%BA%8E%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<p>坚持每周写点东西。</p>
+<p>今天是2021年6月8号，2021高考第二天。今天讨论一下关于写作的问题，当然，这里所指的写作不是文学创作那种，而是指文字组织和表述能力。</p>
+<p>为什么要坚持每周写点东西呢？ </p>
+<ul>
+<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等； </li>
+<li>第二，作为一种激励方法，让自己保持发现生活中的美好心态，坚持一些好的习惯，比如阅读和锻炼身体。有效输入才能保证有效输出。</li>
+</ul>
+<p>如果是为了做某事而做某事，那样可能就会忘记初衷是什么。阅读的目的不是单纯的阅读，也是一种思考，正所谓“学而不思则罔，死而不学则殆”。所以，也不要为了写点东西而写点东西，一定要有自己的东西，要有自己的思考。</p>
+<p>其实，不论是学习一门技能还是阅读一本小说，如果是缺少了“思”，那么就很难领悟本质。写作是一种输出，写作的过程就是将已有的知识进行整理，然后以文字方式输出。</p>
+<p>想简单讨论一下“费曼学习法“, 其精髓在于“以教促学”或“以教为学”，是一种快速深度学习的方法。可以概括为“主动输入+主动加工+主动输出”，即有效的输入与有效的输出相结合，有效的输出正反馈于有效输入，形成一个良性循环。简而言之，如果我需要快速掌握某些内容，那么就让自己成为这门课的“老师”，教授他人这些内容，这样你在“备课”的过程中学习，在学习中整理知识消化知识。这种“以教促学“和软件工程领域的”测试驱动(TDD)“的思想非常相似，都是以“输出”驱动“输入”，可以大大提高学习效率。写作也是一种教学方式，在这个过程中会重新整理和重新发现。</p>
+<p>最后，大致介绍一下“费曼学习法”几个要点，后面我会单独写一篇文章记录自己利用这个方法学习的实践经验。</p>
+<ul>
+<li>1.明确目标： 你想学习的概念，内容</li>
+<li>2.以教促学： 写出自己的理解</li>
+<li>3.化整为零： 将目标内容分解为一个个基础知识点</li>
+<li>4.总结提炼： 合并内容，将复杂的内容简化并提炼核心内容，再重复上述几步</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>写作</tag>
+        <tag>阅读</tag>
+        <tag>思考</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>六世达赖</title>
     <url>/2023/10/20/life/%E5%85%AD%E4%B8%96%E8%BE%BE%E8%B5%96/</url>
     <content><![CDATA[<p>六世达赖<br>仓央嘉措</p>
@@ -1249,36 +1279,6 @@
         <tag>人生</tag>
         <tag>学佛</tag>
         <tag>爱情</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于写作</title>
-    <url>/2021/06/08/life/%E5%85%B3%E4%BA%8E%E5%86%99%E4%BD%9C/</url>
-    <content><![CDATA[<p>坚持每周写点东西。</p>
-<p>今天是2021年6月8号，2021高考第二天。今天讨论一下关于写作的问题，当然，这里所指的写作不是文学创作那种，而是指文字组织和表述能力。</p>
-<p>为什么要坚持每周写点东西呢？ </p>
-<ul>
-<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等； </li>
-<li>第二，作为一种激励方法，让自己保持发现生活中的美好心态，坚持一些好的习惯，比如阅读和锻炼身体。有效输入才能保证有效输出。</li>
-</ul>
-<p>如果是为了做某事而做某事，那样可能就会忘记初衷是什么。阅读的目的不是单纯的阅读，也是一种思考，正所谓“学而不思则罔，死而不学则殆”。所以，也不要为了写点东西而写点东西，一定要有自己的东西，要有自己的思考。</p>
-<p>其实，不论是学习一门技能还是阅读一本小说，如果是缺少了“思”，那么就很难领悟本质。写作是一种输出，写作的过程就是将已有的知识进行整理，然后以文字方式输出。</p>
-<p>想简单讨论一下“费曼学习法“, 其精髓在于“以教促学”或“以教为学”，是一种快速深度学习的方法。可以概括为“主动输入+主动加工+主动输出”，即有效的输入与有效的输出相结合，有效的输出正反馈于有效输入，形成一个良性循环。简而言之，如果我需要快速掌握某些内容，那么就让自己成为这门课的“老师”，教授他人这些内容，这样你在“备课”的过程中学习，在学习中整理知识消化知识。这种“以教促学“和软件工程领域的”测试驱动(TDD)“的思想非常相似，都是以“输出”驱动“输入”，可以大大提高学习效率。写作也是一种教学方式，在这个过程中会重新整理和重新发现。</p>
-<p>最后，大致介绍一下“费曼学习法”几个要点，后面我会单独写一篇文章记录自己利用这个方法学习的实践经验。</p>
-<ul>
-<li>1.明确目标： 你想学习的概念，内容</li>
-<li>2.以教促学： 写出自己的理解</li>
-<li>3.化整为零： 将目标内容分解为一个个基础知识点</li>
-<li>4.总结提炼： 合并内容，将复杂的内容简化并提炼核心内容，再重复上述几步</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>写作</tag>
-        <tag>阅读</tag>
-        <tag>思考</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,56 +1414,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何选择结婚对象</title>
-    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<p>材料:</p>
-<ul>
-<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
-</ul>
-<p>摘录：</p>
-<ul>
-<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
-<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
-<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
-<li>只有时间才有大浪淘沙的魔力。</li>
-<li>而资本,是按照风险分钱的。</li>
-<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
-<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
-<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
-<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
-<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
-<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
-<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
-<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
-<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
-<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
-<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
-<li>家庭对孩子的影响,远大于学校。</li>
-<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
-<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
-<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
-</ul>
-<p>个人总结：</p>
-<ul>
-<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
-<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
-<li>日久见人心，事久见人心。</li>
-<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>风险</tag>
-        <tag>婚姻</tag>
-        <tag>两性关系</tag>
-        <tag>社会</tag>
-        <tag>人性</tag>
-        <tag>利益</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>空</title>
     <url>/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/</url>
     <content><![CDATA[<blockquote>
@@ -1526,6 +1476,56 @@
       </tags>
   </entry>
   <entry>
+    <title>如何选择结婚对象</title>
+    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>材料:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
+</ul>
+<p>摘录：</p>
+<ul>
+<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
+<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
+<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
+<li>只有时间才有大浪淘沙的魔力。</li>
+<li>而资本,是按照风险分钱的。</li>
+<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
+<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
+<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
+<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
+<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
+<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
+<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
+<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
+<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
+<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
+<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
+<li>家庭对孩子的影响,远大于学校。</li>
+<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
+<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
+<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
+</ul>
+<p>个人总结：</p>
+<ul>
+<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
+<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
+<li>日久见人心，事久见人心。</li>
+<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>风险</tag>
+        <tag>婚姻</tag>
+        <tag>两性关系</tag>
+        <tag>社会</tag>
+        <tag>人性</tag>
+        <tag>利益</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>爱因斯坦与佛陀</title>
     <url>/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/</url>
     <content><![CDATA[<blockquote>
@@ -1574,6 +1574,19 @@
       </tags>
   </entry>
   <entry>
+    <title>空杯心态</title>
+    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
+    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>纪念陈皓先生</title>
     <url>/2024/08/02/life/%E7%BA%AA%E5%BF%B5%E9%99%88%E7%9A%93%E5%85%88%E7%94%9F/</url>
     <content><![CDATA[<p><a href="https://github.com/megaease/Remembering-Haoel">https://github.com/megaease/Remembering-Haoel</a></p>
@@ -1588,9 +1601,17 @@
       </tags>
   </entry>
   <entry>
-    <title>空杯心态</title>
-    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
-    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
+    <title>近期感悟</title>
+    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
+<ul>
+<li>没有人陪你成长，有些路只能一个人走</li>
+<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
+<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
+<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
+<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
+<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
+</ul>
 ]]></content>
       <categories>
         <category>生活</category>
@@ -1598,6 +1619,7 @@
       <tags>
         <tag>人生</tag>
         <tag>生活</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -1657,28 +1679,6 @@
         <tag>学佛</tag>
         <tag>虚云老和尚</tag>
         <tag>开示</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>近期感悟</title>
-    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
-<ul>
-<li>没有人陪你成长，有些路只能一个人走</li>
-<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
-<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
-<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
-<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
-<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -2342,27 +2342,6 @@
       </tags>
   </entry>
   <entry>
-    <title>秋园</title>
-    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
-<blockquote>
-<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
-</blockquote>
-<blockquote>
-<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
-</blockquote>
-<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
-<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
-<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>当代小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>蛛兒與芝草</title>
     <url>/2023/08/28/read/%E8%9B%9B%E5%85%92%E8%88%87%E8%8A%9D%E8%8D%89/</url>
     <content><![CDATA[<p>佛家四大經典愛情故事之（二） 蛛兒與芝草</p>
@@ -2386,6 +2365,27 @@
       </categories>
       <tags>
         <tag>珍惜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>秋园</title>
+    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
+<blockquote>
+<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
+</blockquote>
+<blockquote>
+<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
+</blockquote>
+<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
+<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
+<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>当代小说</tag>
       </tags>
   </entry>
   <entry>
@@ -2631,26 +2631,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2023川西成都之行</title>
-    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
-<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
-]]></content>
-      <categories>
-        <category>旅行</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>旅游</tag>
-        <tag>川西</tag>
-        <tag>成都</tag>
-        <tag>峨眉山</tag>
-        <tag>摄影</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ChatGPT底层算法Transformer</title>
     <url>/2024/10/17/technology/AI/ChatGPT%E5%BA%95%E5%B1%82%E7%AE%97%E6%B3%95-Transformer/</url>
     <content><![CDATA[<blockquote>
@@ -2659,20 +2639,11 @@
 <p>Transformer算法机制：</p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/qt1.1_F09DBE9AC8895CB064276BF8ACC95B98.jpg"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/qt1.2_A35C601756E296B8146244F0E4764975.png"></p>
-<h2 id="Transformer核心三个步骤"><a href="#Transformer核心三个步骤" class="headerlink" title="Transformer核心三个步骤:"></a>Transformer核心三个步骤:</h2><ul>
-<li><ol>
+<h2 id="Transformer核心三个步骤"><a href="#Transformer核心三个步骤" class="headerlink" title="Transformer核心三个步骤:"></a>Transformer核心三个步骤:</h2><ol>
 <li>编码（Embedding）</li>
-</ol>
-</li>
-<li><ol start="2">
 <li>定位 （Positional Encoding）</li>
-</ol>
-</li>
-<li><ol start="3">
 <li>自注意力机制（Self-Attention）</li>
 </ol>
-</li>
-</ul>
 <p>以翻译为例: 将 “I love you” 翻译为中文,</p>
 <ul>
 <li>第一步——编码(Embedding)： 将 “I love you” 中每个单词进行编码成 512维向量（实际维度可能更高）<ul>
@@ -2710,6 +2681,26 @@
         <tag>AI</tag>
         <tag>ChatGPT</tag>
         <tag>人工智能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023川西成都之行</title>
+    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
+<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
+]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>旅游</tag>
+        <tag>川西</tag>
+        <tag>成都</tag>
+        <tag>峨眉山</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -2986,6 +2977,18 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>0_Rust核心_基础</title>
+    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>celery</title>
     <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
@@ -3096,18 +3099,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>全栈</tag>
         <tag>React</tag>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>0_Rust核心_基础</title>
-    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
       </tags>
   </entry>
   <entry>
@@ -3238,6 +3229,25 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>NFT学习</title>
+    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>NFT</tag>
+        <tag>ERC721</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信小程序爬虫</title>
     <url>/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<p>这里以 Windows 微信小程序作为分析对象。</p>
@@ -3293,25 +3303,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>爬虫</tag>
         <tag>微信</tag>
         <tag>Charles</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NFT学习</title>
-    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>NFT</tag>
-        <tag>ERC721</tag>
       </tags>
   </entry>
   <entry>
@@ -3428,20 +3419,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>Uniswap-v1学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Uniswap-v2学习</title>
     <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[]]></content>
@@ -3486,6 +3463,20 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v1学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -3958,6 +3949,141 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>14_Solana_程序架构</title>
+    <url>/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<blockquote>
+<p><a href="https://www.soldev.app/course/program-architecture">https://www.soldev.app/course/program-architecture</a></p>
+</blockquote>
+<h3 id="处理大账户-Dealing-With-Large-Accounts"><a href="#处理大账户-Dealing-With-Large-Accounts" class="headerlink" title="处理大账户 Dealing With Large Accounts"></a>处理大账户 Dealing With Large Accounts</h3><ul>
+<li>Solana上存储每个字节都需要支付相应的租金</li>
+<li>大数据限制:<ul>
+<li>Stack(栈)限制: <code>4KB</code></li>
+<li>Heap(堆)限制: <code>32KB</code><ul>
+<li><code>Box</code>: 小于<code>32KB</code></li>
+<li><code>zero copy</code>: 处理大于<code>32KB</code></li>
+</ul>
+</li>
+<li> 大于 <code>10KB</code>的账户，CPI有限制</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Anchor中字段大小:</p>
+<ul>
+<li><p><a href="https://book.anchor-lang.com/anchor_references/space.html">https://book.anchor-lang.com/anchor_references/space.html</a></p>
+</li>
+<li><p><code>String</code>: <code>4 + 字符串字节长度</code></p>
+</li>
+<li><p><code>Vec&lt;T&gt;</code>:     <code>4 + (space(T) * amount)</code></p>
+</li>
+<li><p><code>Pubkey</code>:    <code>32</code></p>
+</li>
+<li><p><code>Option&lt;T&gt;</code>    <code>1 + (space(T))</code></p>
+</li>
+<li><p><code>Enum</code>    : <code>1 + 最大变量的size</code></p>
+</li>
+<li><p><code>f32</code> 和 <code>f64</code> : 会序列化失败 <code>NaN</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Box，在堆上分配内存</p>
+  <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> big_data: [<span class="built_in">u8</span>; <span class="number">5000</span>], <span class="comment">// 5000字节超出了solana的4KB栈限制，因此使用Heap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeFunctionContext</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> some_big_data: <span class="built_in">Box</span>&lt;Account&lt;<span class="symbol">&#x27;info</span>, SomeBigDataStruct&gt;&gt;, <span class="comment">// 在堆上分配内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Zero Copy</p>
+<blockquote>
+<p><a href="https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html">https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html</a></p>
+</blockquote>
+  <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account(zero_copy)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeReallyBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> really_big_data: [<span class="built_in">u128</span>; <span class="number">1024</span>], <span class="comment">// 16,384 bytes</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ConceptZeroCopy</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(zero)]</span></span><br><span class="line">    <span class="keyword">pub</span> some_really_big_data: AccountLoader&lt;<span class="symbol">&#x27;info</span>, SomeReallyBigDataStruct&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="处理账户-Dealing-With-Accounts"><a href="#处理账户-Dealing-With-Accounts" class="headerlink" title="处理账户 Dealing With Accounts"></a>处理账户 Dealing With Accounts</h3><ul>
+<li><p><strong>数据顺序</strong>: <code>变长</code>字段放在账户结构尾部</p>
+<ul>
+<li>因为变长的字段放在签名，通过filter查询后面的字段时，无法确定偏移量offset，</li>
+</ul>
+</li>
+<li><p><strong>预留字段</strong>: 为账户增加一个预留字段</p>
+<ul>
+<li>v1版本<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V1</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">128</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>v2版本:   v1 和 2 版本是兼容的<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V2</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> experience: <span class="built_in">u64</span>,  <span class="comment">// 新增</span></span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">120</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>数据优化</strong>: 通过优化账户数据结构节约空间</p>
+<ul>
+<li>例如: 能用 <code>u8</code>的，就不要用<code>u64</code> ,<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BadGameFlags</span></span> &#123; <span class="comment">// 8 bytes , 每个 bool 是一个字节</span></span><br><span class="line">    <span class="keyword">pub</span> is_frozen: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_poisoned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_burning: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_blessed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_cursed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_stunned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_slowed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_bleeding: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化后:</span></span><br><span class="line"><span class="keyword">const</span> IS_FROZEN_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> IS_POISONED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BURNING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLESSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> IS_CURSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> IS_STUNNED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> IS_SLOWED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">6</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLEEDING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> NO_EFFECT_FLAG: <span class="built_in">u8</span> = <span class="number">0b00000000</span>;</span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GoodGameFlags</span></span> &#123; <span class="comment">// 1 byte</span></span><br><span class="line">    <span class="keyword">pub</span> status_flags: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>PDA账户结构设计</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>PDA对应关系</th>
+<th>示例</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>One-Per-Program (全局账户)</td>
+<td><code>seeds=[b&quot;global config&quot;]</code></td>
+<td>全局配置</td>
+</tr>
+<tr>
+<td>One-Per-Owner</td>
+<td><code>seeds=[b&quot;player&quot;, owner.key().as_ref()]</code></td>
+<td>游戏/DEX/…</td>
+</tr>
+<tr>
+<td>Multiple-Per-Owner</td>
+<td><code>seeds=[b&quot;podcast&quot;, owner.key().as_ref(), episode_title.as_bytes().as_ref()]</code></td>
+<td>播客频道(多季)</td>
+</tr>
+<tr>
+<td>One-Per-Owner-Per-Account</td>
+<td><code>seeds=[b&quot;ATA Account&quot;, owner.key().as_ref(), mint.key().as_ref()]</code></td>
+<td>SPL Token的 ATA</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="处理并发-Dealing-With-Concurrency"><a href="#处理并发-Dealing-With-Concurrency" class="headerlink" title="处理并发 Dealing With Concurrency"></a>处理并发 Dealing With Concurrency</h3><ul>
+<li>solana的交易可以并行处理</li>
+<li>对于互不关联账户的交易，都是并行处理</li>
+<li>对于<code>共享</code>的账户的<code>写入</code>的交易，采用类似<code>互斥量</code>机制，因此是串行的</li>
+</ul>
+<p>对于瓶颈的优化方案：</p>
+<ul>
+<li>采用<code>分离</code>方案，减少<code>全局共享</code>的<code>写入</code>的账户</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>优化成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |    &lt;--- 交易内执行</span><br><span class="line"> V      V          V</span><br><span class="line">[PA]   [PB]       [PX]  &lt;--- 和用户账户关联的PDA账户</span><br><span class="line"> |      |          |    &lt;--- 异步执行</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样， 每个用户的交易 只会和自己账户关联的PDA账户有交互，而不会互相影响</p>
+<hr>
+<h3 id="状态压缩-State-Compression"><a href="#状态压缩-State-Compression" class="headerlink" title="状态压缩 State Compression"></a>状态压缩 State Compression</h3><blockquote>
+<p><a href="https://www.soldev.app/course/generalized-state-compression">https://www.soldev.app/course/generalized-state-compression</a></p>
+</blockquote>
+<ul>
+<li>压缩NFT (cNFT)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>Anchor</tag>
+        <tag>交易</tag>
+        <tag>Token</tag>
+        <tag>安全</tag>
+        <tag>架构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>15_Solana_Token Extension</title>
     <url>/2024/07/23/technology/blockchain/solana/15_Solana_Token%20Extension/</url>
     <content><![CDATA[<blockquote>
@@ -4155,141 +4281,6 @@ Python[Python调用] --data.h-->data.cc</pre>
 </ul>
 <ul>
 <li><code>InterfaceAccount</code>: 和 <code>Interface</code> 类似，也是一个wrapper, 用于 <code>AccountInfo</code>. <code>InterfaceAccount</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>Anchor</tag>
-        <tag>交易</tag>
-        <tag>Token</tag>
-        <tag>安全</tag>
-        <tag>架构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>14_Solana_程序架构</title>
-    <url>/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/</url>
-    <content><![CDATA[<blockquote>
-<p><a href="https://www.soldev.app/course/program-architecture">https://www.soldev.app/course/program-architecture</a></p>
-</blockquote>
-<h3 id="处理大账户-Dealing-With-Large-Accounts"><a href="#处理大账户-Dealing-With-Large-Accounts" class="headerlink" title="处理大账户 Dealing With Large Accounts"></a>处理大账户 Dealing With Large Accounts</h3><ul>
-<li>Solana上存储每个字节都需要支付相应的租金</li>
-<li>大数据限制:<ul>
-<li>Stack(栈)限制: <code>4KB</code></li>
-<li>Heap(堆)限制: <code>32KB</code><ul>
-<li><code>Box</code>: 小于<code>32KB</code></li>
-<li><code>zero copy</code>: 处理大于<code>32KB</code></li>
-</ul>
-</li>
-<li> 大于 <code>10KB</code>的账户，CPI有限制</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Anchor中字段大小:</p>
-<ul>
-<li><p><a href="https://book.anchor-lang.com/anchor_references/space.html">https://book.anchor-lang.com/anchor_references/space.html</a></p>
-</li>
-<li><p><code>String</code>: <code>4 + 字符串字节长度</code></p>
-</li>
-<li><p><code>Vec&lt;T&gt;</code>:     <code>4 + (space(T) * amount)</code></p>
-</li>
-<li><p><code>Pubkey</code>:    <code>32</code></p>
-</li>
-<li><p><code>Option&lt;T&gt;</code>    <code>1 + (space(T))</code></p>
-</li>
-<li><p><code>Enum</code>    : <code>1 + 最大变量的size</code></p>
-</li>
-<li><p><code>f32</code> 和 <code>f64</code> : 会序列化失败 <code>NaN</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Box，在堆上分配内存</p>
-  <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> big_data: [<span class="built_in">u8</span>; <span class="number">5000</span>], <span class="comment">// 5000字节超出了solana的4KB栈限制，因此使用Heap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeFunctionContext</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> some_big_data: <span class="built_in">Box</span>&lt;Account&lt;<span class="symbol">&#x27;info</span>, SomeBigDataStruct&gt;&gt;, <span class="comment">// 在堆上分配内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Zero Copy</p>
-<blockquote>
-<p><a href="https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html">https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html</a></p>
-</blockquote>
-  <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account(zero_copy)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeReallyBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> really_big_data: [<span class="built_in">u128</span>; <span class="number">1024</span>], <span class="comment">// 16,384 bytes</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ConceptZeroCopy</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(zero)]</span></span><br><span class="line">    <span class="keyword">pub</span> some_really_big_data: AccountLoader&lt;<span class="symbol">&#x27;info</span>, SomeReallyBigDataStruct&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="处理账户-Dealing-With-Accounts"><a href="#处理账户-Dealing-With-Accounts" class="headerlink" title="处理账户 Dealing With Accounts"></a>处理账户 Dealing With Accounts</h3><ul>
-<li><p><strong>数据顺序</strong>: <code>变长</code>字段放在账户结构尾部</p>
-<ul>
-<li>因为变长的字段放在签名，通过filter查询后面的字段时，无法确定偏移量offset，</li>
-</ul>
-</li>
-<li><p><strong>预留字段</strong>: 为账户增加一个预留字段</p>
-<ul>
-<li>v1版本<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V1</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">128</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>v2版本:   v1 和 2 版本是兼容的<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V2</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> experience: <span class="built_in">u64</span>,  <span class="comment">// 新增</span></span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">120</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>数据优化</strong>: 通过优化账户数据结构节约空间</p>
-<ul>
-<li>例如: 能用 <code>u8</code>的，就不要用<code>u64</code> ,<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BadGameFlags</span></span> &#123; <span class="comment">// 8 bytes , 每个 bool 是一个字节</span></span><br><span class="line">    <span class="keyword">pub</span> is_frozen: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_poisoned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_burning: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_blessed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_cursed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_stunned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_slowed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_bleeding: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化后:</span></span><br><span class="line"><span class="keyword">const</span> IS_FROZEN_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> IS_POISONED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BURNING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLESSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> IS_CURSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> IS_STUNNED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> IS_SLOWED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">6</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLEEDING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> NO_EFFECT_FLAG: <span class="built_in">u8</span> = <span class="number">0b00000000</span>;</span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GoodGameFlags</span></span> &#123; <span class="comment">// 1 byte</span></span><br><span class="line">    <span class="keyword">pub</span> status_flags: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>PDA账户结构设计</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>PDA对应关系</th>
-<th>示例</th>
-<th>应用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>One-Per-Program (全局账户)</td>
-<td><code>seeds=[b&quot;global config&quot;]</code></td>
-<td>全局配置</td>
-</tr>
-<tr>
-<td>One-Per-Owner</td>
-<td><code>seeds=[b&quot;player&quot;, owner.key().as_ref()]</code></td>
-<td>游戏/DEX/…</td>
-</tr>
-<tr>
-<td>Multiple-Per-Owner</td>
-<td><code>seeds=[b&quot;podcast&quot;, owner.key().as_ref(), episode_title.as_bytes().as_ref()]</code></td>
-<td>播客频道(多季)</td>
-</tr>
-<tr>
-<td>One-Per-Owner-Per-Account</td>
-<td><code>seeds=[b&quot;ATA Account&quot;, owner.key().as_ref(), mint.key().as_ref()]</code></td>
-<td>SPL Token的 ATA</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h3 id="处理并发-Dealing-With-Concurrency"><a href="#处理并发-Dealing-With-Concurrency" class="headerlink" title="处理并发 Dealing With Concurrency"></a>处理并发 Dealing With Concurrency</h3><ul>
-<li>solana的交易可以并行处理</li>
-<li>对于互不关联账户的交易，都是并行处理</li>
-<li>对于<code>共享</code>的账户的<code>写入</code>的交易，采用类似<code>互斥量</code>机制，因此是串行的</li>
-</ul>
-<p>对于瓶颈的优化方案：</p>
-<ul>
-<li>采用<code>分离</code>方案，减少<code>全局共享</code>的<code>写入</code>的账户</li>
-</ul>
-<p>例如:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>优化成</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |    &lt;--- 交易内执行</span><br><span class="line"> V      V          V</span><br><span class="line">[PA]   [PB]       [PX]  &lt;--- 和用户账户关联的PDA账户</span><br><span class="line"> |      |          |    &lt;--- 异步执行</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这样， 每个用户的交易 只会和自己账户关联的PDA账户有交互，而不会互相影响</p>
-<hr>
-<h3 id="状态压缩-State-Compression"><a href="#状态压缩-State-Compression" class="headerlink" title="状态压缩 State Compression"></a>状态压缩 State Compression</h3><blockquote>
-<p><a href="https://www.soldev.app/course/generalized-state-compression">https://www.soldev.app/course/generalized-state-compression</a></p>
-</blockquote>
-<ul>
-<li>压缩NFT (cNFT)</li>
 </ul>
 ]]></content>
       <categories>
@@ -5000,36 +4991,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>6_Solana的跨程序调用CPI</title>
-    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
-    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
-</blockquote>
-<ul>
-<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
-</li>
-<li><p>CPI调用栈高度限制: <code>5</code></p>
-<ul>
-<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>7_Solana的Token</title>
     <url>/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/</url>
     <content><![CDATA[<h1 id="Solana的Token"><a href="#Solana的Token" class="headerlink" title="Solana的Token"></a>Solana的Token</h1><blockquote>
@@ -5159,6 +5120,36 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>Solana</tag>
         <tag>交易</tag>
         <tag>Token</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6_Solana的跨程序调用CPI</title>
+    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
+    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
       </tags>
   </entry>
   <entry>
@@ -5544,6 +5535,36 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>基于BodingCurve价格发现的代币</title>
+    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
+    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+</li>
+<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+</li>
+<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+</li>
+</ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
+<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>Token</tag>
+        <tag>BodingCurve</tag>
+        <tag>价格发现</tag>
+        <tag>代币</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分析可升级智能合约</title>
     <url>/2022/12/14/technology/blockchain/solidity/%E5%88%86%E6%9E%90%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为了理解可升级合约，必须理解proxy机制，要理解proxy机制，必须理解solidity的<code>sstore</code>和<code>sload</code>,以及关于以太坊架构和存储结构（数据结构）。</p>
@@ -5655,36 +5676,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       <tags>
         <tag>区块链</tag>
         <tag>智能合约钱包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于BodingCurve价格发现的代币</title>
-    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
-</li>
-<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
-</li>
-<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
-</li>
-</ul>
-<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
-<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>Token</tag>
-        <tag>BodingCurve</tag>
-        <tag>价格发现</tag>
-        <tag>代币</tag>
       </tags>
   </entry>
   <entry>
