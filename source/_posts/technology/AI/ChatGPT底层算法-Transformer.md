@@ -27,9 +27,9 @@ Transformer算法机制：
 
 ## Transformer核心三个步骤:
 
-- 1. 编码（Embedding）
-- 2. 定位 （Positional Encoding）
-- 3. 自注意力机制（Self-Attention）
+1. 编码（Embedding）
+2. 定位 （Positional Encoding）
+3. 自注意力机制（Self-Attention）
 
 
 
