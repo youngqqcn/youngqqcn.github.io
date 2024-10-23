@@ -1,6 +1,6 @@
 ---
 date: 2024-10-23 15:19
-title: 3_Sui项目结构
+title: 3_HelloWorld
 categories: 技术
 tags:
 - Move
@@ -16,9 +16,10 @@ tags:
 
 ## 基础理论知识
 
+- Sui以Object(对象)为核心(Object有点类似Bitcoin中的UTXO)
 - Sui标准库发布在`0x2`下面
-- 发布的模块是不可变对象(immutable object),
-  - 不可变对象:
+- 发布的模块是不可变Object(immutable object),
+  - 不可变Object:
     - 不能被修改+不能被转移+不能被删除
     - 任何人都可以使用
 
