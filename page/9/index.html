@@ -106,6 +106,162 @@
     
     
     <article
+  id="post-technology/blockchain/solana/6_Solana的跨程序调用CPI"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/"
+    >6_Solana的跨程序调用CPI</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/" class="article-date">
+  <time datetime="2024-07-09T11:52:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/5_Solana的PDA账户"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/"
+    >5_Solana的PDA账户</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/" class="article-date">
+  <time datetime="2024-07-09T11:43:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana-PDA"><a href="#Solana-PDA" class="headerlink" title="Solana PDA"></a>Solana PDA</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/pda">https://solana.com/docs/core/pda</a></p>
+</blockquote>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>通过自定义的<code>seed</code> + <code>bump seed</code> +  <code>programId</code> 派生出来</li>
+<li>PDA不会自动被创建，必须显示通过程序中的指令来创建PDA账户</li>
+<li><h2 id="PDA-落在Ed25519曲线之外，并且没有对应的私钥"><a href="#PDA-落在Ed25519曲线之外，并且没有对应的私钥" class="headerlink" title="PDA 落在Ed25519曲线之外，并且没有对应的私钥"></a>PDA 落在Ed25519曲线之外，并且没有对应的私钥</h2></li>
+<li>程序可以为自己派生出来的PDA”签名”(达到签名的效果，并不是普通账户的签名 ),不需要私钥<ul>
+<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/core-concepts/pdas.html#deep-dive">https://solanacookbook.com/core-concepts/pdas.html#deep-dive</a></li>
+<li><a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1455948263853600768?s=20&amp;t=J2JXCwv395D7MNkX7a9LGw">https://x.com/pencilflip/status/1455948263853600768?s=20&amp;t=J2JXCwv395D7MNkX7a9LGw</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.brianfriel.xyz/understanding-program-derived-addresses/">https://www.brianfriel.xyz/understanding-program-derived-addresses/</a></li>
+</ul>
+</li>
+</ul>
+<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda.svg)
+</code></pre>
+<ul>
+<li><p>PDA地址是在ed25519曲线之外的，因此，PDA没有对应的私钥。</p>
+</li>
+<li><p>PDA也是确定的, 而不是随机的，因为输入的信息都是预先确定的</p>
+</li>
+<li><p>PDA可以作为链上账户的地址，用来存储状态和获取程序状态<br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/address-off-curve.svg"></p>
+</li>
+</ul>
+<ul>
+<li>PDA账户如果已经被创建，不能重复创建，否则交易失败</li>
+</ul>
+<ul>
+<li>深入理解：<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda.jpeg"></li>
+</ul>
+</li>
+</ul>
+<h3 id="如何生成PDA"><a href="#如何生成PDA" class="headerlink" title="如何生成PDA"></a>如何生成PDA</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda-derivation.svg"></p>
+<p>在 Anchor中生成 PDA</p>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/pda#create-pda-accounts">https://solana.com/docs/core/pda#create-pda-accounts</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/4_Solana程序"
   class="article article-type-post"
   itemscope
@@ -532,337 +688,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solana/1_Solana账户模型"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/"
-    >1_Solana账户模型</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time datetime="2024-07-09T10:52:00.000Z" itemprop="datePublished">2024-07-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
-<li><p>官方文档(推荐)：<a target="_blank" rel="noopener" href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
-</li>
-<li><p>账户模型:</p>
-<ul>
-<li>推荐: <a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
-<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
-<li><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-</ul>
-</li>
-<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
-</li>
-<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
-<ul>
-<li>可升级(整体)： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
-<li>不可变(字节码不可变): <a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
-</ul>
-</li>
-<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
-<ul>
-<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
-</ul>
-</li>
-<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
-</li>
-<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
-<li>System Program:<ul>
-<li>功能:<ul>
-<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
-<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
-<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
-</blockquote>
-</li>
-<li>分配数据空间</li>
-<li>转移普通账户(owner是 System Program)的余额</li>
-<li>仅owner是 System Program 可以支付手续费</li>
-</ul>
-</li>
-<li>Program id: <code>11111111111111111111111111111111</code></li>
-<li>Instructions: SystemInstruction</li>
-</ul>
-</li>
-<li>BPF Loader Program<ul>
-<li>功能：<ul>
-<li>是所有自定义程序的owner</li>
-<li>Deploys, upgrades, and executes programs on the chain.</li>
-</ul>
-</li>
-<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
-<li>Instructions: LoaderInstruction</li>
-</ul>
-</li>
-<li>SPL Token<ul>
-<li>TODO  :</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
-<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
-<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
-<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
-</blockquote>
-<ul>
-<li><p>不可变性:</p>
-<ul>
-<li>可执行账户完全不可变</li>
-</ul>
-</li>
-<li><p><strong>数据分配</strong></p>
-<ul>
-<li>仅<code>System Program</code> 可以更改账户数据大小</li>
-<li>新分配的账户数据总是归零的</li>
-<li>账户数据大小不可缩小<blockquote>
-<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>数据</p>
-<ul>
-<li>每个账户最多 10MB 数据（代码 或 状态）</li>
-<li>只有账户的owner才可以修改数据</li>
-<li>账户只有处于数据归零状态下才可以分配新的owner</li>
-</ul>
-</li>
-<li><p>余额</p>
-<ul>
-<li>只有账户的owner可以减少余额</li>
-<li>任何程序账户都可以账户增加余额（转移）<blockquote>
-<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>所有权</p>
-<ul>
-<li>只有账户owner可以制定新的账户owner</li>
-</ul>
-</li>
-<li><p>租金</p>
-<ul>
-<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
-<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
-</ul>
-</li>
-<li><p>余额为0的账户</p>
-<ul>
-<li>余额为0的账户，在交易执行后会被系统删除</li>
-<li>一个交易中可以创建临时余额为0的账户</li>
-</ul>
-</li>
-<li><p>新的执行账户</p>
-<ul>
-<li>只有制定的loader program可以修改账户的可执行状态</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solana/0_Solana开发资源"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/"
-    >0_Solana开发资源</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/" class="article-date">
-  <time datetime="2024-07-08T01:53:00.000Z" itemprop="datePublished">2024-07-08</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="Solana开发资源"><a href="#Solana开发资源" class="headerlink" title="Solana开发资源"></a>Solana开发资源</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98">https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98</a><br><a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx">https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx</a></p>
-</blockquote>
-<ul>
-<li>Rust:<ul>
-<li>Rust共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/rust-co-learn">https://github.com/CreatorsDAO/rust-co-learn</a></li>
-</ul>
-</li>
-<li>Solana<ul>
-<li>开发课程: <a target="_blank" rel="noopener" href="https://www.soldev.app/course">https://www.soldev.app/course</a><ul>
-<li>中文: <a target="_blank" rel="noopener" href="https://www.solanazh.com/">https://www.solanazh.com/</a></li>
-</ul>
-</li>
-<li>Solana官方开发文档：<a target="_blank" rel="noopener" href="https://docs.solana.com/developers">https://docs.solana.com/developers</a></li>
-<li>Cookbook: <a target="_blank" rel="noopener" href="https://solanacookbook.com/">https://solanacookbook.com/</a></li>
-<li>开发者: <a target="_blank" rel="noopener" href="https://github.com/solana-developers">https://github.com/solana-developers</a></li>
-<li>工具库: <a target="_blank" rel="noopener" href="https://github.com/solana-developers/solana-tools">https://github.com/solana-developers/solana-tools</a></li>
-<li>Solana程序示例： <a target="_blank" rel="noopener" href="https://github.com/solana-developers/program-examples">https://github.com/solana-developers/program-examples</a></li>
-<li>Anchor初步Counter示例：<a target="_blank" rel="noopener" href="https://github.com/solana-developers/anchor-starter/tree/main">https://github.com/solana-developers/anchor-starter/tree/main</a></li>
-<li>Solana生态工具： <a target="_blank" rel="noopener" href="https://solana.com/ecosystem">https://solana.com/ecosystem</a></li>
-<li>706共学社：<ul>
-<li>Solana共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn">https://github.com/CreatorsDAO/solana-co-learn</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Anchor<ul>
-<li>官方文档: <a target="_blank" rel="noopener" href="https://www.anchor-lang.com/">https://www.anchor-lang.com/</a></li>
-<li>官方示例: <a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/examples/tutorial">https://github.com/coral-xyz/anchor/tree/master/examples/tutorial</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="开源-Solana-DEX"><a href="#开源-Solana-DEX" class="headerlink" title="开源 Solana DEX"></a>开源 Solana DEX</h2><ul>
-<li>Openbook<ul>
-<li>官网： <a target="_blank" rel="noopener" href="https://prism.ag/trade/">https://prism.ag/trade/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/program">https://github.com/openbook-dex/program</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/openbook-v2">https://github.com/openbook-dex/openbook-v2</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/scripts-v2">https://github.com/openbook-dex/scripts-v2</a></li>
-</ul>
-</li>
-<li>Raydium:<ul>
-<li>官网：<a target="_blank" rel="noopener" href="https://raydium.io/swap/">https://raydium.io/swap/</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-cp-swap">https://github.com/raydium-io/raydium-cp-swap</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-amm">https://github.com/raydium-io/raydium-amm</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-contract-instructions/">https://github.com/raydium-io/raydium-contract-instructions/</a></li>
-</ul>
-</li>
-<li>Mango Dex:<ul>
-<li><a target="_blank" rel="noopener" href="https://app.mango.markets/zh">https://app.mango.markets/zh</a></li>
-<li>代码：<a target="_blank" rel="noopener" href="https://github.com/blockworks-foundation/mango-v4/tree/dev">https://github.com/blockworks-foundation/mango-v4/tree/dev</a></li>
-</ul>
-</li>
-<li>Serum Dex:<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/project-serum/serum-dex/">https://github.com/project-serum/serum-dex/</a></li>
-</ul>
-</li>
-<li>Jupiter:<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/jup-ag/sol-swap-cpi">https://github.com/jup-ag/sol-swap-cpi</a></li>
-<li><a target="_blank" rel="noopener" href="https://station.jup.ag/docs">https://station.jup.ag/docs</a></li>
-<li>Jupiter API构建交易： <a target="_blank" rel="noopener" href="https://station.jup.ag/docs/apis/swap-api">https://station.jup.ag/docs/apis/swap-api</a></li>
-</ul>
-</li>
-<li>Anchor交易相关示例:<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/swap">https://github.com/coral-xyz/anchor/tree/master/tests/swap</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/escrow">https://github.com/coral-xyz/anchor/tree/master/tests/escrow</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool">https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs">https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs</a></li>
-</ul>
-</li>
-<li>其他:<ul>
-<li>pump.fun自动买卖机器人: <a target="_blank" rel="noopener" href="https://github.com/pumppumps/pumpfun-bump-bot/tree/main">https://github.com/pumppumps/pumpfun-bump-bot/tree/main</a></li>
-<li>Raydium交易: <a target="_blank" rel="noopener" href="https://github.com/henrytirla/Solana-Raydium-Trading/tree/master">https://github.com/henrytirla/Solana-Raydium-Trading/tree/master</a></li>
-<li>swap前端: <a target="_blank" rel="noopener" href="https://github.com/atillabirer/solana-nextjs-dex/tree/main">https://github.com/atillabirer/solana-nextjs-dex/tree/main</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Solana节点搭建"><a href="#Solana节点搭建" class="headerlink" title="Solana节点搭建"></a>Solana节点搭建</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/operations/requirements">https://docs.solanalabs.com/operations/requirements</a></li>
-</ul>
-<p>RPC节点最低配置:</p>
-<ul>
-<li><p>CPU:  32核+</p>
-</li>
-<li><p>RAM:  512GB+</p>
-</li>
-<li><p>Disk: 2TB+</p>
-</li>
-<li><p>Network: 10GBit/s+</p>
-</li>
-<li><p>预估服务器费用(年): 13万RMB左右</p>
-</li>
-</ul>
-<h2 id="使用-solana-keygen-生成与-Phantom一致的地址"><a href="#使用-solana-keygen-生成与-Phantom一致的地址" class="headerlink" title="使用 solana-keygen 生成与 Phantom一致的地址"></a>使用 <code>solana-keygen</code> 生成与 Phantom一致的地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new --word-count 12 --no-bip39-passphrase --derivation-path &quot;m&#x2F;44&#39;&#x2F;501&#39;&#x2F;0&#39;&#x2F;0&#39;&quot; --outfile .&#x2F;mynew-address.json</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
 
     </footer>
   </div>

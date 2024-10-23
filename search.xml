@@ -235,21 +235,6 @@
       </categories>
   </entry>
   <entry>
-    <title>学习</title>
-    <url>/2021/04/27/learning/index/</url>
-    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
-<p>2021的学习计划:</p>
-<ul>
-<li>积极心理学课程(哈佛)</li>
-<li>英语</li>
-<li>经济学概论课程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>2022技术学习</title>
     <url>/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
@@ -271,6 +256,21 @@
         <tag>前端</tag>
         <tag>全栈</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>学习</title>
+    <url>/2021/04/27/learning/index/</url>
+    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
+<p>2021的学习计划:</p>
+<ul>
+<li>积极心理学课程(哈佛)</li>
+<li>英语</li>
+<li>经济学概论课程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
   </entry>
   <entry>
     <title>东南亚Web3调研</title>
@@ -1220,36 +1220,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于写作</title>
-    <url>/2021/06/08/life/%E5%85%B3%E4%BA%8E%E5%86%99%E4%BD%9C/</url>
-    <content><![CDATA[<p>坚持每周写点东西。</p>
-<p>今天是2021年6月8号，2021高考第二天。今天讨论一下关于写作的问题，当然，这里所指的写作不是文学创作那种，而是指文字组织和表述能力。</p>
-<p>为什么要坚持每周写点东西呢？ </p>
-<ul>
-<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等； </li>
-<li>第二，作为一种激励方法，让自己保持发现生活中的美好心态，坚持一些好的习惯，比如阅读和锻炼身体。有效输入才能保证有效输出。</li>
-</ul>
-<p>如果是为了做某事而做某事，那样可能就会忘记初衷是什么。阅读的目的不是单纯的阅读，也是一种思考，正所谓“学而不思则罔，死而不学则殆”。所以，也不要为了写点东西而写点东西，一定要有自己的东西，要有自己的思考。</p>
-<p>其实，不论是学习一门技能还是阅读一本小说，如果是缺少了“思”，那么就很难领悟本质。写作是一种输出，写作的过程就是将已有的知识进行整理，然后以文字方式输出。</p>
-<p>想简单讨论一下“费曼学习法“, 其精髓在于“以教促学”或“以教为学”，是一种快速深度学习的方法。可以概括为“主动输入+主动加工+主动输出”，即有效的输入与有效的输出相结合，有效的输出正反馈于有效输入，形成一个良性循环。简而言之，如果我需要快速掌握某些内容，那么就让自己成为这门课的“老师”，教授他人这些内容，这样你在“备课”的过程中学习，在学习中整理知识消化知识。这种“以教促学“和软件工程领域的”测试驱动(TDD)“的思想非常相似，都是以“输出”驱动“输入”，可以大大提高学习效率。写作也是一种教学方式，在这个过程中会重新整理和重新发现。</p>
-<p>最后，大致介绍一下“费曼学习法”几个要点，后面我会单独写一篇文章记录自己利用这个方法学习的实践经验。</p>
-<ul>
-<li>1.明确目标： 你想学习的概念，内容</li>
-<li>2.以教促学： 写出自己的理解</li>
-<li>3.化整为零： 将目标内容分解为一个个基础知识点</li>
-<li>4.总结提炼： 合并内容，将复杂的内容简化并提炼核心内容，再重复上述几步</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>写作</tag>
-        <tag>阅读</tag>
-        <tag>思考</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>六世达赖</title>
     <url>/2023/10/20/life/%E5%85%AD%E4%B8%96%E8%BE%BE%E8%B5%96/</url>
     <content><![CDATA[<p>六世达赖<br>仓央嘉措</p>
@@ -1279,6 +1249,36 @@
         <tag>人生</tag>
         <tag>学佛</tag>
         <tag>爱情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于写作</title>
+    <url>/2021/06/08/life/%E5%85%B3%E4%BA%8E%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<p>坚持每周写点东西。</p>
+<p>今天是2021年6月8号，2021高考第二天。今天讨论一下关于写作的问题，当然，这里所指的写作不是文学创作那种，而是指文字组织和表述能力。</p>
+<p>为什么要坚持每周写点东西呢？ </p>
+<ul>
+<li>第一，可以作为一周的总结，记录这一周值得记录和思考的事情，可以包括很多方面，生活，锻炼，摄影，美食，旅行，阅读，音乐，技术，等等； </li>
+<li>第二，作为一种激励方法，让自己保持发现生活中的美好心态，坚持一些好的习惯，比如阅读和锻炼身体。有效输入才能保证有效输出。</li>
+</ul>
+<p>如果是为了做某事而做某事，那样可能就会忘记初衷是什么。阅读的目的不是单纯的阅读，也是一种思考，正所谓“学而不思则罔，死而不学则殆”。所以，也不要为了写点东西而写点东西，一定要有自己的东西，要有自己的思考。</p>
+<p>其实，不论是学习一门技能还是阅读一本小说，如果是缺少了“思”，那么就很难领悟本质。写作是一种输出，写作的过程就是将已有的知识进行整理，然后以文字方式输出。</p>
+<p>想简单讨论一下“费曼学习法“, 其精髓在于“以教促学”或“以教为学”，是一种快速深度学习的方法。可以概括为“主动输入+主动加工+主动输出”，即有效的输入与有效的输出相结合，有效的输出正反馈于有效输入，形成一个良性循环。简而言之，如果我需要快速掌握某些内容，那么就让自己成为这门课的“老师”，教授他人这些内容，这样你在“备课”的过程中学习，在学习中整理知识消化知识。这种“以教促学“和软件工程领域的”测试驱动(TDD)“的思想非常相似，都是以“输出”驱动“输入”，可以大大提高学习效率。写作也是一种教学方式，在这个过程中会重新整理和重新发现。</p>
+<p>最后，大致介绍一下“费曼学习法”几个要点，后面我会单独写一篇文章记录自己利用这个方法学习的实践经验。</p>
+<ul>
+<li>1.明确目标： 你想学习的概念，内容</li>
+<li>2.以教促学： 写出自己的理解</li>
+<li>3.化整为零： 将目标内容分解为一个个基础知识点</li>
+<li>4.总结提炼： 合并内容，将复杂的内容简化并提炼核心内容，再重复上述几步</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>写作</tag>
+        <tag>阅读</tag>
+        <tag>思考</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,6 +1414,56 @@
       </tags>
   </entry>
   <entry>
+    <title>如何选择结婚对象</title>
+    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>材料:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
+</ul>
+<p>摘录：</p>
+<ul>
+<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
+<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
+<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
+<li>只有时间才有大浪淘沙的魔力。</li>
+<li>而资本,是按照风险分钱的。</li>
+<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
+<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
+<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
+<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
+<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
+<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
+<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
+<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
+<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
+<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
+<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
+<li>家庭对孩子的影响,远大于学校。</li>
+<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
+<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
+<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
+</ul>
+<p>个人总结：</p>
+<ul>
+<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
+<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
+<li>日久见人心，事久见人心。</li>
+<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>风险</tag>
+        <tag>婚姻</tag>
+        <tag>两性关系</tag>
+        <tag>社会</tag>
+        <tag>人性</tag>
+        <tag>利益</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>空</title>
     <url>/2023/10/20/life/%E6%98%9F%E4%BA%91%E5%A4%A7%E5%B8%88%E2%80%94%E2%80%94%E7%A9%BA/</url>
     <content><![CDATA[<blockquote>
@@ -1473,56 +1523,6 @@
         <tag>人生</tag>
         <tag>学佛</tag>
         <tag>佛学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何选择结婚对象</title>
-    <url>/2023/08/23/life/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%BB%93%E5%A9%9A%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<p>材料:</p>
-<ul>
-<li><a href="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%9C%89%E9%92%B1%E4%BA%BA%E4%BC%9A%E6%89%BE%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E8%80%81%E5%A9%86.pdf">有钱人会找什么样的老婆?</a></li>
-</ul>
-<p>摘录：</p>
-<ul>
-<li>择偶说到底,是一个要不要换牌的问题, 换牌的意思是说,我有什么,我要什么,对方有什么,对方要什么, 你在看别人牌的时候,别人也在看你的牌。</li>
-<li>怎么浓缩呢?很简单,我有什么,我要什么,对方有什么,对方要什么。</li>
-<li>所谓婚姻,本质上是链接关系,你和你媳妇的家族产生了利益链接。</li>
-<li>只有时间才有大浪淘沙的魔力。</li>
-<li>而资本,是按照风险分钱的。</li>
-<li>钱永远是先分董事会,董事会承担风险;其次分高管,高管是离不开的人才;最后分员工,员工是人力。我们绝大多数人都无法理解这点,是因为绝大多数人终其一生都在做劳方。</li>
-<li>你很难理解资本实际上是按照风险在分钱的实质。</li>
-<li>大头一定是让风险和稀缺性赚走了,最后剩了一点,才是按照贡献去分,分给你们的功劳与苦劳。</li>
-<li>真实的人生当中,你只有一次机会,只有一次,人生不能重来。</li>
-<li>你对方案了解得越深,你越会觉得荒诞,不靠谱。</li>
-<li>赌命要的不是懂,而是不懂。懂了就没法赌命,中途一定会下车。</li>
-<li>人想成功,首先要撕去一切不以准确概率为依托的希望,要学会任何时候都面对事物的本来面目。</li>
-<li>大多数人的一生都逃避不了赌,但是大多数人都不算赌狗,因为他们并不靠押注混饭吃。</li>
-<li>如果你的主要收入来源,你90%以上的收入都来自于押注,你就是赌狗。</li>
-<li>赌狗本质上是什么?就是一个人,想要成妖。</li>
-<li>因为他没有能力坑害强大的,他只能坑那些爱他的,亲近他的。</li>
-<li>家庭对孩子的影响,远大于学校。</li>
-<li>家庭教育,比学校教育,专业教育重要得多,这一点,在随后的几十年,会越来越成为更多人的共识。</li>
-<li>天赋,家庭,学校,对一个人的影响是依次降低的。</li>
-<li>中产和富人阶级追求的东西很简单的,不是赢,而是不要输。全世界的规律都这样,这个规律背后的本质就是保守主义。</li>
-</ul>
-<p>个人总结：</p>
-<ul>
-<li>婚姻要门当户对， 这是老话，要相信老话，老话是前人的经验和智慧的结晶</li>
-<li>除了经济方面， 其他方面，婚姻是一场赌博。</li>
-<li>日久见人心，事久见人心。</li>
-<li>普通老百姓想要实现阶级跨越，只有“赌”这一条路， 关键是“怎么赌”和“赌什么”的问题。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>风险</tag>
-        <tag>婚姻</tag>
-        <tag>两性关系</tag>
-        <tag>社会</tag>
-        <tag>人性</tag>
-        <tag>利益</tag>
       </tags>
   </entry>
   <entry>
@@ -1601,28 +1601,6 @@
       </tags>
   </entry>
   <entry>
-    <title>近期感悟</title>
-    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
-<ul>
-<li>没有人陪你成长，有些路只能一个人走</li>
-<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
-<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
-<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
-<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
-<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>虚云和尚开示录</title>
     <url>/2023/10/19/life/%E8%99%9A%E4%BA%91%E5%92%8C%E5%B0%9A%E5%BC%80%E7%A4%BA%E5%BD%95/</url>
     <content><![CDATA[<blockquote>
@@ -1679,6 +1657,28 @@
         <tag>学佛</tag>
         <tag>虚云老和尚</tag>
         <tag>开示</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近期感悟</title>
+    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
+<ul>
+<li>没有人陪你成长，有些路只能一个人走</li>
+<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
+<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
+<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
+<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
+<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -2342,6 +2342,27 @@
       </tags>
   </entry>
   <entry>
+    <title>秋园</title>
+    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
+<blockquote>
+<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
+</blockquote>
+<blockquote>
+<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
+</blockquote>
+<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
+<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
+<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>当代小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>蛛兒與芝草</title>
     <url>/2023/08/28/read/%E8%9B%9B%E5%85%92%E8%88%87%E8%8A%9D%E8%8D%89/</url>
     <content><![CDATA[<p>佛家四大經典愛情故事之（二） 蛛兒與芝草</p>
@@ -2365,27 +2386,6 @@
       </categories>
       <tags>
         <tag>珍惜</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>秋园</title>
-    <url>/2021/05/20/read/%E7%A7%8B%E5%9B%AD/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60a5cce247059.jpg"></p>
-<blockquote>
-<p>1914年，世上有了“秋园”这个人。1918年，汉语有了“她”这个字。秋园，她来过，挣扎过，绝望过，幸福过。今天，她80岁的女儿，把普普通通的她，讲给世界听。</p>
-</blockquote>
-<blockquote>
-<p>“我写了一位普通中国女性一生的故事，写了我们一家人如何像水中的浮木般挣扎求生，写了中南腹地那些乡间人物的生生死死。我知道自己写出的故事如同一滴水，最终将汇入人类历史的长河。”</p>
-</blockquote>
-<p>已经读完了这本书，最大的感触就是特别真实。没有华丽文字，都是普通的叙述。没有跌宕起伏的情节，只是从一个普通老百姓——一个女人和一个家庭角度来写，所以特别真实。也会联想到我的奶奶那一代人的经历，他们经历的那些苦难。书中写了很多农村的事情，我小时候在农村生活过，特别有体会。</p>
-<p>我想说，这本书带给我的除了书中的内容，还有作者的写作精神，值得学习。</p>
-<p>看到有人把本书和《活着》进行比较，我觉得没有可比性，两本书的类型不同。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>当代小说</tag>
       </tags>
   </entry>
   <entry>
@@ -2631,6 +2631,26 @@
       </tags>
   </entry>
   <entry>
+    <title>2023川西成都之行</title>
+    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
+<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
+]]></content>
+      <categories>
+        <category>旅行</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>旅游</tag>
+        <tag>川西</tag>
+        <tag>成都</tag>
+        <tag>峨眉山</tag>
+        <tag>摄影</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ChatGPT底层算法Transformer</title>
     <url>/2024/10/17/technology/AI/ChatGPT%E5%BA%95%E5%B1%82%E7%AE%97%E6%B3%95-Transformer/</url>
     <content><![CDATA[<blockquote>
@@ -2681,26 +2701,6 @@
         <tag>AI</tag>
         <tag>ChatGPT</tag>
         <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023川西成都之行</title>
-    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
-<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
-]]></content>
-      <categories>
-        <category>旅行</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>旅游</tag>
-        <tag>川西</tag>
-        <tag>成都</tag>
-        <tag>峨眉山</tag>
-        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -2977,18 +2977,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>0_Rust核心_基础</title>
-    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>celery</title>
     <url>/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
@@ -3114,6 +3102,18 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>0_Rust核心_基础</title>
+    <url>/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p><a href="https://course.rs/">https://course.rs/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2_Rust核心_智能指针</title>
     <url>/2024/09/26/technology/rust/2_Rust%E6%A0%B8%E5%BF%83_%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<p>TODO</p>
@@ -3229,25 +3229,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>NFT学习</title>
-    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>NFT</tag>
-        <tag>ERC721</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>微信小程序爬虫</title>
     <url>/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<p>这里以 Windows 微信小程序作为分析对象。</p>
@@ -3303,6 +3284,25 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>爬虫</tag>
         <tag>微信</tag>
         <tag>Charles</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NFT学习</title>
+    <url>/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a href="http://erc721.org/">http://erc721.org/</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 &#x2F;* is ERC165 *&#x2F; &#123;</span><br><span class="line">    &#x2F;&#x2F; 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    &#x2F;&#x2F; from, to 都不能是零地址</span><br><span class="line">    &#x2F;&#x2F; 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    &#x2F;&#x2F; 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    &#x2F;&#x2F; 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @notice Query if a contract implements an interface</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  uses less than 30,000 gas.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @return &#96;true&#96; if the contract implements &#96;interfaceID&#96; and</span><br><span class="line">    &#x2F;&#x2F;&#x2F;  &#96;interfaceID&#96; is not 0xffffffff, &#96;false&#96; otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;用于接收ERC721的智能合约必须实现此 &#96;IERC721Receiver&#96; 接口</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; &#96;tokenId&#96; token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by &#96;operator&#96; from &#96;from&#96;, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with &#96;IERC721.onERC721Received.selector&#96;.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    &#x2F;&#x2F; 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId &#x3D; kitties.push(_kitty) - 1; &#x2F;&#x2F; push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>NFT</tag>
+        <tag>ERC721</tag>
       </tags>
   </entry>
   <entry>
@@ -3419,9 +3419,38 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>Uniswap-v1学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Uniswap-v2学习</title>
     <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v3学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
+]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -3463,35 +3492,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Uniswap-v1学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v1%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Uniswap-v3学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -3689,6 +3689,128 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>智能合约</tag>
         <tag>Move</tag>
         <tag>Aptos</tag>
+        <tag>Sui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2_Sui入门</title>
+    <url>/2024/10/23/technology/blockchain/move/2_Sui%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>参考： <a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/1_set_up_environment.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/1_set_up_environment.md</a></p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装 <code>sui</code></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cargo install --locked --git https:&#x2F;&#x2F;github.com&#x2F;MystenLabs&#x2F;sui.git --branch devnet sui</span><br></pre></td></tr></table></figure></li>
+<li><p>vscode 安装 <code>move-analyzer</code>插件</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cargo install --git https:&#x2F;&#x2F;github.com&#x2F;move-language&#x2F;move move-analyzer --features &quot;address20&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ul>
+<li><code>sui client envs</code><ul>
+<li><code>devnet</code>: <code>https://fullnode.devnet.sui.io:443</code></li>
+<li><code>0</code> for ed25519</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装-Sui-插件钱包"><a href="#安装-Sui-插件钱包" class="headerlink" title="安装 Sui 插件钱包"></a>安装 Sui 插件钱包</h2><p><a href="https://chromewebstore.google.com/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil?pli=1">https://chromewebstore.google.com/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil?pli=1</a></p>
+<h2 id="获取测试币"><a href="#获取测试币" class="headerlink" title="获取测试币"></a>获取测试币</h2><p><code>sui client faucet</code></p>
+<p>每次可以获取 10 SUI</p>
+<h2 id="浏览器查看地址"><a href="#浏览器查看地址" class="headerlink" title="浏览器查看地址"></a>浏览器查看地址</h2><p><a href="https://suiscan.xyz/devnet/account/0x163813fb76d72bf46451ddfad78b35700198bf8eb8f3d3dee596726c2b01515b">https://suiscan.xyz/devnet/account/0x163813fb76d72bf46451ddfad78b35700198bf8eb8f3d3dee596726c2b01515b</a></p>
+<h2 id="查看地址"><a href="#查看地址" class="headerlink" title="查看地址"></a>查看地址</h2><ul>
+<li>查看地址: <code>sui client addresses</code></li>
+<li>查看活跃地址: <code>sui client active-address</code></li>
+<li>获取余额(Sui上叫做gas object): <code>sui client gas</code></li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>Move</tag>
+        <tag>Sui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>3_Sui项目结构</title>
+    <url>/2024/10/23/technology/blockchain/move/3_HelloWorld/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li>move项目结构 <a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/2_sui_project_structure.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/2_sui_project_structure.md</a></li>
+<li>自定义结构体和特性: <a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/3_custom_types_and_abilities.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/3_custom_types_and_abilities.md</a></li>
+<li>函数: <a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/4_functions.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/4_functions.md</a></li>
+<li> <a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/5_contract_deployment.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/5_contract_deployment.md</a></li>
+</ul>
+</blockquote>
+<h2 id="基础理论知识"><a href="#基础理论知识" class="headerlink" title="基础理论知识"></a>基础理论知识</h2><ul>
+<li><p>Sui标准库发布在<code>0x2</code>下面</p>
+</li>
+<li><p>发布的模块是不可变对象(immutable object),</p>
+<ul>
+<li>不可变对象:<ul>
+<li>不能被修改+不能被转移+不能被删除</li>
+<li>任何人都可以使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>结构体的特性(abilities)</p>
+<ul>
+<li><strong>copy</strong>: value can be copied (or cloned by value)</li>
+<li><strong>drop</strong>: value can be dropped by the end of the scope</li>
+<li><strong>key</strong>: value can be used as a key for global storage operations</li>
+<li><strong>store</strong>: value can be held inside a struct in global storage</li>
+</ul>
+</li>
+<li><p>函数可见性：</p>
+<ul>
+<li><strong>private</strong>: the default visibility of a function; it can only be accessed by functions inside the same module</li>
+<li><strong>public</strong>: the function is accessible by functions inside the same module and by functions defined in another module</li>
+<li><strong>public(package)</strong>: the function is accessible by functions of modules inside the same package</li>
+</ul>
+</li>
+</ul>
+<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><ul>
+<li><p>创建move项目: <code>sui move new hello_world</code></p>
+</li>
+<li><p>将 <code>Move.toml</code>中的 <code>rev = &quot;framework/testnet&quot;</code> 改为 <code>rev = &quot;framework/devnet&quot;</code></p>
+</li>
+<li><p>在 <code>source/hello_world.move</code> 输入完整代码</p>
+  <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">module hello_world::hello_world &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">use</span> std::string;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义结构体</span></span><br><span class="line">    <span class="comment">/// An object that contains an arbitrary string</span></span><br><span class="line">    public <span class="class"><span class="keyword">struct</span> <span class="title">HelloWorldObject</span></span> has key, store &#123;</span><br><span class="line">        id: UID,</span><br><span class="line">        <span class="comment">/// A string contained in the object</span></span><br><span class="line">        text: string::<span class="built_in">String</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[lint_allow(self_transfer)]</span></span><br><span class="line">    public fun mint(ctx: &amp;<span class="keyword">mut</span> TxContext) &#123;</span><br><span class="line">        <span class="keyword">let</span> object = HelloWorldObject &#123;</span><br><span class="line">            id: object::new(ctx),</span><br><span class="line">            text: string::utf8(<span class="string">b&quot;hello fucker!&quot;</span>)</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将 对象转给调用者</span></span><br><span class="line">        transfer::public_transfer(object, tx_context::sender(ctx));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>编译move代码:  <code>sui move build</code></p>
+</li>
+<li><p>发布package: <code>sui client publish --gas-budget 20000000  ./</code></p>
+<ul>
+<li>可以看到输出之后的package ID<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20241023-161318.jpg"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>export PACKAGE_ID=xxx</code></p>
+</li>
+<li><p>调用package : <code>sui client call --function mint --module hello_world --package $PACKAGE_ID --gas-budget 10000000</code></p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/call_helloworld.png"></p>
+</li>
+</ul>
+<ul>
+<li>区块浏览器查看交易： <a href="https://suiscan.xyz/devnet/tx/9aXrUYDWmHNZ5JoYwUjNBpqgyZUpXvh7xndV3nwrndFa">https://suiscan.xyz/devnet/tx/9aXrUYDWmHNZ5JoYwUjNBpqgyZUpXvh7xndV3nwrndFa</a></li>
+</ul>
+<ul>
+<li><p>查看新建的 <code>HelloWorldObject</code>: <a href="https://suiscan.xyz/devnet/object/0x2001aa30f0aa00c6b6ef86201b5f83271c5a8f7fe6c87720ee939ebda5a4f9ce">https://suiscan.xyz/devnet/object/0x2001aa30f0aa00c6b6ef86201b5f83271c5a8f7fe6c87720ee939ebda5a4f9ce</a></p>
+<ul>
+<li>此 Object的owner是我的地址</li>
+<li>Object中的字段值 <code>hello fucker</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20241023-162315.jpg"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>Move</tag>
         <tag>Sui</tag>
       </tags>
   </entry>
@@ -4472,153 +4594,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>1_Solana账户模型</title>
-    <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
-<li><p>官方文档(推荐)：<a href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
-</li>
-<li><p>账户模型:</p>
-<ul>
-<li>推荐: <a href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
-<li><a href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
-<li><a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-</ul>
-</li>
-<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
-</li>
-<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
-<ul>
-<li>可升级(整体)： <a href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
-<li>不可变(字节码不可变): <a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
-</ul>
-</li>
-<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
-<ul>
-<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
-</ul>
-</li>
-<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
-</li>
-<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
-<ul>
-<li><a href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
-<li>System Program:<ul>
-<li>功能:<ul>
-<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
-<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
-<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
-</blockquote>
-</li>
-<li>分配数据空间</li>
-<li>转移普通账户(owner是 System Program)的余额</li>
-<li>仅owner是 System Program 可以支付手续费</li>
-</ul>
-</li>
-<li>Program id: <code>11111111111111111111111111111111</code></li>
-<li>Instructions: SystemInstruction</li>
-</ul>
-</li>
-<li>BPF Loader Program<ul>
-<li>功能：<ul>
-<li>是所有自定义程序的owner</li>
-<li>Deploys, upgrades, and executes programs on the chain.</li>
-</ul>
-</li>
-<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
-<li>Instructions: LoaderInstruction</li>
-</ul>
-</li>
-<li>SPL Token<ul>
-<li>TODO  :</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
-<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
-<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
-<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
-<p><a href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
-</blockquote>
-<ul>
-<li><p>不可变性:</p>
-<ul>
-<li>可执行账户完全不可变</li>
-</ul>
-</li>
-<li><p><strong>数据分配</strong></p>
-<ul>
-<li>仅<code>System Program</code> 可以更改账户数据大小</li>
-<li>新分配的账户数据总是归零的</li>
-<li>账户数据大小不可缩小<blockquote>
-<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>数据</p>
-<ul>
-<li>每个账户最多 10MB 数据（代码 或 状态）</li>
-<li>只有账户的owner才可以修改数据</li>
-<li>账户只有处于数据归零状态下才可以分配新的owner</li>
-</ul>
-</li>
-<li><p>余额</p>
-<ul>
-<li>只有账户的owner可以减少余额</li>
-<li>任何程序账户都可以账户增加余额（转移）<blockquote>
-<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>所有权</p>
-<ul>
-<li>只有账户owner可以制定新的账户owner</li>
-</ul>
-</li>
-<li><p>租金</p>
-<ul>
-<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
-<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
-</ul>
-</li>
-<li><p>余额为0的账户</p>
-<ul>
-<li>余额为0的账户，在交易执行后会被系统删除</li>
-<li>一个交易中可以创建临时余额为0的账户</li>
-</ul>
-</li>
-<li><p>新的执行账户</p>
-<ul>
-<li>只有制定的loader program可以修改账户的可执行状态</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2_Solana交易和指令</title>
     <url>/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
@@ -4810,6 +4785,204 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>1_Solana账户模型</title>
+    <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
+<li><p>官方文档(推荐)：<a href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
+</li>
+<li><p>账户模型:</p>
+<ul>
+<li>推荐: <a href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
+<li><a href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
+<li><a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+</ul>
+</li>
+<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
+</li>
+<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
+<ul>
+<li>可升级(整体)： <a href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
+<li>不可变(字节码不可变): <a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
+</ul>
+</li>
+<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
+<ul>
+<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
+</ul>
+</li>
+<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
+</li>
+<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
+<ul>
+<li><a href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
+<li>System Program:<ul>
+<li>功能:<ul>
+<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
+<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
+<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
+</blockquote>
+</li>
+<li>分配数据空间</li>
+<li>转移普通账户(owner是 System Program)的余额</li>
+<li>仅owner是 System Program 可以支付手续费</li>
+</ul>
+</li>
+<li>Program id: <code>11111111111111111111111111111111</code></li>
+<li>Instructions: SystemInstruction</li>
+</ul>
+</li>
+<li>BPF Loader Program<ul>
+<li>功能：<ul>
+<li>是所有自定义程序的owner</li>
+<li>Deploys, upgrades, and executes programs on the chain.</li>
+</ul>
+</li>
+<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
+<li>Instructions: LoaderInstruction</li>
+</ul>
+</li>
+<li>SPL Token<ul>
+<li>TODO  :</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
+<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
+<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
+<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
+<p><a href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
+</blockquote>
+<ul>
+<li><p>不可变性:</p>
+<ul>
+<li>可执行账户完全不可变</li>
+</ul>
+</li>
+<li><p><strong>数据分配</strong></p>
+<ul>
+<li>仅<code>System Program</code> 可以更改账户数据大小</li>
+<li>新分配的账户数据总是归零的</li>
+<li>账户数据大小不可缩小<blockquote>
+<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据</p>
+<ul>
+<li>每个账户最多 10MB 数据（代码 或 状态）</li>
+<li>只有账户的owner才可以修改数据</li>
+<li>账户只有处于数据归零状态下才可以分配新的owner</li>
+</ul>
+</li>
+<li><p>余额</p>
+<ul>
+<li>只有账户的owner可以减少余额</li>
+<li>任何程序账户都可以账户增加余额（转移）<blockquote>
+<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>所有权</p>
+<ul>
+<li>只有账户owner可以制定新的账户owner</li>
+</ul>
+</li>
+<li><p>租金</p>
+<ul>
+<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
+<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
+</ul>
+</li>
+<li><p>余额为0的账户</p>
+<ul>
+<li>余额为0的账户，在交易执行后会被系统删除</li>
+<li>一个交易中可以创建临时余额为0的账户</li>
+</ul>
+</li>
+<li><p>新的执行账户</p>
+<ul>
+<li>只有制定的loader program可以修改账户的可执行状态</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>4_Solana程序</title>
+    <url>/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
+</blockquote>
+<ul>
+<li>在solana中“智能合约”被称为“程序”(program)</li>
+<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
+</ul>
+<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
+<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
+</li>
+<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
+</li>
+<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
+</li>
+<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
+</li>
+</ul>
+<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
+<li><p>原生Rust</p>
+</li>
+<li><p>Anchor框架(推荐)</p>
+<ul>
+<li><a href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
+<li><a href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
+<p><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
+</blockquote>
+<ul>
+<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
+<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
+<li><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3_Solana的手续费</title>
     <url>/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/</url>
     <content><![CDATA[<h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
@@ -4890,57 +5063,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>4_Solana程序</title>
-    <url>/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
-</blockquote>
-<ul>
-<li>在solana中“智能合约”被称为“程序”(program)</li>
-<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
-</ul>
-<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
-<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
-</li>
-<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
-</li>
-<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
-</li>
-<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
-</li>
-</ul>
-<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
-<li><p>原生Rust</p>
-</li>
-<li><p>Anchor框架(推荐)</p>
-<ul>
-<li><a href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
-<li><a href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
-<p><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
-</blockquote>
-<ul>
-<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
-<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
-<li><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>5_Solana的PDA账户</title>
     <url>/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/</url>
     <content><![CDATA[<h1 id="Solana-PDA"><a href="#Solana-PDA" class="headerlink" title="Solana PDA"></a>Solana PDA</h1><blockquote>
@@ -4979,6 +5101,36 @@ Python[Python调用] --data.h-->data.cc</pre>
 <h3 id="如何生成PDA"><a href="#如何生成PDA" class="headerlink" title="如何生成PDA"></a>如何生成PDA</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda-derivation.svg"></p>
 <p>在 Anchor中生成 PDA</p>
 <p><a href="https://solana.com/docs/core/pda#create-pda-accounts">https://solana.com/docs/core/pda#create-pda-accounts</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6_Solana的跨程序调用CPI</title>
+    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
+    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -5120,36 +5272,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>Solana</tag>
         <tag>交易</tag>
         <tag>Token</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6_Solana的跨程序调用CPI</title>
-    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
-    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
-</blockquote>
-<ul>
-<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
-</li>
-<li><p>CPI调用栈高度限制: <code>5</code></p>
-<ul>
-<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
       </tags>
   </entry>
   <entry>
@@ -5535,36 +5657,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>基于BodingCurve价格发现的代币</title>
-    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
-    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
-</li>
-<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
-</li>
-<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
-</li>
-<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
-</li>
-</ul>
-<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
-<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>Token</tag>
-        <tag>BodingCurve</tag>
-        <tag>价格发现</tag>
-        <tag>代币</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分析可升级智能合约</title>
     <url>/2022/12/14/technology/blockchain/solidity/%E5%88%86%E6%9E%90%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为了理解可升级合约，必须理解proxy机制，要理解proxy机制，必须理解solidity的<code>sstore</code>和<code>sload</code>,以及关于以太坊架构和存储结构（数据结构）。</p>
@@ -5657,6 +5749,36 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>区块链</tag>
         <tag>代理合约</tag>
         <tag>可升级</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于BodingCurve价格发现的代币</title>
+    <url>/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/</url>
+    <content><![CDATA[<h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+</li>
+<li><p><a href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+</li>
+<li><p><a href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+</li>
+<li><p><a href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+</li>
+</ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
+<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>Token</tag>
+        <tag>BodingCurve</tag>
+        <tag>价格发现</tag>
+        <tag>代币</tag>
       </tags>
   </entry>
   <entry>
