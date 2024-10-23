@@ -613,49 +613,6 @@
       </tags>
   </entry>
   <entry>
-    <title>技术管理</title>
-    <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<blockquote>
-<ul>
-<li><a href="https://coolshell.cn/articles/20765.html">https://coolshell.cn/articles/20765.html</a></li>
-<li><a href="https://coolshell.cn/articles/4951.html">https://coolshell.cn/articles/4951.html</a></li>
-<li><a href="https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer">https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer</a></li>
-</ul>
-</blockquote>
-<h2 id="宏观管理"><a href="#宏观管理" class="headerlink" title="宏观管理"></a>宏观管理</h2><ul>
-<li>努力找到好的人<ul>
-<li>能独挡一面的人。这样交给他的事能独立完成，没有路能自己找路，这样可以省很多管理成本。</li>
-<li>沟通能力很强的人。一方面，他们把模糊的事能变清楚，另一方面，他能有效地说服他人。不然就会非常扯皮和消耗时间。</li>
-<li>能自管理和自驱动。不能自管理和自驱的人，会增加大量的管理和教育成本。能自驱动的人，都是对负责的事情有认同的人。</li>
-</ul>
-</li>
-<li>设定共同的目标和使命</li>
-<li>倾向使用小团队</li>
-</ul>
-<h2 id="微观实战"><a href="#微观实战" class="headerlink" title="微观实战"></a>微观实战</h2><blockquote>
-<p>主动，自我驱动，自我管理</p>
-</blockquote>
-<ul>
-<li>文档驱动：文档写作是一种深度思考，当你把你脑子里想的东西写下来的时候，你就会发现你的思考更多了</li>
-<li>自动化和简化: 如：自动化测试，自动化部署</li>
-<li>Owner文化: <strong>每件事都要定义一个Owner</strong></li>
-<li>Review文化: 很多人以为开会讨论有个议题就行了，其实不够，有效率的开会讨论需要的是议案，而且还是高质量的议案！</li>
-<li>目标承诺: 要有工作计划和工作目标, 每个人自己给自己制定的计划最好是在1-2周内。</li>
-<li>自我管理:</li>
-<li>知识分享会:</li>
-</ul>
-]]></content>
-      <categories>
-        <category>管理</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>生活</tag>
-        <tag>管理</tag>
-        <tag>工作</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>放下</title>
     <url>/2023/10/19/learning/%E6%94%BE%E4%B8%8B/</url>
     <content><![CDATA[<p>外六尘（指眼、耳、鼻、舌、身、意等六根所相应的六种对境，也是六识所感觉、认识的六种境界），内六根（眼、耳、鼻、舌、身、意），中六识（视觉、听觉、嗅觉、味觉、触觉、知觉）</p>
@@ -702,6 +659,49 @@
         <tag>公司</tag>
         <tag>国际</tag>
         <tag>税务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>技术管理</title>
+    <url>/2024/08/02/learning/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<blockquote>
+<ul>
+<li><a href="https://coolshell.cn/articles/20765.html">https://coolshell.cn/articles/20765.html</a></li>
+<li><a href="https://coolshell.cn/articles/4951.html">https://coolshell.cn/articles/4951.html</a></li>
+<li><a href="https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer">https://softwareengineering.stackexchange.com/questions/45776/why-do-business-analysts-and-project-managers-get-higher-salaries-than-programmer</a></li>
+</ul>
+</blockquote>
+<h2 id="宏观管理"><a href="#宏观管理" class="headerlink" title="宏观管理"></a>宏观管理</h2><ul>
+<li>努力找到好的人<ul>
+<li>能独挡一面的人。这样交给他的事能独立完成，没有路能自己找路，这样可以省很多管理成本。</li>
+<li>沟通能力很强的人。一方面，他们把模糊的事能变清楚，另一方面，他能有效地说服他人。不然就会非常扯皮和消耗时间。</li>
+<li>能自管理和自驱动。不能自管理和自驱的人，会增加大量的管理和教育成本。能自驱动的人，都是对负责的事情有认同的人。</li>
+</ul>
+</li>
+<li>设定共同的目标和使命</li>
+<li>倾向使用小团队</li>
+</ul>
+<h2 id="微观实战"><a href="#微观实战" class="headerlink" title="微观实战"></a>微观实战</h2><blockquote>
+<p>主动，自我驱动，自我管理</p>
+</blockquote>
+<ul>
+<li>文档驱动：文档写作是一种深度思考，当你把你脑子里想的东西写下来的时候，你就会发现你的思考更多了</li>
+<li>自动化和简化: 如：自动化测试，自动化部署</li>
+<li>Owner文化: <strong>每件事都要定义一个Owner</strong></li>
+<li>Review文化: 很多人以为开会讨论有个议题就行了，其实不够，有效率的开会讨论需要的是议案，而且还是高质量的议案！</li>
+<li>目标承诺: 要有工作计划和工作目标, 每个人自己给自己制定的计划最好是在1-2周内。</li>
+<li>自我管理:</li>
+<li>知识分享会:</li>
+</ul>
+]]></content>
+      <categories>
+        <category>管理</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>生活</tag>
+        <tag>管理</tag>
+        <tag>工作</tag>
       </tags>
   </entry>
   <entry>
@@ -3433,35 +3433,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>Uniswap-v2学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Uniswap-v3学习</title>
-    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-        <tag>开发者</tag>
-        <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Uniswap-v3分析</title>
     <url>/2024/07/29/technology/blockchain/defi/Uniswap-v3%E5%85%AC%E5%BC%8F/</url>
     <content><![CDATA[<ul>
@@ -3492,6 +3463,35 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>DeFi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v2学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v3学习</title>
+    <url>/2024/07/30/technology/blockchain/defi/Uniswap-v3%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>学问<br><a href="https://uniswapv3book.com/">https://uniswapv3book.com/</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
+        <tag>开发者</tag>
+        <tag>金融</tag>
       </tags>
   </entry>
   <entry>
@@ -3732,7 +3732,7 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>3_Sui项目结构</title>
+    <title>3_HelloWorld</title>
     <url>/2024/10/23/technology/blockchain/move/3_HelloWorld/</url>
     <content><![CDATA[<blockquote>
 <ul>
@@ -3743,11 +3743,13 @@ Python[Python调用] --data.h-->data.cc</pre>
 </ul>
 </blockquote>
 <h2 id="基础理论知识"><a href="#基础理论知识" class="headerlink" title="基础理论知识"></a>基础理论知识</h2><ul>
+<li><p>Sui以Object(对象)为核心(Object有点类似Bitcoin中的UTXO)</p>
+</li>
 <li><p>Sui标准库发布在<code>0x2</code>下面</p>
 </li>
-<li><p>发布的模块是不可变对象(immutable object),</p>
+<li><p>发布的模块是不可变Object(immutable object),</p>
 <ul>
-<li>不可变对象:<ul>
+<li>不可变Object:<ul>
 <li>不能被修改+不能被转移+不能被删除</li>
 <li>任何人都可以使用</li>
 </ul>
@@ -4594,6 +4596,153 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>1_Solana账户模型</title>
+    <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
+<li><p>官方文档(推荐)：<a href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
+</li>
+<li><p>账户模型:</p>
+<ul>
+<li>推荐: <a href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
+<li><a href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
+<li><a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+</ul>
+</li>
+<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
+</li>
+<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
+<ul>
+<li>可升级(整体)： <a href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
+<li>不可变(字节码不可变): <a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
+</ul>
+</li>
+<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
+<ul>
+<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
+</ul>
+</li>
+<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
+</li>
+<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
+<ul>
+<li><a href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
+<li>System Program:<ul>
+<li>功能:<ul>
+<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
+<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
+<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
+</blockquote>
+</li>
+<li>分配数据空间</li>
+<li>转移普通账户(owner是 System Program)的余额</li>
+<li>仅owner是 System Program 可以支付手续费</li>
+</ul>
+</li>
+<li>Program id: <code>11111111111111111111111111111111</code></li>
+<li>Instructions: SystemInstruction</li>
+</ul>
+</li>
+<li>BPF Loader Program<ul>
+<li>功能：<ul>
+<li>是所有自定义程序的owner</li>
+<li>Deploys, upgrades, and executes programs on the chain.</li>
+</ul>
+</li>
+<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
+<li>Instructions: LoaderInstruction</li>
+</ul>
+</li>
+<li>SPL Token<ul>
+<li>TODO  :</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
+<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
+<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
+<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
+<p><a href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
+</blockquote>
+<ul>
+<li><p>不可变性:</p>
+<ul>
+<li>可执行账户完全不可变</li>
+</ul>
+</li>
+<li><p><strong>数据分配</strong></p>
+<ul>
+<li>仅<code>System Program</code> 可以更改账户数据大小</li>
+<li>新分配的账户数据总是归零的</li>
+<li>账户数据大小不可缩小<blockquote>
+<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据</p>
+<ul>
+<li>每个账户最多 10MB 数据（代码 或 状态）</li>
+<li>只有账户的owner才可以修改数据</li>
+<li>账户只有处于数据归零状态下才可以分配新的owner</li>
+</ul>
+</li>
+<li><p>余额</p>
+<ul>
+<li>只有账户的owner可以减少余额</li>
+<li>任何程序账户都可以账户增加余额（转移）<blockquote>
+<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>所有权</p>
+<ul>
+<li>只有账户owner可以制定新的账户owner</li>
+</ul>
+</li>
+<li><p>租金</p>
+<ul>
+<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
+<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
+</ul>
+</li>
+<li><p>余额为0的账户</p>
+<ul>
+<li>余额为0的账户，在交易执行后会被系统删除</li>
+<li>一个交易中可以创建临时余额为0的账户</li>
+</ul>
+</li>
+<li><p>新的执行账户</p>
+<ul>
+<li>只有制定的loader program可以修改账户的可执行状态</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2_Solana交易和指令</title>
     <url>/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
@@ -4785,204 +4934,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>1_Solana账户模型</title>
-    <url>/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
-<li><p>官方文档(推荐)：<a href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
-</li>
-<li><p>账户模型:</p>
-<ul>
-<li>推荐: <a href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
-<li><a href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
-<li><a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-</ul>
-</li>
-<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
-</li>
-<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
-<ul>
-<li>可升级(整体)： <a href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
-<li>不可变(字节码不可变): <a href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
-</ul>
-</li>
-<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
-<ul>
-<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
-</ul>
-</li>
-<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
-</li>
-<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
-<ul>
-<li><a href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
-<li>System Program:<ul>
-<li>功能:<ul>
-<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
-<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
-<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
-</blockquote>
-</li>
-<li>分配数据空间</li>
-<li>转移普通账户(owner是 System Program)的余额</li>
-<li>仅owner是 System Program 可以支付手续费</li>
-</ul>
-</li>
-<li>Program id: <code>11111111111111111111111111111111</code></li>
-<li>Instructions: SystemInstruction</li>
-</ul>
-</li>
-<li>BPF Loader Program<ul>
-<li>功能：<ul>
-<li>是所有自定义程序的owner</li>
-<li>Deploys, upgrades, and executes programs on the chain.</li>
-</ul>
-</li>
-<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
-<li>Instructions: LoaderInstruction</li>
-</ul>
-</li>
-<li>SPL Token<ul>
-<li>TODO  :</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
-<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
-<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
-<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
-<p><a href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
-</blockquote>
-<ul>
-<li><p>不可变性:</p>
-<ul>
-<li>可执行账户完全不可变</li>
-</ul>
-</li>
-<li><p><strong>数据分配</strong></p>
-<ul>
-<li>仅<code>System Program</code> 可以更改账户数据大小</li>
-<li>新分配的账户数据总是归零的</li>
-<li>账户数据大小不可缩小<blockquote>
-<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>数据</p>
-<ul>
-<li>每个账户最多 10MB 数据（代码 或 状态）</li>
-<li>只有账户的owner才可以修改数据</li>
-<li>账户只有处于数据归零状态下才可以分配新的owner</li>
-</ul>
-</li>
-<li><p>余额</p>
-<ul>
-<li>只有账户的owner可以减少余额</li>
-<li>任何程序账户都可以账户增加余额（转移）<blockquote>
-<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>所有权</p>
-<ul>
-<li>只有账户owner可以制定新的账户owner</li>
-</ul>
-</li>
-<li><p>租金</p>
-<ul>
-<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
-<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
-</ul>
-</li>
-<li><p>余额为0的账户</p>
-<ul>
-<li>余额为0的账户，在交易执行后会被系统删除</li>
-<li>一个交易中可以创建临时余额为0的账户</li>
-</ul>
-</li>
-<li><p>新的执行账户</p>
-<ul>
-<li>只有制定的loader program可以修改账户的可执行状态</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>4_Solana程序</title>
-    <url>/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
-</blockquote>
-<ul>
-<li>在solana中“智能合约”被称为“程序”(program)</li>
-<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
-</ul>
-<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
-<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
-</li>
-<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
-</li>
-<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
-</li>
-<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
-</li>
-</ul>
-<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
-<li><p>原生Rust</p>
-</li>
-<li><p>Anchor框架(推荐)</p>
-<ul>
-<li><a href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
-<li><a href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
-<p><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
-</blockquote>
-<ul>
-<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
-<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
-<li><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>3_Solana的手续费</title>
     <url>/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/</url>
     <content><![CDATA[<h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
@@ -5048,6 +4999,57 @@ Python[Python调用] --data.h-->data.cc</pre>
 <li>租金<ul>
 <li>获取租金豁免: <a href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
 <li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>4_Solana程序</title>
+    <url>/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
+</blockquote>
+<ul>
+<li>在solana中“智能合约”被称为“程序”(program)</li>
+<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
+</ul>
+<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
+<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
+</li>
+<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
+</li>
+<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
+</li>
+<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
+</li>
+</ul>
+<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
+<li><p>原生Rust</p>
+</li>
+<li><p>Anchor框架(推荐)</p>
+<ul>
+<li><a href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
+<li><a href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
+<p><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
+</blockquote>
+<ul>
+<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
+<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
+<li><a href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
 </ul>
 </li>
 </ul>
