@@ -13,17 +13,28 @@ from math import sqrt
 
 def calc_market(market_cap_in_usd: float, sol_price_in_usd: float):
 
-    # k = x * y
+    # k = x * y      量纲 t*s  , s 为 sol ,  t 为 token
     k = 79 * (10_0000_0000 - 7_9310_0000)
 
-    # token目标价格
-    p = (market_cap_in_usd / 10_0000_0000) / sol_price_in_usd
+    P = 0  # 量纲   s/t
+    if True:
+        # 量纲 u/s  , u为usd
+        target_sol_price = sol_price_in_usd
 
-    # y^2 = k * p
-    target_y = sqrt(k / p)
-    target_x = p * target_y
+        # 量纲 u/t  , u为usd
+        target_token_price = market_cap_in_usd / 10_0000_0000
 
-    return target_x, target_y
+        # p = (u/t) / (u/s) , 目标量纲为 s/t
+        P = target_token_price / target_sol_price
+        # print(p)
+
+    # y^2 = k / p       ,  量纲为 ts / (s/t) = t^2 , 因此 y的量纲为 t
+    Y = sqrt(k / P)
+
+    # x = p * y         , 量纲为 (s/t) * t = s , 因此 x 的量纲为 s
+    X = P * Y
+
+    return X, Y
 
 
 target_market_cap_in_usd_lists = [1_0000_0000 * i for i in range(1, 11)]
