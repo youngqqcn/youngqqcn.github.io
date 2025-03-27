@@ -9,7 +9,6 @@ tags:
 
 ## 安装Python3.13.2
 
-
 Windows: 安装python3.13, 直接下载即可，在安装目录的 `python3.13t`
 - 在"Advanced Options"下，确保选择“Download free-threaded binaries(experimental)”选项，然后点击“安装”
 
@@ -24,8 +23,6 @@ make install
 # 或者， 不覆盖系统的python
 make altinstall
 ```
-
-
 
 ## 运行测试代码:
 
