@@ -106,6 +106,66 @@
     
     
     <article
+  id="post-technology/blockchain/solana/17_Solana程序安全审计-openbook-dex"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/30/technology/blockchain/solana/17_Solana%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1-openbook-dex/"
+    >17_Solana程序安全审计-openbook-dex</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/30/technology/blockchain/solana/17_Solana%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1-openbook-dex/" class="article-date">
+  <time datetime="2024-07-30T03:34:00.000Z" itemprop="datePublished">2024-07-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>审计报告: <a target="_blank" rel="noopener" href="https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf">https://github.com/openbook-dex/openbook-v2/blob/master/audit/openbook_audit.pdf</a></p>
+</blockquote>
+<ul>
+<li>place_order方法缺少下单方向检查，黑客可以下反方向的单， 导致用户的下单金额被盗</li>
+</ul>
+<p>漏洞修复:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753">https://github.com/openbook-dex/openbook-v2/commit/1b40b6898f7fca130d47f74c66c8f3017d17753</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%A1%E8%AE%A1/" rel="tag">审计</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/defi/Uniswap-v3公式"
   class="article article-type-post"
   itemscope
@@ -612,176 +672,6 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/solana/14_Solana_程序架构"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/"
-    >14_Solana_程序架构</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/" class="article-date">
-  <time datetime="2024-07-22T10:14:00.000Z" itemprop="datePublished">2024-07-22</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/program-architecture">https://www.soldev.app/course/program-architecture</a></p>
-</blockquote>
-<h3 id="处理大账户-Dealing-With-Large-Accounts"><a href="#处理大账户-Dealing-With-Large-Accounts" class="headerlink" title="处理大账户 Dealing With Large Accounts"></a>处理大账户 Dealing With Large Accounts</h3><ul>
-<li>Solana上存储每个字节都需要支付相应的租金</li>
-<li>大数据限制:<ul>
-<li>Stack(栈)限制: <code>4KB</code></li>
-<li>Heap(堆)限制: <code>32KB</code><ul>
-<li><code>Box</code>: 小于<code>32KB</code></li>
-<li><code>zero copy</code>: 处理大于<code>32KB</code></li>
-</ul>
-</li>
-<li> 大于 <code>10KB</code>的账户，CPI有限制</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Anchor中字段大小:</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://book.anchor-lang.com/anchor_references/space.html">https://book.anchor-lang.com/anchor_references/space.html</a></p>
-</li>
-<li><p><code>String</code>: <code>4 + 字符串字节长度</code></p>
-</li>
-<li><p><code>Vec&lt;T&gt;</code>:     <code>4 + (space(T) * amount)</code></p>
-</li>
-<li><p><code>Pubkey</code>:    <code>32</code></p>
-</li>
-<li><p><code>Option&lt;T&gt;</code>    <code>1 + (space(T))</code></p>
-</li>
-<li><p><code>Enum</code>    : <code>1 + 最大变量的size</code></p>
-</li>
-<li><p><code>f32</code> 和 <code>f64</code> : 会序列化失败 <code>NaN</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Box，在堆上分配内存</p>
-  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> big_data: [<span class="built_in">u8</span>; <span class="number">5000</span>], <span class="comment">// 5000字节超出了solana的4KB栈限制，因此使用Heap</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeFunctionContext</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">pub</span> some_big_data: <span class="built_in">Box</span>&lt;Account&lt;<span class="symbol">&#x27;info</span>, SomeBigDataStruct&gt;&gt;, <span class="comment">// 在堆上分配内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Zero Copy</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html">https://docs.rs/anchor-lang/latest/anchor_lang/attr.account.html</a></p>
-</blockquote>
-  <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account(zero_copy)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">SomeReallyBigDataStruct</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> really_big_data: [<span class="built_in">u128</span>; <span class="number">1024</span>], <span class="comment">// 16,384 bytes</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">ConceptZeroCopy</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(zero)]</span></span><br><span class="line">    <span class="keyword">pub</span> some_really_big_data: AccountLoader&lt;<span class="symbol">&#x27;info</span>, SomeReallyBigDataStruct&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="处理账户-Dealing-With-Accounts"><a href="#处理账户-Dealing-With-Accounts" class="headerlink" title="处理账户 Dealing With Accounts"></a>处理账户 Dealing With Accounts</h3><ul>
-<li><p><strong>数据顺序</strong>: <code>变长</code>字段放在账户结构尾部</p>
-<ul>
-<li>因为变长的字段放在签名，通过filter查询后面的字段时，无法确定偏移量offset，</li>
-</ul>
-</li>
-<li><p><strong>预留字段</strong>: 为账户增加一个预留字段</p>
-<ul>
-<li>v1版本<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V1</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">128</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>v2版本:   v1 和 2 版本是兼容的<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GameState</span></span> &#123; <span class="comment">//V2</span></span><br><span class="line">    <span class="keyword">pub</span> health: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> mana: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> experience: <span class="built_in">u64</span>,  <span class="comment">// 新增</span></span><br><span class="line">    <span class="keyword">pub</span> for_future_use: [<span class="built_in">u8</span>; <span class="number">120</span>],</span><br><span class="line">    <span class="keyword">pub</span> event_log: <span class="built_in">Vec</span>&lt;string&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>数据优化</strong>: 通过优化账户数据结构节约空间</p>
-<ul>
-<li>例如: 能用 <code>u8</code>的，就不要用<code>u64</code> ,<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">BadGameFlags</span></span> &#123; <span class="comment">// 8 bytes , 每个 bool 是一个字节</span></span><br><span class="line">    <span class="keyword">pub</span> is_frozen: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_poisoned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_burning: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_blessed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_cursed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_stunned: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_slowed: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="keyword">pub</span> is_bleeding: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 优化后:</span></span><br><span class="line"><span class="keyword">const</span> IS_FROZEN_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> IS_POISONED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BURNING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLESSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> IS_CURSED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> IS_STUNNED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> IS_SLOWED_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">6</span>;</span><br><span class="line"><span class="keyword">const</span> IS_BLEEDING_FLAG: <span class="built_in">u8</span> = <span class="number">1</span> &lt;&lt; <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> NO_EFFECT_FLAG: <span class="built_in">u8</span> = <span class="number">0b00000000</span>;</span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">GoodGameFlags</span></span> &#123; <span class="comment">// 1 byte</span></span><br><span class="line">    <span class="keyword">pub</span> status_flags: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>PDA账户结构设计</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>PDA对应关系</th>
-<th>示例</th>
-<th>应用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>One-Per-Program (全局账户)</td>
-<td><code>seeds=[b&quot;global config&quot;]</code></td>
-<td>全局配置</td>
-</tr>
-<tr>
-<td>One-Per-Owner</td>
-<td><code>seeds=[b&quot;player&quot;, owner.key().as_ref()]</code></td>
-<td>游戏/DEX/…</td>
-</tr>
-<tr>
-<td>Multiple-Per-Owner</td>
-<td><code>seeds=[b&quot;podcast&quot;, owner.key().as_ref(), episode_title.as_bytes().as_ref()]</code></td>
-<td>播客频道(多季)</td>
-</tr>
-<tr>
-<td>One-Per-Owner-Per-Account</td>
-<td><code>seeds=[b&quot;ATA Account&quot;, owner.key().as_ref(), mint.key().as_ref()]</code></td>
-<td>SPL Token的 ATA</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h3 id="处理并发-Dealing-With-Concurrency"><a href="#处理并发-Dealing-With-Concurrency" class="headerlink" title="处理并发 Dealing With Concurrency"></a>处理并发 Dealing With Concurrency</h3><ul>
-<li>solana的交易可以并行处理</li>
-<li>对于互不关联账户的交易，都是并行处理</li>
-<li>对于<code>共享</code>的账户的<code>写入</code>的交易，采用类似<code>互斥量</code>机制，因此是串行的</li>
-</ul>
-<p>对于瓶颈的优化方案：</p>
-<ul>
-<li>采用<code>分离</code>方案，减少<code>全局共享</code>的<code>写入</code>的账户</li>
-</ul>
-<p>例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>优化成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[TxA]  [TxB] ....[TxX]</span><br><span class="line"> |      |          |    &lt;--- 交易内执行</span><br><span class="line"> V      V          V</span><br><span class="line">[PA]   [PB]       [PX]  &lt;--- 和用户账户关联的PDA账户</span><br><span class="line"> |      |          |    &lt;--- 异步执行</span><br><span class="line"> V      V          V</span><br><span class="line">[平台手续费金额总账户]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这样， 每个用户的交易 只会和自己账户关联的PDA账户有交互，而不会互相影响</p>
-<hr>
-<h3 id="状态压缩-State-Compression"><a href="#状态压缩-State-Compression" class="headerlink" title="状态压缩 State Compression"></a>状态压缩 State Compression</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/generalized-state-compression">https://www.soldev.app/course/generalized-state-compression</a></p>
-</blockquote>
-<ul>
-<li>压缩NFT (cNFT)</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
@@ -799,7 +689,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2021-2024
+        2021-2025
         <i class="ri-heart-fill heart_icon"></i> youngqqcn
       </li>
     </ul>
