@@ -106,6 +106,57 @@
     
     
     <article
+  id="post-photo/index"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/26/photo/index/"
+    >摄影</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/26/photo/index/" class="article-date">
+  <time datetime="2021-04-26T08:08:21.000Z" itemprop="datePublished">2021-04-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>这里会分享一些照片!</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-read/三毛_如果有来生"
   class="article article-type-post"
   itemscope
@@ -326,126 +377,6 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/cpp/C++11新特性"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/04/26/technology/cpp/C++11%E6%96%B0%E7%89%B9%E6%80%A7/"
-    >C++11新特新</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/04/26/technology/cpp/C++11%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
-  <time datetime="2021-04-26T02:52:41.907Z" itemprop="datePublished">2021-04-26</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="C-11-14-17-新特性总结"><a href="#C-11-14-17-新特性总结" class="headerlink" title="C++11/14/17 新特性总结"></a>C++11/14/17 新特性总结</h1><ul>
-<li>initializer_list</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;int&gt; vctTemp( &#123;1, 92, 211, 23, -1, -239, 286, 50&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-<ul>
-<li>auto </li>
-<li>decltype</li>
-</ul>
-<p>用于模板函数的参数返回类型声明</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line">auto MyFunc(T t, U u) -&gt; decltype(t + u)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> t + u;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>用于对lambda函数类型自动推导</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> func = [](<span class="keyword">int</span> a, <span class="keyword">double</span> b, <span class="keyword">const</span> std::string&amp; strTmp)-&gt;std::string &#123;</span><br><span class="line">	boost::format <span class="built_in">fmt</span>(<span class="string">&quot;%1%  %2%  %3%&quot;</span>);</span><br><span class="line">	fmt % a% b% strTmp;</span><br><span class="line">	<span class="keyword">return</span> fmt.<span class="built_in">str</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">auto func2 = [](int a, double b, const std::string&amp; strTmp)-&gt;std::string &#123;</span></span><br><span class="line"><span class="comment">	char buf[1024] = &#123; 0 &#125;;</span></span><br><span class="line"><span class="comment">	memset(buf, 0, sizeof(buf));</span></span><br><span class="line"><span class="comment">	sprintf_s(buf, &quot;%d %.8f %s&quot;, a, b, strTmp.c_str());</span></span><br><span class="line"><span class="comment">	return std::string(buf);</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">std::map&lt;<span class="keyword">int</span>, <span class="keyword">decltype</span>(func)&gt; fucMap;</span><br><span class="line"></span><br><span class="line">fucMap.<span class="built_in">insert</span>( std::<span class="built_in">make_pair</span>(<span class="number">0</span>,   func) );</span><br><span class="line"><span class="comment">//fucMap.insert( std::make_pair(1, );</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> it = fucMap.<span class="built_in">find</span>(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">BOOST_CHECK_EQUAL</span>( fucMap.<span class="built_in">end</span>()== it, <span class="literal">false</span>);</span><br><span class="line">std::cout &lt;&lt; it-&gt;<span class="built_in">second</span>(<span class="number">10</span>, <span class="number">1.23</span>, std::<span class="built_in">string</span>(<span class="string">&quot;hello&quot;</span>)) &lt;&lt; std::endl;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>override 和 final</li>
-</ul>
-<p>override 用于来声明重写父类虚函数<br>final 用来修饰一个类是,表明一个类禁止被继承; 用来修饰虚函数时, 表明虚函数不能被重写</p>
-<ul>
-<li><p>函数返回类型后置 (用于模板函数)</p>
-</li>
-<li><p>模板别名:  using</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> std::vector&lt;std::map&lt;std::string, std::string&gt;&gt;::iterator  itMaps;</span><br><span class="line"><span class="keyword">using</span> itMaps = std::vector&lt;std::map&lt;std::string, std::string&gt;&gt;::iterator  ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>using可以用于模板的别名定义, typedef 则不可以</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> it12Items = std::array&lt;T, <span class="number">12</span>&gt;;   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>nullptr<br>用来取代  <code>NULL</code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="literal">nullptr</span>;  <span class="comment">//true</span></span><br><span class="line"><span class="literal">NULL</span> == <span class="literal">nullptr</span>;  <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<ul>
-<li>智能指针</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr</span><br><span class="line">unique_ptr</span><br><span class="line">weak_ptr</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>异常规范  </li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">foo</span>()<span class="keyword">noexcept</span></span><br><span class="line"><span class="built_in">foo</span>()<span class="built_in"><span class="keyword">noexcept</span></span>(<span class="literal">false</span>)</span><br><span class="line"><span class="built_in">foo</span>()<span class="built_in"><span class="keyword">noexcept</span></span>(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>explicit</li>
-</ul>
-<p>C++11之前仅限制单个参数的构造函数做隐式转换<br>C+++11开始不限于单个参数的构造函数</p>
-<ul>
-<li>可变参数模板<br>一般用递归的方式逐步减少参数的个数 , 递归终止于0个参数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;递归结束</span><br><span class="line">void XPrint()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">template&lt; typename T, typename ...Types&gt;</span><br><span class="line">void XPrint(const T&amp; first,  const Types&amp;... otherArgs)</span><br><span class="line">&#123;</span><br><span class="line">	PlainPrint(first);</span><br><span class="line">	XPrint( otherArgs... );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BOOST_AUTO_TEST_CASE(test_variadic_templates)</span><br><span class="line">&#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;hello  ............&quot; &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	XPrint(2, 5.231, std::string(&quot;hello&quot;), &quot;niuniu&quot;, std::complex(5, 1));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>右值引用和移动语义</li>
-</ul>
-<p>注意自己实现移动拷贝(move ctor)的时候(有指针), 收尾时需要将被move的对象的指针设置为NULL</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">std::vector&lt;std::string&gt; vctInts;</span><br><span class="line">vctInts.push_back(std::move( std::string(&quot;hello&quot;) ));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpp-c-11/" rel="tag">cpp,c++11</a></li></ul>
-
     </footer>
   </div>
 
