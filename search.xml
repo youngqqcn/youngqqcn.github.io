@@ -235,21 +235,6 @@
       </categories>
   </entry>
   <entry>
-    <title>学习</title>
-    <url>/2021/04/27/learning/index/</url>
-    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
-<p>2021的学习计划:</p>
-<ul>
-<li>积极心理学课程(哈佛)</li>
-<li>英语</li>
-<li>经济学概论课程</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>2022技术学习</title>
     <url>/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
@@ -271,6 +256,21 @@
         <tag>前端</tag>
         <tag>全栈</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>学习</title>
+    <url>/2021/04/27/learning/index/</url>
+    <content><![CDATA[<p>这里记录课程学习(非技术类)历程.</p>
+<p>2021的学习计划:</p>
+<ul>
+<li>积极心理学课程(哈佛)</li>
+<li>英语</li>
+<li>经济学概论课程</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
   </entry>
   <entry>
     <title>东南亚Web3调研</title>
@@ -683,24 +683,6 @@
       </tags>
   </entry>
   <entry>
-    <title>理财知识学习</title>
-    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>TODO</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>保险</tag>
-        <tag>理财</tag>
-        <tag>投资</tag>
-        <tag>风险</tag>
-        <tag>储蓄</tag>
-        <tag>财务</tag>
-        <tag>税务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>注册BVI公司好处</title>
     <url>/2023/08/26/learning/%E6%B3%A8%E5%86%8CBVI%E5%85%AC%E5%8F%B8%E5%A5%BD%E5%A4%84/</url>
     <content><![CDATA[<p>BVI英属维尔京群岛简介</p>
@@ -717,9 +699,27 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>税务</tag>
         <tag>公司</tag>
         <tag>国际</tag>
+        <tag>税务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>理财知识学习</title>
+    <url>/2023/08/31/learning/%E7%90%86%E8%B4%A2%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>TODO</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>保险</tag>
+        <tag>理财</tag>
+        <tag>投资</tag>
+        <tag>风险</tag>
+        <tag>税务</tag>
+        <tag>储蓄</tag>
+        <tag>财务</tag>
       </tags>
   </entry>
   <entry>
@@ -1585,19 +1585,6 @@
       </tags>
   </entry>
   <entry>
-    <title>空杯心态</title>
-    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
-    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爱因斯坦与佛陀</title>
     <url>/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/</url>
     <content><![CDATA[<blockquote>
@@ -1646,6 +1633,19 @@
       </tags>
   </entry>
   <entry>
+    <title>空杯心态</title>
+    <url>/2023/09/19/life/%E7%A9%BA%E6%9D%AF%E5%BF%83%E6%80%81/</url>
+    <content><![CDATA[<p>古时候，一个佛学造诣很深的人，听说某个寺庙里有一位德高望重的老禅师，便去拜访。老禅师的徒弟接待他时，他态度傲慢，心想：我是佛学造诣很深的人，你算老几？后来老禅师十分恭敬地接待了他，并为他沏茶。可就在倒茶水时，明明杯子已经满了，老禅师还是不停地倒着。他不解地问：“大师，为什么杯子已经满了，你还要往里面倒？”禅师说：“是啊，既然已经满了，干嘛还倒呢？”禅师的意思是，既然你已经很有学问了，干嘛还要到我这里求教？这就是“空杯心态”的起源。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>纪念陈皓先生</title>
     <url>/2024/08/02/life/%E7%BA%AA%E5%BF%B5%E9%99%88%E7%9A%93%E5%85%88%E7%94%9F/</url>
     <content><![CDATA[<p><a href="https://github.com/megaease/Remembering-Haoel">https://github.com/megaease/Remembering-Haoel</a></p>
@@ -1657,28 +1657,6 @@
         <tag>技术</tag>
         <tag>人生</tag>
         <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>近期感悟</title>
-    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
-    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
-<ul>
-<li>没有人陪你成长，有些路只能一个人走</li>
-<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
-<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
-<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
-<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
-<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -1738,6 +1716,28 @@
         <tag>学佛</tag>
         <tag>虚云老和尚</tag>
         <tag>开示</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>近期感悟</title>
+    <url>/2023/09/10/life/%E8%BF%91%E6%9C%9F%E6%84%9F%E6%82%9F/</url>
+    <content><![CDATA[<p>记录最近的一些感悟和心得，这里简单记录一下：</p>
+<ul>
+<li>没有人陪你成长，有些路只能一个人走</li>
+<li>成长就意味着失去，要得到一些东西，必然要失去一些其他东西</li>
+<li>佛法中有大智慧，要虔心学佛，多看看高僧门的视频和书籍，里面有很多为人处世的智慧</li>
+<li>不要有邪念：贪嗔痴，一切事情要凭良心</li>
+<li>了解自己很难，因为要正视自己的欲望和人性优缺点</li>
+<li>人生如白驹过隙，很短暂，要确立自己安心立命的原则</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -2183,6 +2183,25 @@
       </tags>
   </entry>
   <entry>
+    <title>小王子</title>
+    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
+    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
+<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
+<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
+<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
+<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>阅读</tag>
+        <tag>小说</tag>
+        <tag>童话</tag>
+        <tag>经典</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>商人的四個妻子</title>
     <url>/2023/08/28/read/%E5%95%86%E4%BA%BA%E7%9A%84%E5%9B%9B%E5%80%8B%E5%A6%BB%E5%AD%90/</url>
     <content><![CDATA[<p>佛家四大經典愛情故事之（四） 商人的四個妻子<br>從前，有個人娶了四個妻子，第四個妻子深得丈夫喜愛，不論坐著站著，丈夫都跟她形影不離。第三個妻子是經過一番辛苦才得到，丈夫常常在她身邊甜言蜜語，但不如對第四個妻子那樣寵愛。第二個妻子與丈夫常常見面，互相安慰，宛如朋友。只要在一塊就彼此滿足，一旦分離，就會互相思念。而第一個妻子，簡直像個婢女，家中一切繁重的勞作都由她擔任，她身陷各種苦惱，卻毫無怨言，在丈夫的心裡幾乎沒有位置。</p>
@@ -2202,25 +2221,6 @@
       </categories>
       <tags>
         <tag>珍惜</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>小王子</title>
-    <url>/2021/06/13/read/%E5%B0%8F%E7%8E%8B%E5%AD%90/</url>
-    <content><![CDATA[<p><img src="https://www.hualigs.cn/image/60c5c21dc016f.jpg"></p>
-<p>最近看完了《小王子》，非常经典的童话。如作者所写，这是写给大人们看的童话，因为每个大人都曾经是小孩子，可是很多大人忘记了这一点。</p>
-<p>每个人心理都有一个小王子或曾经拥有过，在成长过程中，慢慢地成了“大人”，大人们都喜欢把东西说的清清楚楚，总是在他们自己的星球沉醉于他们自己事情。</p>
-<p>《小王子》中经典的句子太多了，我想我们不应该执迷于寻章摘句，而是应该用心品味原著才，“重要的东西是看不到的”。</p>
-<p>愿我们在夜晚仰望星空时，拥有一颗会笑的星星。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>阅读</tag>
-        <tag>小说</tag>
-        <tag>童话</tag>
-        <tag>经典</tag>
       </tags>
   </entry>
   <entry>
@@ -2690,23 +2690,55 @@
       </tags>
   </entry>
   <entry>
-    <title>2023川西成都之行</title>
-    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
-    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
-<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
+    <title>语音技术学习笔记</title>
+    <url>/2024/10/25/technology/AI/%E8%AF%AD%E9%9F%B3%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="几个关键概念"><a href="#几个关键概念" class="headerlink" title="几个关键概念"></a>几个关键概念</h3><ul>
+<li><strong>TTS(Text-to-Speech)</strong>: 根据输入文本生成音频</li>
+<li><strong>SoVITS (Soft Voice Cloning)</strong>: SoVITS(Soft Voice Imitation Transfer System), 克隆特定人的音色</li>
+</ul>
+<h3 id="语音服务商"><a href="#语音服务商" class="headerlink" title="语音服务商"></a>语音服务商</h3><ul>
+<li><a href="https://www.volcengine.com/docs/6561/192519">https://www.volcengine.com/docs/6561/192519</a></li>
+<li></li>
+</ul>
+<h3 id="Real-Time-Agent"><a href="#Real-Time-Agent" class="headerlink" title="Real Time Agent"></a>Real Time Agent</h3><ul>
+<li><a href="https://livekit.io/">https://livekit.io/</a></li>
+</ul>
+<p>TTS(Text To Speech)开源项目:</p>
+<h3 id="ChatTTS"><a href="#ChatTTS" class="headerlink" title="ChatTTS:"></a>ChatTTS:</h3><ul>
+<li><p><a href="https://github.com/libukai/Awesome-ChatTTS/">https://github.com/libukai/Awesome-ChatTTS/</a></p>
+</li>
+<li><p>基于ChatTTS，支持API Server和 Gradio WebUI:  <a href="https://github.com/lenML/Speech-AI-Forge">https://github.com/lenML/Speech-AI-Forge</a></p>
+<ul>
+<li><a href="https://huggingface.co/spaces/lenML/ChatTTS-Forge">https://huggingface.co/spaces/lenML/ChatTTS-Forge</a></li>
+</ul>
+</li>
+<li><p>ChatTTS资源库： <a href="https://github.com/libukai/Awesome-ChatTTS/">https://github.com/libukai/Awesome-ChatTTS/</a></p>
+</li>
+</ul>
+<h3 id="GPT-SoVITS"><a href="#GPT-SoVITS" class="headerlink" title="GPT-SoVITS"></a>GPT-SoVITS</h3><ul>
+<li><p><a href="https://github.com/RVC-Boss/GPT-SoVITS">https://github.com/RVC-Boss/GPT-SoVITS</a></p>
+</li>
+<li><p><a href="https://github.com/babysor/MockingBird">https://github.com/babysor/MockingBird</a></p>
+<ul>
+<li>5s克隆声音</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/myshell-ai/OpenVoice">https://github.com/myshell-ai/OpenVoice</a></p>
+<ul>
+<li>myshell出品</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/openai/whisper">https://github.com/openai/whisper</a></p>
 ]]></content>
       <categories>
-        <category>旅行</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>人生</tag>
-        <tag>生活</tag>
-        <tag>旅游</tag>
-        <tag>川西</tag>
-        <tag>成都</tag>
-        <tag>峨眉山</tag>
-        <tag>摄影</tag>
+        <tag>AI</tag>
+        <tag>人工智能</tag>
+        <tag>NLP</tag>
+        <tag>语音技术</tag>
       </tags>
   </entry>
   <entry>
@@ -2758,60 +2790,28 @@
       <tags>
         <tag>算法</tag>
         <tag>AI</tag>
-        <tag>ChatGPT</tag>
         <tag>人工智能</tag>
+        <tag>ChatGPT</tag>
       </tags>
   </entry>
   <entry>
-    <title>语音技术学习笔记</title>
-    <url>/2024/10/25/technology/AI/%E8%AF%AD%E9%9F%B3%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="几个关键概念"><a href="#几个关键概念" class="headerlink" title="几个关键概念"></a>几个关键概念</h3><ul>
-<li><strong>TTS(Text-to-Speech)</strong>: 根据输入文本生成音频</li>
-<li><strong>SoVITS (Soft Voice Cloning)</strong>: SoVITS(Soft Voice Imitation Transfer System), 克隆特定人的音色</li>
-</ul>
-<h3 id="语音服务商"><a href="#语音服务商" class="headerlink" title="语音服务商"></a>语音服务商</h3><ul>
-<li><a href="https://www.volcengine.com/docs/6561/192519">https://www.volcengine.com/docs/6561/192519</a></li>
-<li></li>
-</ul>
-<h3 id="Real-Time-Agent"><a href="#Real-Time-Agent" class="headerlink" title="Real Time Agent"></a>Real Time Agent</h3><ul>
-<li><a href="https://livekit.io/">https://livekit.io/</a></li>
-</ul>
-<p>TTS(Text To Speech)开源项目:</p>
-<h3 id="ChatTTS"><a href="#ChatTTS" class="headerlink" title="ChatTTS:"></a>ChatTTS:</h3><ul>
-<li><p><a href="https://github.com/libukai/Awesome-ChatTTS/">https://github.com/libukai/Awesome-ChatTTS/</a></p>
-</li>
-<li><p>基于ChatTTS，支持API Server和 Gradio WebUI:  <a href="https://github.com/lenML/Speech-AI-Forge">https://github.com/lenML/Speech-AI-Forge</a></p>
-<ul>
-<li><a href="https://huggingface.co/spaces/lenML/ChatTTS-Forge">https://huggingface.co/spaces/lenML/ChatTTS-Forge</a></li>
-</ul>
-</li>
-<li><p>ChatTTS资源库： <a href="https://github.com/libukai/Awesome-ChatTTS/">https://github.com/libukai/Awesome-ChatTTS/</a></p>
-</li>
-</ul>
-<h3 id="GPT-SoVITS"><a href="#GPT-SoVITS" class="headerlink" title="GPT-SoVITS"></a>GPT-SoVITS</h3><ul>
-<li><p><a href="https://github.com/RVC-Boss/GPT-SoVITS">https://github.com/RVC-Boss/GPT-SoVITS</a></p>
-</li>
-<li><p><a href="https://github.com/babysor/MockingBird">https://github.com/babysor/MockingBird</a></p>
-<ul>
-<li>5s克隆声音</li>
-</ul>
-</li>
-<li><p><a href="https://github.com/myshell-ai/OpenVoice">https://github.com/myshell-ai/OpenVoice</a></p>
-<ul>
-<li>myshell出品</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://github.com/openai/whisper">https://github.com/openai/whisper</a></p>
+    <title>2023川西成都之行</title>
+    <url>/2023/10/06/travel/2023_%E5%B7%9D%E8%A5%BF%E6%88%90%E9%83%BD%E4%B9%8B%E8%A1%8C/</url>
+    <content><![CDATA[<p>每一次长途旅行，都是一段难忘的人生经历。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20231006-141005.jpg"></p>
+<p>关于旅行的细节，已经不重要了，就让那些美好的记忆随风而去吧。</p>
 ]]></content>
       <categories>
-        <category>技术</category>
+        <category>旅行</category>
       </categories>
       <tags>
-        <tag>AI</tag>
-        <tag>人工智能</tag>
-        <tag>NLP</tag>
-        <tag>语音技术</tag>
+        <tag>人生</tag>
+        <tag>生活</tag>
+        <tag>旅游</tag>
+        <tag>川西</tag>
+        <tag>成都</tag>
+        <tag>峨眉山</tag>
+        <tag>摄影</tag>
       </tags>
   </entry>
   <entry>
@@ -2959,6 +2959,20 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>优化Docker的overlay2占用磁盘过大的问题</title>
+    <url>/2024/11/25/technology/other/%E4%BC%98%E5%8C%96Docker%E7%9A%84overlay2%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E8%BF%87%E5%A4%A7%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>这个命令会删除停止的容器、未使用的网络、悬挂的镜像和未使用的卷</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker system prune -a</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>程序员如何把控自己的职业</title>
     <url>/2024/08/02/technology/other/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%8C%E4%B8%9A/</url>
     <content><![CDATA[<blockquote>
@@ -3004,17 +3018,320 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>优化Docker的overlay2占用磁盘过大的问题</title>
-    <url>/2024/11/25/technology/other/%E4%BC%98%E5%8C%96Docker%E7%9A%84overlay2%E5%8D%A0%E7%94%A8%E7%A3%81%E7%9B%98%E8%BF%87%E5%A4%A7%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>这个命令会删除停止的容器、未使用的网络、悬挂的镜像和未使用的卷</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker system prune -a</span><br></pre></td></tr></table></figure>]]></content>
+    <title>知道创宇研发技能表</title>
+    <url>/2025/04/09/technology/other/%E7%9F%A5%E9%81%93%E5%88%9B%E5%AE%87%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD%E8%A1%A8/</url>
+    <content><![CDATA[<blockquote>
+<p><a href="https://github.com/knownsec/RD_Checklist">https://github.com/knownsec/RD_Checklist</a></p>
+</blockquote>
+<h1 id="通用技能"><a href="#通用技能" class="headerlink" title="通用技能"></a>通用技能</h1><h2 id="公司与个人"><a href="#公司与个人" class="headerlink" title="公司与个人"></a>公司与个人</h2><ul>
+<li>  公司是盈利性组织</li>
+<li>  个人和公司必须双赢</li>
+<li>  在认同公司理念且能够给公司创造足够价值的基础上，为个人发展而工作</li>
+</ul>
+<h2 id="Who-am-I"><a href="#Who-am-I" class="headerlink" title="Who am I"></a>Who am I</h2><h3 id="黑客是守正出奇且具备创造力的群体"><a href="#黑客是守正出奇且具备创造力的群体" class="headerlink" title="黑客是守正出奇且具备创造力的群体"></a>黑客是守正出奇且具备创造力的群体</h3><h4 id="守正出奇"><a href="#守正出奇" class="headerlink" title="守正出奇"></a>守正出奇</h4><ul>
+<li>  这条正道/底线得坚守</li>
+<li>  但如果太过正就迂腐了，为了搞定任务有时得出奇招</li>
+</ul>
+<h4 id="创造力"><a href="#创造力" class="headerlink" title="创造力"></a>创造力</h4><ul>
+<li>  一个没有创造力的人是多么的可怜，对于团队来说也是一种耻辱</li>
+<li>  本技能表的本质目的只有一个：引导你拥有足够的创造力</li>
+</ul>
+<h3 id="黑客也可以是一种思维方式"><a href="#黑客也可以是一种思维方式" class="headerlink" title="黑客也可以是一种思维方式"></a>黑客也可以是一种思维方式</h3><h3 id="我们需要对得起名片上的那个头衔：工程师、研究员"><a href="#我们需要对得起名片上的那个头衔：工程师、研究员" class="headerlink" title="我们需要对得起名片上的那个头衔：工程师、研究员"></a>我们需要对得起名片上的那个头衔：工程师、研究员</h3><h3 id="牛人姿态"><a href="#牛人姿态" class="headerlink" title="牛人姿态"></a>牛人姿态</h3><ul>
+<li>  即使现在不是牛人，也得具备这样的姿态</li>
+<li>  没有一定扎实内功与远见的人很少有这样的姿态</li>
+<li>  拥有不将就的做事风格，迟早是牛人</li>
+</ul>
+<h2 id="如何做事"><a href="#如何做事" class="headerlink" title="如何做事"></a>如何做事</h2><h3 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h3><ul>
+<li>  完成一件事有好几条途径，优秀的人的途径最短</li>
+<li>  任务拆分很容易得出做事的方法论</li>
+<li>好的「方法论」会让你具备更强的「创造力」！<ul>
+<li>  时刻问自己：「是否具备创造力？」</li>
+</ul>
+</li>
+</ul>
+<h3 id="任务拆分"><a href="#任务拆分" class="headerlink" title="任务拆分"></a>任务拆分</h3><p>成长过程会经历：能力越大、责任越大、事情越多</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>  拆分细化为多个点</li>
+<li>  排好优先级</li>
+</ul>
+<p>任务四象限，决定优先级</p>
+<ul>
+<li>紧急重要<ul>
+<li>  赶紧搞定</li>
+</ul>
+</li>
+<li>重要不紧急<ul>
+<li>  时刻保持关注，以免沦为「紧急重要」</li>
+</ul>
+</li>
+<li>紧急不重要<ul>
+<li>  少少益善，学会拒绝</li>
+</ul>
+</li>
+<li>不紧急不重要<ul>
+<li>  靠自律</li>
+</ul>
+</li>
+</ul>
+<h3 id="SMART-原则"><a href="#SMART-原则" class="headerlink" title="SMART 原则"></a>SMART 原则</h3><ul>
+<li>S：任务是否明确<ul>
+<li>  不明确的任务搞起来就是浪费生命</li>
+</ul>
+</li>
+<li>M：任务是否可度量<ul>
+<li>  不可度量如何体现价值？</li>
+</ul>
+</li>
+<li>A：任务是否可搞定<ul>
+<li>  搞不定就不应该接，接就得有魄力搞定</li>
+</ul>
+</li>
+<li>R：任务的相关性如何<ul>
+<li>  决定了任务的价值，相关性越高越能体现价值，比如这个任务搞定了能让团队获得公司、客户等更大的认可</li>
+</ul>
+</li>
+<li>T：任务的时间<ul>
+<li>  Timeline：任务时间轴，什么时间点需要搞定什么</li>
+<li>  Deadline：任务的最后期限，做评估时最好提前，因为总会有各种意外或拖延本性</li>
+<li>Timeline<br>  上一些很关键的时间点我们可以称为里程碑，搞定每个里程碑应该庆祝下</li>
+</ul>
+</li>
+</ul>
+<h3 id="自己欠缺什么，立马发现"><a href="#自己欠缺什么，立马发现" class="headerlink" title="自己欠缺什么，立马发现"></a>自己欠缺什么，立马发现</h3><h3 id="是否需要寻求帮助，谁能帮你，自己单干？"><a href="#是否需要寻求帮助，谁能帮你，自己单干？" class="headerlink" title="是否需要寻求帮助，谁能帮你，自己单干？"></a>是否需要寻求帮助，谁能帮你，自己单干？</h3><h3 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h3><p>士气第一</p>
+<ul>
+<li>当你有团队时，分配与调度好任务很关键<ul>
+<li>  做得好是真并发</li>
+<li>  做不好会死锁</li>
+</ul>
+</li>
+</ul>
+<h3 id="沟通、反馈与责任"><a href="#沟通、反馈与责任" class="headerlink" title="沟通、反馈与责任"></a>沟通、反馈与责任</h3><ul>
+<li>  一个无沟通能力的人，要么是天才，要么是不可爱的人，不过天才也就寥寥无几而已，你并不是</li>
+<li>反馈要及时<ul>
+<li>  避免出问题不反馈，影响进度</li>
+<li>方式<ul>
+<li>  正式的：邮件</li>
+<li>  临时的：微信等即时通信</li>
+<li>  着急的：给个电话</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>  工作有大小，责任心无大小</li>
+<li>周报的透明<ul>
+<li>意义：大家互相了解工作与心得，有利于自己的判断与成长<ul>
+<li>  观察是一种很重要的技能</li>
+<li>  不是单纯的给领导汇报工作</li>
+</ul>
+</li>
+<li>  周报需体现本周工作总结、下周工作计划、心得/问题/建议（我们叫唧唧歪歪）</li>
+<li>周报可以很好体现一个人的<ul>
+<li>  总结能力</li>
+<li>  计划能力</li>
+<li>分享能力<ul>
+<li>  想象下：一个人从来没有心得/问题/建议的沉淀或反馈，这个人是一个相对封闭的人，在团队作战中很难达到默契</li>
+<li>  当然，这种分享能力远不仅仅是在周报这种形式里</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="团队意识"><a href="#团队意识" class="headerlink" title="团队意识"></a>团队意识</h3><ul>
+<li>很多人都说自己具备足够好的团队意识，但是有些人却并不是这样<ul>
+<li>举个小例子：一个 10 人团队约定早上 10 点开会，而你迟到了 10<br>  分钟，对于团队来说你浪费了整个团队 100 分钟（10 人 * 10<br>  分钟）的生命。有些人无羞愧之心要么是意识不到这点，要么这个团队的风气就是这样...</li>
+</ul>
+</li>
+<li>  团队意识是建立在互相信任的基础上</li>
+<li>  &quot;尺有所短，寸有所长&quot; 是一个优秀的团队必须要达成的共识</li>
+<li>Leader 最关键，优秀的 Leader 一定会有个优秀团队<ul>
+<li>  兵熊熊一个</li>
+<li>  将熊熊一窝</li>
+</ul>
+</li>
+<li>  如何拥有个优秀的团队是一个复杂的话题</li>
+</ul>
+<h2 id="成长"><a href="#成长" class="headerlink" title="成长"></a>成长</h2><h3 id="新事物的敏感性"><a href="#新事物的敏感性" class="headerlink" title="新事物的敏感性"></a>新事物的敏感性</h3><ul>
+<li>  保持好奇心</li>
+<li>  不要局限在自己的圈子，适当跨界吸收灵感</li>
+<li>  订阅国内外优秀博客/资源</li>
+<li>  选择性参与一些必要的会议，听必要的主题，讨论必要的话题</li>
+</ul>
+<h3 id="关于知识"><a href="#关于知识" class="headerlink" title="关于知识"></a>关于知识</h3><ul>
+<li>  好记性不如烂笔头，勤做笔记所带来的收益远超你想象</li>
+<li>  尽快尽早的将自己的知识形成系统化认知，会达到事半功倍的效果</li>
+<li>  对知识的渴望程度决定了前进动力的大小</li>
+<li>  当知识很廉价地摆在你面前，你反而不会珍惜</li>
+<li>  对知识保持敬畏之心</li>
+</ul>
+<h3 id="关于信息获取"><a href="#关于信息获取" class="headerlink" title="关于信息获取"></a>关于信息获取</h3><ul>
+<li>  拓宽自己获取信息的渠道，但不要陷入低信噪比的泥潭</li>
+<li>信息筛选<ul>
+<li>与你相关性如何？</li>
+<li>整体可信度多高？</li>
+<li>有效信息量多少？</li>
+</ul>
+</li>
+<li>  处理并重新组织为你自己的理解</li>
+</ul>
+<h3 id="不要让自己成为矫情-浮夸的人"><a href="#不要让自己成为矫情-浮夸的人" class="headerlink" title="不要让自己成为矫情/浮夸的人"></a>不要让自己成为矫情/浮夸的人</h3><h3 id="和比你厉害的人在一起，和一流的人工作"><a href="#和比你厉害的人在一起，和一流的人工作" class="headerlink" title="和比你厉害的人在一起，和一流的人工作"></a>和比你厉害的人在一起，和一流的人工作</h3><ul>
+<li>  指点往往是精华</li>
+<li>杜绝笨蛋爆炸<ul>
+<li>  二流的人招进来的人不太可能是一流的</li>
+<li>  久而久之一个团队就笨蛋爆炸了</li>
+</ul>
+</li>
+</ul>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><ul>
+<li>  批判性思考</li>
+<li>  解构与系统化思考</li>
+<li>换位思考<ul>
+<li>  对于一个团队来说，这点太关键</li>
+</ul>
+</li>
+</ul>
+<h3 id="提问的智慧"><a href="#提问的智慧" class="headerlink" title="提问的智慧"></a>提问的智慧</h3><ul>
+<li>遇到问题先独立思考，尝试独立解决，尽最大努力后再提问  <!-- - Google/ChatGPT -->
+  <!-- -  [《你尽力了吗？》](https://paper.seebug.org/papers/scz/body/200004171952.txt) --></li>
+<li> <strong>很多技术，明天就会过时，如果你掌握的是学习方法，那你还有下一个机会，如果你掌握的仅仅是这个技术本身，你就没有机会了。</strong></li>
+<li>  提问时，礼貌很关键（对知识的敬畏），清晰表达很关键</li>
+<li>  解决后，分享出来帮助更多需要帮助的人</li>
+</ul>
+<h3 id="小事心态"><a href="#小事心态" class="headerlink" title="小事心态"></a>小事心态</h3><ul>
+<li>  越基础的事越关键，越需要细心</li>
+<li>  不要一味盲目追求「高级感」，而忽视「小事」/「简单事」/「基础事」</li>
+<li>  基础不牢、地动山摇</li>
+<li>  小事做不好，别提大事</li>
+</ul>
+<h3 id="无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳"><a href="#无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳" class="headerlink" title="无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳"></a>无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳</h3><h2 id="完成的定义"><a href="#完成的定义" class="headerlink" title="完成的定义"></a>完成的定义</h2><h3 id="比如写个-POC"><a href="#比如写个-POC" class="headerlink" title="比如写个 POC"></a>比如写个 POC</h3><ol>
+<li> 搞懂了目标 Web 应用漏洞的原理</li>
+<li> 熟练运用 Python 各相关模块与机制</li>
+<li>熟练了解了 HTTP 协议<ul>
+<li>  HTTP 请求</li>
+<li>  HTTP 响应</li>
+</ul>
+</li>
+<li> 代码写得够规范，让人看起来就是爽</li>
+<li>程序经过足够的测试<ul>
+<li>  黑盒测试</li>
+<li>  白盒测试</li>
+</ul>
+</li>
+<li>及时反馈进度<ul>
+<li>  我遇到困难了</li>
+<li>  我搞定了</li>
+</ul>
+</li>
+<li> 更新相关文档，沉淀</li>
+</ol>
+<h2 id="熟练的定义"><a href="#熟练的定义" class="headerlink" title="熟练的定义"></a>熟练的定义</h2><h3 id="比如熟练-SQL-注入"><a href="#比如熟练-SQL-注入" class="headerlink" title="比如熟练 SQL 注入"></a>比如熟练 SQL 注入</h3><ul>
+<li>  SQL 语句这门”语言”能脱离文档顺手写出</li>
+<li>主流数据库的 SQL 特有函数、存储过程、机制我都了如指掌<ul>
+<li>  MySQL</li>
+<li>  PostgreSQL</li>
+<li>  ...</li>
+</ul>
+</li>
+<li>牛逼的工具我不仅用的顺其自然，源码还读过几遍，我能修改<ul>
+<li>  pocsuite3</li>
+<li>  sqlmap</li>
+<li>  metasploit</li>
+<li>  nmap</li>
+<li>  ...</li>
+</ul>
+</li>
+<li>我具备创造性，而不仅仅是跟在大牛身后<ul>
+<li>  研究出了几个不错的技巧</li>
+<li>  发了几篇不错的 Paper</li>
+<li>  对外会议/沙龙等进行了几次分享</li>
+<li>  写出了自己的相关工具，爽</li>
+</ul>
+</li>
+<li>  我实战了 N 回，遇到了很多奇葩环境，我有足够的信心绕过</li>
+<li>  以上这些之后，这才叫熟练！其他同理</li>
+</ul>
+<h2 id="好书推荐"><a href="#好书推荐" class="headerlink" title="好书推荐"></a>好书推荐</h2><h3 id="推荐理由"><a href="#推荐理由" class="headerlink" title="推荐理由"></a>推荐理由</h3><ul>
+<li>打通任督二脉的书，怎能不看？<ul>
+<li>  但，尽信书不如无书</li>
+</ul>
+</li>
+<li>  任何科学研究最终必须至少到哲学层面，触碰到上帝的脚</li>
+<li>  具体技术类书籍请见「专业技能」相关部分</li>
+</ul>
+<h3 id="鸡汤类"><a href="#鸡汤类" class="headerlink" title="鸡汤类"></a>鸡汤类</h3><h4 id="UNIX-编程艺术"><a href="#UNIX-编程艺术" class="headerlink" title="UNIX 编程艺术"></a>UNIX 编程艺术</h4><p>极客的思维哲学</p>
+<ul>
+<li>  使用简洁的接口拼合简单的部件</li>
+<li>  清晰胜于机巧</li>
+<li>  设计时考虑拼接组合</li>
+<li>  策略同机制分离，接口同引擎分离</li>
+<li>  设计要简洁，复杂度能低则低</li>
+<li>  除非确无它法，不要编写庞大的程序</li>
+<li>  设计要可见，以便审查和调试</li>
+<li>  健壮源于透明与简洁</li>
+<li>  把知识叠入数据以求逻辑质朴而健壮</li>
+<li>  接口设计避免标新立异</li>
+<li>  如果一个程序没什么好说的，就保持沉默</li>
+<li>  出现异常时，马上退出并给出足量错误信息</li>
+<li>  宁花机器一分，不花程序员一秒</li>
+<li>  避免手工hack，尽量编写程序去生成程序</li>
+<li>  雕琢前先得有原型，跑之前先学会走</li>
+<li>  决不相信所谓”不二法门”的断言</li>
+<li>  设计着眼未来，未来总比预想快</li>
+</ul>
+<h4 id="黑客与画家"><a href="#黑客与画家" class="headerlink" title="黑客与画家"></a>黑客与画家</h4><p>印象深刻：设计者的品味</p>
+<ul>
+<li>好设计是简单的设计<ul>
+<li>  抓住本质</li>
+</ul>
+</li>
+<li>好设计是永不过时的设计<ul>
+<li>  如果解决方法是丑陋的，那就肯定还有更好的解决方法，只是还没有发现而已</li>
+</ul>
+</li>
+<li>  好设计是解决主要问题的设计</li>
+<li>  好设计是启发性的设计</li>
+<li>  好设计通常是有点趣味性的设计</li>
+<li>  好设计是艰苦的设计</li>
+<li>  好设计是看似容易的设计</li>
+<li>  好设计是对称的设计</li>
+<li>  好设计是模仿大自然的设计</li>
+<li>  好设计是一种再设计</li>
+<li>  好设计是能够复制的设计</li>
+<li>  好设计往往是奇特的设计</li>
+<li>  好设计是成批出现的</li>
+<li>  好设计常常是大胆的设计</li>
+</ul>
+<h4 id="浪潮之巅"><a href="#浪潮之巅" class="headerlink" title="浪潮之巅"></a>浪潮之巅</h4><p>感受 IT 帝国的崛起与没落，我们现在站在又一个互联网浪潮之巅</p>
+<h4 id="代码2-0-网络空间中的法律"><a href="#代码2-0-网络空间中的法律" class="headerlink" title="代码2.0 - 网络空间中的法律"></a>代码2.0 - 网络空间中的法律</h4><p>网络不是法外之地</p>
+<h3 id="洁癖类"><a href="#洁癖类" class="headerlink" title="洁癖类"></a>洁癖类</h3><ul>
+<li>  重构</li>
+<li>  代码整洁之道</li>
+<li>  代码大全 2</li>
+</ul>
+<h3 id="敏捷类"><a href="#敏捷类" class="headerlink" title="敏捷类"></a>敏捷类</h3><ul>
+<li>Rework中文版<ul>
+<li>  37signals 团队的敏捷经验</li>
+</ul>
+</li>
+<li>  高效程序员的 45 个习惯</li>
+</ul>
+<h3 id="产品类"><a href="#产品类" class="headerlink" title="产品类"></a>产品类</h3><ul>
+<li>  人人都是产品经理</li>
+<li>  结网</li>
+</ul>
+<h3 id="神书"><a href="#神书" class="headerlink" title="神书"></a>神书</h3><ul>
+<li>  自私的基因</li>
+<li>  失控</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title="..."></a>...</h3>]]></content>
       <categories>
-        <category>技术</category>
+        <category>职业</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>docker</tag>
-        <tag>优化</tag>
+        <tag>技术</tag>
+        <tag>职业</tag>
+        <tag>技能</tag>
       </tags>
   </entry>
   <entry>
@@ -3447,18 +3764,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>4_Rust核心_错误处理</title>
-    <url>/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>TODO</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>3_Rust核心_并发编程</title>
     <url>/2024/09/26/technology/rust/3_Rust%E6%A0%B8%E5%BF%83_%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<p>TODO</p>
@@ -3471,8 +3776,8 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>6_Rust核心_宏</title>
-    <url>/2024/09/26/technology/rust/6_Rust%E6%A0%B8%E5%BF%83_%E5%AE%8F/</url>
+    <title>4_Rust核心_错误处理</title>
+    <url>/2024/09/26/technology/rust/4_Rust%E6%A0%B8%E5%BF%83_%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<p>TODO</p>
 ]]></content>
       <categories>
@@ -3485,6 +3790,18 @@ Python[Python调用] --data.h-->data.cc</pre>
   <entry>
     <title>5_Rust核心_异步编程</title>
     <url>/2024/09/26/technology/rust/5_Rust%E6%A0%B8%E5%BF%83_%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<p>TODO</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6_Rust核心_宏</title>
+    <url>/2024/09/26/technology/rust/6_Rust%E6%A0%B8%E5%BF%83_%E5%AE%8F/</url>
     <content><![CDATA[<p>TODO</p>
 ]]></content>
       <categories>
@@ -3547,64 +3864,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>生命周期</tag>
         <tag>Solana</tag>
         <tag>Anchor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信小程序爬虫</title>
-    <url>/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/</url>
-    <content><![CDATA[<p>这里以 Windows 微信小程序作为分析对象。</p>
-<p>分析步骤：</p>
-<ul>
-<li>通过 Charles 抓包分析微信小程序的鉴权和api路径</li>
-<li>获取登陆态token</li>
-<li>使用token请求api</li>
-</ul>
-<hr>
-<h3 id="Charles-安装并设置"><a href="#Charles-安装并设置" class="headerlink" title="Charles 安装并设置"></a>Charles 安装并设置</h3><ul>
-<li><p>安装 Charles</p>
-<ul>
-<li><a href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
-</ul>
-</li>
-<li><p>并注册(可跳过)</p>
-<ul>
-<li><a href="https://inused.github.io/pages/file/tool/CharlesKeygen.html">https://inused.github.io/pages/file/tool/CharlesKeygen.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>设置证书:</p>
-<blockquote>
-<p>参考： <a href="https://blog.csdn.net/HeyShHeyou/article/details/90045204">https://blog.csdn.net/HeyShHeyou/article/details/90045204</a></p>
-</blockquote>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles1.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles2.jpg"></p>
-</li>
-<li><p>设置代理:</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles3.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles4.jpg"></p>
-</li>
-</ul>
-<ul>
-<li>重启 Charles, 打开PC微信</li>
-</ul>
-<h3 id="PC-Windows-微信小程序抓包"><a href="#PC-Windows-微信小程序抓包" class="headerlink" title="PC(Windows)微信小程序抓包"></a>PC(Windows)微信小程序抓包</h3><p>打开微信小程序</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app1.jpg"></p>
-<h3 id="关于微信授权登录的流程"><a href="#关于微信授权登录的流程" class="headerlink" title="关于微信授权登录的流程"></a>关于微信授权登录的流程</h3><blockquote>
-<p>官方文档: <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-miniapp-login-flow.jpg"></p>
-<h3 id="实际案例：微信小程序登录"><a href="#实际案例：微信小程序登录" class="headerlink" title="实际案例：微信小程序登录"></a>实际案例：微信小程序登录</h3><p>授权登录<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login2.jpg"></p>
-<p>业务接口:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login3.jpg"></p>
-<p>直接使用token请求api</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-request1.jpg"></p>
-<h3 id="编写python程序请求api"><a href="#编写python程序请求api" class="headerlink" title="编写python程序请求api"></a>编写python程序请求api</h3><p>略。 和普通python爬虫一样。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>爬虫</tag>
-        <tag>微信</tag>
-        <tag>Charles</tag>
       </tags>
   </entry>
   <entry>
@@ -3681,6 +3940,64 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>智能合约</tag>
         <tag>源码分析</tag>
         <tag>IPFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序爬虫</title>
+    <url>/2024/09/24/technology/spider/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%88%AC%E8%99%AB/</url>
+    <content><![CDATA[<p>这里以 Windows 微信小程序作为分析对象。</p>
+<p>分析步骤：</p>
+<ul>
+<li>通过 Charles 抓包分析微信小程序的鉴权和api路径</li>
+<li>获取登陆态token</li>
+<li>使用token请求api</li>
+</ul>
+<hr>
+<h3 id="Charles-安装并设置"><a href="#Charles-安装并设置" class="headerlink" title="Charles 安装并设置"></a>Charles 安装并设置</h3><ul>
+<li><p>安装 Charles</p>
+<ul>
+<li><a href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
+</ul>
+</li>
+<li><p>并注册(可跳过)</p>
+<ul>
+<li><a href="https://inused.github.io/pages/file/tool/CharlesKeygen.html">https://inused.github.io/pages/file/tool/CharlesKeygen.html</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>设置证书:</p>
+<blockquote>
+<p>参考： <a href="https://blog.csdn.net/HeyShHeyou/article/details/90045204">https://blog.csdn.net/HeyShHeyou/article/details/90045204</a></p>
+</blockquote>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles1.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles2.jpg"></p>
+</li>
+<li><p>设置代理:</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles3.jpg"><br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/charles4.jpg"></p>
+</li>
+</ul>
+<ul>
+<li>重启 Charles, 打开PC微信</li>
+</ul>
+<h3 id="PC-Windows-微信小程序抓包"><a href="#PC-Windows-微信小程序抓包" class="headerlink" title="PC(Windows)微信小程序抓包"></a>PC(Windows)微信小程序抓包</h3><p>打开微信小程序</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app1.jpg"></p>
+<h3 id="关于微信授权登录的流程"><a href="#关于微信授权登录的流程" class="headerlink" title="关于微信授权登录的流程"></a>关于微信授权登录的流程</h3><blockquote>
+<p>官方文档: <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-miniapp-login-flow.jpg"></p>
+<h3 id="实际案例：微信小程序登录"><a href="#实际案例：微信小程序登录" class="headerlink" title="实际案例：微信小程序登录"></a>实际案例：微信小程序登录</h3><p>授权登录<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login2.jpg"></p>
+<p>业务接口:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-login3.jpg"></p>
+<p>直接使用token请求api</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/wx-app-request1.jpg"></p>
+<h3 id="编写python程序请求api"><a href="#编写python程序请求api" class="headerlink" title="编写python程序请求api"></a>编写python程序请求api</h3><p>略。 和普通python爬虫一样。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>微信</tag>
+        <tag>Charles</tag>
       </tags>
   </entry>
   <entry>
@@ -3780,6 +4097,39 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>DeFi</tag>
         <tag>开发者</tag>
         <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Uniswap-v3分析</title>
+    <url>/2024/07/29/technology/blockchain/defi/Uniswap-v3%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<ul>
+<li>白皮书: <a href="https://uniswap.org/whitepaper-v3.pdf">https://uniswap.org/whitepaper-v3.pdf</a></li>
+<li>数学公式: <a href="https://www.odaily.news/post/5174767">https://www.odaily.news/post/5174767</a></li>
+</ul>
+<p>核心：允许用户自定义价格区间来提供流动性，提供资本利用率</p>
+<p>核心公式:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-liquidity.png"></p>
+<ul>
+<li><code>L</code>: <code>流动性</code></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-constant.png"></p>
+<ul>
+<li><code>x&#39;</code>: 虚拟资产x</li>
+<li><code>y&#39;</code>: 虚拟资产y</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20240730-191613.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg"></p>
+<p>增加了虚拟资产<code>x&#39;</code>和 <code>y&#39;</code>之后 ,</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png"></p>
+<p>用户可以将流动性集中，这样提供资金利用率（有交易，就有手续费）<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-positions.png"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>智能合约</tag>
+        <tag>DeFi</tag>
       </tags>
   </entry>
   <entry>
@@ -3996,39 +4346,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>Uniswap-v3分析</title>
-    <url>/2024/07/29/technology/blockchain/defi/Uniswap-v3%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<ul>
-<li>白皮书: <a href="https://uniswap.org/whitepaper-v3.pdf">https://uniswap.org/whitepaper-v3.pdf</a></li>
-<li>数学公式: <a href="https://www.odaily.news/post/5174767">https://www.odaily.news/post/5174767</a></li>
-</ul>
-<p>核心：允许用户自定义价格区间来提供流动性，提供资本利用率</p>
-<p>核心公式:</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-liquidity.png"></p>
-<ul>
-<li><code>L</code>: <code>流动性</code></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-constant.png"></p>
-<ul>
-<li><code>x&#39;</code>: 虚拟资产x</li>
-<li><code>y&#39;</code>: 虚拟资产y</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20240730-191613.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-formula.jpg"></p>
-<p>增加了虚拟资产<code>x&#39;</code>和 <code>y&#39;</code>之后 ,</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-curve.png"></p>
-<p>用户可以将流动性集中，这样提供资金利用率（有交易，就有手续费）<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/uniswap-v3-positions.png"></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>智能合约</tag>
-        <tag>DeFi</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2_Sui入门</title>
     <url>/2024/10/23/technology/blockchain/move/2_Sui%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<blockquote>
@@ -4056,59 +4373,6 @@ Python[Python调用] --data.h-->data.cc</pre>
 <li>查看活跃地址: <code>sui client active-address</code></li>
 <li>获取余额(Sui上叫做gas object): <code>sui client gas</code></li>
 <li></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>智能合约</tag>
-        <tag>Move</tag>
-        <tag>Sui</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>4_Sui+Move核心概念</title>
-    <url>/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<h2 id="Sui-Move的-Object基础概念"><a href="#Sui-Move的-Object基础概念" class="headerlink" title="Sui Move的 Object基础概念"></a>Sui Move的 Object基础概念</h2><blockquote>
-<ul>
-<li><a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md</a></li>
-</ul>
-</blockquote>
-<ul>
-<li>Sui Move 是以Object为核心</li>
-<li>Sui的交易输入和输出都是 Object</li>
-<li>Object是Sui的基本存储单元</li>
-<li>Object即 <code>struct</code></li>
-<li>Sui 的 Object 必须包含一个 <code>id: UID</code>字段, 并且设置<code>key</code>特性</li>
-<li>Sui中每个Object都必须有一个 owner, owner可以是：<ul>
-<li>一个地址</li>
-<li>其他object</li>
-<li>Object是”shared”</li>
-</ul>
-</li>
-</ul>
-<h2 id="Object的所有权"><a href="#Object的所有权" class="headerlink" title="Object的所有权"></a>Object的所有权</h2><blockquote>
-<p><a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md</a></p>
-</blockquote>
-<p>在Sui Move中，Object一共有4种所有权:</p>
-<ul>
-<li><strong>Owned</strong>: owned object交易不需要全局排序<ul>
-<li>Owned by an address</li>
-<li>Owned by another object</li>
-</ul>
-</li>
-<li><strong>Shared</strong><ul>
-<li>Shared immutable:<ul>
-<li>没有owner, 所有人都不可修改</li>
-</ul>
-</li>
-<li>Shared mutable：<ul>
-<li>任何人都可以读取和修改, shared object交易需要进行全局排序</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 ]]></content>
       <categories>
@@ -4195,6 +4459,59 @@ Python[Python调用] --data.h-->data.cc</pre>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20241023-162315.jpg"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>智能合约</tag>
+        <tag>Move</tag>
+        <tag>Sui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>4_Sui+Move核心概念</title>
+    <url>/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<h2 id="Sui-Move的-Object基础概念"><a href="#Sui-Move的-Object基础概念" class="headerlink" title="Sui Move的 Object基础概念"></a>Sui Move的 Object基础概念</h2><blockquote>
+<ul>
+<li><a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md</a></li>
+</ul>
+</blockquote>
+<ul>
+<li>Sui Move 是以Object为核心</li>
+<li>Sui的交易输入和输出都是 Object</li>
+<li>Object是Sui的基本存储单元</li>
+<li>Object即 <code>struct</code></li>
+<li>Sui 的 Object 必须包含一个 <code>id: UID</code>字段, 并且设置<code>key</code>特性</li>
+<li>Sui中每个Object都必须有一个 owner, owner可以是：<ul>
+<li>一个地址</li>
+<li>其他object</li>
+<li>Object是”shared”</li>
+</ul>
+</li>
+</ul>
+<h2 id="Object的所有权"><a href="#Object的所有权" class="headerlink" title="Object的所有权"></a>Object的所有权</h2><blockquote>
+<p><a href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md</a></p>
+</blockquote>
+<p>在Sui Move中，Object一共有4种所有权:</p>
+<ul>
+<li><strong>Owned</strong>: owned object交易不需要全局排序<ul>
+<li>Owned by an address</li>
+<li>Owned by another object</li>
+</ul>
+</li>
+<li><strong>Shared</strong><ul>
+<li>Shared immutable:<ul>
+<li>没有owner, 所有人都不可修改</li>
+</ul>
+</li>
+<li>Shared mutable：<ul>
+<li>任何人都可以读取和修改, shared object交易需要进行全局排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -5454,6 +5771,36 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>6_Solana的跨程序调用CPI</title>
+    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
+    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>Solana</tag>
+        <tag>交易</tag>
+        <tag>指令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>5_Solana的PDA账户</title>
     <url>/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/</url>
     <content><![CDATA[<h1 id="Solana-PDA"><a href="#Solana-PDA" class="headerlink" title="Solana PDA"></a>Solana PDA</h1><blockquote>
@@ -5492,36 +5839,6 @@ Python[Python调用] --data.h-->data.cc</pre>
 <h3 id="如何生成PDA"><a href="#如何生成PDA" class="headerlink" title="如何生成PDA"></a>如何生成PDA</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda-derivation.svg"></p>
 <p>在 Anchor中生成 PDA</p>
 <p><a href="https://solana.com/docs/core/pda#create-pda-accounts">https://solana.com/docs/core/pda#create-pda-accounts</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>Solana</tag>
-        <tag>交易</tag>
-        <tag>指令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6_Solana的跨程序调用CPI</title>
-    <url>/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/</url>
-    <content><![CDATA[<h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
-<p><a href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
-</blockquote>
-<ul>
-<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
-</li>
-<li><p>CPI调用栈高度限制: <code>5</code></p>
-<ul>
-<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
-</ul>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -5782,6 +6099,30 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
+    <title>再次分析delegatecall和call的区别</title>
+    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
+<hr>
+<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>代理合约</tag>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ERC20高级充币归集技术</title>
     <url>/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h3 id="核心技术概括"><a href="#核心技术概括" class="headerlink" title="核心技术概括:"></a>核心技术概括:</h3><ul>
@@ -5872,30 +6213,6 @@ Python[Python调用] --data.h-->data.cc</pre>
         <tag>区块链</tag>
         <tag>智能合约</tag>
         <tag>ERC20</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>再次分析delegatecall和call的区别</title>
-    <url>/2023/01/06/technology/blockchain/solidity/%E5%86%8D%E6%AC%A1%E5%88%86%E6%9E%90delegatecall%E5%92%8Ccall%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在之前的文章中，已经详细介绍了<code>delegatecall</code>和<code>call</code>的用法, 原文： <a href="./EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6.md">EIP1967-实现可升级智能合约</a></p>
-<hr>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall:"></a>delegatecall:</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.delegatecall(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用合约<code>A</code>的<code>setVars</code>函数，<code>setVars</code>合约内会以<code>delegatecall</code>的方式调用<code>合约B</code>, 更确切地说是<code>合约A</code>将<code>合约B</code>的<code>setVars</code>函数代码加载到<code>合约A</code>的运行环境，因此，就很容易理解<code>setVars</code>修改的是<code>合约A</code>中的数据，而不是<code>合约B</code>中的数据了。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20230107-115127"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; NOTE: Deploy this contract first</span><br><span class="line">contract B &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTE: storage layout must be the same as contract A</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(uint _num) public payable &#123;</span><br><span class="line">        num &#x3D; _num;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        value &#x3D; msg.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public num;</span><br><span class="line">    address public sender;</span><br><span class="line">    uint public value;</span><br><span class="line"></span><br><span class="line">    function setVars(address _contract, uint _num) public payable &#123;</span><br><span class="line">        &#x2F;&#x2F; A&#39;s storage is set, B is not modified.</span><br><span class="line">        (bool success, bytes memory data) &#x3D; _contract.call(</span><br><span class="line">            abi.encodeWithSignature(&quot;setVars(uint256)&quot;, _num)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>代理合约</tag>
-        <tag>solidity</tag>
       </tags>
   </entry>
   <entry>
@@ -6173,25 +6490,6 @@ Python[Python调用] --data.h-->data.cc</pre>
       </tags>
   </entry>
   <entry>
-    <title>多笔交易打包</title>
-    <url>/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/</url>
-    <content><![CDATA[<ul>
-<li><a href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
-</ul>
-<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
-<ul>
-<li><a href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>区块链</tag>
-        <tag>智能合约钱包</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>智能合约课程大纲</title>
     <url>/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/</url>
     <content><![CDATA[<p>登链社区的培训课程大纲, 非常全面，可以借鉴学习</p>
@@ -6252,6 +6550,25 @@ Python[Python调用] --data.h-->data.cc</pre>
       <tags>
         <tag>区块链</tag>
         <tag>Solidity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多笔交易打包</title>
+    <url>/2024/03/06/technology/blockchain/solidity/%E5%A4%9A%E7%AC%94%E4%BA%A4%E6%98%93%E6%89%93%E5%8C%85/</url>
+    <content><![CDATA[<ul>
+<li><a href="https://github.com/safe-global/safe-smart-account/">https://github.com/safe-global/safe-smart-account/</a></li>
+</ul>
+<p>使用safe钱包可以将多笔交易打包成一笔交易</p>
+<ul>
+<li><a href="https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0">https://sepolia.basescan.org/tx/0x59162a5bbda5ad7943537fbeccf98c66c951279e0ef584a9994d44f29eb428d0</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>区块链</tag>
+        <tag>智能合约钱包</tag>
       </tags>
   </entry>
   <entry>
