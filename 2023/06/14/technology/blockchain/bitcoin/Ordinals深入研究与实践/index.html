@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Ordinals深入研究与实践 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/blockchain/bitcoin/Ordinals深入研究与实践"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Ordinals深入研究与实践
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/06/14/technology/blockchain/bitcoin/Ordinals%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E4%B8%8E%E5%AE%9E%E8%B7%B5/" class="article-date">
+  <time datetime="2023-06-14T16:00:00.000Z" itemprop="datePublished">2023-06-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">15 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Ordinals提出到现在才半年时间，3月份开始炒作，如<code>NFT</code>,<code>BRC20</code>吸引了一大批投机分子追捧。市场的起伏有市场发展特有规律，BTC的生态会复刻以太坊的生态的繁荣历史吗? Ordinals能够存在多久？如何解决BTC高昂的手续费…… 等等，这些问题，没有人能够给出明确的答案。</p>
+<p>单纯从技术角度看，Ordinals的“铭文”技术在2014年左右就已经出现，即基于<code>OP_RETURN</code>操作实现的，早期的 <code>Omni-USDT</code>代币就是基于此开发的。如今的Ordinals使用的是基于比特币最新的Taproot升级后的 <code>Tapscript</code>实现，并结合了<code>Segwit</code>隔离见证技术。</p>
+<p>技术实现细节方面，我们会在下文依次展开细说。</p>
+<p>本文分几个模块：</p>
+<ul>
+<li>Ordinals的<code>Inscription</code>原理</li>
+<li>Ordinals的序数理论</li>
+<li>实践：ordinals的<code>inscribe</code>(铭刻)的源码分析</li>
+<li>Ordinals目前的生态</li>
+<li>ordinals未来展望</li>
+</ul>
+<h2 id="Ordinals的Inscription原理"><a href="#Ordinals的Inscription原理" class="headerlink" title="Ordinals的Inscription原理"></a>Ordinals的<code>Inscription</code>原理</h2><ul>
+<li><p>官方文档： <a target="_blank" rel="noopener" href="https://docs.ordinals.com/inscriptions.html">https://docs.ordinals.com/inscriptions.html</a></p>
+</li>
+<li><p>比特币脚本：<a target="_blank" rel="noopener" href="https://en.bitcoin.it/wiki/Script">https://en.bitcoin.it/wiki/Script</a></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Opcode</th>
+<th>Hex</th>
+<th>Input</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OP_0, OP_FALSE</code></td>
+<td>0</td>
+<td>0x00</td>
+<td>Nothing.</td>
+<td>(empty value)</td>
+<td>An empty array of bytes is pushed onto the stack. (This is not a no-op: an item is added to the stack.)</td>
+</tr>
+<tr>
+<td><code>OP_IF</code></td>
+<td>99</td>
+<td>0x63</td>
+<td><expression> if [statements] [else [statements]]* endif</td>
+<td></td>
+<td>If the top stack value is not False, the statements are executed. The top stack value is removed.</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;signature&gt;</span><br><span class="line"></span><br><span class="line">OP_FALSE</span><br><span class="line">OP_IF</span><br><span class="line">    OP_PUSH &quot;ord&quot;</span><br><span class="line">    OP_1</span><br><span class="line">    OP_PUSH &quot;text&#x2F;plain;charset&#x3D;utf-8&quot;</span><br><span class="line">    OP_0</span><br><span class="line">    OP_PUSH &quot;Hello, world!&quot;</span><br><span class="line">OP_ENDIF</span><br><span class="line"></span><br><span class="line">&lt;public key&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;signature&gt;</code> 是交易签名相关内容; <code>&lt;public key&gt;</code>是公钥相关内容，用于验证签名的有效性</p>
+</li>
+<li><p><code>OP_FALSE</code> 会把一个空数组压入(<code>push</code>)栈顶，注意这边是有 push 东西的，只是它是空的。</p>
+</li>
+<li><p><code>OP_IF</code> 检查栈顶，如果为 <code>true</code> 才会做接下来的事情，因为前面 <code>OP_FALSE</code> 的动作，导致这个 if 不会成立。<br>接下来 <code>OP_PUSH</code> … 等一系列操作都会被忽略，因为上一个 if 条件没有达成。</p>
+</li>
+<li><p><code>OP_ENDIF</code> 结束这个 if 区块。</p>
+</li>
+<li><p>可以看出来中间这些操作因为 <code>OP_IF</code> <strong>一定不会成立</strong>，所以等于什麽状态都没改变，于是就可以把图片的完整资料都放在 OP_IF 裡面而<strong>不影响本来 Bitcoin script 的 validation</strong>，多亏了 Taproot 升级，script 现在是没有大小上限了，所以只要 transaction 的大小小于 block 的大小 (4 MB)，script 你要多大都可以，也就是说我们可以达到<strong>类似 OP_RETURN 的效果</strong>，把无关的资料放上去 Bitcoin 却还没有 80 bytes 的大小限制了。大小限制了。</p>
+</li>
+<li><p>其中 <code>OP_0</code>后面跟随的是incribe的内容，每个块不能超过<code>520 bytes</code>, 如果超过<code>520字节</code>则需要进行<code>分块</code>,每个块之间插入<code>OP_0</code>间隔开</p>
+</li>
+</ul>
+<p>综上， Inscribe(铭刻)就是通过在交易验证数据中间，插入一个<strong>不会影响</strong>交易验证结果的内容（铭文），inscription的内容可以是任意类型，比如：文本，图片，视频，音频等等。</p>
+<h2 id="Ordinals的序数理论"><a href="#Ordinals的序数理论" class="headerlink" title="Ordinals的序数理论"></a>Ordinals的序数理论</h2><ul>
+<li><p>官方文档： <a target="_blank" rel="noopener" href="https://docs.ordinals.com/overview.html">https://docs.ordinals.com/overview.html</a></p>
+</li>
+<li><p>简述：</p>
+<ul>
+<li>BTC总量恒定为<code>2100 BTC</code></li>
+<li><code>1 BTC = 100000000 satoshi</code>(聪，致敬中本聪)</li>
+<li>因此总的<code>sat</code>(satoshi的简写)是 <code>2100 * 10^8</code>, 即 <code>2100,0000,0000</code>个<code>sat</code></li>
+<li>产生新的<code>sat</code>的方式只有一个，那就是挖矿（PoW工作量证明）</li>
+</ul>
+</li>
+</ul>
+<h2 id="实践：ordinals的inscribe-铭刻-的源码分析"><a href="#实践：ordinals的inscribe-铭刻-的源码分析" class="headerlink" title="实践：ordinals的inscribe(铭刻)的源码分析"></a>实践：ordinals的<code>inscribe</code>(铭刻)的源码分析</h2><p>首先，我们大概了解一下<code>inscribe</code>的流程</p>
+<ul>
+<li><code>Commit</code>阶段： 将铭文写入UTXO,这个UTXO的接受地址必须是<code>Taproot(P2TR)</code>类型,因为需要用到<code>Tapscript</code></li>
+<li><code>Reveal</code>阶段： 使用掉UTXO，并转给目的接收地址, 目的接受地址必须也是<code>Taproot(P2TR)</code></li>
+</ul>
+<pre class="mermaid">
+graph LR
+    A--Commit阶段: 把铭文内容写入UTXO中-->B
+    B--Reveal阶段: 把带有铭文的UTXO使用掉-->C</pre>
+
+
+
+
+
+<p>先分析inscribe命令的主流程：</p>
+<p>  <a target="_blank" rel="noopener" href="https://github.com/youngqqcn/ord/blob/master/src/subcommand/wallet/inscribe.rs#L56">inscribe入口函数</a></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span>(<span class="keyword">crate</span>) <span class="function"><span class="keyword">fn</span> <span class="title">run</span></span>(<span class="keyword">self</span>, options: Options) -&gt; <span class="built_in">Result</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取文件获取获取铭刻内容</span></span><br><span class="line">    <span class="keyword">let</span> inscription = Inscription::from_file(options.chain(), &amp;<span class="keyword">self</span>.file)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新index索引</span></span><br><span class="line">    <span class="keyword">let</span> index = Index::open(&amp;options)?;</span><br><span class="line">    index.update()?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加载rpc和钱包</span></span><br><span class="line">    <span class="keyword">let</span> client = options.bitcoin_rpc_client_for_wallet_command(<span class="literal">false</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取钱包utxos集合</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> utxos = index.get_unspent_outputs(Wallet::load(&amp;options)?)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取已有的铭刻</span></span><br><span class="line">    <span class="keyword">let</span> inscriptions = index.get_inscriptions(<span class="literal">None</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// commit交易找零金额</span></span><br><span class="line">    <span class="keyword">let</span> commit_tx_change = [get_change_address(&amp;client)?, get_change_address(&amp;client)?];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 铭文接受者地址</span></span><br><span class="line">    <span class="keyword">let</span> reveal_tx_destination = <span class="keyword">self</span></span><br><span class="line">      .destination</span><br><span class="line">      .map(<span class="literal">Ok</span>)</span><br><span class="line">      .unwrap_or_else(|| get_change_address(&amp;client))?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造</span></span><br><span class="line">    <span class="comment">//     未签名的commit_tx</span></span><br><span class="line">    <span class="comment">//     已签名的reveal_tx（taproot）交易</span></span><br><span class="line">    <span class="comment">//     已经恢复密钥对（因为commit_tx的taproot输出，</span></span><br><span class="line">    <span class="comment">//        是一个临时创建中间密钥对(地址)，因此，reveal_tx可以直接用这个“临时”密钥对的私钥进行签名，</span></span><br><span class="line">    <span class="comment">//        恢复密钥对用于对交易的恢复，不必细究</span></span><br><span class="line">    <span class="keyword">let</span> (unsigned_commit_tx, reveal_tx, recovery_key_pair) =</span><br><span class="line">      Inscribe::create_inscription_transactions(</span><br><span class="line">        <span class="keyword">self</span>.satpoint,</span><br><span class="line">        inscription,</span><br><span class="line">        inscriptions,</span><br><span class="line">        options.chain().network(),</span><br><span class="line">        utxos.clone(),</span><br><span class="line">        commit_tx_change,</span><br><span class="line">        reveal_tx_destination,</span><br><span class="line">        <span class="keyword">self</span>.commit_fee_rate.unwrap_or(<span class="keyword">self</span>.fee_rate),</span><br><span class="line">        <span class="keyword">self</span>.fee_rate,</span><br><span class="line">        <span class="keyword">self</span>.no_limit,</span><br><span class="line">      )?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将 commit_tx的输出，亦即 reveal_tx的输入，插入index保存，</span></span><br><span class="line">    utxos.insert(</span><br><span class="line">      reveal_tx.input[<span class="number">0</span>].previous_output,</span><br><span class="line">      Amount::from_sat(</span><br><span class="line">        unsigned_commit_tx.output[reveal_tx.input[<span class="number">0</span>].previous_output.vout <span class="keyword">as</span> <span class="built_in">usize</span>].value,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// commit_tx 和 reveal_tx 总共的交易矿工费</span></span><br><span class="line">    <span class="keyword">let</span> fees = Self::calculate_fee(&amp;unsigned_commit_tx, &amp;utxos) + Self::calculate_fee(&amp;reveal_tx, &amp;utxos);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">self</span>.dry_run &#123;</span><br><span class="line">        <span class="comment">// ======== 虚晃一枪， 不上链 ==============</span></span><br><span class="line">        print_json(Output &#123;</span><br><span class="line">            commit: unsigned_commit_tx.txid(),</span><br><span class="line">            reveal: reveal_tx.txid(),</span><br><span class="line">            inscription: reveal_tx.txid().into(),</span><br><span class="line">            fees,</span><br><span class="line">        &#125;)?;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// ========== 动真格的 ， 上链 ============</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 是否备份上面的“临时”密钥对的recovery_key</span></span><br><span class="line">        <span class="keyword">if</span> !<span class="keyword">self</span>.no_backup &#123;</span><br><span class="line">            Inscribe::backup_recovery_key(&amp;client, recovery_key_pair, options.chain().network())?;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对未签名的commit_tx进行签名</span></span><br><span class="line">        <span class="keyword">let</span> signed_raw_commit_tx = client</span><br><span class="line">            .sign_raw_transaction_with_wallet(&amp;unsigned_commit_tx, <span class="literal">None</span>, <span class="literal">None</span>)?</span><br><span class="line">            .hex;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 广播已签名的commit_tx交易</span></span><br><span class="line">        <span class="keyword">let</span> commit = client</span><br><span class="line">            .send_raw_transaction(&amp;signed_raw_commit_tx)</span><br><span class="line">            .context(<span class="string">&quot;Failed to send commit transaction&quot;</span>)?;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 广播已签名的reveal_tx交易</span></span><br><span class="line">        <span class="keyword">let</span> reveal = client</span><br><span class="line">            .send_raw_transaction(&amp;reveal_tx)</span><br><span class="line">            .context(<span class="string">&quot;Failed to send reveal transaction&quot;</span>)?;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 打印结果</span></span><br><span class="line">        print_json(Output &#123;</span><br><span class="line">            commit,</span><br><span class="line">            reveal,</span><br><span class="line">            inscription: reveal.into(),</span><br><span class="line">            fees,</span><br><span class="line">        &#125;)?;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>接着，我们来分析构造  <code>commit_tx</code> 以及 <code>reveal_tx</code> 的细节</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/ord/blob/master/src/subcommand/wallet/inscribe.rs">src/subcommand/wallet/inscribe.rs</a></li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">create_inscription_transactions</span></span>(</span><br><span class="line">    satpoint: <span class="built_in">Option</span>&lt;SatPoint&gt;,                         <span class="comment">// 可指定使用某个 UTXO来进行 inscribe</span></span><br><span class="line">    inscription: Inscription,                           <span class="comment">// 铭刻内容</span></span><br><span class="line">    inscriptions: BTreeMap&lt;SatPoint, InscriptionId&gt;,    <span class="comment">// 已铭刻的集合</span></span><br><span class="line">    network: Network,                                   <span class="comment">// 比特币网络类型</span></span><br><span class="line">    utxos: BTreeMap&lt;OutPoint, Amount&gt;,                  <span class="comment">// utxo集合</span></span><br><span class="line">    change: [Address; <span class="number">2</span>],                               <span class="comment">// commit_tx交易找零地址</span></span><br><span class="line">    destination: Address,                               <span class="comment">// 铭文接收地址</span></span><br><span class="line">    commit_fee_rate: FeeRate,                           <span class="comment">// commit_tx 费率</span></span><br><span class="line">    reveal_fee_rate: FeeRate,                           <span class="comment">// reveal_tx 费率</span></span><br><span class="line">    no_limit: <span class="built_in">bool</span>,                                     <span class="comment">// 是否限制reveal交易weight权重</span></span><br><span class="line">) -&gt; <span class="built_in">Result</span>&lt;(Transaction, Transaction, TweakedKeyPair)&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1) 获取进行铭刻UTXO</span></span><br><span class="line">    <span class="keyword">let</span> satpoint = <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(satpoint) = satpoint &#123;</span><br><span class="line">        <span class="comment">// 如果指定来UTXO, 则直接使用指定的utxo进行铭刻</span></span><br><span class="line">        satpoint</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果没有指定utxo, 则在utxos集合中找一个没有铭刻过的utxo</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> inscribed_utxos = inscriptions</span><br><span class="line">        .keys()</span><br><span class="line">        .map(|satpoint| satpoint.outpoint)</span><br><span class="line">        .collect::&lt;BTreeSet&lt;OutPoint&gt;&gt;();</span><br><span class="line"></span><br><span class="line">        utxos</span><br><span class="line">        .keys()</span><br><span class="line">        .find(|outpoint| !inscribed_utxos.contains(outpoint))</span><br><span class="line">        .map(|outpoint| SatPoint &#123;</span><br><span class="line">            outpoint: *outpoint,</span><br><span class="line">            offset: <span class="number">0</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        .ok_or_else(|| anyhow!(<span class="string">&quot;wallet contains no cardinal utxos&quot;</span>))?</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2) 判断上一步的UTXO是否没有被铭刻过</span></span><br><span class="line">    <span class="keyword">for</span> (inscribed_satpoint, inscription_id) <span class="keyword">in</span> &amp;inscriptions &#123;</span><br><span class="line">        <span class="keyword">if</span> inscribed_satpoint == &amp;satpoint &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(anyhow!(<span class="string">&quot;sat at &#123;&#125; already inscribed&quot;</span>, satpoint));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> inscribed_satpoint.outpoint == satpoint.outpoint &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">Err</span>(anyhow!(</span><br><span class="line">            <span class="string">&quot;utxo &#123;&#125; already inscribed with inscription &#123;inscription_id&#125; on sat &#123;inscribed_satpoint&#125;&quot;</span>,</span><br><span class="line">            satpoint.outpoint,</span><br><span class="line">        ));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3） 搞一个“临时”密钥对，用来作为 commit_tx的接受者，并作为 reveal_tx的花费（揭示）者</span></span><br><span class="line">    <span class="keyword">let</span> secp256k1 = Secp256k1::new();</span><br><span class="line">    <span class="keyword">let</span> key_pair = UntweakedKeyPair::new(&amp;secp256k1, &amp;<span class="keyword">mut</span> rand::thread_rng());</span><br><span class="line">    <span class="keyword">let</span> (public_key, _parity) = XOnlyPublicKey::from_keypair(&amp;key_pair);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4） 按照ordinals官方的脚本规范，创建reveal脚本， 将铭文内容附加到reveal脚本</span></span><br><span class="line">    <span class="keyword">let</span> reveal_script = inscription.append_reveal_script(</span><br><span class="line">        script::Builder::new()</span><br><span class="line">        .push_slice(&amp;public_key.serialize())</span><br><span class="line">        .push_opcode(opcodes::all::OP_CHECKSIG),</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5） 构造 taproot utxo 的花费交易， 关于taproot细节，不必西九</span></span><br><span class="line">    <span class="keyword">let</span> taproot_spend_info = TaprootBuilder::new()</span><br><span class="line">        .add_leaf(<span class="number">0</span>, reveal_script.clone())</span><br><span class="line">        .expect(<span class="string">&quot;adding leaf should work&quot;</span>)</span><br><span class="line">        .finalize(&amp;secp256k1, public_key)</span><br><span class="line">        .expect(<span class="string">&quot;finalizing taproot builder should work&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> control_block = taproot_spend_info</span><br><span class="line">        .control_block(&amp;(reveal_script.clone(), LeafVersion::TapScript))</span><br><span class="line">        .expect(<span class="string">&quot;should compute control block&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6） 根据上一步的信息，生产一个临时地址，接收包含 reveal脚本  的 交易输出(TXO)</span></span><br><span class="line">    <span class="keyword">let</span> commit_tx_address = Address::p2tr_tweaked(taproot_spend_info.output_key(), network);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7) 根据交易字节数计算 reveal_tx 所需要的 手续费</span></span><br><span class="line">    <span class="keyword">let</span> (_, reveal_fee) = Self::build_reveal_transaction(</span><br><span class="line">        &amp;control_block,</span><br><span class="line">        reveal_fee_rate,</span><br><span class="line">        OutPoint::null(), <span class="comment">// 并非空，而是 有字节数的，这样才能计算手续费费用</span></span><br><span class="line">        TxOut &#123;</span><br><span class="line">        script_pubkey: destination.script_pubkey(),</span><br><span class="line">        value: <span class="number">0</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &amp;reveal_script,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 8） 因为 需要输出一个包含reveal脚本的 TXO, 所以， 其中一个 TXO是用于后面的 reveal操作的</span></span><br><span class="line">    <span class="keyword">let</span> unsigned_commit_tx = TransactionBuilder::build_transaction_with_value(</span><br><span class="line">        satpoint,</span><br><span class="line">        inscriptions,</span><br><span class="line">        utxos,</span><br><span class="line">        commit_tx_address.clone(),</span><br><span class="line">        change,</span><br><span class="line">        commit_fee_rate,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// reveal交易手续费  +  铭文UTXO占位金额TARGET_POSTAGE，一般是 10000sat, 即 0.00010000 BTC</span></span><br><span class="line">        <span class="comment">// 为什么是  0.00010000 BTC ?   不可以是 0.00000546?</span></span><br><span class="line">        reveal_fee + TransactionBuilder::TARGET_POSTAGE,</span><br><span class="line">    )?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 9） 获取交易输出大小，以及 交易输出， 用作构造 reveal_tx</span></span><br><span class="line">    <span class="keyword">let</span> (vout, output) = unsigned_commit_tx</span><br><span class="line">        .output</span><br><span class="line">        .iter()</span><br><span class="line">        .enumerate()</span><br><span class="line">        .find(|(_vout, output)| output.script_pubkey == commit_tx_address.script_pubkey())</span><br><span class="line">        .expect(<span class="string">&quot;should find sat commit/inscription output&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 10) 根据 上一步的 commit_tx 的交易输出， 构造 reveal_tx</span></span><br><span class="line">    <span class="keyword">let</span> (<span class="keyword">mut</span> reveal_tx, fee) = Self::build_reveal_transaction(</span><br><span class="line">        &amp;control_block,</span><br><span class="line">        reveal_fee_rate,</span><br><span class="line">        OutPoint &#123;</span><br><span class="line">        txid: unsigned_commit_tx.txid(),</span><br><span class="line">        vout: vout.try_into().unwrap(),</span><br><span class="line">        &#125;,</span><br><span class="line">        TxOut &#123;</span><br><span class="line">        script_pubkey: destination.script_pubkey(),</span><br><span class="line">        value: output.value, <span class="comment">// 暂时用这个，下一步会修改</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &amp;reveal_script,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 11) 修改 reveal_tx 的交易输出金额 为  value - fee , 正常来说修改后的交易输出金额为 TransactionBuilder::TARGET_POSTAGE</span></span><br><span class="line">    reveal_tx.output[<span class="number">0</span>].value = reveal_tx.output[<span class="number">0</span>]</span><br><span class="line">        .value</span><br><span class="line">        .checked_sub(fee.to_sat())</span><br><span class="line">        .context(<span class="string">&quot;commit transaction output value insufficient to pay transaction fee&quot;</span>)?;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 12) 判断是否为 dust（尘埃）交易</span></span><br><span class="line">    <span class="keyword">if</span> reveal_tx.output[<span class="number">0</span>].value &lt; reveal_tx.output[<span class="number">0</span>].script_pubkey.dust_value().to_sat() &#123;</span><br><span class="line">        bail!(<span class="string">&quot;commit transaction output would be dust&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 13） 生成用于签名的hash</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> sighash_cache = SighashCache::new(&amp;<span class="keyword">mut</span> reveal_tx);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> signature_hash = sighash_cache</span><br><span class="line">        .taproot_script_spend_signature_hash(</span><br><span class="line">        <span class="number">0</span>,</span><br><span class="line">        &amp;Prevouts::All(&amp;[output]),</span><br><span class="line">        TapLeafHash::from_script(&amp;reveal_script, LeafVersion::TapScript),</span><br><span class="line">        SchnorrSighashType::<span class="built_in">Default</span>,</span><br><span class="line">        )</span><br><span class="line">        .expect(<span class="string">&quot;signature hash should compute&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 14） 使用 第 3 步中的 “临时”密钥，对上一步生成的hash进行  schnorr签名</span></span><br><span class="line">    <span class="keyword">let</span> signature = secp256k1.sign_schnorr(</span><br><span class="line">        &amp;secp256k1::Message::from_slice(signature_hash.as_inner())</span><br><span class="line">        .expect(<span class="string">&quot;should be cryptographically secure hash&quot;</span>),</span><br><span class="line">        &amp;key_pair,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 15) 将 上一步生成的签名放到 见证数据中</span></span><br><span class="line">    <span class="keyword">let</span> witness = sighash_cache</span><br><span class="line">        .witness_mut(<span class="number">0</span>)</span><br><span class="line">        .expect(<span class="string">&quot;getting mutable witness reference should work&quot;</span>);</span><br><span class="line">    witness.push(signature.as_ref());</span><br><span class="line">    witness.push(reveal_script);</span><br><span class="line">    witness.push(&amp;control_block.serialize());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 16） 恢复密钥相关， 不必细究</span></span><br><span class="line">    <span class="keyword">let</span> recovery_key_pair = key_pair.tap_tweak(&amp;secp256k1, taproot_spend_info.merkle_root());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> (x_only_pub_key, _parity) = recovery_key_pair.to_inner().x_only_public_key();</span><br><span class="line">    <span class="built_in">assert_eq!</span>(</span><br><span class="line">        Address::p2tr_tweaked(</span><br><span class="line">        TweakedPublicKey::dangerous_assume_tweaked(x_only_pub_key),</span><br><span class="line">        network,</span><br><span class="line">        ),</span><br><span class="line">        commit_tx_address</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> reveal_weight = reveal_tx.weight();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> !no_limit &amp;&amp; reveal_weight &gt; MAX_STANDARD_TX_WEIGHT.try_into().unwrap() &#123;</span><br><span class="line">        bail!(</span><br><span class="line">        <span class="string">&quot;reveal transaction weight greater than &#123;MAX_STANDARD_TX_WEIGHT&#125; (MAX_STANDARD_TX_WEIGHT): &#123;reveal_weight&#125;&quot;</span></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回</span></span><br><span class="line">    <span class="literal">Ok</span>((unsigned_commit_tx, reveal_tx, recovery_key_pair))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//=================</span></span><br><span class="line"><span class="keyword">pub</span>(<span class="keyword">crate</span>) <span class="function"><span class="keyword">fn</span> <span class="title">append_reveal_script</span></span>(&amp;<span class="keyword">self</span>, builder: script::Builder) -&gt; Script &#123;</span><br><span class="line">    <span class="keyword">self</span>.append_reveal_script_to_builder(builder).into_script()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">append_reveal_script_to_builder</span></span>(&amp;<span class="keyword">self</span>, <span class="keyword">mut</span> builder: script::Builder) -&gt; script::Builder &#123;</span><br><span class="line">    <span class="comment">// 参考： https://docs.ordinals.com/inscriptions.html</span></span><br><span class="line"></span><br><span class="line">    builder = builder</span><br><span class="line">      .push_opcode(opcodes::OP_FALSE)</span><br><span class="line">      .push_opcode(opcodes::all::OP_IF)</span><br><span class="line">      .push_slice(PROTOCOL_ID);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(content_type) = &amp;<span class="keyword">self</span>.content_type &#123;</span><br><span class="line">      builder = builder</span><br><span class="line">        .push_slice(CONTENT_TYPE_TAG)</span><br><span class="line">        .push_slice(content_type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>(body) = &amp;<span class="keyword">self</span>.body &#123;</span><br><span class="line">      builder = builder.push_slice(BODY_TAG);</span><br><span class="line">      <span class="keyword">for</span> chunk <span class="keyword">in</span> body.chunks(<span class="number">520</span>) &#123;  <span class="comment">// 按照520字节“切块“</span></span><br><span class="line">        builder = builder.push_slice(chunk);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    builder.push_opcode(opcodes::all::OP_ENDIF)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//=====================</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Ordinals未来展望"><a href="#Ordinals未来展望" class="headerlink" title="Ordinals未来展望"></a>Ordinals未来展望</h2><p>目前Ordinals存在几个问题：</p>
+<ul>
+<li>BTC手续费太贵</li>
+<li>每个BTC NFT都是各自独立的，很难形成一个NFT集合</li>
+</ul>
+<p>最近新出的 “递归铭文”(Recursion)，可以解决 “NFT集合“的问题。目前采用 html的形式</p>
+<ul>
+<li>使用html将不同的nft进行汇总</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Bitcoin Frogs<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">background</span>: <span class="number">#eee</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">button</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">background</span>: white;</span></span><br><span class="line"><span class="css">            <span class="attribute">border</span>: none;</span></span><br><span class="line"><span class="css">            -webkit-tap-highlight-<span class="attribute">color</span>: transparent;</span></span><br><span class="line"><span class="css">            -webkit-touch-callout: none;</span></span><br><span class="line"><span class="css">            -webkit-user-select: none;</span></span><br><span class="line"><span class="css">            -khtmMl-user-select: none;</span></span><br><span class="line"><span class="css">            -moz-user-select: none;</span></span><br><span class="line"><span class="css">            -ms-user-select: none;</span></span><br><span class="line"><span class="css">            user-select: none;</span></span><br><span class="line"><span class="css">            <span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="css">            <span class="attribute">font-size</span>: <span class="number">1.2rem</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">3rem</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">            <span class="attribute">flex-direction</span>: column;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">align-items</span>: center;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">            gap: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">margin</span>: <span class="number">0.5rem</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">8px</span> -<span class="number">4px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">379</span>);</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">10rem</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: min-content;</span></span><br><span class="line"><span class="css">            <span class="attribute">border</span>: <span class="number">2px</span> black solid</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">object-fit</span>: contain;</span></span><br><span class="line"><span class="css">            <span class="attribute">overflow</span>: hidden;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">100%</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;b.value=Math.max(0,Number(b.value)-1);setImg();&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border-radius: 10rem 0 0 10rem;&quot;</span>&gt;</span>â<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;b&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> <span class="attr">oninput</span>=<span class="string">&quot;setImg();&quot;</span> <span class="attr">style</span>=<span class="string">&quot;bordeMr: none; border-radius: 0; text-align: center; width: max(4rem, 15vw); font-size: 1.8rem; line-height: 2.5rem;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;b.value=Math.min(i.length-1,Number(b.value)+1);setImg();&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border-radius: 0 10rem 10rem 0;&quot;</span>&gt;</span>â¶<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;c&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> i = [<span class="string">&quot;783513f2044d48fdf303e58b1d8878a2394a695e2a9cac320c4823f09524a296i0&quot;</span>, <span class="string">&quot;45ac4aba0b8e73b96f8c35a850992b122f5540cc1d7f48be9c36706e2859f225i0&quot;</span>, <span class="string">&quot;52764b276ddeba366071Md892666fe7d5f904e00b7fd5c31319805037f1bb77e7i0&quot;</span>, <span class="string">&quot;7b133cbd9f8ea28c51641229b619be582d47b9e259806862034c6ab8be407114i0&quot;</span>, <span class="string">&quot;95e81ce702bf814b17554d604a61610d1e20c4f6daca4b7b22ea3f5fc0188316i0&quot;</span>, <span class="string">&quot;a8e05874f8baa053850895671da23d727952b60b068ebe47cbc9aa6acf6df9dci0&quot;</span>, <span class="string">&quot;b64368d62d49093e8d05320bf25b2c0dc595b19b5ff247d5d01bb5d5ce369b6ci0&quot;</span>, <span class="string">&quot;064b97a07fdd295af704ac542fce2a7920bec7418370af6bfc39b9ddb6f20ebbi0&quot;</span>, <span class="string">&quot;87b7f4c64d07274da6ad892923c22d5c95c52b970b6a18c775f9636cf57332c2i0&quot;</span>, <span class="string">&quot;1d79a5511e713905a61552abc5070438a0d6073c59b6768c52M8a4f6769c609dci0&quot;</span>, <span class="string">&quot;8563a79066bbcb2ca2049ac5c9a55c6463e54b8550a47c69466d8d88d403c522i0&quot;</span>, <span class="string">&quot;9aec45684a3ef8050a5327e4912c85ee1623d4701b46a5e45fa902b4c2b313c2i0&quot;</span>, <span class="string">&quot;0121e38d1310bdbfefabff9c34bf83fa4ada98dccc8fff32021403b06d7518b5i0&quot;</span>, <span class="string">&quot;eb8cddc0e110a116db49ae2070af3caa39949fd3a1cac787cd4c9b7bd96e69c3i0&quot;</span>, <span class="string">&quot;9f7f91a3242fa67dc045de8b29d94e4e7255e51c57d610cdbdc86fd432eaecc8i0&quot;</span>, <span class="string">&quot;c8691b8c7889eaafddda7990e04fc6e5ef6718c1bbb6707c79fc00c8b1697dc4i0&quot;</span>, <span class="string">&quot;139a2ec4b897c3a6c4c7d4570ae1fe3c07fccee01a61033a86ef950d1f800d88i0&quot;</span>, <span class="string">&quot;086c5d4babM1b435058afe05e96a2b24cc393b03aca6b5f280aebcb04bf9d7a85i0&quot;</span>, <span class="string">&quot;d24468b093ba62dfd8bacb7ef37f0c51e621580b3bb0cd73f605916cf3dcfe17i0&quot;</span>, <span class="string">&quot;6848c1bdb683a070f4f3ec553013b20e08795941645232ab02d0893ea49ca67bi0&quot;</span>, <span class="string">&quot;6ee2c37a7ace6245f1279bebdd50df385774d8561a52df7802beed48d09bdf22i0&quot;</span>, <span class="string">&quot;b246d2626e8d05e9d070c68a46cf204f6b8c656261a02d9f7ffac6e9a5f9ed89i0&quot;</span>];</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> b = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#b&#x27;</span>);</span></span><br><span class="line">            setImg();</span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">setImg</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> x = <span class="built_in">parseFloat</span>(b.value);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (isNaL´N(x) || x &lt; <span class="number">0</span> || x &gt;= i.length || x % <span class="number">1</span> != <span class="number">0</span>) <span class="keyword">return</span>;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#c&#x27;</span>).src = <span class="string">`/content/<span class="subst">$&#123;i[x]&#125;</span>`</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>使用html进行不同元素的组合，形成nft</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;https://ordinals.com/&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">protocol</span>=<span class="string">&quot;FORGE&quot;</span> <span class="attr">ticker</span>=<span class="string">&quot;Recursive-Robots&quot;</span> <span class="attr">operation</span>=<span class="string">&quot;mint&quot;</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">body</span> &#123; <span class="attribute">display</span>: flex; <span class="attribute">justify-content</span>: center; <span class="attribute">align-items</span>: center; <span class="attribute">height</span>: <span class="number">100vh</span>; <span class="attribute">margin</span>: <span class="number">0</span>; &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#artifact</span> &#123; <span class="attribute">position</span>: relative; <span class="attribute">width</span>: <span class="number">24rem</span>; <span class="attribute">height</span>: <span class="number">24rem</span>; &#125;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#artifact</span> <span class="selector-tag">img</span> &#123; <span class="attribute">position</span>: absolute; <span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">object-fit</span>: contain; <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">image-rendering</span>: pixelated &#125;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;artifact&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/content/eb9aa0c67c144ee0c9c4b42011ef460ee673d320dbe9e35a9c077f8647fb201di0&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Background&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/content/08afaf3ba15e149bdd47aeed960198d23cb0c5dc7277fe3bab421a1a89bb93e0i0&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Body&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/content/8379d30a81763dc45dc92745462986d0907f6b68d00031a7dc8d5fbcc37d3e0bi0&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Head&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/content/993d926a08a8b1cd5c03d70e03691ddb7f7eb43b69aa738db8cd0a090f883c1di0&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Body&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/content/9080e5b9ecdfc7e929b99a7b147d10302c2e491baef4b45fa9935684b8c14de4i0&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Head&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>效果:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE%202023-06-15%2018-58-21.png"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/06/14/technology/blockchain/bitcoin/Ordinals%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E4%B8%8E%E5%AE%9E%E8%B7%B5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BRC20/" rel="tag">BRC20</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ordinals/" rel="tag">Ordinals</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web3/" rel="tag">Web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%94%E7%89%B9%E5%B8%81/" rel="tag">比特币</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/08/15/technology/other/%E8%B0%B7%E6%AD%8C%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            谷歌高级搜索技巧
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/01/12/technology/go/ent/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">ent实体框架学习</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

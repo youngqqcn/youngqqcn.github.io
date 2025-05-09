@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/blockchain/solidity/EIP1967-实现可升级智能合约"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/09/27/technology/blockchain/solidity/EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"
+    >EIP1967-实现可升级智能合约</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/09/27/technology/blockchain/solidity/EIP1967-%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
+  <time datetime="2022-09-27T16:00:00.000Z" itemprop="datePublished">2022-09-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="EIP1967-实现可升级智能合约"><a href="#EIP1967-实现可升级智能合约" class="headerlink" title="EIP1967-实现可升级智能合约"></a>EIP1967-实现可升级智能合约</h1><p>EIP1967实现可升级的合约(逻辑和数据存储分离)</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-1967">https://eips.ethereum.org/EIPS/eip-1967</a></p>
+<ul>
+<li>写的很好：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/551852314">https://zhuanlan.zhihu.com/p/551852314</a></li>
+<li>OpenZeppelin的实现： <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/proxy">https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/proxy</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies">https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>解决upgrade-safe<br><a target="_blank" rel="noopener" href="https://docs.openzeppelin.com/upgrades-plugins/1.x/faq#what-does-it-mean-for-a-contract-to-be-upgrade-safe">https://docs.openzeppelin.com/upgrades-plugins/1.x/faq#what-does-it-mean-for-a-contract-to-be-upgrade-safe</a></p>
+</blockquote>
+<p>通过使用逻辑处理与存储分离的模式，来实现智能合约升级。</p>
+<p>通过以下代码进行理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">contract Proxy &#123;</span><br><span class="line">	mapping(address &#x3D;&gt; uint) private balances; &#x2F;&#x2F; 余额</span><br><span class="line"></span><br><span class="line">	address private impl;</span><br><span class="line"></span><br><span class="line">	function upgradeTo(address _addr) &#123;</span><br><span class="line">		impl &#x3D; _addr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 当调用的代理</span><br><span class="line">	fallback() external payable virtual &#123;</span><br><span class="line">        _fallback();</span><br><span class="line">    &#125;</span><br><span class="line">    function _fallback() internal virtual &#123;</span><br><span class="line">        _beforeFallback();</span><br><span class="line">        _delegate(_implementation());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 调用</span><br><span class="line">    function _delegate(address implementation) internal virtual &#123;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            &#x2F;&#x2F; Copy msg.data. We take full control of memory in this inline assembly</span><br><span class="line">            &#x2F;&#x2F; block because it will not return to Solidity code. We overwrite the</span><br><span class="line">            &#x2F;&#x2F; Solidity scratch pad at memory position 0.</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; Call the implementation.</span><br><span class="line">            &#x2F;&#x2F; out and outsize are 0 because we don&#39;t know the size yet.</span><br><span class="line">            let result :&#x3D; delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; Copy the returned data.</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line"></span><br><span class="line">            switch result</span><br><span class="line">            &#x2F;&#x2F; delegatecall returns 0 on error.</span><br><span class="line">            case 0 &#123;</span><br><span class="line">                revert(0, returndatasize())</span><br><span class="line">            &#125;</span><br><span class="line">            default &#123;</span><br><span class="line">                return(0, returndatasize())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>部署</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; ethers, upgrades &#125; = <span class="built_in">require</span>(<span class="string">&quot;hardhat&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    acc  = ethers.getSigners()</span></span><br><span class="line">    <span class="keyword">const</span> [owner] = <span class="keyword">await</span> ethers.getSigners();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Deploying</span></span><br><span class="line">    <span class="keyword">const</span> sbt = <span class="keyword">await</span> ethers.getContractFactory(<span class="string">&quot;SBT&quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> instance = <span class="keyword">await</span> upgrades.deployProxy(</span><br><span class="line">        sbt,</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&quot;Soulbound Token&quot;</span>,</span><br><span class="line">            <span class="string">&quot;SBT&quot;</span>,</span><br><span class="line">            owner.address,</span><br><span class="line">        ],</span><br><span class="line">        &#123;</span><br><span class="line">            initializer: <span class="string">&quot;initialize&quot;</span>,</span><br><span class="line">            kind: <span class="string">&quot;transparent&quot;</span>,</span><br><span class="line">            unsafeAllow: [<span class="string">&#x27;delegatecall&#x27;</span>] <span class="comment">// 遇到unsafe upgrade错误，可以强行使用</span></span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> ret = <span class="keyword">await</span> instance.deployed();</span><br><span class="line">    <span class="built_in">console</span>.log(ret)</span><br><span class="line"></span><br><span class="line"><span class="comment">//   await upgradeProxy(proxyAddress, implementationFactory, &#123; unsafeAllow: [&#x27;delegatecall&#x27;] &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   Upgrading</span></span><br><span class="line"><span class="comment">//   const BoxV2 = await ethers.getContractFactory(&quot;BoxV2&quot;);</span></span><br><span class="line"><span class="comment">//   const upgraded = await upgrades.upgradeProxy(instance.address, BoxV2);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC1967/" rel="tag">ERC1967</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E5%90%88%E7%BA%A6/" rel="tag">代理合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%AF%E5%8D%87%E7%BA%A7/" rel="tag">可升级</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-learning/9-12月技术学习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"
+    >2022技术学习</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/09/12/learning/9-12%E6%9C%88%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2022-09-12T02:05:01.000Z" itemprop="datePublished">2022-09-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="2022年9-12月技术学习"><a href="#2022年9-12月技术学习" class="headerlink" title="2022年9~12月技术学习"></a>2022年9~12月技术学习</h1><ul>
+<li>FISCO BCOS (9.24考试)</li>
+<li>Rust (aptos, sui, solana)</li>
+<li>Move智能合约(starcoin, aptos, sui)</li>
+<li>layer2(Polygon, Optimism, ZK-EVM)</li>
+<li>Ethereum(2.0)</li>
+<li>Js(Hardhat, Ether.js)</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%A0%88/" rel="tag">全栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/web3/深度解析Optimism窃取事件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/"
+    >深度解析Optimism窃取事件</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/" class="article-date">
+  <time datetime="2022-06-10T03:55:00.000Z" itemprop="datePublished">2022-06-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="深度解析Optimism窃取事件"><a href="#深度解析Optimism窃取事件" class="headerlink" title="深度解析Optimism窃取事件"></a>深度解析Optimism窃取事件</h1><p>本文在这篇文章<a target="_blank" rel="noopener" href="https://www.techflow520.com/news/920">深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击</a>加以梳理，并配有详细的示例代码，示例代码会放在github上。</p>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>为了简化，就用甲方乙代替公司名吧。甲方（optimism）要乙方（Wintermute）帮忙搞事情，因为乙在layer1玩得很溜，甲方想在自己的layer2也玩起来。</p>
+<p>于是，乙方爽快地答应了，给了一个收币地址给甲方说：“你忘这个地址上转币吧，其他事情我这边搞定。”甲方很开心地向乙方提供的收币地址转了2000万个OP币，乙方却说没有收到。一查才发现，乙方提供的是layer1的地址，而甲方转的是layer2的地址，虽然地址长得一样，但是此地址在layer2上尚未被创建（没有创建也可以转账进去）。</p>
+<p>那该怎么办呢？两边的技术人员一看说，这是个黑洞地址，现在没有人能转走里面的币，只要操作一波是可以找回那些币的，不过现在是五一假期，大家都在夏威夷独家呢，过了五一节再说吧（开玩笑）。黑客可没有五一，立即行动，搞走了里面的币。甲乙双方尴尬了。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>黑客是做到的呢？ 思路很简单，只要2步：</p>
+<ul>
+<li>在layer2上创建乙方的收币地址（是合约地址）</li>
+<li>搞到乙方的收币地址的所有权（控制权），因为地址是合约地址，而且是个proxy合约，即代理合约。</li>
+<li>转移资金</li>
+</ul>
+<h2 id="Layer1"><a href="#Layer1" class="headerlink" title="Layer1"></a>Layer1</h2><ul>
+<li>Gnosis Safe Proxy Factory（以下统称合约A): 0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b</li>
+<li>Wintermute proxy(以下统称合约B): 0x4f3a120E72C76c22ae802D129F599BFDbc31cb81</li>
+</ul>
+<p>其中合约A由此交易创建:<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261">https://etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261</a><br>这笔交易的发起地址是：0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-002.png"></p>
+<p>合约B由此交易创建：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#eventlog">https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#eventlog</a></p>
+<p>这笔交易的发起者不重要，重要的是调用ProxyCreation传入的参数，0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b，这个地址就是合约A<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-001.png"></p>
+<h2 id="Layer2"><a href="#Layer2" class="headerlink" title="Layer2"></a>Layer2</h2><ul>
+<li>合约地址A：0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b</li>
+<li>合约地址B：0x4f3a120e72c76c22ae802d129f599bfdbc31cb81 </li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://etherscan.io/txs?a=0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a">https://etherscan.io/txs?a=0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a</a></p>
+<h3 id="⭐-第1步：如何在layer2创建处合约地址A？"><a href="#⭐-第1步：如何在layer2创建处合约地址A？" class="headerlink" title="⭐ 第1步：如何在layer2创建处合约地址A？"></a>⭐ 第1步：如何在layer2创建处合约地址A？</h3><p>因为layer1上创建合约A的交易，没有使用<a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/eips/eip-155.html#%E8%A7%84%E8%8C%83">EIP155</a>,所以可以，将此笔交易进行重放。</p>
+<p>重放layer1上创建合约A的交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261">https://optimistic.etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261</a><br>，保证发送笔交易时nonce与layer创建合约A时一样即可。</p>
+<p>如何重放？ 可以使用RPC <code>sendRawTransaction</code>将交易data发到layer2链上即可，当然要保证账户有余额</p>
+<h3 id="⭐-第2步：如何在layer2创建处合约地址B？"><a href="#⭐-第2步：如何在layer2创建处合约地址B？" class="headerlink" title="⭐ 第2步：如何在layer2创建处合约地址B？"></a>⭐ 第2步：如何在layer2创建处合约地址B？</h3><p>合约地址生成原理: <code>Hash(caller, nonce_of_caller)</code></p>
+<p>普通地址的nonce记录的交易次数，合约地址的nonce值是合约地址创建合约数量。nonce值可以以太坊的JSON RPC接口获取</p>
+<p>例如获取当前的nonce值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">curl https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab \</span><br><span class="line">-X POST \</span><br><span class="line">-H &quot;Content-Type: application/json&quot; \</span><br><span class="line">-d \</span><br><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;eth_getTransactionCount&quot;,</span><br><span class="line">    &quot;params&quot;: [</span><br><span class="line">        &quot;0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b&quot;,</span><br><span class="line">        &quot;latest&quot; </span><br><span class="line">    ],</span><br><span class="line">    &quot;id&quot;: 1</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;result&quot;:&quot;0x89a7&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>0x89a7</code>是<code>35239</code>，黑客是不是要创建这么多合约呢？其实不用，因为layer1上的合约B是2020年创建的，那时候合约A的nonce肯定没有这么大。有没有什么办法可以获取到那笔创建合约B时，合约A的准确的nonce值呢？有的！etherscan就记录了state的转换：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#statechange">https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#statechange</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-003.png"></p>
+<p>nonce从<code>8884</code>增加到了<code>8885</code>，也就说，我们要得到的nonce值就是<code>8884</code>！</p>
+<p>当然也可以使用以下代码找到nonce值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Web3 = <span class="built_in">require</span>(<span class="string">&quot;web3&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> RLP = <span class="built_in">require</span>(<span class="string">&quot;rlp&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> account = <span class="string">&quot;0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> nonce = <span class="number">0</span>; nonce &lt; <span class="number">0xffffffff</span>; nonce++)&#123;</span><br><span class="line">    <span class="keyword">let</span> e = RLP.encode([account, nonce] );</span><br><span class="line">    <span class="keyword">const</span> nonceHash = Web3.utils.sha3(Buffer.from(e));</span><br><span class="line">    <span class="keyword">const</span> targetAddress = <span class="string">&#x27;0x&#x27;</span>+ nonceHash.substring(<span class="number">26</span>)</span><br><span class="line">    <span class="keyword">if</span>(targetAddress === <span class="string">&#x27;0x4f3a120e72c76c22ae802d129f599bfdbc31cb81&#x27;</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(nonce)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输出结果是:<code>8884</code></p>
+<p>黑客创建了一个攻击合约（以下称作合约C）：0xE7145dd6287AE53326347f3A6694fCf2954bcD8A</p>
+<p>只要调用合约A不停地创建合约，当nonce与layer1创建合约B那笔交易的nonce相同，就可以在layer2创建出合约地址B。</p>
+<p>黑客在layer2上创建合约B地址的交易log，在135位置：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x00a3da68f0f6a69cb067f09c3f7e741a01636cbc27a84c603b468f65271d415b#eventlog">https://optimistic.etherscan.io/tx/0x00a3da68f0f6a69cb067f09c3f7e741a01636cbc27a84c603b468f65271d415b#eventlog</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-004.png"></p>
+<p>黑客是如何将合约B中的<code>masterCopy</code>设置为自己的攻击合约地址的？</p>
+<p>在区块浏览器查不到合约B的构造参数，但是我们看合约A的代码 <a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/address/0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b#code%EF%BC%9A">https://optimistic.etherscan.io/address/0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b#code：</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;&#x2F; @dev Allows to create new proxy contact and execute a message call to the new proxy within one transaction.</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param masterCopy Address of master copy.</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param data Payload for message call sent to new proxy contract.</span><br><span class="line">function createProxy(address masterCopy, bytes memory data)</span><br><span class="line">    public</span><br><span class="line">    returns (Proxy proxy)</span><br><span class="line">&#123;</span><br><span class="line">    proxy &#x3D; new Proxy(masterCopy);</span><br><span class="line">    if (data.length &gt; 0)</span><br><span class="line">        &#x2F;&#x2F; solium-disable-next-line security&#x2F;no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            if eq(call(gas, proxy, 0, add(data, 0x20), mload(data), 0, 0), 0) &#123; revert(0, 0) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    emit ProxyCreation(proxy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要在调用<code>createProxy</code>时将<code>masterCopy</code>设置为黑客自己的攻击合约地址即可，<code>data</code>为空，这样即可。</p>
+<h3 id="⭐-第3步：如何转移合约B中的金额？"><a href="#⭐-第3步：如何转移合约B中的金额？" class="headerlink" title="⭐ 第3步：如何转移合约B中的金额？"></a>⭐ 第3步：如何转移合约B中的金额？</h3><p>黑客转移合约B上的1000000个OP的交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e">https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e</a></p>
+<p>查看内部交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e#internal">https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e#internal</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-005.png"></p>
+<p>其中 0xE7145dd6287AE53326347f3A6694fCf2954bcD8A 就是黑客攻击合约</p>
+<p>交易的inputData</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xad8d5f480000000000000000000000004200000000000000000000000000000000000042000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb00000000000000000000000060b28637879b5a09d21b68040020ffbf7dba510700000000000000000000000000000000000000000000d3c21bcecceda100000000000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+
+<p>其中 <code>0xad8d5f48</code>: 是<code>exec(address,bytes,uint256)</code>的签名</p>
+<p>我们再看看layer1上合约B的源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">contract Proxy &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; masterCopy always needs to be first declared variable, to ensure that it is at the same location in the contracts to which calls are delegated.</span><br><span class="line">    &#x2F;&#x2F; To reduce deployment costs this variable is internal and needs to be retrieved via &#96;getStorageAt&#96;</span><br><span class="line">    address internal masterCopy;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Constructor function sets address of master copy contract.</span><br><span class="line">    &#x2F;&#x2F;&#x2F; @param _masterCopy Master copy address.</span><br><span class="line">    constructor(address _masterCopy)</span><br><span class="line">        public</span><br><span class="line">    &#123;</span><br><span class="line">        require(_masterCopy !&#x3D; address(0), &quot;Invalid master copy address provided&quot;);</span><br><span class="line">        masterCopy &#x3D; _masterCopy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Fallback function forwards all transactions and returns all received return data.</span><br><span class="line">    function ()</span><br><span class="line">        external</span><br><span class="line">        payable</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; solium-disable-next-line security&#x2F;no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let masterCopy :&#x3D; and(sload(0), 0xffffffffffffffffffffffffffffffffffffffff)</span><br><span class="line">            &#x2F;&#x2F; 0xa619486e &#x3D;&#x3D; keccak(&quot;masterCopy()&quot;). The value is right padded to 32-bytes with 0s</span><br><span class="line">            if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) &#123;</span><br><span class="line">                mstore(0, masterCopy)</span><br><span class="line">                return(0, 0x20)</span><br><span class="line">            &#125;</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line">            let success :&#x3D; delegatecall(gas, masterCopy, 0, calldatasize(), 0, 0)</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line">            if eq(success, 0) &#123; revert(0, returndatasize()) &#125;</span><br><span class="line">            return(0, returndatasize())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题来了，并没有发现<code>exec</code>函数！这是怎么回事呢？</p>
+<p>我们注意到，函数<code>function () external payable</code>是<code>fallback函数</code>，也就是说当调用时没有匹配到函数时，会进入<code>fallback</code>函数。</p>
+<p>因为<code>masterCopy</code>在创建合约B时，就已经设置为黑客自己的攻击合约地址<code>0xE7145dd6287AE53326347f3A6694fCf2954bcD8A</code>。</p>
+<p>如此一来，代码中的<code>delegatecall</code>调用黑客自己的攻击合约，然后在攻击合约中执行<code>OP</code>合约(<code>0x4200000000000000000000000000000000000042</code>)的ERC20的<code>transfer</code>操作，又因为使用的是<code>delegatecall</code>，<code>msg.sender</code>就是合约B的地址，即(0x4f3a120e72c76c22ae802d129f599bfdbc31cb81)，所以，调用<code>transfer</code>时，扣除的<code>msg.sender</code>的OP代币余额，这样，就可以转移了<code>OP</code>代币。</p>
+<p>我们再验证这个合约B的“转发”功能，</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-001.png"></p>
+<p>其中<code>0x8da5cb5b</code>是函数<code>owner()</code>的签名。合约B<code>0x4f3a120e72c76c22ae802d129f599bfdbc31cb81</code>将请求转发到黑客的攻击合约，如下图：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-002.png"></p>
+<h3 id="模拟转移代币"><a href="#模拟转移代币" class="headerlink" title="模拟转移代币"></a>模拟转移代币</h3><p>为了更加深入理解，我们编写一个测试合约，来模拟黑客转移代币的操作。</p>
+<ul>
+<li>我们把<code>proxy</code>的代码复制过来；</li>
+<li>然后编写一个<code>Erc20</code>合约模拟<code>OP</code>代币合约，秩序实现一个简单的<code>transfer</code>操作；</li>
+<li>再编写一个<code>Hacker</code>合约，模拟黑客的攻击合约</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.26;</span><br><span class="line"></span><br><span class="line">contract Proxy &#123;</span><br><span class="line"></span><br><span class="line">    address internal masterCopy;</span><br><span class="line">    constructor(address _masterCopy)</span><br><span class="line">        public</span><br><span class="line">    &#123;</span><br><span class="line">        require(_masterCopy !&#x3D; address(0), &quot;Invalid master copy address provided&quot;);</span><br><span class="line">        masterCopy &#x3D; _masterCopy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;&#x2F; @dev Fallback function forwards all transactions and returns all received return data.</span><br><span class="line">    function ()</span><br><span class="line">        external</span><br><span class="line">        payable</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; solium-disable-next-line security&#x2F;no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let masterCopy :&#x3D; and(sload(0), 0xffffffffffffffffffffffffffffffffffffffff)</span><br><span class="line">            &#x2F;&#x2F; 0xa619486e &#x3D;&#x3D; keccak(&quot;masterCopy()&quot;). The value is right padded to 32-bytes with 0s</span><br><span class="line">            if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) &#123;</span><br><span class="line">                mstore(0, masterCopy)</span><br><span class="line">                return(0, 0x20)</span><br><span class="line">            &#125;</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line">            let success :&#x3D; delegatecall(gas, masterCopy, 0, calldatasize(), 0, 0)</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line">            if eq(success, 0) &#123; revert(0, returndatasize()) &#125;</span><br><span class="line">            return(0, returndatasize())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Erc20 &#123;</span><br><span class="line">    address public sender;</span><br><span class="line">    &#x2F;&#x2F; 为了方便查看结果，我们输出一个log</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 value);</span><br><span class="line">    function transfer(address to, uint256 amount) external returns (bool) &#123;</span><br><span class="line">        sender &#x3D; msg.sender;</span><br><span class="line">        &#x2F;&#x2F; 略，其他操作，从msg.sender余额扣除，增加to的余额</span><br><span class="line">        emit Transfer(msg.sender, to, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Hacker &#123;</span><br><span class="line">    event Ok(address,bytes,uint256);</span><br><span class="line">    event Failed(bool);</span><br><span class="line"></span><br><span class="line">    function exec(address addr, bytes data, uint256 amount)  public payable returns(bool)&#123;</span><br><span class="line">        Erc20 erc20 &#x3D; Erc20(addr);</span><br><span class="line">        address to &#x3D; 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            to :&#x3D; mload(add(data,20)) &#x2F;&#x2F; 将data转为地址</span><br><span class="line">        &#125;</span><br><span class="line">        bool success &#x3D; erc20.transfer(to, amount);</span><br><span class="line">        if(success) &#123;</span><br><span class="line">            &#x2F;&#x2F; 为了方便查看结果，我们输出一个log</span><br><span class="line">            emit Ok(addr, data, amount);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            &#x2F;&#x2F; 为了方便查看结果，我们输出一个log</span><br><span class="line">            emit Failed(false);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>具体部署步骤:</p>
+<ul>
+<li>部署<code>Erc20</code>合约</li>
+<li>部署<code>Hacker</code>合约</li>
+<li>部署<code>proxy</code>合约，构造参数将<code>masterCopy</code>地址设置<code>Hacker</code>合约地址即可</li>
+</ul>
+<p>为了获得proxy的调用data，我们这里先直接调用<code>Hacker</code>的<code>exec</code>函数，这样就可以获得完整的input data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xad8d5f4800000000000000000000000032f99155646d147b8a4846470b64a96dd9cba4140000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000115c000000000000000000000000000000000000000000000000000000000000001460b28637879b5a09d21b68040020ffbf7dba5107000000000000000000000000</span><br></pre></td></tr></table></figure>
+<p>我们将此input data 填入<code>proxy</code>的CALLDATA，就可以调用proxy的<code>fallback</code>函数，运行结果如下：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-12-001.png"></p>
+<p>至此，我们这个分析流程结束。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>山外有山，人外有人。应该向黑客学习，学习他的好的一面，比如，技术方面、耐心。</p>
+<hr>
+<p>示例代码链接：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/optimism-attack-analysis">https://github.com/youngqqcn/optimism-attack-analysis</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimism/" rel="tag">Optimism</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web3/" rel="tag">Web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%BB%91%E5%AE%A2/" rel="tag">黑客</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/github非常有价值的项目1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/"
+    >github非常有价值的项目1</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/08/technology/github%E9%9D%9E%E5%B8%B8%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E9%A1%B9%E7%9B%AE1/" class="article-date">
+  <time datetime="2022-06-08T08:06:00.000Z" itemprop="datePublished">2022-06-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="PaddleOCR"><a href="#PaddleOCR" class="headerlink" title="PaddleOCR"></a>PaddleOCR</h3><ul>
+<li>仓库链接：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleOCR">https://github.com/PaddlePaddle/PaddleOCR</a></li>
+<li>说明：基于深度学习的OCR库</li>
+</ul>
+<h3 id="Web-Dev-For-Beginners"><a href="#Web-Dev-For-Beginners" class="headerlink" title="Web-Dev-For-Beginners"></a>Web-Dev-For-Beginners</h3><ul>
+<li>仓库链接：<a target="_blank" rel="noopener" href="https://github.com/microsoft/Web-Dev-For-Beginners">https://github.com/microsoft/Web-Dev-For-Beginners</a></li>
+<li>说明：微软出品的零基础学习网站开发</li>
+</ul>
+<h3 id="full-blockchain-solidity-course-js"><a href="#full-blockchain-solidity-course-js" class="headerlink" title="full-blockchain-solidity-course-js"></a>full-blockchain-solidity-course-js</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/smartcontractkit/full-blockchain-solidity-course-js">https://github.com/smartcontractkit/full-blockchain-solidity-course-js</a></li>
+<li>说明：全栈智能合约开发课程</li>
+</ul>
+<h3 id="Deep-Learning-with-TensorFlow-book"><a href="#Deep-Learning-with-TensorFlow-book" class="headerlink" title="Deep-Learning-with-TensorFlow-book"></a>Deep-Learning-with-TensorFlow-book</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book">https://github.com/dragen1860/Deep-Learning-with-TensorFlow-book</a></li>
+<li>说明：深度学习教程</li>
+</ul>
+<h3 id="HowToCook"><a href="#HowToCook" class="headerlink" title="HowToCook"></a>HowToCook</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Anduin2017/HowToCook">https://github.com/Anduin2017/HowToCook</a></li>
+<li>说明：做菜</li>
+</ul>
+<h3 id="ML-For-Beginners"><a href="#ML-For-Beginners" class="headerlink" title="ML-For-Beginners"></a>ML-For-Beginners</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/ML-For-Beginners">https://github.com/microsoft/ML-For-Beginners</a></li>
+<li>说明：机器学习入门教程</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E8%B6%8B%E5%8A%BF/" rel="tag">技术趋势</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%B0%E6%8A%80%E6%9C%AF/" rel="tag">新技术</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-read/百万富翁的思维密码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/05/29/read/%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%86%E7%A0%81/"
+    >百万富翁的思维密码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/29/read/%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%86%E7%A0%81/" class="article-date">
+  <time datetime="2022-05-29T06:16:00.000Z" itemprop="datePublished">2022-05-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="第一部分：财富蓝图"><a href="#第一部分：财富蓝图" class="headerlink" title="第一部分：财富蓝图"></a>第一部分：财富蓝图</h2><ul>
+<li>金钱有“外部”规律也有“内部”规律。外部规律包括商业知识、资金管理、投资策略等等。</li>
+<li>事实是，你的性格、你的思维方式，以及你的信仰是决定你成功程度的关键。</li>
+<li>大多数人都没有内在的内里创造并持有大笔资金，无法应对与金钱有关的与日俱增的挑战。</li>
+<li>如果想要改变果实，你就得先改变它的根；如果要改变有形的东西，首先从无形的东西着手。</li>
+<li>这个世界上你看不见的东西的能量远大于你能看到的东西的能量。</li>
+<li>你没有办法改变今天已经悬挂在枝头的果实，但你可以改变明天的果实。而要做到这一点，你得挖开地面，增强根的力量。</li>
+<li>金钱是结果，财富是结果，健康是结果，疾病是结果，你的体重也是结果，我们生活在因果世界之中。</li>
+<li>你潜意识中的设定决定了你的思维。你的思想决定了你的决策，你的决策决定了你的行为，这些因素最终决定了结果。</li>
+<li>如果你获得金钱或成功的动机，从根子上讲是一些无益的因素，诸如恐惧、愤怒，或需要“证明”你自己，那么你永远都得不到快乐。</li>
+<li>恐惧不只是一种问题，而且是一种习惯。因此，赚钱多只能改变我们的恐惧方式。</li>
+<li>实际上就，和担心赚不到钱相比，人们更担心赚到钱以后又会失去它。</li>
+<li>夫妻因钱的问题而争吵，其背后最大的原因不是金钱本身，而是他们的“蓝图”不匹配。</li>
+<li>你可以尝试仍和想尝试的东西，你可以增长自己在上商务、市场、销售、谈判、管理等方面的知识，你可以成为房地产或股票市场的专家。</li>
+<li>你的收入只能按照你所期望的程度增长。</li>
+</ul>
+<h2 id="第二部分：财富档案"><a href="#第二部分：财富档案" class="headerlink" title="第二部分：财富档案"></a>第二部分：财富档案</h2><p>富人的17条的思考和行动方法</p>
+<ul>
+<li>思想决定情感，情感决定行动，行动决定结果。</li>
+<li>你可以选择有利于自己的幸福与成功的思维方式，而不是相反。</li>
+<li>中产者通常兼有富人和穷人的思维方式。</li>
+<li>人们事实上有两种习惯：有作为的习惯和无作为的习惯。</li>
+</ul>
+<h3 id="财富档案1：富人认为：我创造生活；穷人认为：我遭遇生活。"><a href="#财富档案1：富人认为：我创造生活；穷人认为：我遭遇生活。" class="headerlink" title="财富档案1：富人认为：我创造生活；穷人认为：我遭遇生活。"></a>财富档案1：富人认为：我创造生活；穷人认为：我遭遇生活。</h3><ul>
+<li>在需要钱的地方，金钱极为重要，而在不需要它的地方，它就显得微不足道了。</li>
+<li>吸引力法则认为“同类相吸”，即当你抱怨的时候，实际上你就把“不公正之类的东西”吸入了自己的生活。</li>
+<li>你不得不确保自己远离爱抱怨的人。如果万不得已和他们在一起，得确保打上上一把金属伞防御，不然他们胡说八道的东西也会感染到你。</li>
+<li>消极的能力可以传染。</li>
+<li>没有哪个富人是真正的受害者。</li>
+</ul>
+<h3 id="财富档案2：富人玩金钱游戏是为了获胜；穷人玩金钱游戏是为了不输。"><a href="#财富档案2：富人玩金钱游戏是为了获胜；穷人玩金钱游戏是为了不输。" class="headerlink" title="财富档案2：富人玩金钱游戏是为了获胜；穷人玩金钱游戏是为了不输。"></a>财富档案2：富人玩金钱游戏是为了获胜；穷人玩金钱游戏是为了不输。</h3><ul>
+<li>如果你的目标是为了过得舒适，那么你是永远不会成为有钱人的。但如果你的目标是想变成有钱人，那么你的生活就会过得极为舒适。</li>
+</ul>
+<h3 id="财富档案3：富人以行动致富；穷人靠梦想致富。"><a href="#财富档案3：富人以行动致富；穷人靠梦想致富。" class="headerlink" title="财富档案3：富人以行动致富；穷人靠梦想致富。"></a>财富档案3：富人以行动致富；穷人靠梦想致富。</h3><ul>
+<li>大多数人不能得到自己想要的东西，首要原因是他们不知道自己到底想要什么。</li>
+<li>如果你没有真正全身心地投入到创造财富的事业当中，你可能就不会成功。</li>
+</ul>
+<h3 id="财富档案4：富人大处着眼；穷人小处考虑。"><a href="#财富档案4：富人大处着眼；穷人小处考虑。" class="headerlink" title="财富档案4：富人大处着眼；穷人小处考虑。"></a>财富档案4：富人大处着眼；穷人小处考虑。</h3><ul>
+<li>你获得的报酬取决于你给市场带来的价值比例。</li>
+<li>大多数人都选择小打小闹。为什么呢？首先他们担心，他们对失败害怕得要死，更有甚者，他们甚至害怕成功。</li>
+<li>创业者的定义：通过为别人解决问题而获利的人。</li>
+</ul>
+<h3 id="财富档案5：富人关注机会；穷人关注困难。"><a href="#财富档案5：富人关注机会；穷人关注困难。" class="headerlink" title="财富档案5：富人关注机会；穷人关注困难。"></a>财富档案5：富人关注机会；穷人关注困难。</h3><ul>
+<li>穷人总是在瞻前顾后的基础上做选择。在任何情况下，他们总是考虑哪些地方有问题或有可能出问题。他们的定式思维是“如果不起作用怎么办？”或经常是“这不会起作用的”。</li>
+<li>通常来讲，回报越多，风险越大。因为总是能看到机会，所以有钱人情愿去冒险。他们相信，即使情况再糟，他们也能把自己的钱赚回来。</li>
+<li>有钱人冒险是建立在调查研究的基础上的，这意味着他们做研究，开动脑筋，在可靠的信息和事实的基础上作出决策。有钱人是不是要倾其毕生去做调查研究呢？答案是否定的。他们花尽可能短的时间了解情况，然后决定取舍。</li>
+<li>运气的因素和致富是有一定联系的，或者，由于这种原因，它也和取得成功有一定联系。</li>
+<li>要想成功地赚钱，你得做点什么，投资点什么，或开办什么实业。如果你做了，这是运气，或者也是上苍以更为庞大的力量来奇迹般地支持你。</li>
+<li>有钱人关注他们想要的东西，而穷人关注他们不需要的东西。需要再次说明的是，这符合一个普遍原则：“事态会随着你关注的方向发展。”</li>
+<li>你关注问题的视野决定了你在生活中能发现什么。关注机会，你就能看到机会；关注困难，你看到的就是困难。</li>
+<li>如果想要致富，就把精力放在如何赚钱、守住你赚的钱以及如何投资上。</li>
+<li>认为自己可以预知未来是愚蠢的想法：认为可以胸有成竹地应对某天可能发生的情况，并做好自我保护是痴人说梦。你知道吗，宇宙中根本没有真正的直线？生活也不会沿着真正的直线向前发展，它就像蜿蜒前行的河流。多半情况下，你只能看到它拐弯的地方，只有到了这个拐弯，你才能看到前方更远的地方。</li>
+<li>如果你真想要了解这个行业，就融入到这个行业中区。你不可能一天的功夫就把它了解得一清二楚。你可以走进“走廊”，找一份这个领域的工作，这样你就真正可以走进“走廊”。扫地刷盘子要比你站在旁观者的角度做上十年的研究了解得多。</li>
+<li>有钱人说做就做，他们相信一旦涉足某件事情，他们可以根据形式作出明智的选择，在自己事业的道路上不断修正、调整。</li>
+</ul>
+<h3 id="财富档案6：富人羡慕别的富人或成功人士；穷人仇视富人和成功人士。"><a href="#财富档案6：富人羡慕别的富人或成功人士；穷人仇视富人和成功人士。" class="headerlink" title="财富档案6：富人羡慕别的富人或成功人士；穷人仇视富人和成功人士。"></a>财富档案6：富人羡慕别的富人或成功人士；穷人仇视富人和成功人士。</h3><ul>
+<li>祝福你想得到的东西。——胡纳哲学</li>
+</ul>
+<h3 id="财富档案7：富人喜欢和积极、成功的人交往；穷人喜欢和消极、失败的人交往。"><a href="#财富档案7：富人喜欢和积极、成功的人交往；穷人喜欢和消极、失败的人交往。" class="headerlink" title="财富档案7：富人喜欢和积极、成功的人交往；穷人喜欢和消极、失败的人交往。"></a>财富档案7：富人喜欢和积极、成功的人交往；穷人喜欢和消极、失败的人交往。</h3><ul>
+<li>创造财富最快捷、最容易的办法就是学习那些掌握财富的有钱人是如何赚钱的。如果你采取和他们一样的行动，保持和他们一样的心态，那么你就很有可能取得和他们一样的结果。</li>
+<li>和有钱人交谈，学习他们是如何思考的，并和他们交换联系方式。如果我们在其他方面有共同语言，那么我们会成为私人好友。</li>
+<li>首先，不必费心试着去改变那些消极的人，试图让他们回心转意。这不是你的工作。你的工作是把你所学的东西用于提高自己，改善自己的生活。做一个榜样，做一个成功者，做一个幸福的人，然后或许——我这里强调的是或许——他们将会在你身上看到希望，也想自己做点什么。接下来要说的是，能量具有传染的特性；黑暗会被光明驱散。可能有些人，当身边充满光明时还在力图停留在“黑暗”中。你的工作仅仅是让自己尽可能做到最好。如果他们真想打听你成功的秘诀的话，告诉他们就是了。</li>
+<li>我个人永远不会和一个不求进取、阻碍我学习和成长的欲望的人生活，不管从个人情感、精神还是经济上都是如此。</li>
+<li>大多数人所赚的钱与他们最亲密的朋友的收入相比，波动在20%以内。</li>
+<li>我也特别注意远离有害环境，我找不出任何理由让自己受到有毒能量的感染。这些有毒能量包括争吵、说长道短、陷害等等；同时，我认为还包括观看“不动脑筋”的电视节目，除非你专门用它来作为放松方式，而不单单是娱乐。</li>
+</ul>
+<h3 id="财富档案8：富人情愿提升自己和自身的价值；穷人消极地看待销售和提升行为。"><a href="#财富档案8：富人情愿提升自己和自身的价值；穷人消极地看待销售和提升行为。" class="headerlink" title="财富档案8：富人情愿提升自己和自身的价值；穷人消极地看待销售和提升行为。"></a>财富档案8：富人情愿提升自己和自身的价值；穷人消极地看待销售和提升行为。</h3><h3 id="财富档案9：富人比自己遇到的困难更强大；穷人比自己遇到的困难更弱小。"><a href="#财富档案9：富人比自己遇到的困难更强大；穷人比自己遇到的困难更弱小。" class="headerlink" title="财富档案9：富人比自己遇到的困难更强大；穷人比自己遇到的困难更弱小。"></a>财富档案9：富人比自己遇到的困难更强大；穷人比自己遇到的困难更弱小。</h3><ul>
+<li>财富的增长程度与你的行动成正比。你的目标是使自己强大起来，强大到能够克服任何阻碍你创造财富、守住财富的困难。</li>
+<li>把你想成一个容纳财富的容器，如果容器太小，而钱又太多，那么将会发生什么呢？结果当然是你将失去这些钱，多余的钱会从你的容器中溢出来，你不可能拥有超出你的容量的钱。因此，你必须成为一个大容器，这样你就不仅能容纳财富，还能吸引更多的财富。</li>
+<li>富人是优秀的接受者；穷人是拙劣的接受者。</li>
+<li>如果你说自己有价值，你就有；如果你说自己没有价值，你就没有。无论是有还是么有，你都会生活在自己设定的故事中。</li>
+<li>穷人唯一拥有的东西就是贫穷。</li>
+<li>做任何事情的方式就是你做每一件事情的方式。</li>
+<li>富人选择以结果赚钱；穷人选择用时间赚钱。</li>
+<li>穷人拿时间赚钱，而这一方式的问题是，时间是有限的。</li>
+<li>如果选择拿时间赚取报酬，那么就是在扼杀自己获得财富的机会。</li>
+</ul>
+<h3 id="财富档案12：富人想“两全其美”；穷人想“二择其一”"><a href="#财富档案12：富人想“两全其美”；穷人想“二择其一”" class="headerlink" title="财富档案12：富人想“两全其美”；穷人想“二择其一”"></a>财富档案12：富人想“两全其美”；穷人想“二择其一”</h3><ul>
+<li>许多人都认为钱和幸福是互相排斥的，我再次申明，这只不过是“穷人”程序化的结果罢了。</li>
+</ul>
+<h3 id="财富档案13：富人关心他们的净资产；穷人在乎他们的工资。"><a href="#财富档案13：富人关心他们的净资产；穷人在乎他们的工资。" class="headerlink" title="财富档案13：富人关心他们的净资产；穷人在乎他们的工资。"></a>财富档案13：富人关心他们的净资产；穷人在乎他们的工资。</h3><ul>
+<li>真正的财富指的是净资产，不是工资收入。</li>
+<li>影响净资产的4个因素：收入、储蓄、投资、简朴生活。</li>
+<li>富人会花更多的时间和精力去学习投资和理财，他们得意于自己是一名优秀的投资者。</li>
+<li>“简朴”，很少人意识到它的重要性，通过减少你的生活成本，增加你的储蓄，用来投资的资金也就增加了。</li>
+</ul>
+<h3 id="财富档案14：富人善于理财；穷人理财无方。"><a href="#财富档案14：富人善于理财；穷人理财无方。" class="headerlink" title="财富档案14：富人善于理财；穷人理财无方。"></a>财富档案14：富人善于理财；穷人理财无方。</h3><ul>
+<li>如果处理不好你现在拥有的东西，就别想得到更多。</li>
+<li>养成理财习惯比拥有金钱更重要。</li>
+</ul>
+<h3 id="财富档案15：富人让钱为其效力；穷人为钱而卖力。"><a href="#财富档案15：富人让钱为其效力；穷人为钱而卖力。" class="headerlink" title="财富档案15：富人让钱为其效力；穷人为钱而卖力。"></a>财富档案15：富人让钱为其效力；穷人为钱而卖力。</h3><ul>
+<li>努力工作赚钱，对于富人来说，只是暂时的；但对于穷人来说，却是永久的。</li>
+<li>金钱游戏的目标是“从此以后永远不在工作，除非你自己选择要去工作”，而且，如果你要工作的话，你是“自由选择工作而不是必须工作”。</li>
+<li>我再强调一遍，让钱为你效力而不是你为钱卖力，那意味着你要节约资金用来投资，而不是把花钱当成天职。有趣的是“富人有很多钱却花得很少，穷人没几个钱却花得很多”</li>
+<li>长期和短期对比就是：穷人工作赚钱是为了今天的生活；富人工作赚钱是用来投资，为将来的生活储存资金。</li>
+<li>富人购买资产，都是能增值的东西；穷人购买的消费品，都是肯定会贬值的东西；</li>
+</ul>
+<h3 id="财富档案16：富人勇往直前；穷人畏首畏尾。"><a href="#财富档案16：富人勇往直前；穷人畏首畏尾。" class="headerlink" title="财富档案16：富人勇往直前；穷人畏首畏尾。"></a>财富档案16：富人勇往直前；穷人畏首畏尾。</h3><ul>
+<li>安逸的代价太高，你生活得越安逸，就越不敢去冒险。</li>
+<li>再强调一次，真正能让你成长的是当你感觉不容易的时候。</li>
+<li>幸福从来都不是来自于平淡无光的生活，也从来不是来自充满假设的幻想。幸福是从我们自然成长及开发我们潜能的过程中产生的。</li>
+<li>要获得幸福和成功，最重要的技能是训练和管理你自己的思想。</li>
+</ul>
+<h3 id="财富档案17：富人在不断学习中成长；穷人则认为自己无所不知。"><a href="#财富档案17：富人在不断学习中成长；穷人则认为自己无所不知。" class="headerlink" title="财富档案17：富人在不断学习中成长；穷人则认为自己无所不知。"></a>财富档案17：富人在不断学习中成长；穷人则认为自己无所不知。</h3><ul>
+<li>如果你没有时间去做你想做而且应该做的事情，那么你会被时间所淘汰；如果你没有钱去学习如何才能成功，那你就会比别人更需要钱。说“我没钱”并不能让一切改观。你什么时候有钱呢？从今天开始的两年或五年后会有什么不同呢？答案很简单：没有任何改变！而且那个时候，你还是会说同样的话。</li>
+<li>变富并保持富有的最快的方法就是提升自己！即让自己成为一个“成功”人士。再说一次，你的外在世界只不过是你内心世界的反映罢了。</li>
+<li>如果你不从内心提升自己，也许你以某种方式赚到了很多钱，那最多也就是一次意外而已，很快你就会失去它。但是如果你由内而外都是成功人士的话，你不仅能赚钱，还能存钱，让钱增值，最重要的是，你会真正地快乐。</li>
+<li>富人的成功顺序：做人、做事、有钱</li>
+<li>穷人及中产者认为成功的顺序是：有钱、做事、做人</li>
+<li>还有一些只有富人才知道的东西：创造财富的目标，最主要的不是拥有很多钱，而是帮助提升自己，成为最优秀的人。其实，那就是你的总目标，让自己成“人”。</li>
+<li>富人不仅坚持学习，而且还确保自己向那些已经到达他们期望的目标的人学习。</li>
+<li>富人会采纳比他们富有者的建议，穷人则听取朋友们的建议，而那些朋友跟他一样一无所有。</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%8C%E4%BA%BA/" rel="tag">富人</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%95%E8%B5%84/" rel="tag">投资</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%90%86%E8%B4%A2/" rel="tag">理财</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/22/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/24/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/blockchain/solana/18_Solana高级交易Durable_Nonce"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/"
+    >18_Solana高级交易Durable_Nonce</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/30/technology/blockchain/solana/18_Solana%E9%AB%98%E7%BA%A7%E4%BA%A4%E6%98%93Durable_Nonce/" class="article-date">
+  <time datetime="2024-08-30T03:34:00.000Z" itemprop="datePublished">2024-08-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>官方文档:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/introduction-to-durable-nonces">https://solana.com/developers/guides/advanced/introduction-to-durable-nonces</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/0xproflupin/solana-durable-nonces">https://github.com/0xproflupin/solana-durable-nonces</a></li>
+</ul>
+<p><strong>本质问题： 如何避免双花？</strong></p>
+<p>Recent Blockhash 做了时间戳，也充当了唯一标识(类似ETH的nonce)的作用, 防止双花</p>
+<p><strong>有了 Recent Blockhash 为什么还需要 Durable Nonce?</strong></p>
+<p>Recent Blockhash 的窗口是 150个区块(约 150 * 0.4 = 60s), 因此，签名之后的交易必须在一分钟内被提交执行，否则交易就会过期。</p>
+<p>几个特殊场景:</p>
+<ul>
+<li>大批量交易, 不想因为blockhash重复而失败 ?</li>
+<li>多重签名交易？</li>
+<li>离线签名？</li>
+</ul>
+<p>因此，就需要 Durable Nonce 方案, nonce 是 32字节, 其作用就是确保交易的唯一</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/prediction/Polymarket技术分析"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"
+    >Polymarket技术分析</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2024-08-12T11:00:00.000Z" itemprop="datePublished">2024-08-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Polymarket技术分析</p>
+<p>polymarket介绍:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
+<p>关键概念:</p>
+<ul>
+<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
+<ul>
+<li>例如:<ul>
+<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
+<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
+</li>
+<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
+</li>
+<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
+<ul>
+<li>例如： 特朗普赢得2024大选的事件<ul>
+<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
+<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
+<ul>
+<li>例如:<ul>
+<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
+<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
+</ul>
+</li>
+<li>例如：<ul>
+<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
+<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
+<ul>
+<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
+</li>
+<li><p>例如:</p>
+<ul>
+<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
+<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
+</ul>
+</li>
+<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
+</li>
+<li><p>上面的例子: 形成对手单，有2种方式</p>
+<ul>
+<li>第一种: 直接方式<ul>
+<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
+</ul>
+</li>
+<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
+<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
+<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
+<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
+<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Polymarket/" rel="tag">Polymarket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prediction-market/" rel="tag">prediction market</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/ERC20高级充币归集技术"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/"
+    >ERC20高级充币归集技术</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/" class="article-date">
+  <time datetime="2024-08-12T10:07:00.000Z" itemprop="datePublished">2024-08-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="核心技术概括"><a href="#核心技术概括" class="headerlink" title="核心技术概括:"></a>核心技术概括:</h3><ul>
+<li>使用 <code>CREATE2</code>派生确定的充币地址(合约)</li>
+<li>归集时在合约中 使用相同的 salt 和 hash, 创建充币地址(合约)<ul>
+<li>在合约中执行 ERC20的 approve，授权本合约</li>
+<li>调用 <code>selfdestruct</code>销毁合约</li>
+</ul>
+</li>
+<li>转移使用<code>transferFrom</code>转移充币地址中的ERC20代币</li>
+</ul>
+<hr>
+<h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><ul>
+<li>  充币 USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967">https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967</a></li>
+<li>归集(操作)USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7">https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7</a><ul>
+<li>  实际上是跨链</li>
+</ul>
+</li>
+</ul>
+<h4 id="技术点剖析"><a href="#技术点剖析" class="headerlink" title="技术点剖析:"></a>技术点剖析:</h4><ul>
+<li>  充币地址(接收地址)是一个”临时”合约地址</li>
+<li>  “临时”地址可以派生出来</li>
+<li>  且，”归集”合约可以操作 “临时”地址进行 <code>approve</code>操作</li>
+<li>  <code>approve</code>完成后即自毁(<code>selfdestruct</code>)了临时合约地址</li>
+</ul>
+<h4 id="合约代码分析"><a href="#合约代码分析" class="headerlink" title="合约代码分析:"></a>合约代码分析:</h4><ul>
+<li>合约代码: <a target="_blank" rel="noopener" href="https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171">https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function that bridges taking amount from the t2bAddress where the user funds are parked.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bridgeERC20</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 fees,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 nonce,</span></span></span><br><span class="line"><span class="function"><span class="params">    bytes calldata bridgeData,</span></span></span><br><span class="line"><span class="function"><span class="params">    bytes calldata signature</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> </span>&#123;</span><br><span class="line">    <span class="comment">// recovering signer.</span></span><br><span class="line">    address recoveredSigner = ECDSA.recover(</span><br><span class="line">        keccak256(</span><br><span class="line">            abi.encodePacked(</span><br><span class="line">                <span class="string">&quot;\x19Ethereum Signed Message:\n32&quot;</span>,</span><br><span class="line">                keccak256(</span><br><span class="line">                    abi.encode(</span><br><span class="line">                        address(<span class="built_in">this</span>),</span><br><span class="line">                        nonce,</span><br><span class="line">                        block.chainid, <span class="comment">// uint256</span></span><br><span class="line">                        fees,</span><br><span class="line">                        bridgeData</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        signature</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (signerAddress != recoveredSigner) revert SignerMismatch();</span><br><span class="line">    <span class="comment">// nonce is used by gated roles and we don&#x27;t expect nonce to reach the max value of uint256</span></span><br><span class="line">    unchecked &#123;</span><br><span class="line">        <span class="keyword">if</span> (nonce != nextNonce[signerAddress]++) revert InvalidNonce();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bridgeVerifiers[uint32(bytes4(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))] == address(<span class="number">0</span>))</span><br><span class="line">        revert UnsupportedBridge();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    (bool parseSuccess, bytes memory parsedData) = bridgeVerifiers[</span><br><span class="line">        uint32(bytes4(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))</span><br><span class="line">    ].call(bridgeData[<span class="number">4</span>:bridgeData.length - <span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!parseSuccess) revert VerificationCallFailed();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    IT2BRequest.T2BRequest memory t2bRequest = abi.decode(</span><br><span class="line">        parsedData,</span><br><span class="line">        (IT2BRequest.T2BRequest)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取派生地址</span></span><br><span class="line">    address t2bAddress = getAddressFor(</span><br><span class="line">        t2bRequest.recipient,</span><br><span class="line">        t2bRequest.toChainId</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断 allowance</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        ERC20(t2bRequest.token).allowance(t2bAddress, address(<span class="built_in">this</span>)) &lt;</span><br><span class="line">        t2bRequest.amount</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 计算salt</span></span><br><span class="line">        bytes32 uniqueSalt = keccak256(</span><br><span class="line">            abi.encode(t2bRequest.recipient, t2bRequest.toChainId)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用 CREATE2 创建临时地址</span></span><br><span class="line">        <span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(address(<span class="built_in">this</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将派生地址的 ERC20代币转移</span></span><br><span class="line">    ERC20(t2bRequest.token).safeTransferFrom(</span><br><span class="line">        t2bAddress,</span><br><span class="line">        address(<span class="built_in">this</span>),</span><br><span class="line">        t2bRequest.amount + fees</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... 其他代码, 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 部署派生地址</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deployApprovalContract</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address receiver,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 toChainId</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params">address approvalAddress</span>) </span>&#123;</span><br><span class="line">    bytes32 uniqueSalt = keccak256(abi.encode(receiver, toChainId));</span><br><span class="line">    approvalAddress = address(<span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(address(<span class="built_in">this</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取派生地址</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAddressFor</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address receiver,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint256 toChainId</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> (<span class="params">address</span>) </span>&#123;</span><br><span class="line">    bytes32 salt = keccak256(abi.encode(receiver, toChainId));</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">        address(</span><br><span class="line">            uint160(</span><br><span class="line">                uint256(</span><br><span class="line">                    keccak256(</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 可以看下文的  CreateAddress2的实现</span></span><br><span class="line">                        abi.encodePacked(</span><br><span class="line">                            bytes1(<span class="number">0xff</span>), <span class="comment">// 固定的</span></span><br><span class="line">                            address(<span class="built_in">this</span>), <span class="comment">// 本合约地址</span></span><br><span class="line">                            salt, <span class="comment">// salt</span></span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 合约代码的 hash</span></span><br><span class="line">                            keccak256(</span><br><span class="line">                                abi.encodePacked(</span><br><span class="line">                                    type(T2BApproval).creationCode, <span class="comment">// 合约代码</span></span><br><span class="line">                                    abi.encode(address(<span class="built_in">this</span>)) <span class="comment">// 合约</span></span><br><span class="line">                                )</span><br><span class="line">                            )</span><br><span class="line">                        )</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  <code>T2BApproval</code> 派生地址合约</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">contract T2BApproval &#123;</span><br><span class="line">    using SafeTransferLib <span class="keyword">for</span> ERC20;</span><br><span class="line"></span><br><span class="line">    error ZeroAddress();</span><br><span class="line">    error InvalidTokenAddress();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constructor</span></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">address _t2bRouter</span>)</span> &#123;</span><br><span class="line">        <span class="comment">// Set T2b Router.</span></span><br><span class="line">        IT2BRouter t2bRouter = IT2BRouter(_t2bRouter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set Max Approvals for supported tokens.</span></span><br><span class="line">        uint256 tokenIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t2bRouter.supportedTokens(tokenIndex) != address(<span class="number">0</span>)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 进行 approve操作</span></span><br><span class="line">            ERC20(t2bRouter.supportedTokens(tokenIndex)).safeApprove(</span><br><span class="line">                address(t2bRouter),</span><br><span class="line">                type(uint256).max</span><br><span class="line">            );</span><br><span class="line">            unchecked &#123;</span><br><span class="line">                ++tokenIndex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 销毁</span></span><br><span class="line">        selfdestruct(payable(msg.sender));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>安全性:</p>
+<ul>
+<li><code> new T2BApproval&#123;salt: uniqueSalt&#125;(address(this));</code><ul>
+<li>CREATE2 生成的地址是基于<code>部署者地址</code>、<code>salt</code>、<code>合约字节码的哈希</code>计算的。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743">https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  scope.Contract 是本合约地址</span></span><br><span class="line"><span class="comment">// input  合约代码</span></span><br><span class="line">res, addr, returnGas, suberr := interpreter.evm.Create2(scope.Contract, input, gas, &amp;endowment, &amp;salt)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create2 creates a new contract using code as deployment code.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The different between Create2 with Create is Create2 uses keccak256(0xff ++ msg.sender ++ salt ++ keccak256(init_code))[12:]</span></span><br><span class="line"><span class="comment">// instead of the usual sender-and-nonce-hash as the address where the contract is initialized at.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(evm *EVM)</span> <span class="title">Create2</span><span class="params">(caller ContractRef, code []<span class="keyword">byte</span>, gas <span class="keyword">uint64</span>, endowment *uint256.Int, salt *uint256.Int)</span></span></span><br><span class="line"> (ret []<span class="keyword">byte</span>, contractAddr common.Address, leftOverGas <span class="keyword">uint64</span>, err error) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约代码的hash</span></span><br><span class="line">	codeAndHash := &amp;codeAndHash&#123;code: code&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	contractAddr = crypto.CreateAddress2(caller.Address(), salt.Bytes32(), codeAndHash.Hash().Bytes())</span><br><span class="line">	<span class="keyword">return</span> evm.create(caller, codeAndHash, gas, endowment, contractAddr, CREATE2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125">https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125</a></li>
+</ul>
+<p>生成地址</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CreateAddress2 creates an ethereum address given the address bytes, initial</span></span><br><span class="line"><span class="comment">// contract code hash and a salt.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateAddress2</span><span class="params">(b common.Address, salt [32]<span class="keyword">byte</span>, inithash []<span class="keyword">byte</span>)</span> <span class="title">common</span>.<span class="title">Address</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> common.BytesToAddress(Keccak256([]<span class="keyword">byte</span>&#123;<span class="number">0xff</span>&#125;, b.Bytes(), salt[:], inithash)[<span class="number">12</span>:])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>略 <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448</a></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC20/" rel="tag">ERC20</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/Foundry合约开发框架学习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/12/technology/blockchain/solidity/Foundry%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"
+    >ERC20高级充币归集技术</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/12/technology/blockchain/solidity/Foundry%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2024-08-12T10:07:00.000Z" itemprop="datePublished">2024-08-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Foundry</p>
+<p><a target="_blank" rel="noopener" href="https://book.getfoundry.sh/getting-started/installation">https://book.getfoundry.sh/getting-started/installation</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/foundry-rs/foundry">https://github.com/foundry-rs/foundry</a></p>
+<p>TODO</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC20/" rel="tag">ERC20</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/other/程序员如何把控自己的职业"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/02/technology/other/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%8C%E4%B8%9A/"
+    >程序员如何把控自己的职业</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/02/technology/other/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E8%81%8C%E4%B8%9A/" class="article-date">
+  <time datetime="2024-08-02T12:37:00.000Z" itemprop="datePublished">2024-08-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/20977.html">https://coolshell.cn/articles/20977.html</a></p>
+</blockquote>
+<ul>
+<li><p>第一，如果想要把控技术，应对这个世界的一些变化，<strong>需要大致知道这个世界的一些规律和发展趋势，另外还得认识自己</strong>，自己到底适合做什么？在这个趋势和规律下属于自己的发挥领域到底是什么？这是我们每个人都需要了解的。</p>
+</li>
+<li><p>第二，<strong>打牢基础，以不变应万变</strong>，不管世界怎样变化，我都能很快适应它。基础的重要程度对于你能够飞多高是相当有影响的，懂原理的人比不懂原理的人能做出来的事情或是能解决的问题完全是两个层级的。</p>
+</li>
+<li><p>第三，<strong>提升成长的效率</strong>，因为现在社会的节奏实在太快了，比二十年前快得太多，技术层出不穷，所以我们的成长也要更有效率。效率并不单指的快，效率是怎么样更有效，是有用功除以总功，怎么学到更有效的东西，或者怎么更有效学习，是我们需要掌握的另一关键。</p>
+</li>
+</ul>
+<hr>
+<h2 id="打好基础"><a href="#打好基础" class="headerlink" title="打好基础"></a>打好基础</h2><ul>
+<li>变化都是表面的东西，内在的东西其实并没有太多的变化。</li>
+<li>不懂原理，不懂科学方法，你就不可能成长上去的，</li>
+</ul>
+<p>技术的基础，我会把其它成四类：</p>
+<ul>
+<li>程序语言：语言的原理，类库的实现，编程技术（并发、异步等），编程范式，设计模式……</li>
+<li>系统原理：计算机系统，操作系统，网络协议，数据库原理……</li>
+<li>中间件：消息队列，缓存系统，网关代理，调度系统 ……</li>
+<li>理论知识：算法和数据结构，数据库范式，网络七层模型，分布式系统……</li>
+</ul>
+<h2 id="学习效率"><a href="#学习效率" class="headerlink" title="学习效率"></a>学习效率</h2><ul>
+<li>挑选信息源</li>
+<li>注重基础和原理</li>
+<li>使用知识图谱</li>
+<li>举一反三</li>
+<li>总结归纳</li>
+<li>实践和坚持</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/8/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>python3.13无GIL自由线程新特性 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/python/python3.13无GIL自由线程新特性"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  python3.13无GIL自由线程新特性
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/03/27/technology/python/python3.13%E6%97%A0GIL%E8%87%AA%E7%94%B1%E7%BA%BF%E7%A8%8B%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
+  <time datetime="2025-03-27T08:11:35.000Z" itemprop="datePublished">2025-03-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="安装Python3-13-2"><a href="#安装Python3-13-2" class="headerlink" title="安装Python3.13.2"></a>安装Python3.13.2</h2><p>Windows: 安装python3.13, 直接下载即可，在安装目录的 <code>python3.13t</code></p>
+<ul>
+<li>在”Advanced Options”下，确保选择“Download free-threaded binaries(experimental)”选项，然后点击“安装”</li>
+</ul>
+<p>Ubuntu: 下载代码编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./configure --disable-gil --enable-optimizations</span><br><span class="line">make</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 会覆盖系统的python</span></span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者， 不覆盖系统的python</span></span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行测试代码"><a href="#运行测试代码" class="headerlink" title="运行测试代码:"></a>运行测试代码:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>():</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">    threading.Thread(target=f).start()</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>python3.13t</code> 或 <code>python3.13</code> 运行代码 <code>python3.13t test.py</code> 或 <code>PYTHON_GIL=0 python3.13 test.py</code> 或 <code>python3.13 -Xgil=0 test.py</code>, 查看16核CPU的占用率100%</p>
+<ul>
+<li><p>如何没有设置 <code>PYTHON_GIL</code>， 那么 python3.13默认是无GIL的</p>
+</li>
+<li><p>对比python3.13的无GIL版本:<br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/python-nogil-test.png"></p>
+</li>
+<li><p>对比python3.13 的有GIL版本:</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/python3.13-gil-test.png"></p>
+</li>
+<li><p>对比python3.12版本(有GIL)<br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/python-withgil-test.png"></p>
+</li>
+</ul>
+<h2 id="PEP-703"><a href="#PEP-703" class="headerlink" title="PEP-703"></a>PEP-703</h2><p><a target="_blank" rel="noopener" href="https://peps.python.org/pep-0703/">https://peps.python.org/pep-0703/</a></p>
+<h2 id="关于容器的线程安全"><a href="#关于容器的线程安全" class="headerlink" title="关于容器的线程安全"></a>关于容器的线程安全</h2><p><a target="_blank" rel="noopener" href="https://peps.python.org/pep-0703/#container-thread-safety">https://peps.python.org/pep-0703/#container-thread-safety</a></p>
+<p>python底层的实现中，每个object内部使用临界区来实现线程同步</p>
+<blockquote>
+<p>Per-object locks with critical sections provide weaker protections than the GIL. Because the GIL doesn’t necessarily ensure that concurrent operations are atomic or correct, the per-object locking scheme also cannot ensure that concurrent operations are atomic or correct. Instead, per-object locking aims for similar protections as the GIL, but with mutual exclusion limited to individual objects.</p>
+</blockquote>
+<ul>
+<li>在object加锁<ul>
+<li><code>list.append, list.insert, list.repeat, PyList_SetItem</code></li>
+<li><code>dict.__setitem__, PyDict_SetItem</code></li>
+<li><code>list.clear, dict.clear</code></li>
+<li><code>list.__repr__, dict.__repr__, etc.</code></li>
+<li><code>list.extend(iterable)</code></li>
+<li><code>setiter_iternext</code></li>
+</ul>
+</li>
+<li>在2个object加锁<ul>
+<li><code>list.extend(list), list.extend(set), list.extend (dictitems), and other specializations where the implementation is specialized for argument type.</code></li>
+<li><code>list.concat(list)</code></li>
+<li><code>list.__eq__(list), dict.__eq__(dict)</code></li>
+</ul>
+</li>
+<li>无锁<ul>
+<li>len(list) i.e., list_length(PyListObject *a)</li>
+<li>len(dict)</li>
+<li>len(set)</li>
+</ul>
+</li>
+<li>看情况, 需要根据内存分配器的实现而定， 尽量会少用锁提升性能<ul>
+<li>list[idx] (list_subscript)</li>
+<li>dict[key] (dict_subscript)</li>
+<li>listiter_next, dictiter_iternextkey/value/item</li>
+<li>list.contains</li>
+</ul>
+</li>
+</ul>
+<h2 id="no-GIL-async-await"><a href="#no-GIL-async-await" class="headerlink" title="no-GIL + async/await"></a>no-GIL + async/await</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">async_range</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line"></span><br><span class="line"><span class="comment"># 异步任务</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">async_task</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;异步任务 <span class="subst">&#123;name&#125;</span> 开始执行&quot;</span>)</span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">for</span> i <span class="keyword">in</span> async_range(<span class="number">1000_0000</span>):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;异步任务 <span class="subst">&#123;name&#125;</span> 执行结束&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;结果 <span class="subst">&#123;name&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在线程中运行异步任务</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_async_in_thread</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个新的事件循环</span></span><br><span class="line">    loop = asyncio.new_event_loop()</span><br><span class="line">    asyncio.set_event_loop(loop)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 运行异步任务</span></span><br><span class="line">    result = loop.run_until_complete(async_task(name))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 关闭事件循环</span></span><br><span class="line">    loop.close()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># 线程函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_function</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;线程 <span class="subst">&#123;name&#125;</span> 开始执行&quot;</span>)</span><br><span class="line">    result = run_async_in_thread(<span class="string">f&quot;Async-<span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;线程 <span class="subst">&#123;name&#125;</span> 执行结束，结果: <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">    start  = time.time()</span><br><span class="line">    <span class="comment"># 创建并启动线程</span></span><br><span class="line">    threads = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">        thread = threading.Thread(target=thread_function, args=(<span class="string">f&quot;Thread-<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>&quot;</span>,))</span><br><span class="line">        threads.append(thread)</span><br><span class="line">        thread.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待所有线程完成</span></span><br><span class="line">    <span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">        thread.join()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;所有任务执行完毕, 耗时: <span class="subst">&#123;time.time() - start&#125;</span> s&quot;</span> )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>多进程<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">async_range</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 异步任务</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">async_task</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;异步任务 <span class="subst">&#123;name&#125;</span> 开始执行&quot;</span>)</span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">for</span> i <span class="keyword">in</span> async_range(<span class="number">1000_0000</span>):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;异步任务 <span class="subst">&#123;name&#125;</span> 执行结束&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;结果 <span class="subst">&#123;name&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在进程中运行异步任务</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_async_in_thread</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个新的事件循环</span></span><br><span class="line">    loop = asyncio.new_event_loop()</span><br><span class="line">    asyncio.set_event_loop(loop)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 运行异步任务</span></span><br><span class="line">    result = loop.run_until_complete(async_task(name))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 关闭事件循环</span></span><br><span class="line">    loop.close()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 线程函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_function</span>(<span class="params">name</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;进程 <span class="subst">&#123;name&#125;</span> 开始执行&quot;</span>)</span><br><span class="line">    result = run_async_in_thread(<span class="string">f&quot;Async-<span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;进程 <span class="subst">&#123;name&#125;</span> 执行结束，结果: <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">    start = time.time()</span><br><span class="line">    <span class="comment"># 创建并启动进程</span></span><br><span class="line">    processes: <span class="type">List</span>[multiprocessing.Process] = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">16</span>):</span><br><span class="line">        process = multiprocessing.Process(</span><br><span class="line">            target=thread_function, args=(<span class="string">f&quot;Process-<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>&quot;</span>,)</span><br><span class="line">        )</span><br><span class="line">        processes.append(process)</span><br><span class="line">        process.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待所有进程完成</span></span><br><span class="line">    <span class="keyword">for</span> process <span class="keyword">in</span> processes:</span><br><span class="line">        process.join()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;所有任务执行完毕, 耗时: <span class="subst">&#123;time.time() - start&#125;</span> s&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>运行时间对比</p>
+<ul>
+<li>使用 No-GIL python3.13 耗时<code>66s</code></li>
+<li>使用 GIL python3.13 耗时<code>375s</code></li>
+<li>使用带GIL的多进程<code>65s</code></li>
+</ul>
+<h2 id="有了multiprocessing，为什么还要No-GIL-？"><a href="#有了multiprocessing，为什么还要No-GIL-？" class="headerlink" title="有了multiprocessing，为什么还要No-GIL ？"></a>有了multiprocessing，为什么还要No-GIL ？</h2><p>因为<code>multiprocessing</code>是多进程， 每个进程都有自己的内存空间， 进程间通信成本较高</p>
+<ul>
+<li>进程间通信手段: Queue, Pipe, Semaphore, Socket, File</li>
+<li>线程间同步: Lock, RLock, Condition, Event, Queue, Barrier</li>
+</ul>
+<p>NO-GIL的最大优势:</p>
+<ul>
+<li><strong>同一程序空间，线程间通信简单</strong></li>
+</ul>
+<hr>
+<h2 id="附-多进程和多线程的区别"><a href="#附-多进程和多线程的区别" class="headerlink" title="[附] 多进程和多线程的区别:"></a>[附] 多进程和多线程的区别:</h2><ul>
+<li><p>多进程: 每个进程有自己的内存空间</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个全局变量</span></span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span>():</span></span><br><span class="line">    <span class="keyword">global</span> counter</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建两个进程</span></span><br><span class="line">    p1 = Process(target=increment)</span><br><span class="line">    p2 = Process(target=increment)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待进程完成</span></span><br><span class="line">    p1.join()</span><br><span class="line">    p2.join()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印最终的全局变量值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Final counter value: <span class="subst">&#123;counter&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>  运行结果:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ python3.13 test_process.py</span><br><span class="line">counter: 1000000</span><br><span class="line">counter: 1000000</span><br><span class="line">Final counter value: 0</span><br></pre></td></tr></table></figure>
+
+<p>  因为主进程中的 counter没有改过, 所以最终的结果是0</p>
+</li>
+<li><p>多线程: 共享内存空间</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># from multiprocessing import Process</span></span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个全局变量</span></span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span>():</span></span><br><span class="line">    <span class="keyword">global</span> counter</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建两个进程</span></span><br><span class="line">    p1 = Thread(target=increment)</span><br><span class="line">    p2 = Thread(target=increment)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待进程完成</span></span><br><span class="line">    p1.join()</span><br><span class="line">    p2.join()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印最终的全局变量值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Final counter value: <span class="subst">&#123;counter&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>使用 GIL版本运行结果:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python3.13 -Xgil&#x3D;1 test_thread.py</span><br><span class="line">Final counter value: 2000000</span><br></pre></td></tr></table></figure></li>
+<li><p>使用 No-GIL版本运行结果:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ python3.13 -Xgil&#x3D;0 test_thread.py</span><br><span class="line">Final counter value: 1139283</span><br><span class="line">$ python3.13 -Xgil&#x3D;0 test_thread.py</span><br><span class="line">Final counter value: 1170427</span><br><span class="line">$ python3.13 -Xgil&#x3D;0 test_thread.py</span><br><span class="line">Final counter value: 1415999</span><br><span class="line">$ python3.13 -Xgil&#x3D;0 test_thread.py</span><br><span class="line">Final counter value: 1205918</span><br></pre></td></tr></table></figure>
+<ul>
+<li>因为没有GIL的限制, 且没有加锁， 所以多线程的结果是不确定的</li>
+</ul>
+</li>
+<li><p>对counter加锁</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread, Lock</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个全局变量</span></span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">lock = Lock()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span>():</span></span><br><span class="line">    <span class="keyword">global</span> counter</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000000</span>):</span><br><span class="line">        lock.acquire() <span class="comment"># 获取锁</span></span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line">        lock.release() <span class="comment"># 释放锁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建两个进程</span></span><br><span class="line">    p1 = Thread(target=increment)</span><br><span class="line">    p2 = Thread(target=increment)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待进程完成</span></span><br><span class="line">    p1.join()</span><br><span class="line">    p2.join()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印最终的全局变量值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Final counter value: <span class="subst">&#123;counter&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用无GIL python运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python3.13 -Xgil&#x3D;0 test_thread.py</span><br><span class="line">  Final counter value: 2000000</span><br></pre></td></tr></table></figure></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2025/03/27/technology/python/python3.13%E6%97%A0GIL%E8%87%AA%E7%94%B1%E7%BA%BF%E7%A8%8B%E6%96%B0%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3-13/" rel="tag">python3.13</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/04/07/technology/other/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            HEVC视频编码格式与浏览器兼容性问题
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2024/12/10/technology/blockchain/defi/Raydium%E5%81%9A%E5%B8%82%E8%B5%84%E9%87%91%E9%87%8F%E8%AE%A1%E7%AE%97/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Raydium做市资金量计算</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/blockchain/solidity/分析MEV夹子机器人的技术细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/"
+    >分析MEV夹子机器人的技术细节</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2024-06-07T10:30:00.000Z" itemprop="datePublished">2024-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
+<li><code>A0: 1 USDT</code></li>
+<li><code>B0: 85.875  TXXC</code></li>
+<li><code>TXXC价格 = A0/B0 =  0.0116 USDT/TXXC</code></li>
+<li><a target="_blank" rel="noopener" href="https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default">https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default</a></li>
+</ul>
+<h2 id="机器人买入"><a href="#机器人买入" class="headerlink" title="机器人买入:"></a>机器人买入:</h2><ul>
+<li><p>该交易区块的第1个位置(给了 11Gwei)</p>
+</li>
+<li><p>MEV机器人的买入: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6">https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-20-57.png"></p>
+</li>
+<li><p>买入： <code>6.07 USDT</code>, 计算买入的 TXXC的数量和价格, ChatGPT的计算过程:</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-14-29.png"></p>
+</li>
+<li><p>ChatGPT的计算过程和计算结果完全正确：</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_15-17-35.png"></p>
+</li>
+</ul>
+<ul>
+<li>此时流动池中的状态</li>
+<li><code>A1: 7.07 USDT</code></li>
+<li><code>B1: 12.145 TXXC</code></li>
+<li>此时的价格 <code>7.07 / 12.145 = 0.5821  USDT/TXXC</code></li>
+</ul>
+<h2 id="我的添加流动性交易"><a href="#我的添加流动性交易" class="headerlink" title="我的添加流动性交易:"></a>我的添加流动性交易:</h2><ul>
+<li><p>该交易区块的第2个位置</p>
+</li>
+<li><p>源码： <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a></p>
+</li>
+<li><p>详细代码分析，见文末</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired, <span class="comment">// 希望投入的代币 A 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired, <span class="comment">// 希望投入的代币 B 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 A 的数量， 确保用户不会因为价格波动而损失太多代币A</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 B 的数量，确保用户不会因为价格波动而损失太多代币B</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to, <span class="comment">// 流动性代币接收者的地址。流动性代币是代表用户在流动池中所有权的代币。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline <span class="comment">// 交易的最后期限（时间戳）。确保交易在指定时间内完成，否则交易将被取消。</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>交易： <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74">https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-28-37.png"></p>
+</li>
+<li><p>计算:</p>
+<ul>
+<li><code>amountADesired</code>: <code>8.998834461493163430 USDT</code></li>
+<li><code>amountBDesired</code>: <code>7.73000000000000000000 TXXC</code></li>
+<li>因此<code>amountBOptimal = amountADesired * B1 / A1 = 8.998 * 12.1455 / 7.07 = 15.456</code></li>
+<li>满足 <code>if (amountBOptimal &lt;= amountBDesired) </code>, 所以<ul>
+<li>因此 <code>(amountA, amountB) = (amountADesired, amountBOptimal);</code></li>
+<li>即 <code>(amountA, amountB) = (8.998, 15.456);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其中 <code>quote</code>函数, 按照等比例增加, 这里只能近似:<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_18-35-24.png"></p>
+<ul>
+<li> <code>A2: 7.07 + 8.99 = 16.06 USDT</code></li>
+<li><code>B2: 12.145 + 15.3 = 27.445  TXXC</code></li>
+<li>此时价格  <code>0.5854 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="MEV机器人的卖出"><a href="#MEV机器人的卖出" class="headerlink" title="MEV机器人的卖出"></a>MEV机器人的卖出</h2><ul>
+<li><p>该交易区块的第3个位置</p>
+</li>
+<li><p>MEV机器人的卖出: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc">https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc</a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-29-28.png"></p>
+<ul>
+<li>此时MEV机器人全部卖出，<ul>
+<li><code>B3 = 27.45 + 66.5 + 3.5 = 97.45</code></li>
+<li><code>A3 =  k / B3 = (16.06*27.445) / 97.45  = 4.523</code></li>
+<li>此时的价格： <code>A3 / B3 = 4.523 / 97.45 = 0.0464 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>MEV机器人的获利：</p>
+<ul>
+<li>USDT: <code>16.06 - 4.523 - 6.07 = 5.467 USDT</code></li>
+<li>BNB手续费: <code>0.00475 BNB</code> , <code>0.0047 * 700</code> = <code>3.324 U</code><ul>
+<li>购买交易手续费:<code>0.00245 BNB</code><ul>
+<li>gas price: 11Gwei ， 一般是 1Gwei, 所以能排在第0个位置,</li>
+</ul>
+</li>
+<li>购买交易平台手续费: <code>0.002 BNB</code></li>
+<li>卖出交易手续费：<code>0.0003 BNB</code></li>
+</ul>
+</li>
+<li>合计： <code>5.467 - 3.324 = 2.1423</code></li>
+<li>MEV通过这一次交易，净赚<code>2.14 U</code></li>
+</ul>
+</li>
+<li><p>我损失的:</p>
+<ul>
+<li>USDT- <code> -5.467</code></li>
+<li>BNB: <code> +0.0026 BNB</code>, 约 <code>1.82U</code><ul>
+<li>池子是我建的，手续费归我</li>
+</ul>
+</li>
+<li>合计: <code> -3.647U</code></li>
+<li>我这笔交易损失: <code>3.647 U</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><ul>
+<li>添加流动性交易，没有设置滑点保护参数, <code>amountAMin</code> 和  <code>amountBMin</code>:<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-27-05.png"></li>
+<li>源码 <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given some amount of an asset and pair reserves, returns an equivalent amount of the other asset</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quote</span>(<span class="params">uint amountA, uint reserveA, uint reserveB</span>) <span class="title">internal</span> <span class="title">pure</span> <span class="title">returns</span> (<span class="params">uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(amountA &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_AMOUNT&#x27;</span>);</span><br><span class="line">    <span class="built_in">require</span>(reserveA &gt; <span class="number">0</span> &amp;&amp; reserveB &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_LIQUIDITY&#x27;</span>);</span><br><span class="line">    amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// **** ADD LIQUIDITY ****</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">internal</span> <span class="title">virtual</span> <span class="title">returns</span> (<span class="params">uint amountA, uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// create the pair if it doesn&#x27;t exist yet</span></span><br><span class="line">    <span class="keyword">if</span> (IPancakeFactory(factory).getPair(tokenA, tokenB) == address(<span class="number">0</span>)) &#123;</span><br><span class="line">        IPancakeFactory(factory).createPair(tokenA, tokenB);</span><br><span class="line">    &#125;</span><br><span class="line">    (uint reserveA, uint reserveB) = PancakeLibrary.getReserves(factory, tokenA, tokenB);</span><br><span class="line">    <span class="keyword">if</span> (reserveA == <span class="number">0</span> &amp;&amp; reserveB == <span class="number">0</span>) &#123;</span><br><span class="line">        (amountA, amountB) = (amountADesired, amountBDesired);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算 B的最小数量, 满足  A * B = k = A&#x27; * B&#x27; 的恒常等式</span></span><br><span class="line">        <span class="comment">// B&#x27; = A&#x27; * B</span></span><br><span class="line">        uint amountBOptimal = PancakeLibrary.quote(amountADesired, reserveA, reserveB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果 B的最有数量  小于 用户愿意投入的</span></span><br><span class="line">        <span class="keyword">if</span> (amountBOptimal &lt;= amountBDesired) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountBOptimal &gt;= amountBMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_B_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountADesired, amountBOptimal);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 A的最优数量</span></span><br><span class="line">            uint amountAOptimal = PancakeLibrary.quote(amountBDesired, reserveB, reserveA);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 必须满足： A的</span></span><br><span class="line">            assert(amountAOptimal &lt;= amountADesired);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountAOptimal &gt;= amountAMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_A_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountAOptimal, amountBDesired);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> <span class="title">virtual</span> <span class="title">override</span> <span class="title">ensure</span>(<span class="params">deadline</span>) <span class="title">returns</span> (<span class="params">uint amountA, uint amountB, uint liquidity</span>) </span>&#123;</span><br><span class="line">    (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);</span><br><span class="line">    address pair = PancakeLibrary.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);</span><br><span class="line">    liquidity = IPancakePair(pair).mint(to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="关于MEV的一些问题？"><a href="#关于MEV的一些问题？" class="headerlink" title="关于MEV的一些问题？"></a>关于MEV的一些问题？</h2><blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3163">https://learnblockchain.cn/article/3163</a></p>
+</blockquote>
+<ul>
+<li>交易顺序如何确定？<ul>
+<li>MEV在第一笔交易设置了非常搞的gas price</li>
+<li>矿工通过重组交易的执行顺序，可以获取收益<ul>
+<li>至于具体重组交易顺序的算法，需要进一步研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>如何防止MEV夹子机器人？<ul>
+<li>设置合适的滑点,<ul>
+<li>如果是添加流动性，要设置 <code>amountAMin</code>, <code>amountBMin</code></li>
+</ul>
+</li>
+<li>使用私密交易，用第三方的工具</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/学习课程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/"
+    >智能合约课程大纲</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/" class="article-date">
+  <time datetime="2024-05-23T16:00:00.000Z" itemprop="datePublished">2024-05-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>登链社区的培训课程大纲, 非常全面，可以借鉴学习</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/openspace/1">https://learnblockchain.cn/openspace/1</a></p>
+</blockquote>
+<h2 id="课程大纲"><a href="#课程大纲" class="headerlink" title="课程大纲"></a>课程大纲</h2><h3 id="夯实基础"><a href="#夯实基础" class="headerlink" title="夯实基础"></a>夯实基础</h3><ul>
+<li>比特币、以太坊核心技术原理，核心概念：钱包账号、交易调用、GAS 机制</li>
+<li>Remix &amp; Solidity 语言特性：数据类型、函数、库、事件、异常处理、OpenZeppelin</li>
+<li>开发工具：MetaMask、Hardhat、Foundry，如何进行编译、部署、代码验证</li>
+<li>测试：Foundry作弊码使用、Fork 链模拟测试、模糊测试</li>
+<li>ERC 标准介绍及实战：ERC20、ERC777、EIP2612、ERC721、ERC1155 及 SBT</li>
+<li>理解合约 ABI</li>
+<li>跟踪链上数据：解析合约事件与TheGraph 使⽤</li>
+<li>使用 Oracle 预言机、Keeper 服务，进行链上链下自动化交互</li>
+<li>前端 web3 SDK 集成：ethers.js ，viem，wagmi ，walletconnect 原理及应用</li>
+</ul>
+<h3 id="合约开发进阶"><a href="#合约开发进阶" class="headerlink" title="合约开发进阶"></a>合约开发进阶</h3><ul>
+<li>探究升级原理及可能遇到问题，实践合约升级模式：透明代理及 UUPS</li>
+<li>理解底层调用call、delegatecall，什么时候用、该如何用，有什么风险；</li>
+<li>理解 Multicall 解决什么问题</li>
+<li>离线签名的作用、如何安全的应用离线签名、线上验证</li>
+<li>智能合约钱包、多签钱包、AA 钱包</li>
+<li>跨链交互</li>
+<li>探究 EVM ，理解合约字节码</li>
+<li>Solidity 合约数据存储布局</li>
+<li>Gas 优化技巧：数据结构优化和使用、链上与链下权衡</li>
+<li>高级安全技术及漏洞挑战：重入攻击、不安全的随机数、权限漏洞</li>
+<li>大量 CTF 挑战实战，培养优秀代码思维</li>
+<li>Flashbots 应用</li>
+</ul>
+<h3 id="DeFi-算法"><a href="#DeFi-算法" class="headerlink" title="DeFi 算法"></a>DeFi 算法</h3><ul>
+<li>核心 DEFI 协议分析： Uniswap、 Compound、AAVE 、MakerDAO 等</li>
+<li>AMM DEX 实践</li>
+<li>借贷算法 Compound</li>
+<li>质押分红算法</li>
+<li>算法稳定币</li>
+</ul>
+<h3 id="Rollup-二层"><a href="#Rollup-二层" class="headerlink" title="Rollup 二层"></a>Rollup 二层</h3><ul>
+<li>Op-Stack 架构、Rollup 流程、跨链调用</li>
+<li>深入理解 ETH 和 ERC20 充值提现</li>
+<li>本地启动 op-Stack 测试网</li>
+<li>开发自己的的 Layer2 链</li>
+<li>模块化区块链、以太坊 DA（EIP4844 ）与 Celestia 等</li>
+<li>EigenLayer 重质押与 EigenDA</li>
+</ul>
+<h3 id="应用开发"><a href="#应用开发" class="headerlink" title="应用开发"></a>应用开发</h3><ul>
+<li>实现一个你自己的创意想法（学员组队完成）</li>
+<li>构建一个 DEX 、 Token 质押应用</li>
+<li>构建 NFT 市场</li>
+<li>构建抽象账户（AA）钱包</li>
+<li>构建一个区块链浏览器</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solidity/基于BondingCurve价格发现的代币"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/"
+    >基于BodingCurve价格发现的代币</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/" class="article-date">
+  <time datetime="2024-05-15T16:00:00.000Z" itemprop="datePublished">2024-05-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+</li>
+</ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
+<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice &#x3D; 1 * 10**18; &#x2F;&#x2F; Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;&#x3D; maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice &#x3D; gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BodingCurve/" rel="tag">BodingCurve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E5%B8%81/" rel="tag">代币</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0/" rel="tag">价格发现</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/cpp/P2P技术(UDP)打洞 "
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/14/technology/cpp/P2P%E6%8A%80%E6%9C%AF(UDP)%E6%89%93%E6%B4%9E%20/"
+    >P2P技术(UDP)打洞</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/14/technology/cpp/P2P%E6%8A%80%E6%9C%AF(UDP)%E6%89%93%E6%B4%9E%20/" class="article-date">
+  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ul>
+<li><p>文章: <a target="_blank" rel="noopener" href="https://evilpan.com/2015/10/31/p2p-over-middle-box/">https://evilpan.com/2015/10/31/p2p-over-middle-box/</a></p>
+</li>
+<li><p>示例: <a target="_blank" rel="noopener" href="https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/">https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/</a></p>
+</li>
+</ul>
+<p>其中最终核心的就是:</p>
+<h2 id="端点在不同的NAT之后"><a href="#端点在不同的NAT之后" class="headerlink" title="端点在不同的NAT之后"></a>端点在不同的NAT之后</h2><p>假设客户端A和客户端B的地址都是内网地址,且在不同的NAT后面. A、B上运行的P2P应用程序和服务器S都使用了UDP端口1234,A和B分别初始化了 与Server的UDP通信,地址映射如图所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">                            Server S</span><br><span class="line">                        18.181.0.31:1234</span><br><span class="line">                               |</span><br><span class="line">                               |</span><br><span class="line">        +----------------------+----------------------+</span><br><span class="line">        |                                             |</span><br><span class="line">      NAT A                                         NAT B</span><br><span class="line">155.99.25.11:62000                            138.76.29.7:31000</span><br><span class="line">        |                                             |</span><br><span class="line">        |                                             |</span><br><span class="line">     Client A                                      Client B</span><br><span class="line">  10.0.0.1:1234                                 10.1.1.3:1234</span><br></pre></td></tr></table></figure>
+
+
+<p>现在假设客户端A打算与客户端B直接建立一个UDP通信会话. 如果A直接给B的公网地址138.76.29.7:31000发送UDP数据,NAT B将很可能会无视进入的 数据（除非是Full Cone NAT）,因为源地址和端口与S不匹配,而最初只与S建立过会话. B往A直接发信息也类似.</p>
+<p><strong>假设A开始给B的公网地址发送UDP数据的同时,给服务器S发送一个中继请求,要求B开始给A的公网地址发送UDP信息. A往B的输出信息会导致NAT A打开 一个A的内网地址与与B的外网地址之间的新通讯会话, B往A亦然.</strong> 一旦新的UDP会话在两个方向都打开之后,客户端A和客户端B就能直接通讯, 而无须再通过引导服务器S了.</p>
+<p>UDP打洞技术有许多有用的性质. 一旦一个的P2P链接建立,链接的双方都能反过来作为“引导服务器”来帮助其他中间件后的客户端进行打洞, 极大减少了服务器的负载. 应用程序不需要知道中间件具体是什么（如果有的话）,因为以上的过程在没有中间件或者有多个中间件的情况下 也一样能建立通信链路.</p>
+<ul>
+<li><p>服务端： <a target="_blank" rel="noopener" href="https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/blob/master/p2pchat/server.c">https://github.com/youngqqcn/P2P-Over-MiddleBoxes-Demo/blob/master/p2pchat/server.c</a></p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_message</span><span class="params">(<span class="keyword">int</span> sock, <span class="keyword">endpoint_t</span> from, Message msg)</span> </span>&#123;</span><br><span class="line">    log_debug(<span class="string">&quot;RECV %d bytes FROM %s: %s %s&quot;</span>, msg.head.length,</span><br><span class="line">            ep_tostring(from), strmtype(msg.head.type), msg.body);</span><br><span class="line">    <span class="keyword">switch</span>(msg.head.type) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> MTYPE_LOGIN: <span class="comment">// 登录, 记录客户端的地址</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> == eplist_add(g_client_pool, from)) &#123;</span><br><span class="line">                    log_info(<span class="string">&quot;%s logged in&quot;</span>, ep_tostring(from));</span><br><span class="line">                    udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Login success!&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    log_warn(<span class="string">&quot;%s failed to login&quot;</span>, ep_tostring(from));</span><br><span class="line">                    udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Login failed&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> MTYPE_PUNCH: <span class="comment">// UDP打洞核心逻辑</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">endpoint_t</span> other = ep_fromstring(msg.body);</span><br><span class="line">                log_info(<span class="string">&quot;punching to %s&quot;</span>, ep_tostring(other));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 向目的地址发送打洞PUNCH消息, 并将源地址作为消息体，发给目的地址</span></span><br><span class="line">                udp_send_text(sock, other, MTYPE_PUNCH, ep_tostring(from));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 向源地址发送一个消息, 源地址收到不会回复</span></span><br><span class="line">                udp_send_text(sock, from, MTYPE_TEXT, <span class="string">&quot;punch request sent&quot;</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PING:</span><br><span class="line">            udp_send_text(sock, from, MTYPE_PONG, <span class="literal">NULL</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PONG:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            udp_send_text(sock, from, MTYPE_REPLY, <span class="string">&quot;Unkown command&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>客户端：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_message</span><span class="params">(<span class="keyword">endpoint_t</span> from, Message msg)</span> </span>&#123;</span><br><span class="line">    log_debug(<span class="string">&quot;RECV %d bytes FROM %s: %s %s&quot;</span>, msg.head.length,</span><br><span class="line">            ep_tostring(from), strmtype(msg.head.type), msg.body);</span><br><span class="line">    <span class="comment">// from server</span></span><br><span class="line">    <span class="keyword">if</span> (ep_equal(g_server, from)) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (msg.head.type) &#123;</span><br><span class="line">            <span class="keyword">case</span> MTYPE_PUNCH: <span class="comment">// 收到服务端的打洞请求，</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">endpoint_t</span> peer = ep_fromstring(msg.body);</span><br><span class="line">                    log_info(<span class="string">&quot;%s on call, replying...&quot;</span>, ep_tostring(peer));</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 给源地址回复一条消息,</span></span><br><span class="line">                    udp_send_text(g_clientfd, peer, MTYPE_REPLY, <span class="literal">NULL</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MTYPE_REPLY:</span><br><span class="line">                log_info(<span class="string">&quot;SERVER: %s&quot;</span>, msg.body);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// from peer</span></span><br><span class="line">    <span class="keyword">switch</span> (msg.head.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_TEXT:</span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s): %s&quot;</span>, ep_tostring(from), msg.body);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_REPLY: <span class="comment">// UDP打洞打通了</span></span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) replied, you can talk now&quot;</span>, ep_tostring(from));</span><br><span class="line">            eplist_add(g_peers, from);</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PUNCH:</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            * Usually we can&#x27;t recevie punch request from other peer directly,</span></span><br><span class="line"><span class="comment">            * but it could happen when it come after we reply the punch request from server,</span></span><br><span class="line"><span class="comment">            * or there&#x27;s a tunnel already.</span></span><br><span class="line"><span class="comment">            * */</span></span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) punched&quot;</span>, ep_tostring(from));</span><br><span class="line">            udp_send_text(g_clientfd, from, MTYPE_TEXT, <span class="string">&quot;I SEE YOU&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> MTYPE_PING:</span><br><span class="line">            udp_send_text(g_clientfd, from, MTYPE_PONG, <span class="literal">NULL</span>);</span><br><span class="line">            log_info(<span class="string">&quot;Peer(%s) pinged&quot;</span>, ep_tostring(from));</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<p>以上的代码我在本地和2台服务做了测试，成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">            Server(腾讯云服务器)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ClientA(本机)            ClientB(aws服务器 )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/udp_punch.jpg"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NAT/" rel="tag">NAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P/" rel="tag">P2P</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDP/" rel="tag">UDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/cpp/strtok源码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
+    >strtok源码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/12/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/14/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

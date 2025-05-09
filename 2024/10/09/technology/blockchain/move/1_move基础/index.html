@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>1_move基础 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/blockchain/move/1_move基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  1_move基础
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/09/technology/blockchain/move/1_move%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2024-10-09T09:47:00.000Z" itemprop="datePublished">2024-10-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ul>
+<li><p>Move介绍: <a target="_blank" rel="noopener" href="https://move-language.github.io/move/introduction.html">https://move-language.github.io/move/introduction.html</a></p>
+</li>
+<li><p>教程: <a target="_blank" rel="noopener" href="https://github.com/move-language/move/tree/main/language/documentation/tutorial">https://github.com/move-language/move/tree/main/language/documentation/tutorial</a></p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>move的语法和rust差不多，核心概念简单，上手快。</p>
+<ul>
+<li><p>语法： move语法基本上和Rust语法大同小异, 以下为几个不同之处</p>
+<ul>
+<li><code>module</code> 块</li>
+<li><code>script</code> 块</li>
+<li>函数声明 <code>fun</code></li>
+<li>函数访问性:  <code>public</code></li>
+<li>结构体特性(ability): <code>has</code></li>
+</ul>
+</li>
+<li><p>核心概念: 常用的核心概念，整理如下</p>
+</li>
+</ul>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><ul>
+<li><p><strong>Module(模块)</strong>:</p>
+<ul>
+<li>库</li>
+<li>包含结构体 和 更新结构体的函数</li>
+<li><strong>发布(publish)</strong> 在地址上, 以供被调用, 例如： 0xCAFE就是模块发布的地址<ul>
+<li>值需要发布(publish)才能存储在global storage, 即调用 <code>move_to</code>进行发布</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sources/FirstModule.move</span></span><br><span class="line">module <span class="number">0xCAFE</span>::BasicCoin &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Script(脚本)</strong>:</p>
+<ul>
+<li>入口函数</li>
+<li>执行程序</li>
+<li>临时的</li>
+<li>不存储在 global storage中</li>
+</ul>
+</li>
+<li><p><strong>Struct(结构体)</strong>: 结构体</p>
+</li>
+<li><p><strong>Resource(资源)</strong>:</p>
+<ul>
+<li>结构体中的 <em>不可拷贝</em> 且 <em>不可销毁(drop)</em> 的值(values)</li>
+<li>必须在函数尾部(end)转移资源的权限</li>
+</ul>
+</li>
+<li><p><strong>Address(地址)</strong>: 地址</p>
+</li>
+<li><p><strong>Global Storage(全局存储)</strong>: 全局数据库</p>
+<ul>
+<li>类似下面的结构:<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GlobalStorage</span></span> &#123;</span><br><span class="line">    <span class="comment">// 资源(values)</span></span><br><span class="line">    resources: Map&lt;address, Map&lt;ResourceType, ResourceValue&gt;&gt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模块(code)</span></span><br><span class="line">    modules: Map&lt;address, Map&lt;ModuleName, ModuleBytecode&gt;&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="Move区块链的状态-state-模型"><a href="#Move区块链的状态-state-模型" class="headerlink" title="Move区块链的状态(state)模型"></a>Move区块链的状态(state)模型</h2><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/move_state.png"></p>
+<p>与EVM链的状态模式对比</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/solidity_state.png"></p>
+<h2 id="Struct的4大特性-ability"><a href="#Struct的4大特性-ability" class="headerlink" title="Struct的4大特性(ability)"></a>Struct的4大特性(ability)</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://move-language.github.io/move/abilities.html">https://move-language.github.io/move/abilities.html</a></p>
+</li>
+<li><p><code>copy</code>: 可拷贝</p>
+</li>
+<li><p><code>drop</code>: 可丢弃</p>
+</li>
+<li><p><code>store</code>: 可存储(存在global storage)</p>
+</li>
+<li><p><code>key</code>: 可作为 global storage中的key</p>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span> has key &#123;</span><br><span class="line">    value: <span class="built_in">u64</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Global-Storage的5个操作"><a href="#Global-Storage的5个操作" class="headerlink" title="Global Storage的5个操作"></a>Global Storage的5个操作</h2><p><a target="_blank" rel="noopener" href="https://move-language.github.io/move/global-storage-operators.html">https://move-language.github.io/move/global-storage-operators.html</a></p>
+<ul>
+<li><code>move_to&lt;T&gt;(&amp;signer,T)</code>: 将<code>T</code>发布在 <code>signer.address</code>地址下</li>
+<li><code>move_from&lt;T&gt;(address): T</code>:  将地址下的T移除</li>
+<li><code>borrow_global_mut&lt;T&gt;(address): &amp;mut T</code>:  获取地址下的可变引用</li>
+<li><code>borrow_global&lt;T&gt;(address): &amp;T</code>: 获取不可变引用</li>
+<li><code>exists&lt;T&gt;(address): bool</code>: 判断地址下是否存在T</li>
+</ul>
+<h2 id="Acquires-修饰"><a href="#Acquires-修饰" class="headerlink" title="Acquires 修饰"></a>Acquires 修饰</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://move-language.github.io/move/functions.html?highlight=acquires#acquires">https://move-language.github.io/move/functions.html?highlight=acquires#acquires</a></li>
+</ul>
+<p>当一个函数通过<code>move_from</code>, <code>borrow_global</code>, 或 <code>borrow_global_mut</code>来使用资源(resource)时，函数需要加上 <code>acquires</code>修饰</p>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Deposit `amount` number of tokens to the balance under `addr`.</span></span><br><span class="line">fun deposit(addr: address, check: Coin) acquires Balance&#123;</span><br><span class="line">    <span class="keyword">let</span> balance = balance_of(addr);</span><br><span class="line">    <span class="keyword">let</span> balance_ref = &amp;<span class="keyword">mut</span> borrow_global_mut&lt;Balance&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> Coin &#123; value &#125; = check;</span><br><span class="line">    *balance_ref = balance + value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>public, public(friend), or public(script)</p>
+<ul>
+<li>函数默认是私有的(private), 可以通过下面几种方式进行限定<ul>
+<li>public：<ul>
+<li>同一模块的函数可调用</li>
+<li>其他模块中的函数可调用</li>
+<li>脚本中的函数可调用</li>
+</ul>
+</li>
+<li>public(friend) : 供 friend 模块调用（类似C++中的友元函数）<ul>
+<li>同一模块</li>
+<li>其他友元模块中的函数</li>
+</ul>
+</li>
+<li>public entry<ul>
+<li>相当于一个模块的main函数（入口）</li>
+</ul>
+</li>
+<li><del>public(script) : 供交易脚本调用</del></li>
+</ul>
+</li>
+</ul>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>move中的单元测试 和 rust单元测试类似， 直接在模块中编写单元测试即可</p>
+<p><code>move test</code> : 运行单元测试</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[test(account = @0x1)]</span>  <span class="comment">// 将 account 参数设置为地址 0x1</span></span><br><span class="line"><span class="meta">#[expected_failure(abort_code = 2)]</span> <span class="comment">//  预期失败，错误码 2</span></span><br><span class="line">fun publish_balance_already_exists(account: signer) &#123;</span><br><span class="line">    publish_balance(&amp;account);</span><br><span class="line">    publish_balance(&amp;account);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">module <span class="number">0xCAFE</span>::BasicCoin &#123;</span><br><span class="line">     <span class="comment">// Only included in compilation for testing. Similar to #[cfg(testing)]</span></span><br><span class="line">    <span class="comment">// in Rust. Imports the `Signer` module from the MoveStdlib package.</span></span><br><span class="line">    <span class="meta">#[test_only]</span></span><br><span class="line">    <span class="keyword">use</span> std::signer;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span> has key &#123;</span><br><span class="line">        value: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun mint(account: signer, value: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        move_to(&amp;account, Coin &#123; value &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单元测试</span></span><br><span class="line">    <span class="comment">// Declare a unit test. It takes a signer called `account` with an</span></span><br><span class="line">    <span class="comment">// address value of `0xC0FFEE`.</span></span><br><span class="line">    <span class="meta">#[test(account = @0xC0FFEE)]</span></span><br><span class="line">    fun test_mint_10(account: signer) acquires Coin &#123;</span><br><span class="line">        <span class="keyword">let</span> addr = signer::address_of(&amp;account);</span><br><span class="line">        mint(account, <span class="number">10</span>);</span><br><span class="line">        <span class="comment">// Make sure there is a `Coin` resource under `addr` with a value of `10`.</span></span><br><span class="line">        <span class="comment">// We can access this resource and its value since we are in the</span></span><br><span class="line">        <span class="comment">// same module that defined the `Coin` resource.</span></span><br><span class="line">        <span class="built_in">assert!</span>(borrow_global&lt;Coin&gt;(addr).value == <span class="number">10</span>, <span class="number">0</span>); <span class="comment">// assert 可以指定错误码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="phantom类型"><a href="#phantom类型" class="headerlink" title="phantom类型"></a>phantom类型</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://move-language.github.io/move/generics.html#phantom-type-parameters">https://move-language.github.io/move/generics.html#phantom-type-parameters</a></li>
+</ul>
+<ul>
+<li>ChatGPT的回答： <a target="_blank" rel="noopener" href="https://chatgpt.com/share/67078dde-ae08-8004-a109-f1125dfa1fad">https://chatgpt.com/share/67078dde-ae08-8004-a109-f1125dfa1fad</a></li>
+</ul>
+<p><strong>为什么需要phantom类型？</strong></p>
+<ul>
+<li><strong>编译时类型约束</strong>：Phantom 类型允许你在泛型参数中提供类型信息，而不需要实际在运行时使用这些类型。这使得编译器能够在编译时检查类型安全性，而不引入运行时开销。</li>
+<li><strong>零运行时开销</strong>：因为 phantom 类型在运行时并不占用任何存储空间，它避免了不必要的内存分配或额外的存储复杂性。</li>
+<li><strong>增强的泛型能力</strong>：在某些场景下，你可能希望在泛型中传递一些类型信息，但这些信息仅在编译时有用。在 Move 中使用 phantom 类型可以让代码更加灵活。</li>
+</ul>
+<p><strong>phantom常见应用场景:</strong></p>
+<ul>
+<li><strong>逻辑分离</strong>：通过 phantom 类型标记不同的逻辑上下文，确保类型安全。</li>
+<li><strong>权限控制</strong>：在编译时限制某些操作只能由特定权限的账户执行，确保系统安全。</li>
+<li><strong>标记类型</strong>：用 phantom 来标记不同状态或角色，避免运行时状态混乱。</li>
+<li><strong>资源类型的泛化</strong>：对资源类型进行泛化处理，使得代码在不同资源类型上可重用，减少代码重复。</li>
+</ul>
+<p>示例： 逻辑分离</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">module PhantomLogicExample &#123;</span><br><span class="line">    <span class="comment">/// 定义两种逻辑上下文的类型标记</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Deposit</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Withdraw</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 泛型结构体，用于表示不同逻辑的账户操作，但通过 phantom 类型来区分逻辑</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span>&lt;T: store, phantom Operation&gt; &#123;</span><br><span class="line">        balance: <span class="built_in">u64</span>,</span><br><span class="line">        operation_info: T,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 创建一个用于“存款”逻辑的账户结构</span></span><br><span class="line">    public fun create_deposit_account&lt;T: store&gt;(balance: <span class="built_in">u64</span>, info: T): Account&lt;T, Deposit&gt; &#123;</span><br><span class="line">        Account &#123; balance, operation_info: info &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 创建一个用于“取款”逻辑的账户结构</span></span><br><span class="line">    public fun create_withdraw_account&lt;T: store&gt;(balance: <span class="built_in">u64</span>, info: T): Account&lt;T, Withdraw&gt; &#123;</span><br><span class="line">        Account &#123; balance, operation_info: info &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 增加存款逻辑的账户余额</span></span><br><span class="line">    public fun add_deposit&lt;T: store&gt;(account: &amp;<span class="keyword">mut</span> Account&lt;T, Deposit&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        account.balance = account.balance + amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 减少取款逻辑的账户余额</span></span><br><span class="line">    public fun subtract_withdraw&lt;T: store&gt;(account: &amp;<span class="keyword">mut</span> Account&lt;T, Withdraw&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        account.balance = account.balance - amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 获取账户余额 (适用于任意逻辑)</span></span><br><span class="line">    public fun get_balance&lt;T: store, Operation&gt;(account: &amp;Account&lt;T, Operation&gt;): <span class="built_in">u64</span> &#123;</span><br><span class="line">        account.balance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>示例： 资源类型的泛化</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">module ResourceExample &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span>&lt;phantom Currency&gt; &#123;</span><br><span class="line">        amount: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">USDCoin</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Bitcoin</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public fun create_usd_coin(amount: <span class="built_in">u64</span>): Coin&lt;USDCoin&gt; &#123;</span><br><span class="line">        Coin &#123; amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun create_bitcoin(amount: <span class="built_in">u64</span>): Coin&lt;Bitcoin&gt; &#123;</span><br><span class="line">        Coin &#123; amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 转移代币</span></span><br><span class="line">    public fun transfer&lt;T&gt;(coin: &amp;<span class="keyword">mut</span> Coin&lt;T&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        coin.amount = coin.amount - amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 获取代币余额</span></span><br><span class="line">    public fun get_balance&lt;T&gt;(coin: &amp;Coin&lt;T&gt;): <span class="built_in">u64</span> &#123;</span><br><span class="line">        coin.amount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>示例： 类型标记</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">module StateExample &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Pending</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Approved</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Rejected</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span>&lt;phantom Status&gt; &#123;</span><br><span class="line">        id: <span class="built_in">u64</span>,</span><br><span class="line">        amount: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun create_pending_transaction(id: <span class="built_in">u64</span>, amount: <span class="built_in">u64</span>): Transaction&lt;Pending&gt; &#123;</span><br><span class="line">        Transaction &#123; id, amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun approve_transaction(pending_txn: Transaction&lt;Pending&gt;): Transaction&lt;Approved&gt; &#123;</span><br><span class="line">        Transaction &#123; id: pending_txn.id, amount: pending_txn.amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun reject_transaction(pending_txn: Transaction&lt;Pending&gt;): Transaction&lt;Rejected&gt; &#123;</span><br><span class="line">        Transaction &#123; id: pending_txn.id, amount: pending_txn.amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun process_approved_transaction(approved_txn: Transaction&lt;Approved&gt;) &#123;</span><br><span class="line">        <span class="comment">// 处理已批准的交易</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="形式化验证"><a href="#形式化验证" class="headerlink" title="形式化验证"></a>形式化验证</h2><p><a target="_blank" rel="noopener" href="https://github.com/move-language/move/blob/main/language/move-prover/doc/user/spec-lang.md">https://github.com/move-language/move/blob/main/language/move-prover/doc/user/spec-lang.md</a></p>
+<p><code>move prove</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在move的根目录下执行</span><br><span class="line">.&#x2F;scripts&#x2F;dev_setup.sh -yp</span><br><span class="line">source ~&#x2F;.profile</span><br><span class="line"></span><br><span class="line"># 检查 boogie是否按照</span><br><span class="line">boogie &#x2F;version</span><br></pre></td></tr></table></figure>
+
+
+<p>形式化验证用于验证逻辑是否</p>
+<p>常用的关键词：</p>
+<ul>
+<li><code>let</code>:</li>
+<li><code>aborts_if</code>: 条件中断</li>
+<li><code>let post</code> : <strong>函数执行后</strong>获取值</li>
+<li><code>ensures</code>: <strong>函数执行成功后</strong>必须满足的条件</li>
+<li><code>ensures result</code>:  result是函数的返回值, <code>ensures result</code>即判断函数执行后的返回值</li>
+</ul>
+<p>关于move spec形式化验证 与 单元测试的区别：</p>
+<ul>
+<li>ChatGPT的回答：<a target="_blank" rel="noopener" href="https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583">https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583</a></li>
+<li>Move Spec 和单元测试是互补的。Move Spec 可以提供形式化的<strong>逻辑保障</strong>，而单元测试则用来确保代码在实际运行环境中表现正确。</li>
+<li>重点放在关键性质上：形式化验证特别适合那些涉及<strong>安全性、资金管理、状态变化一致性</strong>等至关重要的合约部分，而单元测试则适合验证合约中常见的逻辑操作和具体功能。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spec withdraw &#123;</span><br><span class="line">    <span class="keyword">let</span> balance = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="comment">// 判断资源是否存在</span></span><br><span class="line">    aborts_if !exists&lt;Balance&lt;CoinType&gt;&gt;(addr);</span><br><span class="line">    <span class="comment">// 校验balance</span></span><br><span class="line">    aborts_if balance &lt; amount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查执行后的状态</span></span><br><span class="line">    <span class="keyword">let</span> post balance_post = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="comment">// 余额检查</span></span><br><span class="line">    ensures balance_post == balance - amount;</span><br><span class="line">    <span class="comment">// 检查返回值</span></span><br><span class="line">    ensures result == Coin&lt;CoinType&gt; &#123; value: amount &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>特别注意</strong>： 在 Move 的形式化验证中，<strong>每一个</strong>可能的 abort（异常中断）都需要在 spec 规范中通过 aborts_if 子句来描述。当你编写了涉及可能导致 abort 的操作时，Move Prover 需要你为这些操作提供明确的终止条件。</p>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">fun deposit&lt;CoinType&gt;(addr: address, check: Coin&lt;CoinType&gt;) acquires Balance&#123;</span><br><span class="line">    <span class="keyword">let</span> balance = balance_of&lt;CoinType&gt;(addr);</span><br><span class="line">    <span class="keyword">let</span> balance_ref = &amp;<span class="keyword">mut</span> borrow_global_mut&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> Coin &#123; value &#125; = check;</span><br><span class="line">    *balance_ref = balance + value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">spec deposit &#123;</span><br><span class="line">    <span class="keyword">let</span> balance = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> check_value = check.value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对应 borrow_global&lt;Balance&lt;CoinType&gt;&gt;(owner).coin.value</span></span><br><span class="line">    aborts_if !exists&lt;Balance&lt;CoinType&gt;&gt;(addr);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对应 *balance_ref = balance + value;</span></span><br><span class="line">    aborts_if balance + check_value &gt; MAX_U64;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> post balance_post = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    ensures balance_post == balance + check_value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中2个 <code>aborts_if</code> 缺一不可，必须都存在</p>
+<p>可以通过 move  provier 的提示来增加</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/10/09/technology/blockchain/move/1_move%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aptos/" rel="tag">Aptos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2024/10/15/read/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            代码大全
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Rust/Go/Python调用C++</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

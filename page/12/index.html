@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/blockchain/solana/4_Solana程序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/"
+    >4_Solana程序</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/4_Solana%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2024-07-09T11:40:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana程序-智能合约"><a href="#Solana程序-智能合约" class="headerlink" title="Solana程序(智能合约)"></a>Solana程序(智能合约)</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/programs">https://solana.com/docs/core/programs</a></p>
+</blockquote>
+<ul>
+<li>在solana中“智能合约”被称为“程序”(program)</li>
+<li>每个程序是一个链上的账户, 该账户存储了可执行的代码(指令)</li>
+</ul>
+<h3 id="关键点："><a href="#关键点：" class="headerlink" title="关键点："></a>关键点：</h3><ul>
+<li><p>Solana程序是一个包含了<code>可执行代码</code>的链上<code>账户</code>, 代码中包含了不同的函数, 即<code>指令</code></p>
+</li>
+<li><p>程序是无状态的，但是可以包含创建<code>新账户</code>的<code>指令</code>，这个<code>新账户</code>可以用来存储和管理程序状态(即<code>数据账户</code>)</p>
+</li>
+<li><p>程序可以被升级，仅限拥有可升级权限的账户可以升级程序。如果一个程序的升级权限设置为<code>null</code>, 那么这个程序就不能再升级了。</p>
+</li>
+<li><p>Verifiable builds enable users to verify that onchain programs match the publicly available source code.</p>
+</li>
+</ul>
+<h3 id="编写Solana程序"><a href="#编写Solana程序" class="headerlink" title="编写Solana程序"></a>编写Solana程序</h3><ul>
+<li><p>原生Rust</p>
+</li>
+<li><p>Anchor框架(推荐)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/getstarted/intro-to-anchor">https://solana.com/developers/guides/getstarted/intro-to-anchor</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anchor-lang.com/docs/">https://www.anchor-lang.com/docs/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="更新Solana程序"><a href="#更新Solana程序" class="headerlink" title="更新Solana程序"></a>更新Solana程序</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L675</a></p>
+</blockquote>
+<ul>
+<li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
+<li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/3_Solana的手续费"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/"
+    >3_Solana的手续费</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/" class="article-date">
+  <time datetime="2024-07-09T11:31:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>Transaction Fees(base fee) : 交易费</li>
+<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
+<li>给矿工</li>
+</ul>
+</li>
+<li>Rent: 账户租金(充值)</li>
+</ul>
+<ul>
+<li><p>交易手续费的分配：</p>
+<ul>
+<li><code>50%</code>: 交易费直接燃烧</li>
+<li><code>50%</code>: 给矿工</li>
+</ul>
+</li>
+<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
+</li>
+<li><p>交易执行限制：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
+<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
+<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
+<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
+<li>关于调整交易的最大CU: <a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
+</li>
+<li><p>Prioritization fee 的计算取决于：</p>
+<ul>
+<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
+<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
+<li>如果不提供此值， 则交易无priority fee</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何设置  <code>prioritization fee</code> ？</p>
+<ul>
+<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
+<li>注意：<ul>
+<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
+<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
+</ul>
+</li>
+<li>更多：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>租金<ul>
+<li>获取租金豁免: <a target="_blank" rel="noopener" href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
+<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/2_Solana交易和指令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/"
+    >2_Solana交易和指令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/2_Solana%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/" class="article-date">
+  <time datetime="2024-07-09T11:15:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana的交易和指令"><a href="#Solana的交易和指令" class="headerlink" title="Solana的交易和指令"></a>Solana的交易和指令</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions">https://solana.com/docs/core/transactions</a></p>
+</blockquote>
+<p>关键细节：</p>
+<ul>
+<li><strong>执行顺序</strong>： 如果交易包含多个指令，按照顺序执行（指令添加到交易中的顺序）</li>
+<li><strong>原子性</strong>： 交易是原子性，只有当全部指令都执行成功，交易才成功，否则交易执行失败</li>
+</ul>
+<p>关键点:</p>
+<ul>
+<li>交易由不同指令组成，这些指令用来与链上不同的程序进行交互， 不同的指令代表不同的操作</li>
+<li>每个指令指定3个要素, 见下文的<code>CompiledInstruction</code>结构体：<ul>
+<li>程序id索引</li>
+<li>账户列表, 即指令所涉及的账户</li>
+<li>输入数据</li>
+</ul>
+</li>
+<li>交易中的指令，按照顺序执行</li>
+<li>交易是原子性的</li>
+<li>一笔交易最大为<strong>1232 bytes</strong><ul>
+<li>Solana最大传输单元是1280字节, 这个值跟IPV6的MTU(最小传输单元) 一样， 为了UDP传输的效率。 详细见： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/transactions#transaction-size">https://solana.com/docs/core/transactions#transaction-size</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><ul>
+<li><code>recent_blockhash</code>用作交易的时间戳, 交易最大的age是 150 区块 （约1分钟），超过150区块就视为过期， 过期交易将不能执行<ul>
+<li>可以通过<code>getLatestBlockHash</code>获取最新区块hash</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/transaction-simple.svg"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/tx_format.png"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/src/transaction/mod.rs#L173</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// A set of signatures of a serialized [`Message`], signed by the first</span></span><br><span class="line">    <span class="comment">/// keys of the `Message`&#x27;s [`account_keys`], where the number of signatures</span></span><br><span class="line">    <span class="comment">/// is equal to [`num_required_signatures`] of the `Message`&#x27;s</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`].</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// [`account_keys`]: Message::account_keys</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`]: crate::message::MessageHeader</span></span><br><span class="line">    <span class="comment">/// [`num_required_signatures`]: crate::message::MessageHeader::num_required_signatures</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The message to sign.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> message: Message,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Message</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The message header, identifying signed and read-only `account_keys`.</span></span><br><span class="line">    <span class="comment">/// Header values only describe static `account_keys`, they do not describe</span></span><br><span class="line">    <span class="comment">/// any additional account keys loaded via address table lookups.</span></span><br><span class="line">    <span class="keyword">pub</span> header: MessageHeader,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有的需要使用到的账户数组</span></span><br><span class="line">    <span class="comment">/// List of accounts loaded by this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> account_keys: <span class="built_in">Vec</span>&lt;Pubkey&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用做交易的时间戳，也用于防止重复交易和过期交易</span></span><br><span class="line">    <span class="comment">// 交易最大的age是 150 区块 （约1分钟）</span></span><br><span class="line">    <span class="comment">/// The blockhash of a recent block.</span></span><br><span class="line">    <span class="keyword">pub</span> recent_blockhash: Hash,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指令合集</span></span><br><span class="line">    <span class="comment">/// Instructions that invoke a designated program, are executed in sequence,</span></span><br><span class="line">    <span class="comment">/// and committed in one atomic transaction if all succeed.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// # Notes</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Program indexes must index into the list of message `account_keys` because</span></span><br><span class="line">    <span class="comment">/// program id&#x27;s cannot be dynamically loaded from a lookup table.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Account indexes must index into the list of addresses</span></span><br><span class="line">    <span class="comment">/// constructed from the concatenation of three key lists:</span></span><br><span class="line">    <span class="comment">///   1) message `account_keys`</span></span><br><span class="line">    <span class="comment">///   2) ordered list of keys loaded from `writable` lookup table indexes</span></span><br><span class="line">    <span class="comment">///   3) ordered list of keys loaded from `readable` lookup table indexes</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> instructions: <span class="built_in">Vec</span>&lt;CompiledInstruction&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// List of address table lookups used to load additional accounts</span></span><br><span class="line">    <span class="comment">/// for this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> address_table_lookups: <span class="built_in">Vec</span>&lt;MessageAddressTableLookup&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">VersionedMessage</span></span> &#123;</span><br><span class="line">    Legacy(LegacyMessage),</span><br><span class="line">    V0(v0::Message),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">VersionedTransaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// List of signatures</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line">    <span class="comment">/// Message to sign.</span></span><br><span class="line">    <span class="keyword">pub</span> message: VersionedMessage,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息头</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/message/mod.rs#L96</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MessageHeader</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The number of signatures required for this message to be considered</span></span><br><span class="line">    <span class="comment">/// valid. The signers of those signatures must match the first</span></span><br><span class="line">    <span class="comment">/// `num_required_signatures` of [`Message::account_keys`].</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="keyword">pub</span> num_required_signatures: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_signed_accounts` of the signed keys are read-only</span></span><br><span class="line">    <span class="comment">/// accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_signed_accounts: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_unsigned_accounts` of the unsigned keys are</span></span><br><span class="line">    <span class="comment">/// read-only accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_unsigned_accounts: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/legacy_message.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/message_header.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compat_array_of_account_addresses.png"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compact_array_of_ixs.png"></p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/instruction.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交易中的结构是 CompiledInstruction</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">CompiledInstruction</span></span> &#123;</span><br><span class="line">    <span class="comment">// 索引</span></span><br><span class="line">    <span class="comment">/// Index into the transaction keys array indicating the program account that executes this instruction.</span></span><br><span class="line">    <span class="keyword">pub</span> program_id_index: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要和合约交互账户</span></span><br><span class="line">    <span class="comment">/// Ordered indices into the transaction keys array indicating which accounts to pass to the program.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入数据</span></span><br><span class="line">    <span class="comment">/// The program input data.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instruction 是底层的数据结构</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L329</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Instruction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Pubkey of the program that executes this instruction.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> program_id: Pubkey,</span><br><span class="line">    <span class="comment">/// Metadata describing accounts that should be passed to the program.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;AccountMeta&gt;,</span><br><span class="line">    <span class="comment">/// Opaque data passed to the program for its own interpretation.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AccountMeta"><a href="#AccountMeta" class="headerlink" title="AccountMeta"></a>AccountMeta</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/accountmeta.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L539</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AccountMeta</span></span> &#123;</span><br><span class="line">    <span class="comment">/// An account&#x27;s public key.</span></span><br><span class="line">    <span class="keyword">pub</span> pubkey: Pubkey,</span><br><span class="line">    <span class="comment">/// True if an `Instruction` requires a `Transaction` signature matching `pubkey`.</span></span><br><span class="line">    <span class="keyword">pub</span> is_signer: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// True if the account data or metadata may be mutated during program execution.</span></span><br><span class="line">    <span class="keyword">pub</span> is_writable: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="转移-SOL的交易示例图："><a href="#转移-SOL的交易示例图：" class="headerlink" title="转移 SOL的交易示例图："></a>转移 SOL的交易示例图：</h3><ul>
+<li><p>结构图</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer.svg"></p>
+</li>
+</ul>
+<ul>
+<li><p>SOL转账交易执行流程：</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/sol-transfer-process.svg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="交易确认-amp-过期"><a href="#交易确认-amp-过期" class="headerlink" title="交易确认&amp;过期"></a>交易确认&amp;过期</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/confirmation">https://solana.com/docs/advanced/confirmation</a></p>
+</blockquote>
+<ul>
+<li>过期时间 <code>151</code>个区块, 每个区块<code>400ms</code>, 即 <code>60s</code></li>
+<li>交易中的recentBlockHash必须是151区块内, 否则将是过期交易</li>
+</ul>
+<h2 id="一些建议"><a href="#一些建议" class="headerlink" title="一些建议"></a>一些建议</h2><ul>
+<li><p>建议1： 调用<code>getLatestBlockhash</code>时， 推荐使用 <code>confired</code></p>
+<ul>
+<li><code>proceeded</code>: 已处理, 很激进，速度最快，但有可能被跳过<ul>
+<li>用这种级别的交易中，有约<code>5%</code>交易会被验证节点丢弃</li>
+</ul>
+</li>
+<li><code>confirmed</code>: 已被多个验证节点确认, 折衷方案<ul>
+<li>这个级别，比较稳妥，因为被多个节点确认，之后被丢弃的几率很小</li>
+</ul>
+</li>
+<li><code>finalized</code>: 最终确认, 太保守, 交易不会被丢弃<ul>
+<li>即<code>32</code>个slot确认, 需要<code>12.8s</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>建议2：在<code>sendTransaction</code>和 <code>simulateTransaction</code>时使用， 要设置相同的 <code>preflightCommitment</code>, 即都设置 <code>confirmed</code></p>
+</li>
+<li><p>建议3：使用可靠的RPC节点，不要用落后的RPC节点</p>
+</li>
+<li><p>建议4：不要用过期的blockhash, 而是在签名前实时获取最新的blockHash</p>
+</li>
+<li><p>前端应用要一直轮询最新的区块hash, 确保用户在触发交易时，获取的区块是最新的</p>
+</li>
+<li><p>钱包要一直轮询最新的区块hash, 并刷新交易中的区块hash,确保用户签名时用的是最新的区块hash</p>
+</li>
+<li><p>建议5：使用健康的RPC节点获取区块hash</p>
+</li>
+<li><p>其他建议</p>
+</li>
+</ul>
+<hr>
+<h2 id="Solana交易重试"><a href="#Solana交易重试" class="headerlink" title="Solana交易重试"></a>Solana交易重试</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/retry">https://solana.com/docs/advanced/retry</a></p>
+</blockquote>
+<ul>
+<li>RPC节点会尝试重新广播</li>
+<li>开发者可以实现自定义的重新广播逻辑</li>
+<li>开发者可以利用 <code>sendTransaction</code>的 <code>maxRetries</code>参数</li>
+<li>开发者在提交交易前，应该执行预检(preflight), 如: <code>simulattionTransaction</code></li>
+<li>在对重试交易进行签名交易前，<strong>必须</strong>确保之前那笔交易中的区块hash已经过期，<ul>
+<li>否则存在发起2笔交易的风险</li>
+</ul>
+</li>
+</ul>
+<h3 id="交易的流程"><a href="#交易的流程" class="headerlink" title="交易的流程"></a>交易的流程</h3><p>Solana<strong>没有交易池(mempool, txpool)</strong>, 所有的交易都会转发给leaders节点执行</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tx-journey.png"></p>
+<p>Transaction Processing Unit (TPU) 处理交易的阶段：</p>
+<ul>
+<li>Fetch Stage</li>
+<li>SigVerify Stage</li>
+<li>Banking Stage</li>
+<li>Proof of History Service</li>
+<li>Broadcast Stage</li>
+</ul>
+<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-tpu-jito-labs.png)
+</code></pre>
+<h3 id="交易被丢弃的几种情况"><a href="#交易被丢弃的几种情况" class="headerlink" title="交易被丢弃的几种情况"></a>交易被丢弃的几种情况</h3><ul>
+<li>第1种： 开发者引用过期区块hash, 提交交易时被RPC pool丢弃 ，这种是最常见的<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-via-rpc-pool.png"></li>
+</ul>
+<ul>
+<li>第2种： 临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-pre-process.png"></li>
+</ul>
+<ul>
+<li>第3种：  临时分叉， 引用了被丢弃的分叉区块hash<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/rt-dropped-minority-fork-post-process.png"></li>
+</ul>
+<hr>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<h2 id="Versioned-Transaction"><a href="#Versioned-Transaction" class="headerlink" title="Versioned Transaction"></a>Versioned Transaction</h2><p>Solana有2种不同的交易类型：</p>
+<ul>
+<li><code>legacy</code>: older transaction format with no additional benefit</li>
+<li><code>0</code>: added support for Address Lookup Tables</li>
+</ul>
+<p>具体例子：<a target="_blank" rel="noopener" href="https://www.solanazh.com/course/7-1">https://www.solanazh.com/course/7-1</a></p>
+<h2 id="Address-Lookup-Tables"><a href="#Address-Lookup-Tables" class="headerlink" title="Address Lookup Tables"></a>Address Lookup Tables</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/advanced/lookup-tables">https://solana.com/docs/advanced/lookup-tables</a></p>
+</blockquote>
+<ul>
+<li><p>每个交易最大1232字节，因此，<strong>每笔</strong>普通交易(legacy)最多包含<code>32</code>个地址(每个地址32字节)</p>
+</li>
+<li><p>使用 Versioned Transaction 和 Address Lookup Tables, 可以将<strong>每笔交易</strong>能包含的地址提升到 <code>256</code>个地址</p>
+<ul>
+<li>一个LookupTable 账户最多可以存放<code>256</code>个地址<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/address_lookup_table/state.rs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>地址压缩： 在所有地址都存在链上之后， 每个地址(32字节)只需用一个索引(1字节)进行地址定位即可</p>
+<ul>
+<li>先把地址存在链上,获得一个lookupTableAccount</li>
+<li>然后通过索引来获取lookupTableAccount中的地址</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Solana共识"><a href="#Solana共识" class="headerlink" title="Solana共识"></a>Solana共识</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/developers/evm-to-svm/consensus">https://solana.com/developers/evm-to-svm/consensus</a></p>
+</blockquote>
+<ul>
+<li>Solana的共识: 基于<code>Tower BFT + PoH</code>的<code>PoS</code><ul>
+<li>PoS是solana的上层出块的共识协议</li>
+<li>PoS之下是 Tower BFT<ul>
+<li><code>Tower BFT = PBFT + PoH</code></li>
+<li><code>PoH(Proof of History) </code>: 作为全局网络时钟，以决定区块/交易/数据的顺序, 因此Solana可以快速决定区块/交易/数据的先后顺序，并且验证节点可以快速解决分叉</li>
+<li>每个交易包含了<code>recentBlockhash</code>, 即最近的 150个区块内的区块hash, 这个hash用来决定交易执行先后顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/1_Solana账户模型"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/"
+    >1_Solana账户模型</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2024-07-09T10:52:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
+<li><p>官方文档(推荐)：<a target="_blank" rel="noopener" href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
+</li>
+<li><p>账户模型:</p>
+<ul>
+<li>推荐: <a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
+<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
+<li><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+</ul>
+</li>
+<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
+</li>
+<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
+<ul>
+<li>可升级(整体)： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
+<li>不可变(字节码不可变): <a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
+<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
+</ul>
+</li>
+<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
+<ul>
+<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
+</ul>
+</li>
+<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
+</li>
+<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
+<li>System Program:<ul>
+<li>功能:<ul>
+<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
+<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
+<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
+</blockquote>
+</li>
+<li>分配数据空间</li>
+<li>转移普通账户(owner是 System Program)的余额</li>
+<li>仅owner是 System Program 可以支付手续费</li>
+</ul>
+</li>
+<li>Program id: <code>11111111111111111111111111111111</code></li>
+<li>Instructions: SystemInstruction</li>
+</ul>
+</li>
+<li>BPF Loader Program<ul>
+<li>功能：<ul>
+<li>是所有自定义程序的owner</li>
+<li>Deploys, upgrades, and executes programs on the chain.</li>
+</ul>
+</li>
+<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
+<li>Instructions: LoaderInstruction</li>
+</ul>
+</li>
+<li>SPL Token<ul>
+<li>TODO  :</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
+<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
+<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
+<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
+<ul>
+<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
+<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
+</ul>
+<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
+</blockquote>
+<ul>
+<li><p>不可变性:</p>
+<ul>
+<li>可执行账户完全不可变</li>
+</ul>
+</li>
+<li><p><strong>数据分配</strong></p>
+<ul>
+<li>仅<code>System Program</code> 可以更改账户数据大小</li>
+<li>新分配的账户数据总是归零的</li>
+<li>账户数据大小不可缩小<blockquote>
+<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>数据</p>
+<ul>
+<li>每个账户最多 10MB 数据（代码 或 状态）</li>
+<li>只有账户的owner才可以修改数据</li>
+<li>账户只有处于数据归零状态下才可以分配新的owner</li>
+</ul>
+</li>
+<li><p>余额</p>
+<ul>
+<li>只有账户的owner可以减少余额</li>
+<li>任何程序账户都可以账户增加余额（转移）<blockquote>
+<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>所有权</p>
+<ul>
+<li>只有账户owner可以制定新的账户owner</li>
+</ul>
+</li>
+<li><p>租金</p>
+<ul>
+<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
+<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
+</ul>
+</li>
+<li><p>余额为0的账户</p>
+<ul>
+<li>余额为0的账户，在交易执行后会被系统删除</li>
+<li>一个交易中可以创建临时余额为0的账户</li>
+</ul>
+</li>
+<li><p>新的执行账户</p>
+<ul>
+<li>只有制定的loader program可以修改账户的可执行状态</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/0_Solana开发资源"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/"
+    >0_Solana开发资源</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/" class="article-date">
+  <time datetime="2024-07-08T01:53:00.000Z" itemprop="datePublished">2024-07-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Solana开发资源"><a href="#Solana开发资源" class="headerlink" title="Solana开发资源"></a>Solana开发资源</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98">https://www.notion.so/Solana-fca856aad4e5441f80f28cc4e015ca98</a><br><a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx">https://github.com/CreatorsDAO/solana-co-learn/blob/main/docs/awesome-solana-zh/README.mdx</a></p>
+</blockquote>
+<ul>
+<li>Rust:<ul>
+<li>Rust共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/rust-co-learn">https://github.com/CreatorsDAO/rust-co-learn</a></li>
+</ul>
+</li>
+<li>Solana<ul>
+<li>开发课程: <a target="_blank" rel="noopener" href="https://www.soldev.app/course">https://www.soldev.app/course</a><ul>
+<li>中文: <a target="_blank" rel="noopener" href="https://www.solanazh.com/">https://www.solanazh.com/</a></li>
+</ul>
+</li>
+<li>Solana官方开发文档：<a target="_blank" rel="noopener" href="https://docs.solana.com/developers">https://docs.solana.com/developers</a></li>
+<li>Cookbook: <a target="_blank" rel="noopener" href="https://solanacookbook.com/">https://solanacookbook.com/</a></li>
+<li>开发者: <a target="_blank" rel="noopener" href="https://github.com/solana-developers">https://github.com/solana-developers</a></li>
+<li>工具库: <a target="_blank" rel="noopener" href="https://github.com/solana-developers/solana-tools">https://github.com/solana-developers/solana-tools</a></li>
+<li>Solana程序示例： <a target="_blank" rel="noopener" href="https://github.com/solana-developers/program-examples">https://github.com/solana-developers/program-examples</a></li>
+<li>Anchor初步Counter示例：<a target="_blank" rel="noopener" href="https://github.com/solana-developers/anchor-starter/tree/main">https://github.com/solana-developers/anchor-starter/tree/main</a></li>
+<li>Solana生态工具： <a target="_blank" rel="noopener" href="https://solana.com/ecosystem">https://solana.com/ecosystem</a></li>
+<li>706共学社：<ul>
+<li>Solana共学: <a target="_blank" rel="noopener" href="https://github.com/CreatorsDAO/solana-co-learn">https://github.com/CreatorsDAO/solana-co-learn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Anchor<ul>
+<li>官方文档: <a target="_blank" rel="noopener" href="https://www.anchor-lang.com/">https://www.anchor-lang.com/</a></li>
+<li>官方示例: <a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/examples/tutorial">https://github.com/coral-xyz/anchor/tree/master/examples/tutorial</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="开源-Solana-DEX"><a href="#开源-Solana-DEX" class="headerlink" title="开源 Solana DEX"></a>开源 Solana DEX</h2><ul>
+<li>Openbook<ul>
+<li>官网： <a target="_blank" rel="noopener" href="https://prism.ag/trade/">https://prism.ag/trade/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/program">https://github.com/openbook-dex/program</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/openbook-v2">https://github.com/openbook-dex/openbook-v2</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openbook-dex/scripts-v2">https://github.com/openbook-dex/scripts-v2</a></li>
+</ul>
+</li>
+<li>Raydium:<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://raydium.io/swap/">https://raydium.io/swap/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-cp-swap">https://github.com/raydium-io/raydium-cp-swap</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-amm">https://github.com/raydium-io/raydium-amm</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/raydium-io/raydium-contract-instructions/">https://github.com/raydium-io/raydium-contract-instructions/</a></li>
+</ul>
+</li>
+<li>Mango Dex:<ul>
+<li><a target="_blank" rel="noopener" href="https://app.mango.markets/zh">https://app.mango.markets/zh</a></li>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/blockworks-foundation/mango-v4/tree/dev">https://github.com/blockworks-foundation/mango-v4/tree/dev</a></li>
+</ul>
+</li>
+<li>Serum Dex:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/project-serum/serum-dex/">https://github.com/project-serum/serum-dex/</a></li>
+</ul>
+</li>
+<li>Jupiter:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/jup-ag/sol-swap-cpi">https://github.com/jup-ag/sol-swap-cpi</a></li>
+<li><a target="_blank" rel="noopener" href="https://station.jup.ag/docs">https://station.jup.ag/docs</a></li>
+<li>Jupiter API构建交易： <a target="_blank" rel="noopener" href="https://station.jup.ag/docs/apis/swap-api">https://station.jup.ag/docs/apis/swap-api</a></li>
+</ul>
+</li>
+<li>Anchor交易相关示例:<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/swap">https://github.com/coral-xyz/anchor/tree/master/tests/swap</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/escrow">https://github.com/coral-xyz/anchor/tree/master/tests/escrow</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool">https://github.com/coral-xyz/anchor/tree/master/tests/ido-pool</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs">https://github.com/coral-xyz/anchor/blob/master/tests/cfo/programs/cfo/src/lib.rs</a></li>
+</ul>
+</li>
+<li>其他:<ul>
+<li>pump.fun自动买卖机器人: <a target="_blank" rel="noopener" href="https://github.com/pumppumps/pumpfun-bump-bot/tree/main">https://github.com/pumppumps/pumpfun-bump-bot/tree/main</a></li>
+<li>Raydium交易: <a target="_blank" rel="noopener" href="https://github.com/henrytirla/Solana-Raydium-Trading/tree/master">https://github.com/henrytirla/Solana-Raydium-Trading/tree/master</a></li>
+<li>swap前端: <a target="_blank" rel="noopener" href="https://github.com/atillabirer/solana-nextjs-dex/tree/main">https://github.com/atillabirer/solana-nextjs-dex/tree/main</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Solana节点搭建"><a href="#Solana节点搭建" class="headerlink" title="Solana节点搭建"></a>Solana节点搭建</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/operations/requirements">https://docs.solanalabs.com/operations/requirements</a></li>
+</ul>
+<p>RPC节点最低配置:</p>
+<ul>
+<li><p>CPU:  32核+</p>
+</li>
+<li><p>RAM:  512GB+</p>
+</li>
+<li><p>Disk: 2TB+</p>
+</li>
+<li><p>Network: 10GBit/s+</p>
+</li>
+<li><p>预估服务器费用(年): 13万RMB左右</p>
+</li>
+</ul>
+<h2 id="使用-solana-keygen-生成与-Phantom一致的地址"><a href="#使用-solana-keygen-生成与-Phantom一致的地址" class="headerlink" title="使用 solana-keygen 生成与 Phantom一致的地址"></a>使用 <code>solana-keygen</code> 生成与 Phantom一致的地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new --word-count 12 --no-bip39-passphrase --derivation-path &quot;m&#x2F;44&#39;&#x2F;501&#39;&#x2F;0&#39;&#x2F;0&#39;&quot; --outfile .&#x2F;mynew-address.json</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

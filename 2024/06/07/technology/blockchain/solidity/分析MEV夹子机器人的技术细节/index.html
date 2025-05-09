@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>分析MEV夹子机器人的技术细节 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/blockchain/solidity/分析MEV夹子机器人的技术细节"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  分析MEV夹子机器人的技术细节
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" class="article-date">
+  <time datetime="2024-06-07T10:30:00.000Z" itemprop="datePublished">2024-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="初始流动池状态"><a href="#初始流动池状态" class="headerlink" title="初始流动池状态:"></a>初始流动池状态:</h2><ul>
+<li><code>A0: 1 USDT</code></li>
+<li><code>B0: 85.875  TXXC</code></li>
+<li><code>TXXC价格 = A0/B0 =  0.0116 USDT/TXXC</code></li>
+<li><a target="_blank" rel="noopener" href="https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default">https://ave.ai/token/0xf1ec63b614cf0196240d20216da303be353217f3-bsc?from=Default</a></li>
+</ul>
+<h2 id="机器人买入"><a href="#机器人买入" class="headerlink" title="机器人买入:"></a>机器人买入:</h2><ul>
+<li><p>该交易区块的第1个位置(给了 11Gwei)</p>
+</li>
+<li><p>MEV机器人的买入: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6">https://bscscan.com/tx/0xb0d8416aa4e80a0db454e37c1986f209a4a7b01725a0f70ec8dd089e1b9615a6</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-20-57.png"></p>
+</li>
+<li><p>买入： <code>6.07 USDT</code>, 计算买入的 TXXC的数量和价格, ChatGPT的计算过程:</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-14-29.png"></p>
+</li>
+<li><p>ChatGPT的计算过程和计算结果完全正确：</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_15-17-35.png"></p>
+</li>
+</ul>
+<ul>
+<li>此时流动池中的状态</li>
+<li><code>A1: 7.07 USDT</code></li>
+<li><code>B1: 12.145 TXXC</code></li>
+<li>此时的价格 <code>7.07 / 12.145 = 0.5821  USDT/TXXC</code></li>
+</ul>
+<h2 id="我的添加流动性交易"><a href="#我的添加流动性交易" class="headerlink" title="我的添加流动性交易:"></a>我的添加流动性交易:</h2><ul>
+<li><p>该交易区块的第2个位置</p>
+</li>
+<li><p>源码： <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a></p>
+</li>
+<li><p>详细代码分析，见文末</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired, <span class="comment">// 希望投入的代币 A 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired, <span class="comment">// 希望投入的代币 B 的数量，但实际投入量可能会因为比例调整而不同</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 A 的数量， 确保用户不会因为价格波动而损失太多代币A</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护，用户愿意接受的最少代币 B 的数量，确保用户不会因为价格波动而损失太多代币B</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to, <span class="comment">// 流动性代币接收者的地址。流动性代币是代表用户在流动池中所有权的代币。</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline <span class="comment">// 交易的最后期限（时间戳）。确保交易在指定时间内完成，否则交易将被取消。</span></span></span></span><br><span class="line"><span class="function"><span class="params"></span>)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>交易： <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74">https://bscscan.com/tx/0x3d00cad4557eecd49906c1874c838576928d238a774f10b118d44bf96d071d74</a></p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-28-37.png"></p>
+</li>
+<li><p>计算:</p>
+<ul>
+<li><code>amountADesired</code>: <code>8.998834461493163430 USDT</code></li>
+<li><code>amountBDesired</code>: <code>7.73000000000000000000 TXXC</code></li>
+<li>因此<code>amountBOptimal = amountADesired * B1 / A1 = 8.998 * 12.1455 / 7.07 = 15.456</code></li>
+<li>满足 <code>if (amountBOptimal &lt;= amountBDesired) </code>, 所以<ul>
+<li>因此 <code>(amountA, amountB) = (amountADesired, amountBOptimal);</code></li>
+<li>即 <code>(amountA, amountB) = (8.998, 15.456);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其中 <code>quote</code>函数, 按照等比例增加, 这里只能近似:<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_18-35-24.png"></p>
+<ul>
+<li> <code>A2: 7.07 + 8.99 = 16.06 USDT</code></li>
+<li><code>B2: 12.145 + 15.3 = 27.445  TXXC</code></li>
+<li>此时价格  <code>0.5854 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="MEV机器人的卖出"><a href="#MEV机器人的卖出" class="headerlink" title="MEV机器人的卖出"></a>MEV机器人的卖出</h2><ul>
+<li><p>该交易区块的第3个位置</p>
+</li>
+<li><p>MEV机器人的卖出: <a target="_blank" rel="noopener" href="https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc">https://bscscan.com/tx/0xed61c87971f645c7f8bfd1ab22d1e8bca42cea171a47c3acf2a0c9dd6a4628bc</a></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE_2024-06-07_12-29-28.png"></p>
+<ul>
+<li>此时MEV机器人全部卖出，<ul>
+<li><code>B3 = 27.45 + 66.5 + 3.5 = 97.45</code></li>
+<li><code>A3 =  k / B3 = (16.06*27.445) / 97.45  = 4.523</code></li>
+<li>此时的价格： <code>A3 / B3 = 4.523 / 97.45 = 0.0464 USDT/TXXC</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>MEV机器人的获利：</p>
+<ul>
+<li>USDT: <code>16.06 - 4.523 - 6.07 = 5.467 USDT</code></li>
+<li>BNB手续费: <code>0.00475 BNB</code> , <code>0.0047 * 700</code> = <code>3.324 U</code><ul>
+<li>购买交易手续费:<code>0.00245 BNB</code><ul>
+<li>gas price: 11Gwei ， 一般是 1Gwei, 所以能排在第0个位置,</li>
+</ul>
+</li>
+<li>购买交易平台手续费: <code>0.002 BNB</code></li>
+<li>卖出交易手续费：<code>0.0003 BNB</code></li>
+</ul>
+</li>
+<li>合计： <code>5.467 - 3.324 = 2.1423</code></li>
+<li>MEV通过这一次交易，净赚<code>2.14 U</code></li>
+</ul>
+</li>
+<li><p>我损失的:</p>
+<ul>
+<li>USDT- <code> -5.467</code></li>
+<li>BNB: <code> +0.0026 BNB</code>, 约 <code>1.82U</code><ul>
+<li>池子是我建的，手续费归我</li>
+</ul>
+</li>
+<li>合计: <code> -3.647U</code></li>
+<li>我这笔交易损失: <code>3.647 U</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><ul>
+<li>添加流动性交易，没有设置滑点保护参数, <code>amountAMin</code> 和  <code>amountBMin</code>:<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE2024-06-07_15-27-05.png"></li>
+<li>源码 <a target="_blank" rel="noopener" href="https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code">https://bscscan.com/address/0x10ed43c718714eb63d5aa57b78b54704e256024e#code</a> ：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given some amount of an asset and pair reserves, returns an equivalent amount of the other asset</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quote</span>(<span class="params">uint amountA, uint reserveA, uint reserveB</span>) <span class="title">internal</span> <span class="title">pure</span> <span class="title">returns</span> (<span class="params">uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">require</span>(amountA &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_AMOUNT&#x27;</span>);</span><br><span class="line">    <span class="built_in">require</span>(reserveA &gt; <span class="number">0</span> &amp;&amp; reserveB &gt; <span class="number">0</span>, <span class="string">&#x27;PancakeLibrary: INSUFFICIENT_LIQUIDITY&#x27;</span>);</span><br><span class="line">    amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// **** ADD LIQUIDITY ****</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">internal</span> <span class="title">virtual</span> <span class="title">returns</span> (<span class="params">uint amountA, uint amountB</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// create the pair if it doesn&#x27;t exist yet</span></span><br><span class="line">    <span class="keyword">if</span> (IPancakeFactory(factory).getPair(tokenA, tokenB) == address(<span class="number">0</span>)) &#123;</span><br><span class="line">        IPancakeFactory(factory).createPair(tokenA, tokenB);</span><br><span class="line">    &#125;</span><br><span class="line">    (uint reserveA, uint reserveB) = PancakeLibrary.getReserves(factory, tokenA, tokenB);</span><br><span class="line">    <span class="keyword">if</span> (reserveA == <span class="number">0</span> &amp;&amp; reserveB == <span class="number">0</span>) &#123;</span><br><span class="line">        (amountA, amountB) = (amountADesired, amountBDesired);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 计算 B的最小数量, 满足  A * B = k = A&#x27; * B&#x27; 的恒常等式</span></span><br><span class="line">        <span class="comment">// B&#x27; = A&#x27; * B</span></span><br><span class="line">        uint amountBOptimal = PancakeLibrary.quote(amountADesired, reserveA, reserveB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果 B的最有数量  小于 用户愿意投入的</span></span><br><span class="line">        <span class="keyword">if</span> (amountBOptimal &lt;= amountBDesired) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountBOptimal &gt;= amountBMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_B_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountADesired, amountBOptimal);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 计算 A的最优数量</span></span><br><span class="line">            uint amountAOptimal = PancakeLibrary.quote(amountBDesired, reserveB, reserveA);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 必须满足： A的</span></span><br><span class="line">            assert(amountAOptimal &lt;= amountADesired);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 滑点保护</span></span><br><span class="line">            <span class="built_in">require</span>(amountAOptimal &gt;= amountAMin, <span class="string">&#x27;PancakeRouter: INSUFFICIENT_A_AMOUNT&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            (amountA, amountB) = (amountAOptimal, amountBDesired);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLiquidity</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenA,</span></span></span><br><span class="line"><span class="function"><span class="params">    address tokenB,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountADesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBDesired,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountAMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    uint amountBMin, <span class="comment">// 滑点保护</span></span></span></span><br><span class="line"><span class="function"><span class="params">    address to,</span></span></span><br><span class="line"><span class="function"><span class="params">    uint deadline</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) <span class="title">external</span> <span class="title">virtual</span> <span class="title">override</span> <span class="title">ensure</span>(<span class="params">deadline</span>) <span class="title">returns</span> (<span class="params">uint amountA, uint amountB, uint liquidity</span>) </span>&#123;</span><br><span class="line">    (amountA, amountB) = _addLiquidity(tokenA, tokenB, amountADesired, amountBDesired, amountAMin, amountBMin);</span><br><span class="line">    address pair = PancakeLibrary.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);</span><br><span class="line">    TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);</span><br><span class="line">    liquidity = IPancakePair(pair).mint(to);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="关于MEV的一些问题？"><a href="#关于MEV的一些问题？" class="headerlink" title="关于MEV的一些问题？"></a>关于MEV的一些问题？</h2><blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/3163">https://learnblockchain.cn/article/3163</a></p>
+</blockquote>
+<ul>
+<li>交易顺序如何确定？<ul>
+<li>MEV在第一笔交易设置了非常搞的gas price</li>
+<li>矿工通过重组交易的执行顺序，可以获取收益<ul>
+<li>至于具体重组交易顺序的算法，需要进一步研究</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>如何防止MEV夹子机器人？<ul>
+<li>设置合适的滑点,<ul>
+<li>如果是添加流动性，要设置 <code>amountAMin</code>, <code>amountBMin</code></li>
+</ul>
+</li>
+<li>使用私密交易，用第三方的工具</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/06/07/technology/blockchain/solidity/%E5%88%86%E6%9E%90MEV%E5%A4%B9%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2024/07/08/technology/blockchain/solana/0_Solana%E5%BC%80%E5%8F%91%E8%B5%84%E6%BA%90/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            0_Solana开发资源
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">智能合约课程大纲</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

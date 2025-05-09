@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/blockchain/solana/9_Solana-Anchor安装"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/9_Solana-Anchor%E5%AE%89%E8%A3%85/"
+    >9_Solana-Anchor安装</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/9_Solana-Anchor%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2024-07-09T12:05:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="搭建本地开发环境"><a href="#搭建本地开发环境" class="headerlink" title="搭建本地开发环境"></a>搭建本地开发环境</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/getstarted/setup-local-development">https://solana.com/developers/guides/getstarted/setup-local-development</a></p>
+</blockquote>
+<ul>
+<li>安装Anchor<ul>
+<li>avm:  Anchor Version Manager</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get install -y pkg-config build-essential libudev-dev libssl-dev</span><br><span class="line"></span><br><span class="line">cargo install --git https:&#x2F;&#x2F;github.com&#x2F;coral-xyz&#x2F;anchor avm --locked --force</span><br><span class="line"></span><br><span class="line"># 安装最新版</span><br><span class="line">avm install latest</span><br><span class="line"></span><br><span class="line"># 使用最新版</span><br><span class="line">avm use latest</span><br><span class="line"></span><br><span class="line"># check the version</span><br><span class="line"></span><br><span class="line">anchor --version</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>Setup a localhost blockchain cluster</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">solana-test-validator --help</span><br><span class="line"></span><br><span class="line"># setup localhost blockchain</span><br><span class="line">solana-test-validator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># swith to localhost</span><br><span class="line">solana config set --url localhost</span><br><span class="line"></span><br><span class="line">solana config get</span><br><span class="line"></span><br><span class="line"># set default wallet</span><br><span class="line">solana config set -k ~&#x2F;.config&#x2F;solana&#x2F;id.json</span><br><span class="line"></span><br><span class="line"># get the airdrop from localhost blockchain</span><br><span class="line">solana airdrop 2</span><br><span class="line"></span><br><span class="line"># get balance</span><br><span class="line">solana balance</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>新建anchor项目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anchor init &lt;new-workspace-name&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Anchor程序结构"><a href="#Anchor程序结构" class="headerlink" title="Anchor程序结构"></a>Anchor程序结构</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.solanazh.com/course/7-3">https://www.solanazh.com/course/7-3</a></p>
+</blockquote>
+<blockquote>
+<p>Anchor官方示例:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/coral-xyz/anchor/tree/master/examples/tutorial">https://github.com/coral-xyz/anchor/tree/master/examples/tutorial</a></li>
+</ul>
+</blockquote>
+<p>一个Anchor工程主要包含:</p>
+<ul>
+<li>“declare_id”宏声明的合约地址，用于创建对象的owner</li>
+<li>#[derive(Accounts)] 修饰的Account对象，用于表示存储和指令, 包含了指令执行所要用到的账户</li>
+<li>“program” 模块，这里面写主要的合约处理逻辑</li>
+</ul>
+<p>对应到我们之前的HelloWorld，就是要将state和instruction部分用 #[derive(Accounts)] 修饰，将process逻辑放到program模块中，并增加一个合约地址的修饰。</p>
+<p>#[program] 修饰的Module即为指令处理模块。其中有一个Context类型，来存放所有的指令参数。比如</p>
+<ul>
+<li>ctx.accounts 所有的请求keys，也就是AccountMeta数组</li>
+<li>ctx.program_id 指令中的program_id</li>
+<li>ctx.remaining_accounts 指令中，没有被下面说的”Accounts”修饰的成员的AccountMeta</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序ID</span></span><br><span class="line">declare_id!(<span class="string">&quot;Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指令执行逻辑</span></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">mod</span> basic_1 &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">initialize</span></span>(ctx: Context&lt;Initialize&gt;, data: <span class="built_in">u64</span>) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> my_account = &amp;<span class="keyword">mut</span> ctx.accounts.my_account;</span><br><span class="line">        my_account.data = data;</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">update</span></span>(ctx: Context&lt;Update&gt;, data: <span class="built_in">u64</span>) -&gt; <span class="built_in">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> my_account = &amp;<span class="keyword">mut</span> ctx.accounts.my_account;</span><br><span class="line">        my_account.data = data;</span><br><span class="line">        <span class="literal">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含了Initialize指令所需要的账户(my_account, user, system_program)</span></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Initialize</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(init, payer = user, space = 8 + 8)]</span></span><br><span class="line">    <span class="keyword">pub</span> my_account: Account&lt;<span class="symbol">&#x27;info</span>, MyAccount&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> user: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含了Update指令所需要的账户(my_account, user, system_program)</span></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Update</span></span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> my_account: Account&lt;<span class="symbol">&#x27;info</span>, MyAccount&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据账户</span></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MyAccount</span></span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">u64</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/8_Solana-原生程序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/"
+    >8_Solana-原生程序</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2024-07-09T12:00:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="8-Solana程序开发-原生"><a href="#8-Solana程序开发-原生" class="headerlink" title="8_Solana程序开发(原生)"></a>8_Solana程序开发(原生)</h1><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/getstarted/hello-world-in-your-browser">https://solana.com/developers/guides/getstarted/hello-world-in-your-browser</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet">https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet</a></p>
+<p><a target="_blank" rel="noopener" href="https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet">https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet</a></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> solana_program::&#123;</span><br><span class="line">    account_info::AccountInfo,</span><br><span class="line">    entrypoint,</span><br><span class="line">    entrypoint::ProgramResult,</span><br><span class="line">    pubkey::Pubkey,</span><br><span class="line">    msg,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declare and export the program&#x27;s entrypoint</span></span><br><span class="line">entrypoint!(process_instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// program entrypoint&#x27;s implementation</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">process_instruction</span></span>(</span><br><span class="line">    program_id: &amp;Pubkey,</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    instruction_data: &amp;[<span class="built_in">u8</span>]</span><br><span class="line">) -&gt; ProgramResult &#123;</span><br><span class="line">    <span class="comment">// log a message to the blockchain</span></span><br><span class="line">    msg!(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gracefully exit the program</span></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create an empty transaction</span></span><br><span class="line"><span class="keyword">const</span> transaction = <span class="keyword">new</span> web3.Transaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add a hello world program instruction to the transaction</span></span><br><span class="line">transaction.add(</span><br><span class="line">  <span class="keyword">new</span> web3.TransactionInstruction(&#123;</span><br><span class="line">    keys: [],</span><br><span class="line">    programId: <span class="keyword">new</span> web3.PublicKey(pg.PROGRAM_ID),</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send the transaction to the Solana cluster</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Sending transaction...&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> txHash = <span class="keyword">await</span> web3.sendAndConfirmTransaction(</span><br><span class="line">  pg.connection,</span><br><span class="line">  transaction,</span><br><span class="line">  [pg.wallet.keypair],</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Transaction sent with hash:&quot;</span>, txHash);</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/7_Solana的Token"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/"
+    >7_Solana的Token</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/" class="article-date">
+  <time datetime="2024-07-09T11:54:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana的Token"><a href="#Solana的Token" class="headerlink" title="Solana的Token"></a>Solana的Token</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens">https://solana.com/docs/core/tokens</a></p>
+</blockquote>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1454141877972779013">https://x.com/pencilflip/status/1454141877972779013</a></p>
+</li>
+<li><p>SPL Token官方文档: <a target="_blank" rel="noopener" href="https://spl.solana.com/associated-token-account">https://spl.solana.com/associated-token-account</a></p>
+</li>
+</ul>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>Token代表了同质化和非同质化的资产的所有权</li>
+<li>Token Program 包含了所有与token交互所需要的指令</li>
+<li>Token Extensions Program 是新版程序，包含了额外的特性</li>
+<li><strong>Mint Account</strong>: 代表了一个唯一的代币</li>
+<li>Token Account:<ul>
+<li>A Token Account tracks individual ownership of tokens for a specific mint account.</li>
+</ul>
+</li>
+<li><strong>Associated Token Account (ATA)</strong>: 由 owner地址 和 Mint Account地址派生出来的 Token Account<ul>
+<li>An Associated Token Account(ATA) is a <strong>Token Account</strong> created with an address derived from the owner’s and mint account’s addresses.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>注意区别：<code>Token Account</code> 和 ATA</p>
+<ul>
+<li><p>Token Account 是更加通用的，可以随机生成(由客户端生成)</p>
+</li>
+<li><p>ATA 是通过确定性算法生成出来的, 标准化的</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ATA &#x3D; PDA(</span><br><span class="line">    [</span><br><span class="line">        owner_address,</span><br><span class="line">        token_program_id,</span><br><span class="line">        mint_address</span><br><span class="line">    ],</span><br><span class="line">    associated_token_program_id</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p>问题： <code>SPL Token</code>的接收账户必须是<code>ATA</code>吗？</p>
+<ul>
+<li>答： 不是不是必须，用户可以自定义<code>seeds</code>和<code>bump</code>生成 Token Account</li>
+</ul>
+</li>
+</ul>
+<h3 id="Token-Program"><a href="#Token-Program" class="headerlink" title="Token Program"></a>Token Program</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg"></p>
+<ul>
+<li><code>InitializeMint</code>: 发行代币<ul>
+<li>Create a new mint account to represent a new type of token.</li>
+</ul>
+</li>
+<li><code>InitializeAccount</code>:  创建ATA账号<ul>
+<li>Create a new token account to hold units of a specific type of token (mint).</li>
+</ul>
+</li>
+<li><code>MintTo</code>: 增发代币。<ul>
+<li>Create new units of a specific type of token and add them to a token account. This increases the supply of the token and can only be done by the mint authority of the mint account.</li>
+</ul>
+</li>
+<li><code>Transfer</code>: 转移Token<ul>
+<li>Transfer units of a specific type of token from one token account to another.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Mint-Account"><a href="#Mint-Account" class="headerlink" title="Mint Account"></a>Mint Account</h3><ul>
+<li>Supply: token 的总发行量</li>
+<li>Decimals: 精度</li>
+<li>Mint authority: 持有<em>增发token权限</em>账户, 可以增发token</li>
+<li>Freeze authority: 持有<em>冻结转移</em>的账户, 即将某个用户账户”拉黑”<ul>
+<li>The account authorized to freeze tokens from being transferred from “token accounts”</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/mint-account.svg"></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Mint</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Optional authority used to mint new tokens. The mint authority may only</span></span><br><span class="line">    <span class="comment">/// be provided during mint creation. If no mint authority is present</span></span><br><span class="line">    <span class="comment">/// then the mint has a fixed supply and no further tokens may be</span></span><br><span class="line">    <span class="comment">/// minted.</span></span><br><span class="line">    <span class="keyword">pub</span> mint_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// Total supply of tokens.</span></span><br><span class="line">    <span class="keyword">pub</span> supply: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// Number of base 10 digits to the right of the decimal place.</span></span><br><span class="line">    <span class="keyword">pub</span> decimals: <span class="built_in">u8</span>,</span><br><span class="line">    <span class="comment">/// Is `true` if this structure has been initialized</span></span><br><span class="line">    <span class="keyword">pub</span> is_initialized: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to freeze token accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如 USDC的Mint Account : <a target="_blank" rel="noopener" href="https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v">https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</a></p>
+<h3 id="Token-Account"><a href="#Token-Account" class="headerlink" title="Token Account"></a>Token Account</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account.svg"></p>
+<ul>
+<li><code>Mint</code>: 执行特定的Mint Account<ul>
+<li>The type of token the Token Account holds units of</li>
+</ul>
+</li>
+<li><code>Owner</code>: The account authorized to transfer tokens out of the Token Account<ul>
+<li>该Token Account 的所有者，有权转移该Token Account上的token</li>
+<li>注意： AccountInfo中owner 和 AccountInfo Data中的owner 是不同的，前者是Program的owner（即Token Program地址, 所有Token Account的owner都是 Token Program）, 后者是 Token Account的所有者(即用户的钱包地址)<blockquote>
+<p>原文： Note that each Token Account’s data includes an owner field used to identify who has <strong>authority over that specific Token Account</strong>. This is separate from the <strong>program owner</strong> specified in the AccountInfo, which is the Token Program for all Token Accounts.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><code>Amount</code>: Units of the token the Token Account currently holds<ul>
+<li>余额</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The mint associated with this account</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The owner of this account.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line">    <span class="comment">/// The amount of tokens this account holds.</span></span><br><span class="line">    <span class="keyword">pub</span> amount: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// If `delegate` is `Some` then `delegated_amount` represents</span></span><br><span class="line">    <span class="comment">/// the amount authorized by the delegate</span></span><br><span class="line">    <span class="keyword">pub</span> delegate: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// The account&#x27;s state</span></span><br><span class="line">    <span class="keyword">pub</span> state: AccountState,</span><br><span class="line">    <span class="comment">/// If is_native.is_some, this is a native token, and the value logs the</span></span><br><span class="line">    <span class="comment">/// rent-exempt reserve. An Account is required to be rent-exempt, so</span></span><br><span class="line">    <span class="comment">/// the value is used by the Processor to ensure that wrapped SOL</span></span><br><span class="line">    <span class="comment">/// accounts do not drop below this threshold.</span></span><br><span class="line">    <span class="keyword">pub</span> is_native: COption&lt;<span class="built_in">u64</span>&gt;,</span><br><span class="line">    <span class="comment">/// The amount delegated</span></span><br><span class="line">    <span class="keyword">pub</span> delegated_amount: <span class="built_in">u64</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to close the account.</span></span><br><span class="line">    <span class="keyword">pub</span> close_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship.svg"></p>
+<h3 id="Associated-Token-Account"><a href="#Associated-Token-Account" class="headerlink" title="Associated Token Account"></a>Associated Token Account</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#associated-token-account">https://solana.com/docs/core/tokens#associated-token-account</a></p>
+</blockquote>
+<ul>
+<li>Associated Token Account (ATA) 是一个 Token Account, 这个token account的地址是确定的，通过 owner的地址 和 Mint Account的地址一起生成出来的。你可以认为<strong>ATA就是每个用户的默认Token Account</strong><blockquote>
+<p>原文：An Associated Token Account is a token account whose address is deterministically derived using the owner’s address and the mint account’s address. You can think of the Associated Token Account as the “default” token account for a specific mint and owner.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/associated-token-account.svg"></p>
+<p>获取 ATA</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getAssociatedTokenAddressSync &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/spl-token&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> associatedTokenAccountAddress = getAssociatedTokenAddressSync(</span><br><span class="line">  USDC_MINT_ADDRESS,</span><br><span class="line">  OWNER_ADDRESS,</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或者，通过<code>PDA</code>的方式生成 ATA</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; PublicKey &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/web3.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [PDA, bump] = PublicKey.findProgramAddressSync(</span><br><span class="line">  [</span><br><span class="line">    OWNER_ADDRESS.toBuffer(),</span><br><span class="line">    TOKEN_PROGRAM_ID.toBuffer(),</span><br><span class="line">    USDC_MINT_ADDRESS.toBuffer(),</span><br><span class="line">  ],</span><br><span class="line">  ASSOCIATED_TOKEN_PROGRAM_ID,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>对于每个代币(即Mint Account), 每个钱包账户都有一个自己的 Token Account(也可以叫ATA)， 如下图：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship-ata.svg"></p>
+<h3 id="创建Token-Metadata"><a href="#创建Token-Metadata" class="headerlink" title="创建Token Metadata"></a>创建Token Metadata</h3><p>需要使用<code>Token Extensions Program </code></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#create-token-metadata">https://solana.com/docs/core/tokens#create-token-metadata</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">--enable-metadata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">TokenMetadata</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The authority that can sign to update the metadata</span></span><br><span class="line">    <span class="keyword">pub</span> update_authority: OptionalNonZeroPubkey,</span><br><span class="line">    <span class="comment">/// The associated mint, used to counter spoofing to be sure that metadata</span></span><br><span class="line">    <span class="comment">/// belongs to a particular mint</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The longer name of the token</span></span><br><span class="line">    <span class="keyword">pub</span> name: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// The shortened symbol for the token</span></span><br><span class="line">    <span class="keyword">pub</span> symbol: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// The URI pointing to richer metadata</span></span><br><span class="line">    <span class="keyword">pub</span> uri: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">/// Any additional metadata about the token as key-value pairs. The program</span></span><br><span class="line">    <span class="comment">/// must avoid storing the same key twice.</span></span><br><span class="line">    <span class="keyword">pub</span> additional_metadata: <span class="built_in">Vec</span>&lt;(<span class="built_in">String</span>, <span class="built_in">String</span>)&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多细节：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/token-extensions/metadata-pointer">https://solana.com/developers/guides/token-extensions/metadata-pointer</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/6_Solana的跨程序调用CPI"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/"
+    >6_Solana的跨程序调用CPI</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/" class="article-date">
+  <time datetime="2024-07-09T11:52:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/solana/5_Solana的PDA账户"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/"
+    >5_Solana的PDA账户</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/5_Solana%E7%9A%84PDA%E8%B4%A6%E6%88%B7/" class="article-date">
+  <time datetime="2024-07-09T11:43:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana-PDA"><a href="#Solana-PDA" class="headerlink" title="Solana PDA"></a>Solana PDA</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/pda">https://solana.com/docs/core/pda</a></p>
+</blockquote>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
+<li>通过自定义的<code>seed</code> + <code>bump seed</code> +  <code>programId</code> 派生出来</li>
+<li>PDA不会自动被创建，必须显示通过程序中的指令来创建PDA账户</li>
+<li><h2 id="PDA-落在Ed25519曲线之外，并且没有对应的私钥"><a href="#PDA-落在Ed25519曲线之外，并且没有对应的私钥" class="headerlink" title="PDA 落在Ed25519曲线之外，并且没有对应的私钥"></a>PDA 落在Ed25519曲线之外，并且没有对应的私钥</h2></li>
+<li>程序可以为自己派生出来的PDA”签名”(达到签名的效果，并不是普通账户的签名 ),不需要私钥<ul>
+<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/core-concepts/pdas.html#deep-dive">https://solanacookbook.com/core-concepts/pdas.html#deep-dive</a></li>
+<li><a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1455948263853600768?s=20&amp;t=J2JXCwv395D7MNkX7a9LGw">https://x.com/pencilflip/status/1455948263853600768?s=20&amp;t=J2JXCwv395D7MNkX7a9LGw</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.brianfriel.xyz/understanding-program-derived-addresses/">https://www.brianfriel.xyz/understanding-program-derived-addresses/</a></li>
+</ul>
+</li>
+</ul>
+<pre><code>![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda.svg)
+</code></pre>
+<ul>
+<li><p>PDA地址是在ed25519曲线之外的，因此，PDA没有对应的私钥。</p>
+</li>
+<li><p>PDA也是确定的, 而不是随机的，因为输入的信息都是预先确定的</p>
+</li>
+<li><p>PDA可以作为链上账户的地址，用来存储状态和获取程序状态<br>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/address-off-curve.svg"></p>
+</li>
+</ul>
+<ul>
+<li>PDA账户如果已经被创建，不能重复创建，否则交易失败</li>
+</ul>
+<ul>
+<li>深入理解：<ul>
+<li><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda.jpeg"></li>
+</ul>
+</li>
+</ul>
+<h3 id="如何生成PDA"><a href="#如何生成PDA" class="headerlink" title="如何生成PDA"></a>如何生成PDA</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/pda-derivation.svg"></p>
+<p>在 Anchor中生成 PDA</p>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/pda#create-pda-accounts">https://solana.com/docs/core/pda#create-pda-accounts</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

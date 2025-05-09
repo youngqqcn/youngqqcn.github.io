@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>深入分析NFT合约源码——以Surge Women为例 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/blockchain/NFT/深入分析NFT合约源码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  深入分析NFT合约源码——以Surge Women为例
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2022-05-06T16:00:00.000Z" itemprop="datePublished">2022-05-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">916</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="深入分析NFT合约源码——以Surge-Women为例"><a href="#深入分析NFT合约源码——以Surge-Women为例" class="headerlink" title="深入分析NFT合约源码——以Surge Women为例"></a>深入分析NFT合约源码——以Surge Women为例</h1><p>github地址：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/mynft">https://github.com/youngqqcn/mynft</a></p>
+<ul>
+<li>Surge Women合约地址：0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0</li>
+<li>智能合约源码：<a href="./surge.sol">surge.sol</a></li>
+<li>tokenId: 1802</li>
+<li>opensea链接：<a target="_blank" rel="noopener" href="https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802">https://opensea.io/assets/0x0632adcab8f12edd3b06f99dc6078fe1fedd32b0/1802</a></li>
+<li>token mint 交易链接：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4">https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</a></li>
+</ul>
+<p>问题1：NFT(non-fungible token)，即非同质化代币，如何理解“非同质化”？在代码层面如何实现的？</p>
+<p>答：fungible中文意思是“可互换的”，可互换的东西是没有特殊性的，如果是独一无二的东西则具有了“不可互换的”属性。例如，1元钱的硬币和1元钱的纸钞则可以互换，虽然在形态上不同，但是在作为货币的属性上本质相同，都是代表1元。</p>
+<p>至于如何编码实现，前面说了non-fungible的东西必须具备“独一无二”的属性，在编程领域什么东西独一无二呢？<br>答案很简单，就是唯一的id，用一个整数即可，在solidity中uint256能够表示的整数完全够用。</p>
+<p>问题2：NFT的图片（或者音频、视频等）是怎样和智能中tokenId一一对应起来的？</p>
+<p>图片等资源文件放在IPFS，智能合约中只存储每个token对应的IPFS上的URI即可。每个NFT项目有一个目录，目录下可以放很多资源文件，在构造合约的时候将目录在IPFS上的URI设置为baseURI，那么每个token的资源文件在IPFS的URI就确定了。例如，某个NFT项目在IPFS上总目录的URI为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</code>，tokenId为<code>1802</code>的token在IPFS上的URI则为<code>ipfs://QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5/1802</code>。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://etherscan.io/tx/0xbede5e44cc631303a22d066cc269f989469742b5bb6d9a74185e146dab9211e4</span></span><br><span class="line"><span class="comment"># https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab</span></span><br><span class="line"><span class="comment"># contract address is 0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> web3 <span class="keyword">import</span> Web3</span><br><span class="line">my_provider = Web3.HTTPProvider(<span class="string">&#x27;https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab&#x27;</span>)</span><br><span class="line">w3 = Web3(my_provider)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    </span><br><span class="line">    contract_address = <span class="string">&#x27;0x0632aDCab8F12edD3b06F99Dc6078FE1FEDD32B0&#x27;</span></span><br><span class="line">    contract_abi = json.load(<span class="built_in">open</span>(<span class="string">&#x27;surge.abi&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">    <span class="comment"># print(contract_abi)</span></span><br><span class="line"></span><br><span class="line">    mycontract = w3.eth.contract(address=contract_address, abi=contract_abi)</span><br><span class="line">    name = mycontract.functions.name().call()</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line">    symbol = mycontract.functions.symbol().call()</span><br><span class="line">    <span class="built_in">print</span>(symbol)</span><br><span class="line"></span><br><span class="line">    tokenURI = mycontract.functions.tokenURI(<span class="number">1802</span>).call()</span><br><span class="line">    <span class="built_in">print</span>(tokenURI)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>运行打印的结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Surge Women Passport</span><br><span class="line">SURGE</span><br><span class="line">ipfs:&#x2F;&#x2F;QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5&#x2F;1802</span><br></pre></td></tr></table></figure>
+
+<p>项目在IPFS的总目录：<br><a target="_blank" rel="noopener" href="https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://ipfs.io/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>或<br><a target="_blank" rel="noopener" href="https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5">https://tth-ipfs.com/ipfs/QmYVsw73haPgm9jK9BopsuKtzuxLANjYn75xeHLpht13D5</a><br>ipfs浏览器中的链接：<code>ipfs/Qmaseu2BbetLjA6eU7mQ2THEkjdBum5wq1EfuLAY2AoiEA/1802.png</code></p>
+<p>分析tokenURI函数的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function tokenURI(uint256 tokenId) public view virtual override returns (string memory) &#123;</span><br><span class="line">    if (!_exists(tokenId)) revert URIQueryForNonexistentToken();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; baseURI是目录的URI</span><br><span class="line">    string memory baseURI &#x3D; _baseURI();</span><br><span class="line">    &#x2F;&#x2F; 将目录的URI和tokenId拼接在一起就是token的URI</span><br><span class="line">    return bytes(baseURI).length !&#x3D; 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : &#39;&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而 _baseURI由 Surge合约重写了父合约的_baseURI函数。Surge合约在构造函数中设置了baseURI，也就是在构造合约时已经设置了baseURI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">constructor(</span><br><span class="line">    string memory _name,</span><br><span class="line">    string memory _symbol,</span><br><span class="line">    string memory _baseTokenURI,</span><br><span class="line">    uint128 _price,</span><br><span class="line">    address _receiver,</span><br><span class="line">    uint256 _royalties</span><br><span class="line">) payable ERC721A(_name, _symbol) &#123;</span><br><span class="line">    setBaseURI(_baseTokenURI);</span><br><span class="line">    setPrice(_price);</span><br><span class="line">    setRoyalties(_receiver, _royalties);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>presaleMint为什么要用到merkleProof?</p>
+<p>项目方做了预售，对所有参加预售的地址构造了一棵merkle tree，并将merkle root填入智能合约，调用presale的地址必须在merkle tree中。</p>
+<p>使用merkle tree可以隐藏了具体地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Presale minting verifies callers address is in Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _amountOfTokens Amount of tokens to mint</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleProof Hash of the callers address used to verify the location of that address in the Merkle Root</span><br><span class="line">function presaleMint(uint256 _amountOfTokens, bytes32[] calldata _merkleProof)</span><br><span class="line">    external</span><br><span class="line">    payable</span><br><span class="line">    verifyMaxPerUser(msg.sender, _amountOfTokens)</span><br><span class="line">    verifyMaxSupply(_amountOfTokens)</span><br><span class="line">    isEnoughEth(_amountOfTokens)</span><br><span class="line">&#123;</span><br><span class="line">    require(status &#x3D;&#x3D; SaleStatus.Presale, &quot;Presale not active&quot;);</span><br><span class="line"></span><br><span class="line">    bytes32 leaf &#x3D; keccak256(abi.encodePacked(msg.sender));</span><br><span class="line">    require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), &quot;Not in presale list&quot;);</span><br><span class="line"></span><br><span class="line">    _mintedAmount[msg.sender] +&#x3D; _amountOfTokens;</span><br><span class="line">    _safeMint(msg.sender, _amountOfTokens);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置merkle root<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27">https://etherscan.io/tx/0x4d6e0c07516115b8a803f77fe3067d52091c8d888eecb8f60fe897a68501ea27</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; @notice Set Presale Merkle Root</span><br><span class="line">&#x2F;&#x2F;&#x2F; @param _merkleRoot Merkle Root hash</span><br><span class="line">function setMerkleRoot(bytes32 _merkleRoot) public onlyOwner &#123;</span><br><span class="line">    merkleRoot &#x3D; _merkleRoot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>presale</p>
+<p><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581">https://etherscan.io/tx/0x387dd09362758758b52d56dd2093724039fbd5592b13613cc347a2c1a216b581</a></p>
+<p>同一个地址2次调用presale，那么它提供的merkle proof两次肯定是一样的。<br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366">https://etherscan.io/tx/0x5c76c3e78933ccc9f50e3a6f979226c02b9ab96ed320cbd68d4fbf3361c2b366</a><br><a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e">https://etherscan.io/tx/0xe64591ba680b9fb18f3bac61a20b7343801f03a9905d1f260df4d945089a056e</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/05/06/technology/blockchain/NFT/%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90NFT%E5%90%88%E7%BA%A6%E6%BA%90%E7%A0%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC721/" rel="tag">ERC721</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPFS/" rel="tag">IPFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" rel="tag">源码分析</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/05/29/read/%E7%99%BE%E4%B8%87%E5%AF%8C%E7%BF%81%E7%9A%84%E6%80%9D%E7%BB%B4%E5%AF%86%E7%A0%81/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            百万富翁的思维密码
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/04/18/learning/%E8%AE%A4%E7%9F%A5%E4%B8%96%E7%95%8C%E7%9A%84%E7%BB%8F%E6%B5%8E%E5%AD%A6%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">认知世界的经济学（笔记）</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/AI/ChatGPT底层算法-Transformer"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/17/technology/AI/ChatGPT%E5%BA%95%E5%B1%82%E7%AE%97%E6%B3%95-Transformer/"
+    >ChatGPT底层算法Transformer</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/17/technology/AI/ChatGPT%E5%BA%95%E5%B1%82%E7%AE%97%E6%B3%95-Transformer/" class="article-date">
+  <time datetime="2024-10-17T10:06:00.000Z" itemprop="datePublished">2024-10-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="http://lib.ia.ac.cn/news/newsdetail/68571">http://lib.ia.ac.cn/news/newsdetail/68571</a></p>
+</blockquote>
+<p>Transformer算法机制：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/qt1.1_F09DBE9AC8895CB064276BF8ACC95B98.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/qt1.2_A35C601756E296B8146244F0E4764975.png"></p>
+<h2 id="Transformer核心三个步骤"><a href="#Transformer核心三个步骤" class="headerlink" title="Transformer核心三个步骤:"></a>Transformer核心三个步骤:</h2><ol>
+<li>编码（Embedding）</li>
+<li>定位 （Positional Encoding）</li>
+<li>自注意力机制（Self-Attention）</li>
+</ol>
+<p>以翻译为例: 将 “I love you” 翻译为中文,</p>
+<ul>
+<li>第一步——编码(Embedding)： 将 “I love you” 中每个单词进行编码成 512维向量（实际维度可能更高）<ul>
+<li>可理解为512高维空间中的一个点</li>
+</ul>
+</li>
+<li>第二步——定位(Positional encoding)： 将每个单词的向量映射到一个新的高维向量<ul>
+<li>高维向量包含了单词在句子中的“位置”信息</li>
+</ul>
+</li>
+<li>第三步——自注意力机制（Self-Attention）： 通过一个Attention（Q，K，V）算法, 将每个单词向再变换为一个更高维的向量<ul>
+<li>高维向量包含了单词与句子中其他单词的关系</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>深度学习算法，如Transformer，在工程实践中表现很好，但是<strong>为什么好</strong>，目前缺乏理论依据</p>
+<ul>
+<li>ChatGPT为什么那么牛逼，科学家也解释不了，反正就是<strong>大力出奇迹</strong></li>
+</ul>
+</li>
+<li><p><strong>智能可用高维空间中的路径进行量化(可计算化)</strong></p>
+<ul>
+<li>智能=高维空间中的路径</li>
+<li>智慧=高维空间中的路径</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-read/人月神话"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/15/read/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/"
+    >人月神话</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/15/read/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/" class="article-date">
+  <time datetime="2024-10-15T07:16:00.000Z" itemprop="datePublished">2024-10-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.pdf">https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.pdf</a></p>
+</blockquote>
+<ul>
+<li><p>开发成本随着人数和时间的不同，有很大的变化。</p>
+</li>
+<li><p>用人月来衡量工作是非常危险的，因为它建立在人与人之间不需要相互交流的前提</p>
+</li>
+<li><p>在错综复杂的任务中，沟通和交流的工作量非常大，如果添加更多的人手，实际会延长进度</p>
+</li>
+<li><p>不要进度一落后，就想着加人</p>
+</li>
+<li><p><strong>少数人思考确定系统的方向，多数人来解决实际实现问题</strong></p>
+</li>
+<li><p>巴比伦塔为什么失败？</p>
+<ul>
+<li>两个方面——<strong>交流</strong>，以及交流的结果——<strong>组织</strong></li>
+<li>鼓励网形交流，而不是树形</li>
+</ul>
+</li>
+<li><p><strong>团队组织的目的是减少不必要交流和合作的数量，因此良好的团队组织是解决上述交流问题的关键措施。</strong> 减少交流的方法是<strong>人力划分</strong>（division of labor）和<strong>限定职责范围</strong>（specialization of function）</p>
+</li>
+<li><p>每棵子树所必须具备的基本要素:</p>
+<ul>
+<li>任务（a mission）</li>
+<li>产品负责人（a producer）</li>
+<li>技术主管和结构师（a technical director or architect）</li>
+<li>进度（a schedule）</li>
+<li>人力的划分（a division of labor）</li>
+<li>各部分之间的接口定义（interface definitions among the parts）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>产品负责人的角色是什么？</p>
+<ul>
+<li>他组建团队，划分工作及制订进度表。他要求，并一直要 求必要的资源。这意味着他主要的工作是与团队外部，向上和水平地沟通。他建立团队内部 的沟通和报告方式。最后，他确保进度目标的实现，根据环境的变化调整资源和团队的构架。</li>
+</ul>
+</li>
+<li><p>技术主管的角色是什么？</p>
+<ul>
+<li>他对设计进行构思，识别系统的子部分，指明从外部看 上去的样子，勾画它的内部结构。他提供整个设计的一致性和概念完整性；他控制系统的复 杂程度。当某个技术问题出现时，他提供问题的解决方案，或者根据需要调整系统设计。用 Al Capp 所喜欢的一句谚语，他是“攻坚小组中的独行侠”（inside-man at the skunk works.）。 他的沟通交流在团队中是首要的。他的工作几乎完全是技术性的。</li>
+</ul>
+</li>
+<li><p>产品负责人和技术主管是同一个人</p>
+<ul>
+<li>这种方式非常容易应用在很小型的队伍中，可能 是三个或六个开发人员。在大型的项目中则不容易得到应用。原因有两个：<ul>
+<li>第一，同时具有 管理技能和技术技能的人很难找到。思考者很少，实干家更少，既是思考者又是实干家的太少了。</li>
+<li>第二，大型项目中，每个角色都必须全职工作，甚至还要加班。对负责人来说，很难在承担全部管理责任的同时，还能抽出时间进行技术工作。对技术主管来说，很难在保证设 计的概念完整性，没有任何妥协的前提下，担任管理工作。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何根据一个严格的进度表来控制项目?</p>
+<ul>
+<li>第一个步骤是制订进度表。进度表上的每一件事,被称为“里程碑”,它们都有一个日期。<ul>
+<li>里程碑的选择只有一个原则,那就是,里程碑必须是<strong>具体的、特定的、可度量</strong>的事件,能够进行<strong>清晰定义</strong>。</li>
+</ul>
+</li>
+<li>保持进取心, 必须关心每一天的滞后,它们是大灾祸的基本组成元素</li>
+<li>及时反馈问题<ul>
+<li><strong>减少角色冲突</strong>: 老板只了解信息，不越俎代庖，避免经理失去权威；经理及时上报，并且提出解决方案，让老板安心。</li>
+<li>有了解真相的评审机制。通过关键路径图、明确里程碑、周会多方面来评审是否存在问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>项目管理主要是对人的关注和管理</strong></p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%A1%E7%90%86/" rel="tag">管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-read/代码大全"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/15/read/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"
+    >代码大全</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/15/read/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" class="article-date">
+  <time datetime="2024-10-15T04:16:00.000Z" itemprop="datePublished">2024-10-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8.pdf">https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8.pdf</a></p>
+</blockquote>
+<p>《代码大全》——第三十一章 个人性格</p>
+<ul>
+<li><p><strong>谦虚</strong></p>
+<ul>
+<li><p>那些最精通编程序的人往往是那些认为自己的头脑是多么有限的人,他们是谦虚的。而那些最为糟糕的程序员往往是那些拒绝承认自己的能力不适应工作任务的程序员。他们的自我妨碍自己成为优秀程序员,你学到越多的东西来弥<br>补你的大脑,你就越能成为一个好的程序员,你越谦虚,你取得的进步也就越快。</p>
+</li>
+<li><p>“分解”一个系统的目的是为了使其更为简单易懂。人们往往易于理解几条简单的信息而不是一条复杂的信息。所有软件设计方法的目的是将复杂的问题分解为简单的几部分,不论你是否使用结构化、自顶向下或是面向对象的设计,以上目标都相同。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>好奇心(学习)</strong></p>
+<ul>
+<li><p>如果正在开发有良好市场前景的软件,你所学的一半知识将会在今后三年内过时,如果你不再学习新知识,你将会落伍。</p>
+</li>
+<li><p>Thomas Kuhn 指出,任何成熟的科学,实际上是通过解决问题而发展起来的,而这些问题通常被看作本领域良好工作的例子,并且可用作将来进行工作的例子。</p>
+</li>
+<li><p>学习别人的编程(代码)是有重要意义的。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>诚实</strong></p>
+<ul>
+<li>不假装你是一个编程能手, 乐于承认自己的错误</li>
+</ul>
+</li>
+<li><p><strong>交流和合作</strong></p>
+<ul>
+<li>开发程序首先应同程序员交流,其次则是和计算机交流。</li>
+</ul>
+</li>
+<li><p><strong>懒惰</strong></p>
+</li>
+<li><p><strong>经验</strong></p>
+<ul>
+<li>在许多其它领域中,基本知识变化缓慢,以致于 10 年前毕业的某人所学到的知识在现在仍没有什么变化。而在软件开发中,即使基本的知识也发展迅速,在你以后 10 年毕业的某个人可能学到了二倍于你的有效编程方法,一些老的程序员往往被另眼相看,不是由于他们对某些特定方法缺乏接触,而由于他们在走出校门后对一些闻名的基本编程概念缺乏了解。</li>
+<li>如果你不因时间而做出应变,你的经验与其说是帮助倒不如说是一个阻碍。</li>
+</ul>
+</li>
+<li><p><strong>习惯</strong></p>
+<ul>
+<li>微软公司的 Bill Gates——曾说过,任何好程序员在开始的几年都做得很好。从那以后,程序员的好坏便基本定型了。</li>
+<li>成为某方面好的或差的程序员,主要是靠你自己的所作所为。建筑师要通过建筑而程序员要通过编程。你所作所为习惯,决定了你的编程品行。最终,你的习惯好坏决定了你是否能成为一位好的程序员。</li>
+<li>当你开始学习某一件事时,你应按正确的方式学好它。</li>
+<li>当你开始学时,你已对其进行了思考,并且你可在正确或错误的途径间作出轻易的选择。在你作过一段时间后,你对你所作的不太注意,此时“习惯的力量”会开始起作用。确保起作用的习惯是你所希望的。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>小结：</p>
+<ul>
+<li>你的个人性格直接影响你编写计算机程序的能力。</li>
+<li>最有明显作用的性格为:谦虚、好奇心、诚实、创造性和纪律,还有文明的“懒惰”。</li>
+<li>高级程序员的发展和生成与天才并无多大联系,任何事情都和个人的发展有关。</li>
+<li>令人吃惊的是,小聪明、经验、坚持和欲望既可帮助你也能妨碍你。</li>
+<li>许多程序员不主动去吸收新信息和新技术,而是靠偶然地上获得一些新信息,如果你抽出少量时间学习别人的编程经验,过一段时间后,你将在你的同行中脱颖而出。</li>
+<li>好的性格对养成良好习惯有很大影响。为了成为一位高水平的程序员,你应养成良好<br>的习惯,其余的就会随之而来。</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A0%E6%83%AF/" rel="tag">习惯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/blockchain/move/1_move基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/09/technology/blockchain/move/1_move%E5%9F%BA%E7%A1%80/"
+    >1_move基础</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/09/technology/blockchain/move/1_move%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2024-10-09T09:47:00.000Z" itemprop="datePublished">2024-10-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <ul>
+<li><p>Move介绍: <a target="_blank" rel="noopener" href="https://move-language.github.io/move/introduction.html">https://move-language.github.io/move/introduction.html</a></p>
+</li>
+<li><p>教程: <a target="_blank" rel="noopener" href="https://github.com/move-language/move/tree/main/language/documentation/tutorial">https://github.com/move-language/move/tree/main/language/documentation/tutorial</a></p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>move的语法和rust差不多，核心概念简单，上手快。</p>
+<ul>
+<li><p>语法： move语法基本上和Rust语法大同小异, 以下为几个不同之处</p>
+<ul>
+<li><code>module</code> 块</li>
+<li><code>script</code> 块</li>
+<li>函数声明 <code>fun</code></li>
+<li>函数访问性:  <code>public</code></li>
+<li>结构体特性(ability): <code>has</code></li>
+</ul>
+</li>
+<li><p>核心概念: 常用的核心概念，整理如下</p>
+</li>
+</ul>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><ul>
+<li><p><strong>Module(模块)</strong>:</p>
+<ul>
+<li>库</li>
+<li>包含结构体 和 更新结构体的函数</li>
+<li><strong>发布(publish)</strong> 在地址上, 以供被调用, 例如： 0xCAFE就是模块发布的地址<ul>
+<li>值需要发布(publish)才能存储在global storage, 即调用 <code>move_to</code>进行发布</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sources/FirstModule.move</span></span><br><span class="line">module <span class="number">0xCAFE</span>::BasicCoin &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Script(脚本)</strong>:</p>
+<ul>
+<li>入口函数</li>
+<li>执行程序</li>
+<li>临时的</li>
+<li>不存储在 global storage中</li>
+</ul>
+</li>
+<li><p><strong>Struct(结构体)</strong>: 结构体</p>
+</li>
+<li><p><strong>Resource(资源)</strong>:</p>
+<ul>
+<li>结构体中的 <em>不可拷贝</em> 且 <em>不可销毁(drop)</em> 的值(values)</li>
+<li>必须在函数尾部(end)转移资源的权限</li>
+</ul>
+</li>
+<li><p><strong>Address(地址)</strong>: 地址</p>
+</li>
+<li><p><strong>Global Storage(全局存储)</strong>: 全局数据库</p>
+<ul>
+<li>类似下面的结构:<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GlobalStorage</span></span> &#123;</span><br><span class="line">    <span class="comment">// 资源(values)</span></span><br><span class="line">    resources: Map&lt;address, Map&lt;ResourceType, ResourceValue&gt;&gt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模块(code)</span></span><br><span class="line">    modules: Map&lt;address, Map&lt;ModuleName, ModuleBytecode&gt;&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="Move区块链的状态-state-模型"><a href="#Move区块链的状态-state-模型" class="headerlink" title="Move区块链的状态(state)模型"></a>Move区块链的状态(state)模型</h2><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/move_state.png"></p>
+<p>与EVM链的状态模式对比</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/solidity_state.png"></p>
+<h2 id="Struct的4大特性-ability"><a href="#Struct的4大特性-ability" class="headerlink" title="Struct的4大特性(ability)"></a>Struct的4大特性(ability)</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://move-language.github.io/move/abilities.html">https://move-language.github.io/move/abilities.html</a></p>
+</li>
+<li><p><code>copy</code>: 可拷贝</p>
+</li>
+<li><p><code>drop</code>: 可丢弃</p>
+</li>
+<li><p><code>store</code>: 可存储(存在global storage)</p>
+</li>
+<li><p><code>key</code>: 可作为 global storage中的key</p>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span> has key &#123;</span><br><span class="line">    value: <span class="built_in">u64</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Global-Storage的5个操作"><a href="#Global-Storage的5个操作" class="headerlink" title="Global Storage的5个操作"></a>Global Storage的5个操作</h2><p><a target="_blank" rel="noopener" href="https://move-language.github.io/move/global-storage-operators.html">https://move-language.github.io/move/global-storage-operators.html</a></p>
+<ul>
+<li><code>move_to&lt;T&gt;(&amp;signer,T)</code>: 将<code>T</code>发布在 <code>signer.address</code>地址下</li>
+<li><code>move_from&lt;T&gt;(address): T</code>:  将地址下的T移除</li>
+<li><code>borrow_global_mut&lt;T&gt;(address): &amp;mut T</code>:  获取地址下的可变引用</li>
+<li><code>borrow_global&lt;T&gt;(address): &amp;T</code>: 获取不可变引用</li>
+<li><code>exists&lt;T&gt;(address): bool</code>: 判断地址下是否存在T</li>
+</ul>
+<h2 id="Acquires-修饰"><a href="#Acquires-修饰" class="headerlink" title="Acquires 修饰"></a>Acquires 修饰</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://move-language.github.io/move/functions.html?highlight=acquires#acquires">https://move-language.github.io/move/functions.html?highlight=acquires#acquires</a></li>
+</ul>
+<p>当一个函数通过<code>move_from</code>, <code>borrow_global</code>, 或 <code>borrow_global_mut</code>来使用资源(resource)时，函数需要加上 <code>acquires</code>修饰</p>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Deposit `amount` number of tokens to the balance under `addr`.</span></span><br><span class="line">fun deposit(addr: address, check: Coin) acquires Balance&#123;</span><br><span class="line">    <span class="keyword">let</span> balance = balance_of(addr);</span><br><span class="line">    <span class="keyword">let</span> balance_ref = &amp;<span class="keyword">mut</span> borrow_global_mut&lt;Balance&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> Coin &#123; value &#125; = check;</span><br><span class="line">    *balance_ref = balance + value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>public, public(friend), or public(script)</p>
+<ul>
+<li>函数默认是私有的(private), 可以通过下面几种方式进行限定<ul>
+<li>public：<ul>
+<li>同一模块的函数可调用</li>
+<li>其他模块中的函数可调用</li>
+<li>脚本中的函数可调用</li>
+</ul>
+</li>
+<li>public(friend) : 供 friend 模块调用（类似C++中的友元函数）<ul>
+<li>同一模块</li>
+<li>其他友元模块中的函数</li>
+</ul>
+</li>
+<li>public entry<ul>
+<li>相当于一个模块的main函数（入口）</li>
+</ul>
+</li>
+<li><del>public(script) : 供交易脚本调用</del></li>
+</ul>
+</li>
+</ul>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>move中的单元测试 和 rust单元测试类似， 直接在模块中编写单元测试即可</p>
+<p><code>move test</code> : 运行单元测试</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[test(account = @0x1)]</span>  <span class="comment">// 将 account 参数设置为地址 0x1</span></span><br><span class="line"><span class="meta">#[expected_failure(abort_code = 2)]</span> <span class="comment">//  预期失败，错误码 2</span></span><br><span class="line">fun publish_balance_already_exists(account: signer) &#123;</span><br><span class="line">    publish_balance(&amp;account);</span><br><span class="line">    publish_balance(&amp;account);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">module <span class="number">0xCAFE</span>::BasicCoin &#123;</span><br><span class="line">     <span class="comment">// Only included in compilation for testing. Similar to #[cfg(testing)]</span></span><br><span class="line">    <span class="comment">// in Rust. Imports the `Signer` module from the MoveStdlib package.</span></span><br><span class="line">    <span class="meta">#[test_only]</span></span><br><span class="line">    <span class="keyword">use</span> std::signer;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span> has key &#123;</span><br><span class="line">        value: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun mint(account: signer, value: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        move_to(&amp;account, Coin &#123; value &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 单元测试</span></span><br><span class="line">    <span class="comment">// Declare a unit test. It takes a signer called `account` with an</span></span><br><span class="line">    <span class="comment">// address value of `0xC0FFEE`.</span></span><br><span class="line">    <span class="meta">#[test(account = @0xC0FFEE)]</span></span><br><span class="line">    fun test_mint_10(account: signer) acquires Coin &#123;</span><br><span class="line">        <span class="keyword">let</span> addr = signer::address_of(&amp;account);</span><br><span class="line">        mint(account, <span class="number">10</span>);</span><br><span class="line">        <span class="comment">// Make sure there is a `Coin` resource under `addr` with a value of `10`.</span></span><br><span class="line">        <span class="comment">// We can access this resource and its value since we are in the</span></span><br><span class="line">        <span class="comment">// same module that defined the `Coin` resource.</span></span><br><span class="line">        <span class="built_in">assert!</span>(borrow_global&lt;Coin&gt;(addr).value == <span class="number">10</span>, <span class="number">0</span>); <span class="comment">// assert 可以指定错误码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="phantom类型"><a href="#phantom类型" class="headerlink" title="phantom类型"></a>phantom类型</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://move-language.github.io/move/generics.html#phantom-type-parameters">https://move-language.github.io/move/generics.html#phantom-type-parameters</a></li>
+</ul>
+<ul>
+<li>ChatGPT的回答： <a target="_blank" rel="noopener" href="https://chatgpt.com/share/67078dde-ae08-8004-a109-f1125dfa1fad">https://chatgpt.com/share/67078dde-ae08-8004-a109-f1125dfa1fad</a></li>
+</ul>
+<p><strong>为什么需要phantom类型？</strong></p>
+<ul>
+<li><strong>编译时类型约束</strong>：Phantom 类型允许你在泛型参数中提供类型信息，而不需要实际在运行时使用这些类型。这使得编译器能够在编译时检查类型安全性，而不引入运行时开销。</li>
+<li><strong>零运行时开销</strong>：因为 phantom 类型在运行时并不占用任何存储空间，它避免了不必要的内存分配或额外的存储复杂性。</li>
+<li><strong>增强的泛型能力</strong>：在某些场景下，你可能希望在泛型中传递一些类型信息，但这些信息仅在编译时有用。在 Move 中使用 phantom 类型可以让代码更加灵活。</li>
+</ul>
+<p><strong>phantom常见应用场景:</strong></p>
+<ul>
+<li><strong>逻辑分离</strong>：通过 phantom 类型标记不同的逻辑上下文，确保类型安全。</li>
+<li><strong>权限控制</strong>：在编译时限制某些操作只能由特定权限的账户执行，确保系统安全。</li>
+<li><strong>标记类型</strong>：用 phantom 来标记不同状态或角色，避免运行时状态混乱。</li>
+<li><strong>资源类型的泛化</strong>：对资源类型进行泛化处理，使得代码在不同资源类型上可重用，减少代码重复。</li>
+</ul>
+<p>示例： 逻辑分离</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">module PhantomLogicExample &#123;</span><br><span class="line">    <span class="comment">/// 定义两种逻辑上下文的类型标记</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Deposit</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Withdraw</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 泛型结构体，用于表示不同逻辑的账户操作，但通过 phantom 类型来区分逻辑</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span>&lt;T: store, phantom Operation&gt; &#123;</span><br><span class="line">        balance: <span class="built_in">u64</span>,</span><br><span class="line">        operation_info: T,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 创建一个用于“存款”逻辑的账户结构</span></span><br><span class="line">    public fun create_deposit_account&lt;T: store&gt;(balance: <span class="built_in">u64</span>, info: T): Account&lt;T, Deposit&gt; &#123;</span><br><span class="line">        Account &#123; balance, operation_info: info &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 创建一个用于“取款”逻辑的账户结构</span></span><br><span class="line">    public fun create_withdraw_account&lt;T: store&gt;(balance: <span class="built_in">u64</span>, info: T): Account&lt;T, Withdraw&gt; &#123;</span><br><span class="line">        Account &#123; balance, operation_info: info &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 增加存款逻辑的账户余额</span></span><br><span class="line">    public fun add_deposit&lt;T: store&gt;(account: &amp;<span class="keyword">mut</span> Account&lt;T, Deposit&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        account.balance = account.balance + amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 减少取款逻辑的账户余额</span></span><br><span class="line">    public fun subtract_withdraw&lt;T: store&gt;(account: &amp;<span class="keyword">mut</span> Account&lt;T, Withdraw&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        account.balance = account.balance - amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 获取账户余额 (适用于任意逻辑)</span></span><br><span class="line">    public fun get_balance&lt;T: store, Operation&gt;(account: &amp;Account&lt;T, Operation&gt;): <span class="built_in">u64</span> &#123;</span><br><span class="line">        account.balance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>示例： 资源类型的泛化</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">module ResourceExample &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Coin</span></span>&lt;phantom Currency&gt; &#123;</span><br><span class="line">        amount: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">USDCoin</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Bitcoin</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public fun create_usd_coin(amount: <span class="built_in">u64</span>): Coin&lt;USDCoin&gt; &#123;</span><br><span class="line">        Coin &#123; amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun create_bitcoin(amount: <span class="built_in">u64</span>): Coin&lt;Bitcoin&gt; &#123;</span><br><span class="line">        Coin &#123; amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 转移代币</span></span><br><span class="line">    public fun transfer&lt;T&gt;(coin: &amp;<span class="keyword">mut</span> Coin&lt;T&gt;, amount: <span class="built_in">u64</span>) &#123;</span><br><span class="line">        coin.amount = coin.amount - amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 获取代币余额</span></span><br><span class="line">    public fun get_balance&lt;T&gt;(coin: &amp;Coin&lt;T&gt;): <span class="built_in">u64</span> &#123;</span><br><span class="line">        coin.amount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>示例： 类型标记</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">module StateExample &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Pending</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Approved</span></span> &#123;&#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Rejected</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span>&lt;phantom Status&gt; &#123;</span><br><span class="line">        id: <span class="built_in">u64</span>,</span><br><span class="line">        amount: <span class="built_in">u64</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun create_pending_transaction(id: <span class="built_in">u64</span>, amount: <span class="built_in">u64</span>): Transaction&lt;Pending&gt; &#123;</span><br><span class="line">        Transaction &#123; id, amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun approve_transaction(pending_txn: Transaction&lt;Pending&gt;): Transaction&lt;Approved&gt; &#123;</span><br><span class="line">        Transaction &#123; id: pending_txn.id, amount: pending_txn.amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun reject_transaction(pending_txn: Transaction&lt;Pending&gt;): Transaction&lt;Rejected&gt; &#123;</span><br><span class="line">        Transaction &#123; id: pending_txn.id, amount: pending_txn.amount &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public fun process_approved_transaction(approved_txn: Transaction&lt;Approved&gt;) &#123;</span><br><span class="line">        <span class="comment">// 处理已批准的交易</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="形式化验证"><a href="#形式化验证" class="headerlink" title="形式化验证"></a>形式化验证</h2><p><a target="_blank" rel="noopener" href="https://github.com/move-language/move/blob/main/language/move-prover/doc/user/spec-lang.md">https://github.com/move-language/move/blob/main/language/move-prover/doc/user/spec-lang.md</a></p>
+<p><code>move prove</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在move的根目录下执行</span><br><span class="line">.&#x2F;scripts&#x2F;dev_setup.sh -yp</span><br><span class="line">source ~&#x2F;.profile</span><br><span class="line"></span><br><span class="line"># 检查 boogie是否按照</span><br><span class="line">boogie &#x2F;version</span><br></pre></td></tr></table></figure>
+
+
+<p>形式化验证用于验证逻辑是否</p>
+<p>常用的关键词：</p>
+<ul>
+<li><code>let</code>:</li>
+<li><code>aborts_if</code>: 条件中断</li>
+<li><code>let post</code> : <strong>函数执行后</strong>获取值</li>
+<li><code>ensures</code>: <strong>函数执行成功后</strong>必须满足的条件</li>
+<li><code>ensures result</code>:  result是函数的返回值, <code>ensures result</code>即判断函数执行后的返回值</li>
+</ul>
+<p>关于move spec形式化验证 与 单元测试的区别：</p>
+<ul>
+<li>ChatGPT的回答：<a target="_blank" rel="noopener" href="https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583">https://chatgpt.com/share/67079e85-c11c-8004-9d5d-52f8d4c16583</a></li>
+<li>Move Spec 和单元测试是互补的。Move Spec 可以提供形式化的<strong>逻辑保障</strong>，而单元测试则用来确保代码在实际运行环境中表现正确。</li>
+<li>重点放在关键性质上：形式化验证特别适合那些涉及<strong>安全性、资金管理、状态变化一致性</strong>等至关重要的合约部分，而单元测试则适合验证合约中常见的逻辑操作和具体功能。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spec withdraw &#123;</span><br><span class="line">    <span class="keyword">let</span> balance = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="comment">// 判断资源是否存在</span></span><br><span class="line">    aborts_if !exists&lt;Balance&lt;CoinType&gt;&gt;(addr);</span><br><span class="line">    <span class="comment">// 校验balance</span></span><br><span class="line">    aborts_if balance &lt; amount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查执行后的状态</span></span><br><span class="line">    <span class="keyword">let</span> post balance_post = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="comment">// 余额检查</span></span><br><span class="line">    ensures balance_post == balance - amount;</span><br><span class="line">    <span class="comment">// 检查返回值</span></span><br><span class="line">    ensures result == Coin&lt;CoinType&gt; &#123; value: amount &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>特别注意</strong>： 在 Move 的形式化验证中，<strong>每一个</strong>可能的 abort（异常中断）都需要在 spec 规范中通过 aborts_if 子句来描述。当你编写了涉及可能导致 abort 的操作时，Move Prover 需要你为这些操作提供明确的终止条件。</p>
+<p>例如：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">fun deposit&lt;CoinType&gt;(addr: address, check: Coin&lt;CoinType&gt;) acquires Balance&#123;</span><br><span class="line">    <span class="keyword">let</span> balance = balance_of&lt;CoinType&gt;(addr);</span><br><span class="line">    <span class="keyword">let</span> balance_ref = &amp;<span class="keyword">mut</span> borrow_global_mut&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> Coin &#123; value &#125; = check;</span><br><span class="line">    *balance_ref = balance + value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">spec deposit &#123;</span><br><span class="line">    <span class="keyword">let</span> balance = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    <span class="keyword">let</span> check_value = check.value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对应 borrow_global&lt;Balance&lt;CoinType&gt;&gt;(owner).coin.value</span></span><br><span class="line">    aborts_if !exists&lt;Balance&lt;CoinType&gt;&gt;(addr);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对应 *balance_ref = balance + value;</span></span><br><span class="line">    aborts_if balance + check_value &gt; MAX_U64;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> post balance_post = global&lt;Balance&lt;CoinType&gt;&gt;(addr).coin.value;</span><br><span class="line">    ensures balance_post == balance + check_value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中2个 <code>aborts_if</code> 缺一不可，必须都存在</p>
+<p>可以通过 move  provier 的提示来增加</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aptos/" rel="tag">Aptos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/cpp/Rust_Go_Python调用C++"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/"
+    >Rust/Go/Python调用C++</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/" class="article-date">
+  <time datetime="2024-09-27T09:27:00.000Z" itemprop="datePublished">2024-09-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="关于-extern-quot-C-quot-的作用"><a href="#关于-extern-quot-C-quot-的作用" class="headerlink" title="关于 extern &quot;C&quot;的作用"></a>关于 <code>extern &quot;C&quot;</code>的作用</h2><p>C++导出函数给其他语言使用必须使用<code>C语言</code>格式的函数,</p>
+<ul>
+<li>原因: C++<code>函数名</code>在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的<code>函数名</code>保持一致<ul>
+<li>  了解更多： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiangtingshen/p/10980055.html">https://www.cnblogs.com/xiangtingshen/p/10980055.html</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  __XXXX_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要导出的C++函数</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __XXXX_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="如何解决-C-中-class-的导出问题"><a href="#如何解决-C-中-class-的导出问题" class="headerlink" title="如何解决 C++中 class 的导出问题"></a>如何解决 C++中 class 的导出问题</h2><p>因为 C++的函数只能以 C 语言的格式导出，即使用<code>extern &quot;C&quot;</code> , 那么如何处理 类方法的导出？</p>
+<p><strong>解决方案： 增加一个中间层(抽象层)</strong></p>
+<p>例如， C++的<code>class MyData</code>实现了细节， 那么可以增加一个 C 语言风格的结构体指针 <code>struct Data</code>，利用 Data 将 MyData 的方法实现封装(wrapper)</p>
+<p>示例代码:</p>
+<p><code>mydata.h</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span> &#123;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>mydata.cc</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;mydata.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyData::doSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>封装抽象层: <code>data.h</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __DATA_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __DATA_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Data</span> <span class="title">Data</span>;</span></span><br><span class="line">    <span class="comment">// 导出的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __DATA_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>data.cc</code> 对调用不可见</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指针类型转换, 对调用不可见</span></span><br><span class="line">    ((MyData *)p)-&gt;<span class="built_in">doSomething</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>示意图:</p>
+<pre class="mermaid">
+graph LR
+
+Rust[Rust调用]--data.h-->data.cc[抽象层: data.cc]-.->mydata[实现层: mydata.h/mydata.cc]
+
+Go[Go调用]--data.h-->data.cc
+
+Python[Python调用] --data.h-->data.cc</pre>
+
+
+
+<p>详细代码:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/call-cpp-dylib/">https://github.com/youngqqcn/call-cpp-dylib/</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

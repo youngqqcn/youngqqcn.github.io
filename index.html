@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover5.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">yqq&#39;s blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Hello,world!', '', ''],
+        startDelay: 0,
+        typeSpeed: 150,
+        loop: false,
+        backSpeed: 10000000,
+        showCursor: false
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-technology/AI/MCP大语言模型交互协议"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2025/05/09/technology/AI/MCP%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E5%8D%8F%E8%AE%AE/"
+    >MCP大语言模型交互协议</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/05/09/technology/AI/MCP%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2025-05-09T08:36:00.000Z" itemprop="datePublished">2025-05-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Model-Context-Protocol-MCP"><a href="#Model-Context-Protocol-MCP" class="headerlink" title="Model Context Protocol (MCP)"></a>Model Context Protocol (MCP)</h1><blockquote>
+<p>官方文档: <a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/introduction">https://modelcontextprotocol.io/introduction</a></p>
+</blockquote>
+<blockquote>
+<p>入门教程: <a target="_blank" rel="noopener" href="https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide">https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide</a></p>
+</blockquote>
+<p>什么是MCP？</p>
+<p>模型上下文协议（MCP）是一个创新的开源协议，它重新定义了大语言模型（LLM）与外部世界的互动方式。MCP 提供了一种标准化方法，使任意大语言模型能够轻松连接各种数据源和工具，实现信息的无缝访问和处理。MCP 就像是 AI 应用程序的 USB-C 接口，为 AI 模型提供了一种标准化的方式来连接不同的数据源和工具。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/image-20250223214308430.png"></p>
+<p>MCP 有以下几个核心功能：</p>
+<ul>
+<li>Resources 资源</li>
+<li>Prompts 提示词(模板)， 用于给客户端提供提示词模板</li>
+<li>Tools 工具</li>
+<li>Sampling 采样</li>
+<li>Roots 根目录</li>
+<li>Transports 传输层<ul>
+<li>stdio 用于本地<ul>
+<li>通过 uvx 或 npx 跑一个本地服务供mcp客户端（也是大模型客户端）调用</li>
+</ul>
+</li>
+<li>streamable http 最新的</li>
+<li>http + sse : 已废弃，老的mcp依然使用</li>
+</ul>
+</li>
+</ul>
+<p>MCP客户端:</p>
+<ul>
+<li>Claude App (要翻墙)</li>
+<li>Cusor</li>
+<li>Vscode</li>
+<li>Cherry Studio</li>
+<li>…</li>
+</ul>
+<h3 id="mcp的资源"><a href="#mcp的资源" class="headerlink" title="mcp的资源"></a>mcp的资源</h3><p>目前 MCP 非常火爆，很多开发者参与:</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src">https://github.com/modelcontextprotocol/servers/tree/main/src</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/punkpeye/awesome-mcp-servers/tree/main">https://github.com/punkpeye/awesome-mcp-servers/tree/main</a></p>
+</li>
+</ul>
+<h3 id="MCP的工作原理"><a href="#MCP的工作原理" class="headerlink" title="MCP的工作原理"></a>MCP的工作原理</h3><blockquote>
+<p>关于mcp工作过程 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29001189476">https://zhuanlan.zhihu.com/p/29001189476</a></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/v2-2bcd98f6541da0b6f14dc9082ee2dcda_1440w.jpg"></p>
+<ul>
+<li>1, 用户使用客户端（如 Cursor, Cherry Studio）, 并指定开启的mcp工具，并向大模型提出问题</li>
+<li>2, 客户端将问题发大模型，同时附带上可使用的mcp工具列表</li>
+<li>3, 如果大模型需要调用mcp工具获取外部数据，大模型会中断并返回需要调用的工具列表, 并包含一个中断原因: tool_call; 如果不需要调用工具，则直接返回结果</li>
+<li>4, 客户端根据大模型返回的工具列表，调用相应的mcp工具, 获取外部数据</li>
+<li>5, 客户端将获取到的数据，传递给大模型</li>
+<li>6, 大模型根据获取到的数据，继续处理问题</li>
+<li>7, 大模型返回结果</li>
+<li>8, 客户端将结果返回给用户</li>
+</ul>
+<h3 id="MCP-server-开发"><a href="#MCP-server-开发" class="headerlink" title="MCP server 开发"></a>MCP server 开发</h3><blockquote>
+<p>官方文档: <a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/introduction">https://modelcontextprotocol.io/introduction</a><br>Python SDK: <a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/python-sdk">https://github.com/modelcontextprotocol/python-sdk</a></p>
+</blockquote>
+<p>支持 Python, Typescript, Java …</p>
+<p>这里以 Python 为例, 用 <code>uv</code>创建一个项目</p>
+<p>如果没有安装 <code>uv</code>, 请先安装 <code>uv</code>: <a target="_blank" rel="noopener" href="https://docs.astral.sh/uv/getting-started/installation/">https://docs.astral.sh/uv/getting-started/installation/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">uv init mcp-server-demo</span><br><span class="line"></span><br><span class="line">cd mcp-server-demo</span><br><span class="line"></span><br><span class="line">uv add &quot;mcp[cli]&quot;</span><br><span class="line"></span><br><span class="line">source .venv&#x2F;bin&#x2F;activate</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>创建一个  <code>add_server.py</code>, 代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># server.py</span></span><br><span class="line"><span class="keyword">from</span> mcp.server.fastmcp <span class="keyword">import</span> FastMCP</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an MCP server</span></span><br><span class="line">mcp = FastMCP(<span class="string">&quot;Demo&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an addition tool</span></span><br><span class="line"><span class="meta">@mcp.tool()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add a dynamic greeting resource</span></span><br><span class="line"><span class="meta">@mcp.resource(<span class="params"><span class="string">&quot;greeting://&#123;name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_greeting</span>(<span class="params">name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Get a personalized greeting&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># Start the server</span></span><br><span class="line">    mcp.run(transport=<span class="string">&quot;streamable-http&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>调试 MCP server</strong>:</p>
+<ul>
+<li><p>测试/调试MCP程序, 启动2个终端</p>
+</li>
+<li><p>在一个终端运行 mcp 服务, <code>streamable-http</code> 默认监听 <code>8000</code> 端口 和 <code>mcp</code>端点 <code>python add_server.py</code></p>
+</li>
+<li><p>在另外一个终端中, 启动一个测试客户端 <code>mcp dev add_server.py </code></p>
+<p> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/mcp_demo_20250509.png"></p>
+</li>
+</ul>
+<ul>
+<li><p>浏览器打开 <code>http://127.0.0.1:6274</code></p>
+</li>
+<li><p>Transport 选择 <code>streamable-http</code></p>
+</li>
+<li><p>URL 填入 <code>http://localhost:8000/mcp</code></p>
+</li>
+<li><p>点击 <code>Connect</code>, 可以看到连接成功</p>
+</li>
+<li><p>然后点击  <code>Tools</code>, 点击 <code>List Tools</code> 列出所有的工具</p>
+</li>
+<li><p>点击 <code>add</code> 进行测试, 输入 <code>a</code> 和 <code>b</code> 的值, 点击 <code>Run Tool</code>, 可以看到返回结果</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-173256.jpg"></p>
+<p><strong>在客户端使用 MCP server</strong></p>
+<p>在 Cherry Studio 中使用上面的 add MCP server</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-173901.jpg"></p>
+<p>在 Cherry Studio 中选择支持工具调用的大模型(带工具icon的模型)<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174150.jpg"></p>
+<p>在对话中，开启我们刚才添加的 my_test_add工具:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174336.jpg"></p>
+<p>因为我们这个add工具过于简单，如果直接问大模型 100 + 3 等于多少，模型会直接返回结果，而不会调用我们添加的 add 工具 ， 因此，我们这里需要换种方式提问，以便大模型能够调用我们添加的 add 工具</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174526.jpg"></p>
+<p>可见， 大模型调用了我们添加的 add 工具，并返回了正确结果</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCP/" rel="tag">MCP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag">协议</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" rel="tag">大语言模型</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/security/网络安全相关"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2025/04/11/technology/security/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3/"
+    >网络安全相关</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/04/11/technology/security/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2025-04-11T09:09:00.000Z" itemprop="datePublished">2025-04-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.y1ng.org/">https://wiki.y1ng.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/TheRoadOfSO">https://github.com/youngqqcn/TheRoadOfSO</a></li>
+</ul>
+</blockquote>
+<ul>
+<li><h2 id="东南亚博彩行业分析"><a href="#东南亚博彩行业分析" class="headerlink" title="东南亚博彩行业分析"></a><a target="_blank" rel="noopener" href="https://wiki.y1ng.org/0x7_%E9%BB%91%E7%81%B0%E4%BA%A7%E7%A0%94%E7%A9%B6/7x4_%E9%BB%91%E7%81%B0%E4%BA%A7%E7%A0%94%E7%A9%B6%E6%A1%88%E4%BE%8B/">东南亚博彩行业分析</a></h2></li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/TheRoadOfSO/blob/master/docs/0x7_%E9%BB%91%E7%81%B0%E4%BA%A7%E7%A0%94%E7%A9%B6/7x0_%E5%AF%B9%E9%BB%91%E7%81%B0%E4%BA%A7%E7%9A%84%E7%A0%94%E7%A9%B6.md">黑灰产研究</a></p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6/" rel="tag">研究</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B0%83%E7%A0%94/" rel="tag">调研</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7%E4%B8%9A/" rel="tag">黑灰产业</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/other/Zig,Nim,Rust对比"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2025/04/09/technology/other/Zig,Nim,Rust%E5%AF%B9%E6%AF%94/"
+    >Zig和Nim对比</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/04/09/technology/other/Zig,Nim,Rust%E5%AF%B9%E6%AF%94/" class="article-date">
+  <time datetime="2025-04-09T09:59:00.000Z" itemprop="datePublished">2025-04-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.javaassignmenthelp.com/blog/zig-vs-nim/">https://www.javaassignmenthelp.com/blog/zig-vs-nim/</a></p>
+</blockquote>
+<h2 id="Zig-vs-Nim"><a href="#Zig-vs-Nim" class="headerlink" title="Zig vs Nim"></a>Zig vs Nim</h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Zig</th>
+<th>Nim</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type System</td>
+<td>A strong, static type system.</td>
+<td>A powerful static and dynamic type system.</td>
+</tr>
+<tr>
+<td>Syntax</td>
+<td>C-like syntax with simplicity in mind.</td>
+<td>Python-like syntax with flexibility.</td>
+</tr>
+<tr>
+<td>Memory Management</td>
+<td>Manual memory management with safety checks.</td>
+<td>Garbage collection with optional manual memory management.</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>Concurrency primitives for multithreading.</td>
+<td>Lightweight async/await-based concurrency and parallelism support.</td>
+</tr>
+<tr>
+<td>Compilation Time</td>
+<td>Very fast compilation.</td>
+<td>Fast compilation due to its focus on incremental builds.</td>
+</tr>
+<tr>
+<td>Error Handling</td>
+<td>Uses error sets and comptime.</td>
+<td>Exception-based error handling.</td>
+</tr>
+<tr>
+<td>Metaprogramming</td>
+<td>Powerful metaprogramming capabilities.</td>
+<td>Advanced metaprogramming and macros.</td>
+</tr>
+<tr>
+<td>Community Support</td>
+<td>Growing community with active development.</td>
+<td>Active and supportive community.</td>
+</tr>
+<tr>
+<td>Learning Curve</td>
+<td>Moderate learning curve.</td>
+<td>Relatively easy to learn and use.</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Emphasizes performance optimization.</td>
+<td>Nim generates performant code.</td>
+</tr>
+<tr>
+<td>Platform Support</td>
+<td>Supports major platforms including Windows, macOS, and Linux.</td>
+<td>Cross-platform support and easy integration with C libraries.</td>
+</tr>
+<tr>
+<td>Package Management</td>
+<td>Built-in package manager.</td>
+<td>Nimble package manager with a wide range of libraries.</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Decent documentation.</td>
+<td>Well-documented with extensive examples.</td>
+</tr>
+<tr>
+<td>Popularity</td>
+<td>Growing in popularity.</td>
+<td>Increasing popularity in the programming community.</td>
+</tr>
+</tbody></table>
+<h2 id="Nim-vs-Rust"><a href="#Nim-vs-Rust" class="headerlink" title="Nim vs Rust"></a>Nim vs Rust</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.javaassignmenthelp.com/blog/nim-vs-rust/">https://www.javaassignmenthelp.com/blog/nim-vs-rust/</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Nim</th>
+<th>Rust</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Performance</td>
+<td>Impressive, compiles to C code</td>
+<td>High performance, zero-cost abstractions</td>
+</tr>
+<tr>
+<td>Ease of Learning</td>
+<td>Beginner-friendly, Python-like syntax</td>
+<td>Steeper learning curve</td>
+</tr>
+<tr>
+<td>Memory Safety</td>
+<td>Garbage collection</td>
+<td>Ownership and borrowing system</td>
+</tr>
+<tr>
+<td>Concurrency Support</td>
+<td>Basic support for concurrency</td>
+<td>Strong support with ownership system</td>
+</tr>
+<tr>
+<td>Community Size</td>
+<td>Smaller but tight-knit community</td>
+<td>Large and vibrant community</td>
+</tr>
+<tr>
+<td>Libraries and Ecosystem</td>
+<td>Growing ecosystem</td>
+<td>Extensive ecosystem with many libraries</td>
+</tr>
+<tr>
+<td>Use Cases</td>
+<td>Web dev, game dev, scripting</td>
+<td>Systems programming, web servers, OS</td>
+</tr>
+<tr>
+<td>Compile Times</td>
+<td>Faster compile times</td>
+<td>Longer compile times for some projects</td>
+</tr>
+<tr>
+<td>Long-Term Maintenance</td>
+<td>Suitable for various projects</td>
+<td>Strong focus on long-term stability</td>
+</tr>
+<tr>
+<td>Legacy Code Integration</td>
+<td>Easier integration with C libraries</td>
+<td>Challenges with certain low-level libs</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nim/" rel="tag">Nim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zig/" rel="tag">Zig</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" rel="tag">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/other/知道创宇研发技能表"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2025/04/09/technology/other/%E7%9F%A5%E9%81%93%E5%88%9B%E5%AE%87%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD%E8%A1%A8/"
+    >知道创宇研发技能表</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/04/09/technology/other/%E7%9F%A5%E9%81%93%E5%88%9B%E5%AE%87%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD%E8%A1%A8/" class="article-date">
+  <time datetime="2025-04-09T09:59:00.000Z" itemprop="datePublished">2025-04-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%81%8C%E4%B8%9A/">职业</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/knownsec/RD_Checklist">https://github.com/knownsec/RD_Checklist</a></p>
+</blockquote>
+<h1 id="通用技能"><a href="#通用技能" class="headerlink" title="通用技能"></a>通用技能</h1><h2 id="公司与个人"><a href="#公司与个人" class="headerlink" title="公司与个人"></a>公司与个人</h2><ul>
+<li>  公司是盈利性组织</li>
+<li>  个人和公司必须双赢</li>
+<li>  在认同公司理念且能够给公司创造足够价值的基础上，为个人发展而工作</li>
+</ul>
+<h2 id="Who-am-I"><a href="#Who-am-I" class="headerlink" title="Who am I"></a>Who am I</h2><h3 id="黑客是守正出奇且具备创造力的群体"><a href="#黑客是守正出奇且具备创造力的群体" class="headerlink" title="黑客是守正出奇且具备创造力的群体"></a>黑客是守正出奇且具备创造力的群体</h3><h4 id="守正出奇"><a href="#守正出奇" class="headerlink" title="守正出奇"></a>守正出奇</h4><ul>
+<li>  这条正道/底线得坚守</li>
+<li>  但如果太过正就迂腐了，为了搞定任务有时得出奇招</li>
+</ul>
+<h4 id="创造力"><a href="#创造力" class="headerlink" title="创造力"></a>创造力</h4><ul>
+<li>  一个没有创造力的人是多么的可怜，对于团队来说也是一种耻辱</li>
+<li>  本技能表的本质目的只有一个：引导你拥有足够的创造力</li>
+</ul>
+<h3 id="黑客也可以是一种思维方式"><a href="#黑客也可以是一种思维方式" class="headerlink" title="黑客也可以是一种思维方式"></a>黑客也可以是一种思维方式</h3><h3 id="我们需要对得起名片上的那个头衔：工程师、研究员"><a href="#我们需要对得起名片上的那个头衔：工程师、研究员" class="headerlink" title="我们需要对得起名片上的那个头衔：工程师、研究员"></a>我们需要对得起名片上的那个头衔：工程师、研究员</h3><h3 id="牛人姿态"><a href="#牛人姿态" class="headerlink" title="牛人姿态"></a>牛人姿态</h3><ul>
+<li>  即使现在不是牛人，也得具备这样的姿态</li>
+<li>  没有一定扎实内功与远见的人很少有这样的姿态</li>
+<li>  拥有不将就的做事风格，迟早是牛人</li>
+</ul>
+<h2 id="如何做事"><a href="#如何做事" class="headerlink" title="如何做事"></a>如何做事</h2><h3 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h3><ul>
+<li>  完成一件事有好几条途径，优秀的人的途径最短</li>
+<li>  任务拆分很容易得出做事的方法论</li>
+<li>好的「方法论」会让你具备更强的「创造力」！<ul>
+<li>  时刻问自己：「是否具备创造力？」</li>
+</ul>
+</li>
+</ul>
+<h3 id="任务拆分"><a href="#任务拆分" class="headerlink" title="任务拆分"></a>任务拆分</h3><p>成长过程会经历：能力越大、责任越大、事情越多</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>  拆分细化为多个点</li>
+<li>  排好优先级</li>
+</ul>
+<p>任务四象限，决定优先级</p>
+<ul>
+<li>紧急重要<ul>
+<li>  赶紧搞定</li>
+</ul>
+</li>
+<li>重要不紧急<ul>
+<li>  时刻保持关注，以免沦为「紧急重要」</li>
+</ul>
+</li>
+<li>紧急不重要<ul>
+<li>  少少益善，学会拒绝</li>
+</ul>
+</li>
+<li>不紧急不重要<ul>
+<li>  靠自律</li>
+</ul>
+</li>
+</ul>
+<h3 id="SMART-原则"><a href="#SMART-原则" class="headerlink" title="SMART 原则"></a>SMART 原则</h3><ul>
+<li>S：任务是否明确<ul>
+<li>  不明确的任务搞起来就是浪费生命</li>
+</ul>
+</li>
+<li>M：任务是否可度量<ul>
+<li>  不可度量如何体现价值？</li>
+</ul>
+</li>
+<li>A：任务是否可搞定<ul>
+<li>  搞不定就不应该接，接就得有魄力搞定</li>
+</ul>
+</li>
+<li>R：任务的相关性如何<ul>
+<li>  决定了任务的价值，相关性越高越能体现价值，比如这个任务搞定了能让团队获得公司、客户等更大的认可</li>
+</ul>
+</li>
+<li>T：任务的时间<ul>
+<li>  Timeline：任务时间轴，什么时间点需要搞定什么</li>
+<li>  Deadline：任务的最后期限，做评估时最好提前，因为总会有各种意外或拖延本性</li>
+<li>Timeline<br>  上一些很关键的时间点我们可以称为里程碑，搞定每个里程碑应该庆祝下</li>
+</ul>
+</li>
+</ul>
+<h3 id="自己欠缺什么，立马发现"><a href="#自己欠缺什么，立马发现" class="headerlink" title="自己欠缺什么，立马发现"></a>自己欠缺什么，立马发现</h3><h3 id="是否需要寻求帮助，谁能帮你，自己单干？"><a href="#是否需要寻求帮助，谁能帮你，自己单干？" class="headerlink" title="是否需要寻求帮助，谁能帮你，自己单干？"></a>是否需要寻求帮助，谁能帮你，自己单干？</h3><h3 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h3><p>士气第一</p>
+<ul>
+<li>当你有团队时，分配与调度好任务很关键<ul>
+<li>  做得好是真并发</li>
+<li>  做不好会死锁</li>
+</ul>
+</li>
+</ul>
+<h3 id="沟通、反馈与责任"><a href="#沟通、反馈与责任" class="headerlink" title="沟通、反馈与责任"></a>沟通、反馈与责任</h3><ul>
+<li>  一个无沟通能力的人，要么是天才，要么是不可爱的人，不过天才也就寥寥无几而已，你并不是</li>
+<li>反馈要及时<ul>
+<li>  避免出问题不反馈，影响进度</li>
+<li>方式<ul>
+<li>  正式的：邮件</li>
+<li>  临时的：微信等即时通信</li>
+<li>  着急的：给个电话</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>  工作有大小，责任心无大小</li>
+<li>周报的透明<ul>
+<li>意义：大家互相了解工作与心得，有利于自己的判断与成长<ul>
+<li>  观察是一种很重要的技能</li>
+<li>  不是单纯的给领导汇报工作</li>
+</ul>
+</li>
+<li>  周报需体现本周工作总结、下周工作计划、心得/问题/建议（我们叫唧唧歪歪）</li>
+<li>周报可以很好体现一个人的<ul>
+<li>  总结能力</li>
+<li>  计划能力</li>
+<li>分享能力<ul>
+<li>  想象下：一个人从来没有心得/问题/建议的沉淀或反馈，这个人是一个相对封闭的人，在团队作战中很难达到默契</li>
+<li>  当然，这种分享能力远不仅仅是在周报这种形式里</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="团队意识"><a href="#团队意识" class="headerlink" title="团队意识"></a>团队意识</h3><ul>
+<li>很多人都说自己具备足够好的团队意识，但是有些人却并不是这样<ul>
+<li>举个小例子：一个 10 人团队约定早上 10 点开会，而你迟到了 10<br>  分钟，对于团队来说你浪费了整个团队 100 分钟（10 人 * 10<br>  分钟）的生命。有些人无羞愧之心要么是意识不到这点，要么这个团队的风气就是这样...</li>
+</ul>
+</li>
+<li>  团队意识是建立在互相信任的基础上</li>
+<li>  &quot;尺有所短，寸有所长&quot; 是一个优秀的团队必须要达成的共识</li>
+<li>Leader 最关键，优秀的 Leader 一定会有个优秀团队<ul>
+<li>  兵熊熊一个</li>
+<li>  将熊熊一窝</li>
+</ul>
+</li>
+<li>  如何拥有个优秀的团队是一个复杂的话题</li>
+</ul>
+<h2 id="成长"><a href="#成长" class="headerlink" title="成长"></a>成长</h2><h3 id="新事物的敏感性"><a href="#新事物的敏感性" class="headerlink" title="新事物的敏感性"></a>新事物的敏感性</h3><ul>
+<li>  保持好奇心</li>
+<li>  不要局限在自己的圈子，适当跨界吸收灵感</li>
+<li>  订阅国内外优秀博客/资源</li>
+<li>  选择性参与一些必要的会议，听必要的主题，讨论必要的话题</li>
+</ul>
+<h3 id="关于知识"><a href="#关于知识" class="headerlink" title="关于知识"></a>关于知识</h3><ul>
+<li>  好记性不如烂笔头，勤做笔记所带来的收益远超你想象</li>
+<li>  尽快尽早的将自己的知识形成系统化认知，会达到事半功倍的效果</li>
+<li>  对知识的渴望程度决定了前进动力的大小</li>
+<li>  当知识很廉价地摆在你面前，你反而不会珍惜</li>
+<li>  对知识保持敬畏之心</li>
+</ul>
+<h3 id="关于信息获取"><a href="#关于信息获取" class="headerlink" title="关于信息获取"></a>关于信息获取</h3><ul>
+<li>  拓宽自己获取信息的渠道，但不要陷入低信噪比的泥潭</li>
+<li>信息筛选<ul>
+<li>与你相关性如何？</li>
+<li>整体可信度多高？</li>
+<li>有效信息量多少？</li>
+</ul>
+</li>
+<li>  处理并重新组织为你自己的理解</li>
+</ul>
+<h3 id="不要让自己成为矫情-浮夸的人"><a href="#不要让自己成为矫情-浮夸的人" class="headerlink" title="不要让自己成为矫情/浮夸的人"></a>不要让自己成为矫情/浮夸的人</h3><h3 id="和比你厉害的人在一起，和一流的人工作"><a href="#和比你厉害的人在一起，和一流的人工作" class="headerlink" title="和比你厉害的人在一起，和一流的人工作"></a>和比你厉害的人在一起，和一流的人工作</h3><ul>
+<li>  指点往往是精华</li>
+<li>杜绝笨蛋爆炸<ul>
+<li>  二流的人招进来的人不太可能是一流的</li>
+<li>  久而久之一个团队就笨蛋爆炸了</li>
+</ul>
+</li>
+</ul>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><ul>
+<li>  批判性思考</li>
+<li>  解构与系统化思考</li>
+<li>换位思考<ul>
+<li>  对于一个团队来说，这点太关键</li>
+</ul>
+</li>
+</ul>
+<h3 id="提问的智慧"><a href="#提问的智慧" class="headerlink" title="提问的智慧"></a>提问的智慧</h3><ul>
+<li>遇到问题先独立思考，尝试独立解决，尽最大努力后再提问  <!-- - Google/ChatGPT -->
+  <!-- -  [《你尽力了吗？》](https://paper.seebug.org/papers/scz/body/200004171952.txt) --></li>
+<li> <strong>很多技术，明天就会过时，如果你掌握的是学习方法，那你还有下一个机会，如果你掌握的仅仅是这个技术本身，你就没有机会了。</strong></li>
+<li>  提问时，礼貌很关键（对知识的敬畏），清晰表达很关键</li>
+<li>  解决后，分享出来帮助更多需要帮助的人</li>
+</ul>
+<h3 id="小事心态"><a href="#小事心态" class="headerlink" title="小事心态"></a>小事心态</h3><ul>
+<li>  越基础的事越关键，越需要细心</li>
+<li>  不要一味盲目追求「高级感」，而忽视「小事」/「简单事」/「基础事」</li>
+<li>  基础不牢、地动山摇</li>
+<li>  小事做不好，别提大事</li>
+</ul>
+<h3 id="无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳"><a href="#无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳" class="headerlink" title="无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳"></a>无论是个人还是团队的成长都需要不断沉淀知识，没有沉淀根基不稳</h3><h2 id="完成的定义"><a href="#完成的定义" class="headerlink" title="完成的定义"></a>完成的定义</h2><h3 id="比如写个-POC"><a href="#比如写个-POC" class="headerlink" title="比如写个 POC"></a>比如写个 POC</h3><ol>
+<li> 搞懂了目标 Web 应用漏洞的原理</li>
+<li> 熟练运用 Python 各相关模块与机制</li>
+<li>熟练了解了 HTTP 协议<ul>
+<li>  HTTP 请求</li>
+<li>  HTTP 响应</li>
+</ul>
+</li>
+<li> 代码写得够规范，让人看起来就是爽</li>
+<li>程序经过足够的测试<ul>
+<li>  黑盒测试</li>
+<li>  白盒测试</li>
+</ul>
+</li>
+<li>及时反馈进度<ul>
+<li>  我遇到困难了</li>
+<li>  我搞定了</li>
+</ul>
+</li>
+<li> 更新相关文档，沉淀</li>
+</ol>
+<h2 id="熟练的定义"><a href="#熟练的定义" class="headerlink" title="熟练的定义"></a>熟练的定义</h2><h3 id="比如熟练-SQL-注入"><a href="#比如熟练-SQL-注入" class="headerlink" title="比如熟练 SQL 注入"></a>比如熟练 SQL 注入</h3><ul>
+<li>  SQL 语句这门”语言”能脱离文档顺手写出</li>
+<li>主流数据库的 SQL 特有函数、存储过程、机制我都了如指掌<ul>
+<li>  MySQL</li>
+<li>  PostgreSQL</li>
+<li>  ...</li>
+</ul>
+</li>
+<li>牛逼的工具我不仅用的顺其自然，源码还读过几遍，我能修改<ul>
+<li>  pocsuite3</li>
+<li>  sqlmap</li>
+<li>  metasploit</li>
+<li>  nmap</li>
+<li>  ...</li>
+</ul>
+</li>
+<li>我具备创造性，而不仅仅是跟在大牛身后<ul>
+<li>  研究出了几个不错的技巧</li>
+<li>  发了几篇不错的 Paper</li>
+<li>  对外会议/沙龙等进行了几次分享</li>
+<li>  写出了自己的相关工具，爽</li>
+</ul>
+</li>
+<li>  我实战了 N 回，遇到了很多奇葩环境，我有足够的信心绕过</li>
+<li>  以上这些之后，这才叫熟练！其他同理</li>
+</ul>
+<h2 id="好书推荐"><a href="#好书推荐" class="headerlink" title="好书推荐"></a>好书推荐</h2><h3 id="推荐理由"><a href="#推荐理由" class="headerlink" title="推荐理由"></a>推荐理由</h3><ul>
+<li>打通任督二脉的书，怎能不看？<ul>
+<li>  但，尽信书不如无书</li>
+</ul>
+</li>
+<li>  任何科学研究最终必须至少到哲学层面，触碰到上帝的脚</li>
+<li>  具体技术类书籍请见「专业技能」相关部分</li>
+</ul>
+<h3 id="鸡汤类"><a href="#鸡汤类" class="headerlink" title="鸡汤类"></a>鸡汤类</h3><h4 id="UNIX-编程艺术"><a href="#UNIX-编程艺术" class="headerlink" title="UNIX 编程艺术"></a>UNIX 编程艺术</h4><p>极客的思维哲学</p>
+<ul>
+<li>  使用简洁的接口拼合简单的部件</li>
+<li>  清晰胜于机巧</li>
+<li>  设计时考虑拼接组合</li>
+<li>  策略同机制分离，接口同引擎分离</li>
+<li>  设计要简洁，复杂度能低则低</li>
+<li>  除非确无它法，不要编写庞大的程序</li>
+<li>  设计要可见，以便审查和调试</li>
+<li>  健壮源于透明与简洁</li>
+<li>  把知识叠入数据以求逻辑质朴而健壮</li>
+<li>  接口设计避免标新立异</li>
+<li>  如果一个程序没什么好说的，就保持沉默</li>
+<li>  出现异常时，马上退出并给出足量错误信息</li>
+<li>  宁花机器一分，不花程序员一秒</li>
+<li>  避免手工hack，尽量编写程序去生成程序</li>
+<li>  雕琢前先得有原型，跑之前先学会走</li>
+<li>  决不相信所谓”不二法门”的断言</li>
+<li>  设计着眼未来，未来总比预想快</li>
+</ul>
+<h4 id="黑客与画家"><a href="#黑客与画家" class="headerlink" title="黑客与画家"></a>黑客与画家</h4><p>印象深刻：设计者的品味</p>
+<ul>
+<li>好设计是简单的设计<ul>
+<li>  抓住本质</li>
+</ul>
+</li>
+<li>好设计是永不过时的设计<ul>
+<li>  如果解决方法是丑陋的，那就肯定还有更好的解决方法，只是还没有发现而已</li>
+</ul>
+</li>
+<li>  好设计是解决主要问题的设计</li>
+<li>  好设计是启发性的设计</li>
+<li>  好设计通常是有点趣味性的设计</li>
+<li>  好设计是艰苦的设计</li>
+<li>  好设计是看似容易的设计</li>
+<li>  好设计是对称的设计</li>
+<li>  好设计是模仿大自然的设计</li>
+<li>  好设计是一种再设计</li>
+<li>  好设计是能够复制的设计</li>
+<li>  好设计往往是奇特的设计</li>
+<li>  好设计是成批出现的</li>
+<li>  好设计常常是大胆的设计</li>
+</ul>
+<h4 id="浪潮之巅"><a href="#浪潮之巅" class="headerlink" title="浪潮之巅"></a>浪潮之巅</h4><p>感受 IT 帝国的崛起与没落，我们现在站在又一个互联网浪潮之巅</p>
+<h4 id="代码2-0-网络空间中的法律"><a href="#代码2-0-网络空间中的法律" class="headerlink" title="代码2.0 - 网络空间中的法律"></a>代码2.0 - 网络空间中的法律</h4><p>网络不是法外之地</p>
+<h3 id="洁癖类"><a href="#洁癖类" class="headerlink" title="洁癖类"></a>洁癖类</h3><ul>
+<li>  重构</li>
+<li>  代码整洁之道</li>
+<li>  代码大全 2</li>
+</ul>
+<h3 id="敏捷类"><a href="#敏捷类" class="headerlink" title="敏捷类"></a>敏捷类</h3><ul>
+<li>Rework中文版<ul>
+<li>  37signals 团队的敏捷经验</li>
+</ul>
+</li>
+<li>  高效程序员的 45 个习惯</li>
+</ul>
+<h3 id="产品类"><a href="#产品类" class="headerlink" title="产品类"></a>产品类</h3><ul>
+<li>  人人都是产品经理</li>
+<li>  结网</li>
+</ul>
+<h3 id="神书"><a href="#神书" class="headerlink" title="神书"></a>神书</h3><ul>
+<li>  自私的基因</li>
+<li>  失控</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title="..."></a>...</h3> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-technology/other/视频编码格式与浏览器兼容性问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2025/04/07/technology/other/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/"
+    >HEVC视频编码格式与浏览器兼容性问题</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/04/07/technology/other/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2025-04-07T09:04:00.000Z" itemprop="datePublished">2025-04-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>问题</p>
+<p>以下是ChatGPT的回复</p>
+<p>HEVC (Main) 和 H.264 (High) 是两种不同的视频编码标准，它们有几个主要区别：</p>
+<ol>
+<li>编码效率和压缩比</li>
+</ol>
+<ul>
+<li>HEVC (H.265)：比 H.264 更高效，能够在相同的视频质量下提供更低的比特率。换句话说，HEVC 可以在更小的文件大小下保持更好的画质。</li>
+<li>H.264：相较于 HEVC，压缩效率较低，相同质量的视频会有较大的文件大小。</li>
+</ul>
+<ol start="2">
+<li>视频质量</li>
+</ol>
+<ul>
+<li>HEVC：能够提供更高的压缩率和视频质量，特别是在高分辨率视频（如 4K）和低比特率的情况下表现更好。</li>
+<li>H.264：虽然它也提供高质量的视频，但相对于 HEVC 来说，压缩率较低，可能在较低比特率下会出现更多的压缩损失或画质下降。</li>
+</ul>
+<ol start="3">
+<li>硬件支持</li>
+</ol>
+<ul>
+<li>HEVC：因为 HEVC 比 H.264 更复杂，许多旧的硬件设备（如老款的电视、手机、平板等）可能不支持 HEVC 解码或编码，尤其是低端设备。</li>
+<li>H.264：几乎所有设备和平台都支持 H.264，无论是硬件解码还是软件解码。</li>
+</ul>
+<ol start="4">
+<li>编码复杂度</li>
+</ol>
+<ul>
+<li>HEVC：编码复杂度高，需要更多的计算资源来进行编码和解码，因此会消耗更多的 CPU 或 GPU 资源。</li>
+<li>H.264：编码和解码相对简单，因此对于低功耗设备或实时视频流应用更为合适。</li>
+</ul>
+<ol start="5">
+<li>广泛应用</li>
+</ol>
+<ul>
+<li>HEVC：主要用于高分辨率视频（如 4K 视频），而且在流媒体和广播等新兴领域越来越流行。</li>
+<li>H.264：依然是网络视频流、视频会议、蓝光光盘等领域的主流编码格式。</li>
+</ul>
+<ol start="6">
+<li>兼容性</li>
+</ol>
+<ul>
+<li>HEVC：新兴的编码格式，虽然它在压缩和质量上有优势，但老旧设备和浏览器的兼容性相对较差。<ul>
+<li>Linux(Ubuntu)的Chrome浏览器不支持</li>
+<li>Windows/MacOS/Andriod都支持</li>
+</ul>
+</li>
+<li>H.264：几乎所有设备和平台都支持，兼容性最好。</li>
+</ul>
+<p>浏览器适配方案</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh-CN&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>视频播放示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>视频播放示例<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;video-player&quot;</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="string">&quot;640&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 默认的视频文件，支持 H.264 格式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">id</span>=<span class="string">&quot;video-source&quot;</span> <span class="attr">src</span>=<span class="string">&quot;video_h264.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果浏览器支持 HEVC 格式，可以加载 HEVC 视频 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;video_hevc.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4; codecs=hevc&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 备用格式 WebM --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;video.webm&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/webm&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果浏览器不支持视频格式 --&gt;</span></span><br><span class="line">    您的浏览器不支持视频播放，请更新浏览器或使用支持的视频格式。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> videoElement = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;video-player&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> h264Support = videoElement.canPlayType(<span class="string">&#x27;video/mp4; codecs=&quot;avc1.42E01E&quot;&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> hevcSupport = videoElement.canPlayType(<span class="string">&#x27;video/mp4; codecs=&quot;hevc&quot;&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line">    if (hevcSupport) &#123;</span><br><span class="line"><span class="javascript">      <span class="comment">// 如果支持 HEVC，则加载 HEVC 格式的视频</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">&#x27;video-source&#x27;</span>).src = <span class="string">&#x27;video_hevc.mp4&#x27;</span>;</span></span><br><span class="line"><span class="javascript">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (h264Support) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 如果支持 H.264，则加载 H.264 格式的视频</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">&#x27;video-source&#x27;</span>).src = <span class="string">&#x27;video_h264.mp4&#x27;</span>;</span></span><br><span class="line"><span class="javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 如果两者都不支持，加载 WebM 格式</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      videoElement.innerHTML = &#x27;<span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;video.webm&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/webm&quot;</span>&gt;</span>&#x27;;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ffmpeg/" rel="tag">ffmpeg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91/" rel="tag">视频</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

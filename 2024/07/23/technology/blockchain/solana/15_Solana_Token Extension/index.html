@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>15_Solana_Token Extension |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/blockchain/solana/15_Solana_Token Extension"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  15_Solana_Token Extension
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/23/technology/blockchain/solana/15_Solana_Token%20Extension/" class="article-date">
+  <time datetime="2024-07-23T01:34:00.000Z" itemprop="datePublished">2024-07-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/intro-to-token-extensions-program">https://www.soldev.app/course/intro-to-token-extensions-program</a></p>
+</blockquote>
+<ul>
+<li><p>Token Extension Program 是 Token Program 的超集</p>
+</li>
+<li><p>Token Program 和 Token Extension Program 是2个程序</p>
+<ul>
+<li>两个程序的地址，不可以互换(<code>not interchangeable</code>)</li>
+</ul>
+</li>
+<li><p>Token Extension 16种功能：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://spl.solana.com/token-2022/extensions">https://spl.solana.com/token-2022/extensions</a></p>
+</blockquote>
+<ul>
+<li><strong>Account</strong>:<ul>
+<li><code>Memo</code>: 转账时需要增加备注</li>
+<li><code>Immutable ownership</code>:  ATA权限不可以转移<ul>
+<li>Token 2022的ATA权限默认是不可转移的</li>
+</ul>
+</li>
+<li><code>Default account state</code>:  设置默认的账户状态，如：默认冻结<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/default-account-state">https://www.soldev.app/course/default-account-state</a></li>
+<li>一般用在游戏内，禁止用于转移，必须需要管理员解冻,才能转移</li>
+</ul>
+</li>
+<li><code>CPI guard</code>: 对CPI做一些限制操作</li>
+</ul>
+</li>
+<li><strong>Mint</strong><ul>
+<li><code>Transfer fees</code>: 项目方可以加入抽水功能</li>
+<li><code>Closing mint</code>: 关闭mint ， 方便跑路<ul>
+<li>需要supply为0, 即，需要销毁所有token之后才能关闭mint</li>
+</ul>
+</li>
+<li><code>Interest-bearing tokens</code>: 生息， 非常适合staking项目</li>
+<li><code>Non-transferable tokens</code>: 不可转移， 适合做灵魂绑定(<code>Soul-Bound</code>)<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/non-transferable-token">https://www.soldev.app/course/non-transferable-token</a></li>
+</ul>
+</li>
+<li><code>Permanent delegate</code>: 永久代理，项目方可以控制一切账户，非常适合做中心化集权场景</li>
+<li><code>Transfer hook</code>: token转账的钩子， 可以增加自定义相关回调</li>
+<li><code>Metadata pointer</code>: 为token增加metadata<ul>
+<li>一般与Metadata Extension一起用, 也可以与外部账户(Metaplex)联合使用</li>
+</ul>
+</li>
+<li><code>Metadata</code>： 为token增加metadata ，一般和 <code>metadta pointer</code>一起用<ul>
+<li><a target="_blank" rel="noopener" href="https://www.soldev.app/course/token-extensions-metadata">https://www.soldev.app/course/token-extensions-metadata</a></li>
+<li>解决了需要以来外部账户(如Metaplex)的缺点，简化了开发</li>
+</ul>
+</li>
+<li><code>Group pointer</code>： 群组，适合做合集， 如NFT合集</li>
+<li><code>Group</code>: 同上</li>
+<li><code>Member pointer </code>： 成员</li>
+<li><code>Member</code>： 同上</li>
+<li><code>Confidential transfers</code>： 私密交易</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用命令行spl-token使用-Token-2022"><a href="#使用命令行spl-token使用-Token-2022" class="headerlink" title="使用命令行spl-token使用 Token 2022"></a>使用命令行<code>spl-token</code>使用 Token 2022</h2><blockquote>
+<p>spl-token –create-token –help</p>
+</blockquote>
+<h3 id="创建-close-authority-token"><a href="#创建-close-authority-token" class="headerlink" title="创建 close authority token"></a>创建 close authority token</h3><p>获取solana配置信息，设置 <code>devnet</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ solana config get</span><br><span class="line">Config File: /home/yqq/.config/solana/cli/config.yml</span><br><span class="line">RPC URL: https://api.devnet.solana.com</span><br><span class="line">WebSocket URL: wss://api.devnet.solana.com/ (computed)</span><br><span class="line">Keypair Path: /home/yqq/.config/solana/id.json</span><br><span class="line">Commitment: confirmed</span><br></pre></td></tr></table></figure>
+
+<p>创建 close authority token</p>
+<blockquote>
+<p>注意: spl-token 默认使用的 Token Program的program id, 如需使用Token 2022,则需要制定program id</p>
+<ul>
+<li><code>TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</code> 是 Token 2022的program id</li>
+<li><code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code> 是 Token Program的program id</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb --enable-close</span><br></pre></td></tr></table></figure>
+
+
+<p>创建ATA账户</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl-token create-account --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>mint token, 注意必须指定program id, 因为 spl-token 默认使用旧版Token Program作为program id</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spl-token mint --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq 1000000000  4tQwDVgmNYPxrdhmqVAza9qefkmPPhBrF1h75oMrfd2Q</span><br><span class="line"></span><br><span class="line">Minting 1000000000 tokens</span><br><span class="line">  Token: CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq</span><br><span class="line">  Recipient: 4tQwDVgmNYPxrdhmqVAza9qefkmPPhBrF1h75oMrfd2Q</span><br><span class="line"></span><br><span class="line">Signature: YdAcA3VJ9ehFRKzZCbkwMvEMxVAMPVB7X7Cuu4pS7pXcUKjGWSB7siCywFG1wJGXqQVXK3HuTSje2dytrmHKFJg</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>直接关闭会报错，因为此时 supply不是0, 必须先销毁，然后才能close</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token close-mint CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq</span><br><span class="line">Error: &quot;Mint CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq still has 1000000000000000000 outstanding tokens; these must be burned before closing the mint.&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>销毁token</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spl-token burn --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 4tQwDVgmNYPxrdhmqVAza9qefkmPPhBrF1h75oMrfd2Q 1000000000</span><br><span class="line"></span><br><span class="line">Burn 1000000000 tokens</span><br><span class="line">  Source: 4tQwDVgmNYPxrdhmqVAza9qefkmPPhBrF1h75oMrfd2Q</span><br><span class="line"></span><br><span class="line">Signature: K3v2mkrrdyqym9RHFWT2yo2RQ89zcZQaR6V6RW37ie44ob2Du4arTTym1FimpHLQ9FTHPd8zhdXxnjqU8tGWzZp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>查看mint的信息， 此时 supply 为0, 可以进行close</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token display CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq</span><br><span class="line"></span><br><span class="line">SPL Token Mint</span><br><span class="line">  Address: CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq</span><br><span class="line">  Program: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">  Supply: 0</span><br><span class="line">  Decimals: 9</span><br><span class="line">  Mint authority: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line">  Freeze authority: (not <span class="built_in">set</span>)</span><br><span class="line">Extensions</span><br><span class="line">  Close authority: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>进行close</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token close-mint CisqmfLH8R2JnSYSA8tgW8LSG5hQPogYZKxxHv6H5aMq</span><br><span class="line"></span><br><span class="line">Signature: 2h9bLrRCcK1bSbavdtKHrHLV2FVJVtEQiCUXBDKZXwZwnGFSZMhiYLDpRCJ7pxgb4KKxc75zUbCgeo9SeM7sjheH</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建ATA权限不可转移的token-2022"><a href="#创建ATA权限不可转移的token-2022" class="headerlink" title="创建ATA权限不可转移的token 2022"></a>创建ATA权限不可转移的token 2022</h3><p>创建 token,  token 2022 的ATA默认都是不可转移的，因此不需要制定额外参数</p>
+<blockquote>
+<p>注意: spl-token 默认使用的 Token Program的program id, 如需使用Token 2022,则需要制定program id</p>
+<ul>
+<li><code>TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</code> 是 Token 2022的program id</li>
+<li><code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code> 是 Token Program的program id</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">Creating token HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw under program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line"></span><br><span class="line">Address:  HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw</span><br><span class="line">Decimals:  9</span><br><span class="line"></span><br><span class="line">Signature: 411LLtiDPB6Xgpq4kqsqp4K3atJCsTuWAHnAYaV6YaaMPDCYVTkRi6PWra7ixxMtWTbwyGeBxiZmfBfLjfeyZ6Q5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建 ATA 账户</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token create-account --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb  HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw</span><br><span class="line">Creating account GfuBt164MUSThb3ZnhLfra8bbHzzrCvruXs5p7rC23LW</span><br><span class="line"></span><br><span class="line">Signature: 3eRBFR52dhVBtad7sZs9s2i2h9Lw6W9TGvDdRQJ9DAiuEZPYoaHPEnqfCuoGzX6mDfTcPiP4wW7bdLzSQHtEzZLT</span><br></pre></td></tr></table></figure>
+
+
+<p>mint token</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token mint --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw 10000000 GfuBt164MUSThb3ZnhLfra8bbHzzrCvruXs5p7rC23LW</span><br><span class="line">Minting 10000000 tokens</span><br><span class="line">  Token: HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw</span><br><span class="line">  Recipient: GfuBt164MUSThb3ZnhLfra8bbHzzrCvruXs5p7rC23LW</span><br><span class="line"></span><br><span class="line">Signature: 2ffKaX7XsK71GbpehqCgqsx9qVdGXSA28umQQ7guXN7Pv9ZzviRpCNyRuoPmFGwAtHANGzTs8TkWDMXJUT4m6vhP</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>查看余额</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token balance HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw</span><br><span class="line">10000000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>查看ATA账户信息, 可以看到 <code>Immutable owner</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token display GfuBt164MUSThb3ZnhLfra8bbHzzrCvruXs5p7rC23LW</span><br><span class="line"></span><br><span class="line">SPL Token Account</span><br><span class="line">  Address: GfuBt164MUSThb3ZnhLfra8bbHzzrCvruXs5p7rC23LW</span><br><span class="line">  Program: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">  Balance: 10000000</span><br><span class="line">  Decimals: 9</span><br><span class="line">  Mint: HcGkiji8KimiZPTBf3SFCapAoR9NP63LdZtpv3719wdw</span><br><span class="line">  Owner: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line">  State: Initialized</span><br><span class="line">  Delegation: (not <span class="built_in">set</span>)</span><br><span class="line">  Close authority: (not <span class="built_in">set</span>)</span><br><span class="line">Extensions:</span><br><span class="line">  Immutable owner</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="创建-灵魂绑定代币"><a href="#创建-灵魂绑定代币" class="headerlink" title="创建 灵魂绑定代币"></a>创建 灵魂绑定代币</h3><p>创建 token,</p>
+<ul>
+<li><code>--decimals 0 </code></li>
+<li> <code>--enable-metadata </code></li>
+<li> <code>--enable-non-transferable</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb --decimals 0 --enable-metadata --enable-non-transferable</span><br><span class="line">Creating token 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K under program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">To initialize metadata inside the mint, please run &#96;spl-token initialize-metadata 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K &lt;YOUR_TOKEN_NAME&gt; &lt;YOUR_TOKEN_SYMBOL&gt; &lt;YOUR_TOKEN_URI&gt;&#96;, and sign with the mint authority.</span><br><span class="line"></span><br><span class="line">Address:  7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">Decimals:  0</span><br><span class="line"></span><br><span class="line">Signature: 4z1gNiFfLAkoe9RQD84N3vHh88ZNegZs2zL81ve1uKG8ijT6VGK4yuTYwjmLLCLgAXxRvCSUoMChneQZRCZXR7Wz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>初始化metadata</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token initialize-metadata 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K YQQTOKEN YT https:&#x2F;&#x2F;arweave.net&#x2F;7q03FecPFE5JBPDakJFDS7xvdKqw5NSlNPUFZOYVVlk</span><br><span class="line"></span><br><span class="line">Signature: 3zxSfkAg32KavFJ3UNXAMs4KyogZwRNDjDWmD1z8PmmHLHsDaYinwpQwrsC7EnqFNSSTc5e6ohMaUvAT7N5UowbZ</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看token信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token display 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line"></span><br><span class="line">SPL Token Mint</span><br><span class="line">  Address: 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">  Program: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">  Supply: 0</span><br><span class="line">  Decimals: 0</span><br><span class="line">  Mint authority: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line">  Freeze authority: (not <span class="built_in">set</span>)</span><br><span class="line">Extensions</span><br><span class="line">  Non-transferable</span><br><span class="line">  Metadata Pointer:</span><br><span class="line">    Authority: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line">    Metadata address: 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">  Metadata:</span><br><span class="line">    Update Authority: 7DxeAgFoxk9Ha3sdciWE4G4hsR9CUjPxsHAxTmuCJrop</span><br><span class="line">    Mint: 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">    Name: YQQTOKEN</span><br><span class="line">    Symbol: YT</span><br><span class="line">    URI: https://arweave.net/7q03FecPFE5JBPDakJFDS7xvdKqw5NSlNPUFZOYVVlk</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>更新metadata</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token update-metadata 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K name YQQNFT</span><br><span class="line"></span><br><span class="line">Signature: 2xRQhsQiyrG8FVe3JHSFsDYz4gy1RPD16ECZWBpfdCwRpCgnTUzEhDJJ9QNRmR4Qnga2xTua2jrYhy6PFizigun3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建 ATA</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token create-account --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">Creating account 64Sxa26sViFh9JKFM6tm7dEib3hLTxbRXvARjjLTCmeG</span><br><span class="line"></span><br><span class="line">Signature: 3HvNKDiPa6QcihbgUB4pVsojtmq7khwqCDdTb1iwfwdbuexe3s3PNCipEL8MMQMCwFYEGFNnmdfohXJ6weUCZ4tw</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>mint token</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ spl-token mint --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K 1 64Sxa26sViFh9JKFM6tm7dEib3hLTxbRXvARjjLTCmeG</span><br><span class="line">Minting 1 tokens</span><br><span class="line">  Token: 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K</span><br><span class="line">  Recipient: 64Sxa26sViFh9JKFM6tm7dEib3hLTxbRXvARjjLTCmeG</span><br><span class="line"></span><br><span class="line">Signature: FijHaPESJUG4PgMWjxFcPwvH7GkvL1feQeg8KKHRsS2WmfDEWkutWniEFMyDNg76acU6bUeaQ97ywtWWW1Y8SbF</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>尝试转移 Token, 报错<code>Transfer is disabled for this mint</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ spl-token transfer --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 7R6uaZgMZgmfBRLJXXYHPRV8oysDokv8FHrZ7Td1xo5K 1 38jEaxphBTa3NEg4K6nG8Zgs6eVsSsr9AoSZCfax2pH8 --fund-recipient</span><br><span class="line">Transfer 1 tokens</span><br><span class="line">  Sender: 64Sxa26sViFh9JKFM6tm7dEib3hLTxbRXvARjjLTCmeG</span><br><span class="line">  Recipient: 38jEaxphBTa3NEg4K6nG8Zgs6eVsSsr9AoSZCfax2pH8</span><br><span class="line">  Recipient associated token account: 3XX7DysVrERAeTYFczEoKtwxqH6QqxWfUBcUBaZy1GZ4</span><br><span class="line">  Funding recipient: 3XX7DysVrERAeTYFczEoKtwxqH6QqxWfUBcUBaZy1GZ4</span><br><span class="line">Error: Client(Error &#123; request: Some(SendTransaction), kind: RpcError(RpcResponseError &#123; code: -32002, message: <span class="string">&quot;Transaction simulation failed: Error processing Instruction 1: custom program error: 0x25&quot;</span>, data: SendTransactionPreflightFailure(RpcSimulateTransactionResult &#123; err: Some(InstructionError(1, Custom(37))), logs: Some([<span class="string">&quot;Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]&quot;</span>, <span class="string">&quot;Program log: CreateIdempotent&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]&quot;</span>, <span class="string">&quot;Program log: Instruction: GetAccountDataSize&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3064 of 22071 compute units&quot;</span>, <span class="string">&quot;Program return: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb rgAAAAAAAAA=&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success&quot;</span>, <span class="string">&quot;Program 11111111111111111111111111111111 invoke [2]&quot;</span>, <span class="string">&quot;Program 11111111111111111111111111111111 success&quot;</span>, <span class="string">&quot;Program log: Initialize the associated token account&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]&quot;</span>, <span class="string">&quot;Program log: Instruction: InitializeImmutableOwner&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 1924 of 14077 compute units&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]&quot;</span>, <span class="string">&quot;Program log: Instruction: InitializeAccount3&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 5815 of 9763 compute units&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success&quot;</span>, <span class="string">&quot;Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 29823 of 33467 compute units&quot;</span>, <span class="string">&quot;Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [1]&quot;</span>, <span class="string">&quot;Program log: Instruction: TransferChecked&quot;</span>, <span class="string">&quot;Program log: Transfer is disabled for this mint&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3644 of 3644 compute units&quot;</span>, <span class="string">&quot;Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb failed: custom program error: 0x25&quot;</span>]), accounts: None, units_consumed: Some(33467), return_data: None, inner_instructions: None &#125;) &#125;) &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="在客户端中使用-Token-2022"><a href="#在客户端中使用-Token-2022" class="headerlink" title="在客户端中使用 Token 2022"></a>在客户端中使用 Token 2022</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.soldev.app/course/token-extensions-in-the-client">https://www.soldev.app/course/token-extensions-in-the-client</a></p>
+</blockquote>
+<ul>
+<li><code>spl-token</code>默认使用 <code>Token Program</code>, 除非明确指定使用<code>Token Programs Extension</code><ul>
+<li>Token Program: <code>TOKEN_PROGRAM_ID</code></li>
+<li>Token 2022: <code>TOKEN_2022_PROGRAM_ID</code></li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/solana-course-source/blob/master/1_onchain_program_development/solana-token-2022/src/create-and-mint-token.ts">示例代码</a></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mint = <span class="keyword">await</span> createMint(</span><br><span class="line">    connection,</span><br><span class="line">    payer,</span><br><span class="line">    payer.publicKey,</span><br><span class="line">    payer.publicKey,</span><br><span class="line">    decimals,</span><br><span class="line">    <span class="literal">undefined</span>,</span><br><span class="line">    &#123; <span class="attr">commitment</span>: connection.commitment &#125;,</span><br><span class="line">    tokenProgramId  <span class="comment">// 指定 Program Id 即可</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="在Anchor使用-Token2022"><a href="#在Anchor使用-Token2022" class="headerlink" title="在Anchor使用 Token2022"></a>在Anchor使用 Token2022</h2><p>在Anchor中使用 interface 类型来将 <code>Token Program</code> 和 <code>Token 2022</code> 融合到一起</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> &#123;</span><br><span class="line">    anchor_lang::prelude::*,</span><br><span class="line">    anchor_spl::&#123;token_interface&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Example</span></span>&lt;<span class="symbol">&#x27;info</span>&gt;&#123;</span><br><span class="line">    <span class="comment">// Token account</span></span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        token::token_program = token_program</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> token_account: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, token_interface::TokenAccount&gt;,</span><br><span class="line">    <span class="comment">// Mint account</span></span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        mint::token_program = token_program</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> mint_account: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, token_interface::Mint&gt;,</span><br><span class="line">    <span class="keyword">pub</span> token_program: Interface&lt;<span class="symbol">&#x27;info</span>, token_interface::TokenInterface&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.rs/anchor-lang/latest/anchor_lang/accounts/interface/index.html">Interface</a>: 是 Program 的wrapper支持多种Program</li>
+<li><a target="_blank" rel="noopener" href="https://docs.rs/anchor-lang/latest/anchor_lang/accounts/interface_account/index.html">TokenInterface</a>: 支持 <code>Token Program</code> 和 <code>Token 2022</code>, 且仅支持这2种，如果传入其他的程序id会报错</li>
+</ul>
+<ul>
+<li><code>InterfaceAccount</code>: 和 <code>Interface</code> 类似，也是一个wrapper, 用于 <code>AccountInfo</code>. <code>InterfaceAccount</code></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2024/07/23/technology/blockchain/solana/15_Solana_Token%20Extension/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2024/07/26/technology/blockchain/solana/16_Solana_%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            16_Solana_程序安全实践指南
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2024/07/22/technology/blockchain/solana/14_Solana_%E7%A8%8B%E5%BA%8F%E6%9E%B6%E6%9E%84/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">14_Solana_程序架构</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2025
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>
