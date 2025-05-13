@@ -106,6 +106,84 @@
     
     
     <article
+  id="post-technology/blockchain/move/2_Sui入门"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/23/technology/blockchain/move/2_Sui%E5%85%A5%E9%97%A8/"
+    >2_Sui入门</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/23/technology/blockchain/move/2_Sui%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2024-10-23T06:50:00.000Z" itemprop="datePublished">2024-10-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>参考： <a target="_blank" rel="noopener" href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/1_set_up_environment.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-one/lessons/1_set_up_environment.md</a></p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>安装 <code>sui</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo install --locked --git https:&#x2F;&#x2F;github.com&#x2F;MystenLabs&#x2F;sui.git --branch devnet sui</span><br></pre></td></tr></table></figure></li>
+<li><p>vscode 安装 <code>move-analyzer</code>插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo install --git https:&#x2F;&#x2F;github.com&#x2F;move-language&#x2F;move move-analyzer --features &quot;address20&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ul>
+<li><code>sui client envs</code><ul>
+<li><code>devnet</code>: <code>https://fullnode.devnet.sui.io:443</code></li>
+<li><code>0</code> for ed25519</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装-Sui-插件钱包"><a href="#安装-Sui-插件钱包" class="headerlink" title="安装 Sui 插件钱包"></a>安装 Sui 插件钱包</h2><p><a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil?pli=1">https://chromewebstore.google.com/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil?pli=1</a></p>
+<h2 id="获取测试币"><a href="#获取测试币" class="headerlink" title="获取测试币"></a>获取测试币</h2><p><code>sui client faucet</code></p>
+<p>每次可以获取 10 SUI</p>
+<h2 id="浏览器查看地址"><a href="#浏览器查看地址" class="headerlink" title="浏览器查看地址"></a>浏览器查看地址</h2><p><a target="_blank" rel="noopener" href="https://suiscan.xyz/devnet/account/0x163813fb76d72bf46451ddfad78b35700198bf8eb8f3d3dee596726c2b01515b">https://suiscan.xyz/devnet/account/0x163813fb76d72bf46451ddfad78b35700198bf8eb8f3d3dee596726c2b01515b</a></p>
+<h2 id="查看地址"><a href="#查看地址" class="headerlink" title="查看地址"></a>查看地址</h2><ul>
+<li>查看地址: <code>sui client addresses</code></li>
+<li>查看活跃地址: <code>sui client active-address</code></li>
+<li>获取余额(Sui上叫做gas object): <code>sui client gas</code></li>
+<li></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/AI/ChatGPT底层算法-Transformer"
   class="article article-type-post"
   itemscope
@@ -657,98 +735,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aptos/" rel="tag">Aptos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/cpp/Rust_Go_Python调用C++"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/"
-    >Rust/Go/Python调用C++</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/09/27/technology/cpp/Rust_Go_Python%E8%B0%83%E7%94%A8C++/" class="article-date">
-  <time datetime="2024-09-27T09:27:00.000Z" itemprop="datePublished">2024-09-27</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="关于-extern-quot-C-quot-的作用"><a href="#关于-extern-quot-C-quot-的作用" class="headerlink" title="关于 extern &quot;C&quot;的作用"></a>关于 <code>extern &quot;C&quot;</code>的作用</h2><p>C++导出函数给其他语言使用必须使用<code>C语言</code>格式的函数,</p>
-<ul>
-<li>原因: C++<code>函数名</code>在编译之后会被破坏，以支持重载和多态，而 C 语言的编译之后的<code>函数名</code>保持一致<ul>
-<li>  了解更多： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiangtingshen/p/10980055.html">https://www.cnblogs.com/xiangtingshen/p/10980055.html</a></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  __XXXX_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要导出的C++函数</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __XXXX_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="如何解决-C-中-class-的导出问题"><a href="#如何解决-C-中-class-的导出问题" class="headerlink" title="如何解决 C++中 class 的导出问题"></a>如何解决 C++中 class 的导出问题</h2><p>因为 C++的函数只能以 C 语言的格式导出，即使用<code>extern &quot;C&quot;</code> , 那么如何处理 类方法的导出？</p>
-<p><strong>解决方案： 增加一个中间层(抽象层)</strong></p>
-<p>例如， C++的<code>class MyData</code>实现了细节， 那么可以增加一个 C 语言风格的结构体指针 <code>struct Data</code>，利用 Data 将 MyData 的方法实现封装(wrapper)</p>
-<p>示例代码:</p>
-<p><code>mydata.h</code>:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span> &#123;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>mydata.cc</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;mydata.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyData::doSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>封装抽象层: <code>data.h</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __DATA_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __DATA_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Data</span> <span class="title">Data</span>;</span></span><br><span class="line">    <span class="comment">// 导出的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// __DATA_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><code>data.cc</code> 对调用不可见</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(Data *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指针类型转换, 对调用不可见</span></span><br><span class="line">    ((MyData *)p)-&gt;<span class="built_in">doSomething</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>示意图:</p>
-<pre class="mermaid">
-graph LR
-
-Rust[Rust调用]--data.h-->data.cc[抽象层: data.cc]-.->mydata[实现层: mydata.h/mydata.cc]
-
-Go[Go调用]--data.h-->data.cc
-
-Python[Python调用] --data.h-->data.cc</pre>
-
-
-
-<p>详细代码:</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/call-cpp-dylib/">https://github.com/youngqqcn/call-cpp-dylib/</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
 
     </footer>
   </div>

@@ -106,6 +106,67 @@
     
     
     <article
+  id="post-technology/cpp/strtok源码"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/"
+    >strtok源码</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/14/technology/cpp/strtok%E6%BA%90%E7%A0%81/" class="article-date">
+  <time datetime="2024-05-14T16:00:00.000Z" itemprop="datePublished">2024-05-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="strtok源码分析"><a href="#strtok源码分析" class="headerlink" title="strtok源码分析"></a>strtok源码分析</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">char</span> str[<span class="number">80</span>] = <span class="string">&quot;192.168.10.110:9000&quot;</span>;</span><br><span class="line">   <span class="keyword">char</span> *pszHost = strtok(str, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="keyword">char</span> *pszPort = strtok(<span class="literal">NULL</span>, <span class="string">&quot;:&quot;</span>);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszHost);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, pszPort);</span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.110</span><br><span class="line">9000</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codebrowser.dev/glibc/glibc/string/strtok.c.html">https://codebrowser.dev/glibc/glibc/string/strtok.c.html</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the last string strtok() was called with is</span></span><br><span class="line"><span class="comment">   used.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	x = strtok(s, &quot;-&quot;);		// x = &quot;abc&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;-=&quot;);		// x = &quot;def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok(NULL, &quot;=&quot;);		// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0=-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">strtok (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> *olds;  <span class="comment">// 保留上一次的位置</span></span><br><span class="line">  <span class="keyword">return</span> __strtok_r (s, delim, &amp;olds);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Parse S into tokens separated by characters in DELIM.</span></span><br><span class="line"><span class="comment">   If S is NULL, the saved pointer in SAVE_PTR is used as</span></span><br><span class="line"><span class="comment">   the next starting point.  For example:</span></span><br><span class="line"><span class="comment">	char s[] = &quot;-abc-=-def&quot;;</span></span><br><span class="line"><span class="comment">	char *sp;</span></span><br><span class="line"><span class="comment">	x = strtok_r(s, &quot;-&quot;, &amp;sp);	// x = &quot;abc&quot;, sp = &quot;=-def&quot;</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;-=&quot;, &amp;sp);	// x = &quot;def&quot;, sp = NULL</span></span><br><span class="line"><span class="comment">	x = strtok_r(NULL, &quot;=&quot;, &amp;sp);	// x = NULL</span></span><br><span class="line"><span class="comment">		// s = &quot;abc\0-def\0&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">char</span> *</span><br><span class="line">__strtok_r (<span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *delim, <span class="keyword">char</span> **save_ptr)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">char</span> *end;</span><br><span class="line">  <span class="keyword">if</span> (s == <span class="literal">NULL</span>)</span><br><span class="line">    s = *save_ptr;</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Scan leading delimiters.  */</span></span><br><span class="line">  s += <span class="built_in">strspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*s == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = s;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Find the end of the token.  */</span></span><br><span class="line">  end = s + <span class="built_in">strcspn</span> (s, delim);</span><br><span class="line">  <span class="keyword">if</span> (*end == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      *save_ptr = end;</span><br><span class="line">      <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/* Terminate the token and make *SAVE_PTR point past it.  */</span></span><br><span class="line">  *end = <span class="string">&#x27;\0&#x27;</span>; <span class="comment">// 设置结束符</span></span><br><span class="line">  *save_ptr = end + <span class="number">1</span>;  <span class="comment">// 指针移动到下一个位置</span></span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c%E8%AF%AD%E8%A8%80/" rel="tag">c语言</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solidity/多笔交易打包"
   class="article article-type-post"
   itemscope
@@ -432,65 +493,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag">后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">服务端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%9E%E9%98%BB%E5%A1%9E/" rel="tag">非阻塞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/" rel="tag">高性能</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-life/佛教中“空”的本义是什么"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/"
-    >佛教中“空”的本义是什么</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/20/life/%E4%BD%9B%E6%95%99%E4%B8%AD%E2%80%9C%E7%A9%BA%E2%80%9D%E7%9A%84%E6%9C%AC%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88/" class="article-date">
-  <time datetime="2023-10-20T10:50:01.000Z" itemprop="datePublished">2023-10-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>一切万有都是缘起，这就是佛教“空”之本义，“无”之真意。</p>
-<p>空，是佛教对世界一切事物本质最简要的描述，是释迦世尊洞彻世界万物缘起的结论。故《心经》开头就说：“观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。舍利子，色不异空，空不异色，色即是空，空即是色，受想行识，亦复如此。”</p>
-<p>但社会上很多人都误解了佛教的“空”字。有人反问说：“我们每天吃的、穿的、用的，以及看到的一切，难道都是空的吗？”说这话的人也许没认真思维，难道佛教徒糊涂到连日常生活都搞不清楚吗？！佛教所说的“空”，根本不是有人所认为的“没有”的意思，也与社会上常听到的“人生到头一场空”的“空”字意思有别，“一场空”的“空”字，是得不到的意思。</p>
-<p><strong>佛教所说的“空”，是对世间事物变化过程的描述，准确地讲，是万事万物最终要变化、要毁坏的意思，是对缘起法最本质的体证。佛教认为世上任何一种事物，都是由因缘和合而成，都是由各种条件和合而成，或其它事物变化而来，最后又变化为另外的事物</strong>。</p>
-<p>成、住、坏、空，是世上一切事物发展变化的必然，有生就有死，有成就有坏。<strong>佛教所说的空，是指事物的本性是空的，而不是指事物的外相也是空</strong>。比如我们的一辈子，父母亲生下我们时，佛法上说是四大五蕴和合而成，按科学说法，是碳、氢、氧等基本元素构成，然后长大成人，然后衰老，最后死亡，一切都是变化的，我们的一生也就是在这样的因缘变化中过去了。正是在这个意思上，我们说人生是空的，一切都是缘起性空。</p>
-<p>所以佛法教导我们，<strong>做人不要执着于外相上的缘起缘灭，执着就苦，就起烦恼</strong>。但也不要因为认识到人生是空的，就悲观绝望，这就落入了顽空，这也是一种固执。因为“性空”并不否定相上的缘起，相是存在的，它刹那生灭变化。</p>
-<p>一个人认识到人生的空苦，而又不落入顽空，确实需要智慧。如何获得这种智慧？这正是佛教所要解决、所能解决的。通过学佛，修戒定慧三学，体证般若的智慧，达到改变我们苦空人生的目的。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F/" rel="tag">人生</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%BD%9B/" rel="tag">学佛</a></li></ul>
 
     </footer>
   </div>

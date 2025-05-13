@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>MCP大语言模型交互协议 |  yqq&#39;s blog</title>
+      <title>如何开发AI-Agent? |  yqq&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -52,7 +52,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-technology/AI/MCP大语言模型交互协议"
+  id="post-technology/AI/如何开发AI-Agent?"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -63,7 +63,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  MCP大语言模型交互协议
+  如何开发AI-Agent?
 </h1>
  
 
@@ -71,8 +71,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/05/09/technology/AI/MCP%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2025-05-09T08:36:00.000Z" itemprop="datePublished">2025-05-09</time>
+      <a href="/2025/05/13/technology/AI/%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91AI-Agent?/" class="article-date">
+  <time datetime="2025-05-13T02:36:00.000Z" itemprop="datePublished">2025-05-13</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
@@ -83,7 +83,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">783</span>
         </span>
     </span>
 
@@ -92,7 +92,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
@@ -107,110 +107,113 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="Model-Context-Protocol-MCP"><a href="#Model-Context-Protocol-MCP" class="headerlink" title="Model Context Protocol (MCP)"></a>Model Context Protocol (MCP)</h1><blockquote>
-<p>官方文档: <a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/introduction">https://modelcontextprotocol.io/introduction</a></p>
+  <blockquote>
+<p>参考文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/12-factor-agents">https://github.com/youngqqcn/12-factor-agents</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/building-effective-agents#agents">https://www.anthropic.com/engineering/building-effective-agents#agents</a></li>
+</ul>
 </blockquote>
-<blockquote>
-<p>入门教程: <a target="_blank" rel="noopener" href="https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide">https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2025年，底层大模型的快速发展，AI Agent 和 MCP类工具爆发式增长， 编程领域(或软件开发)正在经历一场新的<strong>范式转变</strong>。</p>
+<p>正如很多关键的科技革命一样，需要一段时间的渐变过程。我们以为未来还很遥远，其实未来已来。</p>
+<h2 id="软件开发范式简史"><a href="#软件开发范式简史" class="headerlink" title="软件开发范式简史"></a>软件开发范式简史</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/brief-history-of-software.md">https://github.com/humanlayer/12-factor-agents/blob/main/content/brief-history-of-software.md</a></p>
 </blockquote>
-<p>什么是MCP？</p>
-<p>模型上下文协议（MCP）是一个创新的开源协议，它重新定义了大语言模型（LLM）与外部世界的互动方式。MCP 提供了一种标准化方法，使任意大语言模型能够轻松连接各种数据源和工具，实现信息的无缝访问和处理。MCP 就像是 AI 应用程序的 USB-C 接口，为 AI 模型提供了一种标准化的方式来连接不同的数据源和工具。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/image-20250223214308430.png"></p>
-<p>MCP 有以下几个核心功能：</p>
-<ul>
-<li>Resources 资源</li>
-<li>Prompts 提示词(模板)， 用于给客户端提供提示词模板</li>
-<li>Tools 工具</li>
-<li>Sampling 采样</li>
-<li>Roots 根目录</li>
-<li>Transports 传输层<ul>
-<li>stdio 用于本地<ul>
-<li>通过 uvx 或 npx 跑一个本地服务供mcp客户端（也是大模型客户端）调用</li>
+<p>60年前，<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-102417.jpg" alt="xx"></p>
+<p>20年前, 用编程语言编写确定的处理逻辑<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-102450.jpg"></p>
+<p>10~15年前, 2012左右 , 在系统中加入了机器学习(Machine Learning), 对数据进行分类处理。</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-102553.jpg" alt="xx"></p>
+<p>现在, LLM+Agent， 给出一个目标和一些限定规则(提示词+外部工具)， 让AI自己去完成。<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-102641.jpg"></p>
+<p>由LLM自己决定解决问题的路径:</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-102709.jpg"></p>
+<h2 id="Agent开发的基本要素"><a href="#Agent开发的基本要素" class="headerlink" title="Agent开发的基本要素"></a>Agent开发的基本要素</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-01-natural-language-to-tool-calls.md"><strong>要素1: 将自然语言转为外部工具调用</strong></a><ul>
+<li>提供一些外部工具API给LLM获取外部数据, 由LLM决定需要调用的外部工具, 这也是目前MCP主流方式<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250513-104501.jpg"></li>
 </ul>
-</li>
-<li>streamable http 最新的</li>
-<li>http + sse : 已废弃，老的mcp依然使用</li>
-</ul>
-</li>
-</ul>
-<p>MCP客户端:</p>
-<ul>
-<li>Claude App (要翻墙)</li>
-<li>Cusor</li>
-<li>Vscode</li>
-<li>Cherry Studio</li>
-<li>…</li>
-</ul>
-<h3 id="mcp的资源"><a href="#mcp的资源" class="headerlink" title="mcp的资源"></a>mcp的资源</h3><p>目前 MCP 非常火爆，很多开发者参与:</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src">https://github.com/modelcontextprotocol/servers/tree/main/src</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/punkpeye/awesome-mcp-servers/tree/main">https://github.com/punkpeye/awesome-mcp-servers/tree/main</a></p>
-</li>
-</ul>
-<h3 id="MCP的工作原理"><a href="#MCP的工作原理" class="headerlink" title="MCP的工作原理"></a>MCP的工作原理</h3><blockquote>
-<p>关于mcp工作过程 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29001189476">https://zhuanlan.zhihu.com/p/29001189476</a></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/v2-2bcd98f6541da0b6f14dc9082ee2dcda_1440w.jpg"></p>
-<ul>
-<li>1, 用户使用客户端（如 Cursor, Cherry Studio）, 并指定开启的mcp工具，并向大模型提出问题</li>
-<li>2, 客户端将问题发大模型，同时附带上可使用的mcp工具列表</li>
-<li>3, 如果大模型需要调用mcp工具获取外部数据，大模型会中断并返回需要调用的工具列表, 并包含一个中断原因: tool_call; 如果不需要调用工具，则直接返回结果</li>
-<li>4, 客户端根据大模型返回的工具列表，调用相应的mcp工具, 获取外部数据</li>
-<li>5, 客户端将获取到的数据，传递给大模型</li>
-<li>6, 大模型根据获取到的数据，继续处理问题</li>
-<li>7, 大模型返回结果</li>
-<li>8, 客户端将结果返回给用户</li>
-</ul>
-<h3 id="MCP-server-开发"><a href="#MCP-server-开发" class="headerlink" title="MCP server 开发"></a>MCP server 开发</h3><blockquote>
-<p>官方文档: <a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/introduction">https://modelcontextprotocol.io/introduction</a><br>Python SDK: <a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/python-sdk">https://github.com/modelcontextprotocol/python-sdk</a></p>
-</blockquote>
-<p>支持 Python, Typescript, Java …</p>
-<p>这里以 Python 为例, 用 <code>uv</code>创建一个项目</p>
-<p>如果没有安装 <code>uv</code>, 请先安装 <code>uv</code>: <a target="_blank" rel="noopener" href="https://docs.astral.sh/uv/getting-started/installation/">https://docs.astral.sh/uv/getting-started/installation/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">uv init mcp-server-demo</span><br><span class="line"></span><br><span class="line">cd mcp-server-demo</span><br><span class="line"></span><br><span class="line">uv add &quot;mcp[cli]&quot;</span><br><span class="line"></span><br><span class="line">source .venv&#x2F;bin&#x2F;activate</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>创建一个  <code>add_server.py</code>, 代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># server.py</span></span><br><span class="line"><span class="keyword">from</span> mcp.server.fastmcp <span class="keyword">import</span> FastMCP</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an MCP server</span></span><br><span class="line">mcp = FastMCP(<span class="string">&quot;Demo&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an addition tool</span></span><br><span class="line"><span class="meta">@mcp.tool()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">a: <span class="built_in">int</span>, b: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add a dynamic greeting resource</span></span><br><span class="line"><span class="meta">@mcp.resource(<span class="params"><span class="string">&quot;greeting://&#123;name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_greeting</span>(<span class="params">name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Get a personalized greeting&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># Start the server</span></span><br><span class="line">    mcp.run(transport=<span class="string">&quot;streamable-http&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>调试 MCP server</strong>:</p>
-<ul>
-<li><p>测试/调试MCP程序, 启动2个终端</p>
-</li>
-<li><p>在一个终端运行 mcp 服务, <code>streamable-http</code> 默认监听 <code>8000</code> 端口 和 <code>mcp</code>端点 <code>python add_server.py</code></p>
-</li>
-<li><p>在另外一个终端中, 启动一个测试客户端 <code>mcp dev add_server.py </code></p>
-<p> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/mcp_demo_20250509.png"></p>
 </li>
 </ul>
 <ul>
-<li><p>浏览器打开 <code>http://127.0.0.1:6274</code></p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-02-own-your-prompts.md"><strong>要素2: 掌控你提示词</strong></a></p>
+<ul>
+<li>不要将你的系统提示词交给框架，而是要自己掌握，这样可以随时优化调整</li>
+</ul>
 </li>
-<li><p>Transport 选择 <code>streamable-http</code></p>
-</li>
-<li><p>URL 填入 <code>http://localhost:8000/mcp</code></p>
-</li>
-<li><p>点击 <code>Connect</code>, 可以看到连接成功</p>
-</li>
-<li><p>然后点击  <code>Tools</code>, 点击 <code>List Tools</code> 列出所有的工具</p>
-</li>
-<li><p>点击 <code>add</code> 进行测试, 输入 <code>a</code> 和 <code>b</code> 的值, 点击 <code>Run Tool</code>, 可以看到返回结果</p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-03-own-your-context-window.md">要素3: 掌控上下文窗口</a></p>
+<ul>
+<li>在任何时候，给LLM的输入包含 “到目前为止已经发生的” 和 “接下来要做哪一部？”</li>
+<li>上下文包括:<ul>
+<li>提示词</li>
+<li>文档或外部数据(RAG)</li>
+<li>过去的状态，工具调用，工具调用结果，其他历史信息</li>
+<li>历史消息（记忆）</li>
+</ul>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-173256.jpg"></p>
-<p><strong>在客户端使用 MCP server</strong></p>
-<p>在 Cherry Studio 中使用上面的 add MCP server</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-173901.jpg"></p>
-<p>在 Cherry Studio 中选择支持工具调用的大模型(带工具icon的模型)<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174150.jpg"></p>
-<p>在对话中，开启我们刚才添加的 my_test_add工具:<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174336.jpg"></p>
-<p>因为我们这个add工具过于简单，如果直接问大模型 100 + 3 等于多少，模型会直接返回结果，而不会调用我们添加的 add 工具 ， 因此，我们这里需要换种方式提问，以便大模型能够调用我们添加的 add 工具</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20250509-174526.jpg"></p>
-<p>可见， 大模型调用了我们添加的 add 工具，并返回了正确结果</p>
+</li>
+</ul>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-04-tools-are-structured-outputs.md">要素4: 工具只是结构化的输出</a></p>
+<ul>
+<li>将工具列表以json格式或者提示词格式(XML) 提供给LLM, LLM在需要调用外部工具时会中断，输出工具调用参数，然后由外部客户端调用工具，将调用结果和上下文传递给LLM</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-05-unify-execution-state.md">要素5: Unify execution state and business state</a></p>
+<ul>
+<li>TODO, 暂不理解</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-06-launch-pause-resume.md">要素6: Launch/Pause/Resume with simple APIs</a></p>
+<ul>
+<li>Agent是一个程序，需要做到可以控制Agent的启动，暂停，恢复</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-07-contact-humans-with-tools.md">要素7: Contact humans with tool calls</a></p>
+<ul>
+<li>工具调用</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-08-own-your-control-flow.md">要素8: 掌控你的工作流</a></p>
+<ul>
+<li>可以做很多其他事情</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-09-compact-errors.md">要素9: 将LLM的错误信息包含在上下文</a></p>
+<ul>
+<li>以便LLM可以自我修复</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-10-small-focused-agents.md"><strong>要素10: 小而专(模块化)</strong></a></p>
+<ul>
+<li>这是最重要的一条原则</li>
+<li>原因：agent越通用，上下文就越长且复杂，越复杂的上下文会导致LLM越难以理解，而迷失方向。因此专于一件事情的agent会更加稳定。</li>
+<li>优点：<ul>
+<li>方便上下文管理</li>
+<li>明确的职责</li>
+<li>可靠</li>
+<li>方便测试</li>
+<li>方便调试</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-11-trigger-from-anywhere.md">要素11: Trigger from anywhere, meet users where they are</a></p>
+<ul>
+<li>尽可能多的渠道，方便用户触及</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-12-stateless-reducer.md">要素12: Make your agent a stateless reducer</a><ul>
+<li>TODO:  暂不理解</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/humanlayer/12-factor-agents/blob/main/content/appendix-13-pre-fetch.md"><strong>要素13: 提前获取你需要的数据,而不要等工具调用</strong></a><ul>
+<li>如果你确定某个工具大概率会调用，你可以提前获取数据，而不是等到LLM工具调用，浪费时间</li>
+</ul>
+</li>
+</ul>
  
       <!-- reward -->
       
@@ -263,12 +266,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2025/05/09/technology/AI/MCP%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E5%8D%8F%E8%AE%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2025/05/13/technology/AI/%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91AI-Agent" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCP/" rel="tag">MCP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag">协议</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" rel="tag">大语言模型</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Agent/" rel="tag">Agent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCP/" rel="tag">MCP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag">协议</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" rel="tag">大语言模型</a></li></ul>
 
     </footer>
   </div>
@@ -276,19 +279,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/05/13/technology/AI/%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91AI-Agent?/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            如何开发AI-Agent?
-          
-        </div>
-      </a>
     
-    
-      <a href="/2025/04/11/technology/security/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3/" class="article-nav-link">
+      <a href="/2025/05/09/technology/AI/MCP%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">网络安全相关</div>
+        <div class="article-nav-title">MCP大语言模型交互协议</div>
       </a>
     
   </nav>
