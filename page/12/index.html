@@ -106,6 +106,74 @@
     
     
     <article
+  id="post-technology/blockchain/solana/6_Solana的跨程序调用CPI"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/"
+    >6_Solana的跨程序调用CPI</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/6_Solana%E7%9A%84%E8%B7%A8%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8CPI/" class="article-date">
+  <time datetime="2024-07-09T11:52:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Cross-Program-Invocation-CPI"><a href="#Cross-Program-Invocation-CPI" class="headerlink" title="Cross Program Invocation (CPI)"></a>Cross Program Invocation (CPI)</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/cpi">https://solana.com/docs/core/cpi</a></p>
+</blockquote>
+<ul>
+<li><p>CPI： 一个程序调用其他程序中的指令, 这就给了程序的可组合性</p>
+<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/cpi.svg"></p>
+</li>
+<li><p>CPI调用栈高度限制: <code>5</code></p>
+<ul>
+<li>A(1)-&gt;B(2)-&gt;C(3)-&gt;D(4)-&gt;E(5)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>因为PDA没有私钥，因此，为了验证PDA， 必须传入<code>signers_seeds</code></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/5_Solana的PDA账户"
   class="article article-type-post"
   itemscope
@@ -464,18 +532,18 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/transaction-simple.svg"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/tx_format.png"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/src/transaction/mod.rs#L173</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Transaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// A set of signatures of a serialized [`Message`], signed by the first</span></span><br><span class="line">    <span class="comment">/// keys of the `Message`&#x27;s [`account_keys`], where the number of signatures</span></span><br><span class="line">    <span class="comment">/// is equal to [`num_required_signatures`] of the `Message`&#x27;s</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`].</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// [`account_keys`]: Message::account_keys</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`]: crate::message::MessageHeader</span></span><br><span class="line">    <span class="comment">/// [`num_required_signatures`]: crate::message::MessageHeader::num_required_signatures</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The message to sign.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> message: Message,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/src/transaction/mod.rs#L173</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Transaction</span> &#123;</span><br><span class="line">    <span class="comment">/// A set of signatures of a serialized [`Message`], signed by the first</span></span><br><span class="line">    <span class="comment">/// keys of the `Message`&#x27;s [`account_keys`], where the number of signatures</span></span><br><span class="line">    <span class="comment">/// is equal to [`num_required_signatures`] of the `Message`&#x27;s</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`].</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// [`account_keys`]: Message::account_keys</span></span><br><span class="line">    <span class="comment">/// [`MessageHeader`]: crate::message::MessageHeader</span></span><br><span class="line">    <span class="comment">/// [`num_required_signatures`]: crate::message::MessageHeader::num_required_signatures</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="type">Vec</span>&lt;Signature&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The message to sign.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> message: Message,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Message</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The message header, identifying signed and read-only `account_keys`.</span></span><br><span class="line">    <span class="comment">/// Header values only describe static `account_keys`, they do not describe</span></span><br><span class="line">    <span class="comment">/// any additional account keys loaded via address table lookups.</span></span><br><span class="line">    <span class="keyword">pub</span> header: MessageHeader,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有的需要使用到的账户数组</span></span><br><span class="line">    <span class="comment">/// List of accounts loaded by this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> account_keys: <span class="built_in">Vec</span>&lt;Pubkey&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用做交易的时间戳，也用于防止重复交易和过期交易</span></span><br><span class="line">    <span class="comment">// 交易最大的age是 150 区块 （约1分钟）</span></span><br><span class="line">    <span class="comment">/// The blockhash of a recent block.</span></span><br><span class="line">    <span class="keyword">pub</span> recent_blockhash: Hash,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指令合集</span></span><br><span class="line">    <span class="comment">/// Instructions that invoke a designated program, are executed in sequence,</span></span><br><span class="line">    <span class="comment">/// and committed in one atomic transaction if all succeed.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// # Notes</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Program indexes must index into the list of message `account_keys` because</span></span><br><span class="line">    <span class="comment">/// program id&#x27;s cannot be dynamically loaded from a lookup table.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Account indexes must index into the list of addresses</span></span><br><span class="line">    <span class="comment">/// constructed from the concatenation of three key lists:</span></span><br><span class="line">    <span class="comment">///   1) message `account_keys`</span></span><br><span class="line">    <span class="comment">///   2) ordered list of keys loaded from `writable` lookup table indexes</span></span><br><span class="line">    <span class="comment">///   3) ordered list of keys loaded from `readable` lookup table indexes</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> instructions: <span class="built_in">Vec</span>&lt;CompiledInstruction&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// List of address table lookups used to load additional accounts</span></span><br><span class="line">    <span class="comment">/// for this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> address_table_lookups: <span class="built_in">Vec</span>&lt;MessageAddressTableLookup&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">VersionedMessage</span></span> &#123;</span><br><span class="line">    Legacy(LegacyMessage),</span><br><span class="line">    V0(v0::Message),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">VersionedTransaction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// List of signatures</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="built_in">Vec</span>&lt;Signature&gt;,</span><br><span class="line">    <span class="comment">/// Message to sign.</span></span><br><span class="line">    <span class="keyword">pub</span> message: VersionedMessage,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息头</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/message/mod.rs#L96</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">MessageHeader</span></span> &#123;</span><br><span class="line">    <span class="comment">/// The number of signatures required for this message to be considered</span></span><br><span class="line">    <span class="comment">/// valid. The signers of those signatures must match the first</span></span><br><span class="line">    <span class="comment">/// `num_required_signatures` of [`Message::account_keys`].</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="keyword">pub</span> num_required_signatures: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_signed_accounts` of the signed keys are read-only</span></span><br><span class="line">    <span class="comment">/// accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_signed_accounts: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_unsigned_accounts` of the unsigned keys are</span></span><br><span class="line">    <span class="comment">/// read-only accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_unsigned_accounts: <span class="built_in">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Message</span> &#123;</span><br><span class="line">    <span class="comment">/// The message header, identifying signed and read-only `account_keys`.</span></span><br><span class="line">    <span class="comment">/// Header values only describe static `account_keys`, they do not describe</span></span><br><span class="line">    <span class="comment">/// any additional account keys loaded via address table lookups.</span></span><br><span class="line">    <span class="keyword">pub</span> header: MessageHeader,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有的需要使用到的账户数组</span></span><br><span class="line">    <span class="comment">/// List of accounts loaded by this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> account_keys: <span class="type">Vec</span>&lt;Pubkey&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用做交易的时间戳，也用于防止重复交易和过期交易</span></span><br><span class="line">    <span class="comment">// 交易最大的age是 150 区块 （约1分钟）</span></span><br><span class="line">    <span class="comment">/// The blockhash of a recent block.</span></span><br><span class="line">    <span class="keyword">pub</span> recent_blockhash: Hash,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指令合集</span></span><br><span class="line">    <span class="comment">/// Instructions that invoke a designated program, are executed in sequence,</span></span><br><span class="line">    <span class="comment">/// and committed in one atomic transaction if all succeed.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// # Notes</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Program indexes must index into the list of message `account_keys` because</span></span><br><span class="line">    <span class="comment">/// program id&#x27;s cannot be dynamically loaded from a lookup table.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Account indexes must index into the list of addresses</span></span><br><span class="line">    <span class="comment">/// constructed from the concatenation of three key lists:</span></span><br><span class="line">    <span class="comment">///   1) message `account_keys`</span></span><br><span class="line">    <span class="comment">///   2) ordered list of keys loaded from `writable` lookup table indexes</span></span><br><span class="line">    <span class="comment">///   3) ordered list of keys loaded from `readable` lookup table indexes</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> instructions: <span class="type">Vec</span>&lt;CompiledInstruction&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// List of address table lookups used to load additional accounts</span></span><br><span class="line">    <span class="comment">/// for this transaction.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> address_table_lookups: <span class="type">Vec</span>&lt;MessageAddressTableLookup&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">VersionedMessage</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Legacy</span>(LegacyMessage),</span><br><span class="line">    <span class="title function_ invoke__">V0</span>(v0::Message),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">VersionedTransaction</span> &#123;</span><br><span class="line">    <span class="comment">/// List of signatures</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> signatures: <span class="type">Vec</span>&lt;Signature&gt;,</span><br><span class="line">    <span class="comment">/// Message to sign.</span></span><br><span class="line">    <span class="keyword">pub</span> message: VersionedMessage,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消息头</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/message/mod.rs#L96</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">MessageHeader</span> &#123;</span><br><span class="line">    <span class="comment">/// The number of signatures required for this message to be considered</span></span><br><span class="line">    <span class="comment">/// valid. The signers of those signatures must match the first</span></span><br><span class="line">    <span class="comment">/// `num_required_signatures` of [`Message::account_keys`].</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> Serialization-related changes must be paired with the direct read at sigverify.</span></span><br><span class="line">    <span class="keyword">pub</span> num_required_signatures: <span class="type">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_signed_accounts` of the signed keys are read-only</span></span><br><span class="line">    <span class="comment">/// accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_signed_accounts: <span class="type">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The last `num_readonly_unsigned_accounts` of the unsigned keys are</span></span><br><span class="line">    <span class="comment">/// read-only accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> num_readonly_unsigned_accounts: <span class="type">u8</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/legacy_message.png"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/message_header.png"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compat_array_of_account_addresses.png"></p>
 <p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/compact_array_of_ixs.png"></p>
 <h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/instruction.svg"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交易中的结构是 CompiledInstruction</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">CompiledInstruction</span></span> &#123;</span><br><span class="line">    <span class="comment">// 索引</span></span><br><span class="line">    <span class="comment">/// Index into the transaction keys array indicating the program account that executes this instruction.</span></span><br><span class="line">    <span class="keyword">pub</span> program_id_index: <span class="built_in">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要和合约交互账户</span></span><br><span class="line">    <span class="comment">/// Ordered indices into the transaction keys array indicating which accounts to pass to the program.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入数据</span></span><br><span class="line">    <span class="comment">/// The program input data.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instruction 是底层的数据结构</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L329</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Instruction</span></span> &#123;</span><br><span class="line">    <span class="comment">/// Pubkey of the program that executes this instruction.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> program_id: Pubkey,</span><br><span class="line">    <span class="comment">/// Metadata describing accounts that should be passed to the program.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="built_in">Vec</span>&lt;AccountMeta&gt;,</span><br><span class="line">    <span class="comment">/// Opaque data passed to the program for its own interpretation.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 交易中的结构是 CompiledInstruction</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">CompiledInstruction</span> &#123;</span><br><span class="line">    <span class="comment">// 索引</span></span><br><span class="line">    <span class="comment">/// Index into the transaction keys array indicating the program account that executes this instruction.</span></span><br><span class="line">    <span class="keyword">pub</span> program_id_index: <span class="type">u8</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要和合约交互账户</span></span><br><span class="line">    <span class="comment">/// Ordered indices into the transaction keys array indicating which accounts to pass to the program.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入数据</span></span><br><span class="line">    <span class="comment">/// The program input data.</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="string">&quot;short_vec&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Instruction 是底层的数据结构</span></span><br><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L329</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Instruction</span> &#123;</span><br><span class="line">    <span class="comment">/// Pubkey of the program that executes this instruction.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> program_id: Pubkey,</span><br><span class="line">    <span class="comment">/// Metadata describing accounts that should be passed to the program.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: <span class="type">Vec</span>&lt;AccountMeta&gt;,</span><br><span class="line">    <span class="comment">/// Opaque data passed to the program for its own interpretation.</span></span><br><span class="line">    <span class="meta">#[wasm_bindgen(skip)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="type">Vec</span>&lt;<span class="type">u8</span>&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="AccountMeta"><a href="#AccountMeta" class="headerlink" title="AccountMeta"></a>AccountMeta</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/accountmeta.svg"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L539</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">AccountMeta</span></span> &#123;</span><br><span class="line">    <span class="comment">/// An account&#x27;s public key.</span></span><br><span class="line">    <span class="keyword">pub</span> pubkey: Pubkey,</span><br><span class="line">    <span class="comment">/// True if an `Instruction` requires a `Transaction` signature matching `pubkey`.</span></span><br><span class="line">    <span class="keyword">pub</span> is_signer: <span class="built_in">bool</span>,</span><br><span class="line">    <span class="comment">/// True if the account data or metadata may be mutated during program execution.</span></span><br><span class="line">    <span class="keyword">pub</span> is_writable: <span class="built_in">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/sdk/program/src/instruction.rs#L539</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">AccountMeta</span> &#123;</span><br><span class="line">    <span class="comment">/// An account&#x27;s public key.</span></span><br><span class="line">    <span class="keyword">pub</span> pubkey: Pubkey,</span><br><span class="line">    <span class="comment">/// True if an `Instruction` requires a `Transaction` signature matching `pubkey`.</span></span><br><span class="line">    <span class="keyword">pub</span> is_signer: <span class="type">bool</span>,</span><br><span class="line">    <span class="comment">/// True if the account data or metadata may be mutated during program execution.</span></span><br><span class="line">    <span class="keyword">pub</span> is_writable: <span class="type">bool</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="转移-SOL的交易示例图："><a href="#转移-SOL的交易示例图：" class="headerlink" title="转移 SOL的交易示例图："></a>转移 SOL的交易示例图：</h3><ul>
 <li><p>结构图</p>
@@ -620,193 +688,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solana/1_Solana账户模型"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/"
-    >1_Solana账户模型</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/09/technology/blockchain/solana/1_Solana%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time datetime="2024-07-09T10:52:00.000Z" itemprop="datePublished">2024-07-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="深入理解-Solana-账户模型"><a href="#深入理解-Solana-账户模型" class="headerlink" title="深入理解 Solana 账户模型"></a>深入理解 Solana 账户模型</h1><ul>
-<li><p>官方文档(推荐)：<a target="_blank" rel="noopener" href="https://solana.com/docs/core/accounts">https://solana.com/docs/core/accounts</a></p>
-</li>
-<li><p>账户模型:</p>
-<ul>
-<li>推荐: <a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1452402100470644739">https://x.com/pencilflip/status/1452402100470644739</a></li>
-<li><a target="_blank" rel="noopener" href="https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B">https://solanacookbook.com/zh/core-concepts/accounts.html#%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%9E%8B</a></li>
-<li><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-</ul>
-</li>
-<li><p>不同于以太坊中只有智能合约可以存储状态, solana中所有账户都可以存储状态(数据)</p>
-</li>
-<li><p>solana的智能合约(可执行账户)仅存储程序代码(不可变)， 不存储状态</p>
-<ul>
-<li>可升级(整体)： <a target="_blank" rel="noopener" href="https://solana.com/docs/core/programs#updating-solana-programs">https://solana.com/docs/core/programs#updating-solana-programs</a></li>
-<li>不可变(字节码不可变): <a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/">https://solana.wiki/docs/solidity-guide/accounts/</a></li>
-<li>关于这个”可升级”和”不可变”，可以看Solana的账户模型, solana程序账户的指令也是存储在一个特殊的数据账户中，因此”可升级”</li>
-</ul>
-</li>
-<li><p>solana中的智能合约(可执行账户)的状态存储在其他账户(不可执行,但可变)中</p>
-<ul>
-<li>这些存储状态的账户(数据账户)，其owner是程序(可执行账户)</li>
-</ul>
-</li>
-<li><p>solana中每个账户有一个owner，仅owner可以修改账户状态</p>
-</li>
-<li><p>solana提供了很多有用的系统程序(合约), 属于runtime运行时</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/runtime/programs">https://docs.solanalabs.com/runtime/programs</a></li>
-<li>System Program:<ul>
-<li>功能:<ul>
-<li>创建新账户, <strong>只有 System Program 可以创建新账户</strong></li>
-<li>分配新账户的权限，一旦创建新账户，<strong>就可以转移账户权限给其他程序</strong><blockquote>
-<p>(<strong>非常重要!!</strong>)为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<p>详细源码分析见: <a href="19_solana%E7%9A%84SPL-Token-Mint%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B.md">19_solana的SPL-Token-Mint创建流程</a></p>
-</blockquote>
-</li>
-<li>分配数据空间</li>
-<li>转移普通账户(owner是 System Program)的余额</li>
-<li>仅owner是 System Program 可以支付手续费</li>
-</ul>
-</li>
-<li>Program id: <code>11111111111111111111111111111111</code></li>
-<li>Instructions: SystemInstruction</li>
-</ul>
-</li>
-<li>BPF Loader Program<ul>
-<li>功能：<ul>
-<li>是所有自定义程序的owner</li>
-<li>Deploys, upgrades, and executes programs on the chain.</li>
-</ul>
-</li>
-<li>Program id: <code>BPFLoaderUpgradeab1e11111111111111111111111</code></li>
-<li>Instructions: LoaderInstruction</li>
-</ul>
-</li>
-<li>SPL Token<ul>
-<li>TODO  :</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">struct</span> <span class="title">Account</span></span> &#123;</span><br><span class="line">    <span class="comment">/// 账户余额</span></span><br><span class="line">    <span class="comment">/// lamports in the account</span></span><br><span class="line">    <span class="keyword">pub</span> lamports: <span class="built_in">u64</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约数据</span></span><br><span class="line">    <span class="comment">/// data held in this account</span></span><br><span class="line">    <span class="meta">#[serde(with = <span class="meta-string">&quot;serde_bytes&quot;</span>)]</span></span><br><span class="line">    <span class="keyword">pub</span> data: <span class="built_in">Vec</span>&lt;<span class="built_in">u8</span>&gt;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 所有者:</span></span><br><span class="line">    <span class="comment">//    on-chain program</span></span><br><span class="line">    <span class="comment">//     可以写入</span></span><br><span class="line">    <span class="comment">//     可花费lanport</span></span><br><span class="line">    <span class="comment">/// the program that owns this account. If executable, the program that loads this account.</span></span><br><span class="line">    <span class="comment">// This field stores the address of an on-chain program and represents which on-chain program is allowed to write to the account’s data and subtract from its lamport balance.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否可执行</span></span><br><span class="line">    <span class="comment">/// this account&#x27;s data contains a loaded program (and is now read-only)</span></span><br><span class="line">    <span class="keyword">pub</span> executable: <span class="built_in">bool</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// the epoch at which this account will next owe rent</span></span><br><span class="line">    <span class="keyword">pub</span> rent_epoch: Epoch,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="程序账户-Program-Account"><a href="#程序账户-Program-Account" class="headerlink" title="程序账户(Program Account)"></a>程序账户(Program Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-expanded.svg"></p>
-<p>简化版如下：<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/program-account-simple.svg"></p>
-<h3 id="数据账户-Data-Account"><a href="#数据账户-Data-Account" class="headerlink" title="数据账户(Data Account)"></a>数据账户(Data Account)</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/data-account.svg"></p>
-<p>为自定义程序创建一个数据账户(Data Account)，可以分为2步：</p>
-<ul>
-<li>1, 调用 System Program 创建一个账户，然后将权限转移给自定义程序</li>
-<li>2, 调用自定义程序(此时是账户的owner)初始化该账户的数据</li>
-</ul>
-<h3 id="Solana账户规则："><a href="#Solana账户规则：" class="headerlink" title="Solana账户规则："></a>Solana账户规则：</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules">https://solana.wiki/docs/solidity-guide/accounts/#solana-runtime-account-rules</a></p>
-</blockquote>
-<ul>
-<li><p>不可变性:</p>
-<ul>
-<li>可执行账户完全不可变</li>
-</ul>
-</li>
-<li><p><strong>数据分配</strong></p>
-<ul>
-<li>仅<code>System Program</code> 可以更改账户数据大小</li>
-<li>新分配的账户数据总是归零的</li>
-<li>账户数据大小不可缩小<blockquote>
-<p>在写入期间，<strong>程序不能增加其拥有的账户数据大小</strong>, 如果需要更多数据，必须将数据拷贝到更大账户中，因此，<strong>程序不会在账户中存储动态大小的maps和数组，而是，将数据存储在多个账户中</strong></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>数据</p>
-<ul>
-<li>每个账户最多 10MB 数据（代码 或 状态）</li>
-<li>只有账户的owner才可以修改数据</li>
-<li>账户只有处于数据归零状态下才可以分配新的owner</li>
-</ul>
-</li>
-<li><p>余额</p>
-<ul>
-<li>只有账户的owner可以减少余额</li>
-<li>任何程序账户都可以账户增加余额（转移）<blockquote>
-<p>如果一个账户的owner是程序，那么，不能通过私钥操作该账户的余额，因为，私钥账户(普通账户)的owner是System Program, 而System Program 不是该账户的owner, 因此就不能操作该账户的余额</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>所有权</p>
-<ul>
-<li>只有账户owner可以制定新的账户owner</li>
-</ul>
-</li>
-<li><p>租金</p>
-<ul>
-<li>租金每2天(1个epoch)更新一次，由账户大小决定</li>
-<li>如果账户的余额大于2年的租金(预存), 那么，该账户可以免除租金(不用交房租)</li>
-</ul>
-</li>
-<li><p>余额为0的账户</p>
-<ul>
-<li>余额为0的账户，在交易执行后会被系统删除</li>
-<li>一个交易中可以创建临时余额为0的账户</li>
-</ul>
-</li>
-<li><p>新的执行账户</p>
-<ul>
-<li>只有制定的loader program可以修改账户的可执行状态</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
 
     </footer>
   </div>
