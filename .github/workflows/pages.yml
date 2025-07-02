@@ -28,6 +28,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
+      - name: Install Hexo CLI
+        run: npm install -g hexo-cli
+
       - name: Install Dependencies
         run: npm install
 
