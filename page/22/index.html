@@ -106,6 +106,60 @@
     
     
     <article
+  id="post-technology/python/celery学习笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    >celery</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/01/12/technology/python/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2023-01-12T07:11:35.000Z" itemprop="datePublished">2023-01-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="celery"><a href="#celery" class="headerlink" title="celery"></a>celery</h1><p>参考文档： <a target="_blank" rel="noopener" href="https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong">https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong</a></p>
+<p>Django集成celery示例： <a target="_blank" rel="noopener" href="https://github.com/celery/celery/tree/main/examples/django">https://github.com/celery/celery/tree/main/examples/django</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery/" rel="tag">celery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/" rel="tag">任务队列</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solidity/再次分析delegatecall和call的区别"
   class="article article-type-post"
   itemscope
@@ -406,147 +460,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/solidity/分析可升级智能合约"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/12/14/technology/blockchain/solidity/%E5%88%86%E6%9E%90%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"
-    >分析可升级智能合约</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/12/14/technology/blockchain/solidity/%E5%88%86%E6%9E%90%E5%8F%AF%E5%8D%87%E7%BA%A7%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="article-date">
-  <time datetime="2022-12-14T16:00:00.000Z" itemprop="datePublished">2022-12-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为了理解可升级合约，必须理解proxy机制，要理解proxy机制，必须理解solidity的<code>sstore</code>和<code>sload</code>,以及关于以太坊架构和存储结构（数据结构）。</p>
-<p>关于Solidity中的<code>sstore</code>和<code>sload</code>深入理解：</p>
-<ul>
-<li>非常好的一篇剖析： <a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/4172">https://learnblockchain.cn/article/4172</a></li>
-</ul>
-<p>简单概括一下：</p>
-<ul>
-<li><code>sstore</code>将一对<code>key-value</code>存入storage</li>
-<li><code>sload</code>按照<code>key</code>取出storage中的<code>value</code></li>
-<li>一笔交易中可以多次<code>sstore</code>和<code>sload</code></li>
-<li><code>key</code>一般用<code>slot</code>（槽）代替，是<code>32bytes</code>的哈希</li>
-<li>以上的<code>storage</code>是某一个合约下面的<code>storage</code></li>
-</ul>
-<h2 id="合约代码分析"><a href="#合约代码分析" class="headerlink" title="合约代码分析"></a>合约代码分析</h2><blockquote>
-<p>基于solidity <code>^0.4.24</code></p>
-</blockquote>
-<ul>
-<li><p>openzeppelin的实现： <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/Proxy.sol">https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/proxy/Proxy.sol</a></p>
-</li>
-<li><p>USDC合约代码： <a target="_blank" rel="noopener" href="https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#code">https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#code</a></p>
-</li>
-</ul>
-<p>其中Proxy：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// 抽象合约</span><br><span class="line">contract Proxy &#123;</span><br><span class="line"></span><br><span class="line">    // fallback函数</span><br><span class="line">    function () payable external &#123;</span><br><span class="line">        _fallback();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 虚函数，需要子类实现</span><br><span class="line">    function _implementation() internal view returns (address);</span><br><span class="line"></span><br><span class="line">    // 以下是proxy合约通用代码，</span><br><span class="line">    function _delegate(address implementation) internal &#123;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            // 将msg.data，即交易的所有数据，复制到内存</span><br><span class="line">            calldatacopy(0, 0, calldatasize)</span><br><span class="line"></span><br><span class="line">            // 调用实现合约</span><br><span class="line">            let result := delegatecall(gas, implementation, 0, calldatasize, 0, 0)</span><br><span class="line"></span><br><span class="line">            // 将返回数据拷贝到内存</span><br><span class="line">            returndatacopy(0, 0, returndatasize)</span><br><span class="line"></span><br><span class="line">            switch result</span><br><span class="line">            case 0 &#123; revert(0, returndatasize) &#125; // 0，失败</span><br><span class="line">            default &#123; return(0, returndatasize) &#125; // 1, 成功</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  // 子类可以重写次函数</span><br><span class="line">  function _willFallback() internal &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // fallback函数实现</span><br><span class="line">  function _fallback() internal &#123;</span><br><span class="line">    _willFallback();</span><br><span class="line">    _delegate(_implementation());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>calldatacopy(t, f, s)</code>：将calldata（输入数据）从位置f开始复制s字节到mem（内存）的位置t。</li>
-<li><code>delegatecall(g, a, in, insize, out, outsize)</code>：调用地址a的合约，输入为mem[in..(in+insize)) ，输出为mem[out..(out+outsize))， 提供g的gas 和v wei的以太坊。这个操作码在错误时返回0，在成功时返回1。</li>
-<li><code>returndatacopy(t, f, s)</code>：将returndata（输出数据）从位置f开始复制s字节到mem（内存）的位置t。</li>
-<li><code>switch</code>：基础版if/else，不同的情况case返回不同值。可以有一个默认的default情况。</li>
-<li><code>return(p, s)</code>：终止函数执行, 返回数据mem[p..(p+s))。</li>
-<li><code>revert(p, s)</code>：终止函数执行, 回滚状态，返回数据mem[p..(p+s))。</li>
-</ul>
-<blockquote>
-<p>参考代理合约： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30230009/article/details/127312438">https://blog.csdn.net/weixin_30230009/article/details/127312438</a></p>
-</blockquote>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>理解了代理（可升级）合约机制之后，我们动手实践一下</p>
-<p>实现合约(implement)：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line"></span><br><span class="line">pragma solidity &gt;=0.7.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Storage &#123;</span><br><span class="line"></span><br><span class="line">    uint256 number;</span><br><span class="line"></span><br><span class="line">    function store(uint256 num) public &#123;</span><br><span class="line">        number = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function retrieve() public view returns (uint256)&#123;</span><br><span class="line">        return number;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>代理合约：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: None</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">library AddressUtils &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Returns whether the target address is a contract</span><br><span class="line">   * @dev This function will return false if invoked during the constructor of a contract,</span><br><span class="line">   * as the code is not actually created until after the constructor finishes.</span><br><span class="line">   * @param addr address to check</span><br><span class="line">   * @return whether the target address is a contract</span><br><span class="line">   */</span><br><span class="line">  function isContract(address addr) internal view returns (bool) &#123;</span><br><span class="line">    uint256 size;</span><br><span class="line">    // XXX Currently there is no better way to check if there is a contract in an address</span><br><span class="line">    // than to check the size of the code at that address.</span><br><span class="line">    // See https://ethereum.stackexchange.com/a/14016/36603</span><br><span class="line">    // for more details about how this works.</span><br><span class="line">    // TODO Check this again before the Serenity release, because all addresses will be</span><br><span class="line">    // contracts then.</span><br><span class="line">    // solium-disable-next-line security/no-inline-assembly</span><br><span class="line">    assembly &#123; size := extcodesize(addr) &#125;</span><br><span class="line">    return size &gt; 0;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">abstract contract Proxy &#123;</span><br><span class="line">  /**</span><br><span class="line">   * @dev Fallback function.</span><br><span class="line">   * Implemented entirely in `_fallback`.</span><br><span class="line">   */</span><br><span class="line">   fallback() payable external &#123;</span><br><span class="line">    _fallback();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  receive() payable external &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * @return The Address of the implementation.</span><br><span class="line">   */</span><br><span class="line">  function _implementation() public virtual view returns (address);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * @dev Delegates execution to an implementation contract.</span><br><span class="line">   * This is a low level function that doesn&#x27;t return to its internal call site.</span><br><span class="line">   * It will return to the external caller whatever the implementation returns.</span><br><span class="line">   * @param implementation Address to delegate.</span><br><span class="line">   */</span><br><span class="line">  function _delegate(address implementation) internal &#123;</span><br><span class="line">    assembly &#123;</span><br><span class="line">      // Copy msg.data. We take full control of memory in this inline assembly</span><br><span class="line">      // block because it will not return to Solidity code. We overwrite the</span><br><span class="line">      // Solidity scratch pad at memory position 0.</span><br><span class="line">      calldatacopy(0, 0, calldatasize())</span><br><span class="line"></span><br><span class="line">      // Call the implementation.</span><br><span class="line">      // out and outsize are 0 because we don&#x27;t know the size yet.</span><br><span class="line">      let result := delegatecall(gas(), implementation, 0, calldatasize(), 0, 0)</span><br><span class="line"></span><br><span class="line">      // Copy the returned data.</span><br><span class="line">      returndatacopy(0, 0, returndatasize())</span><br><span class="line"></span><br><span class="line">      switch result</span><br><span class="line">      // delegatecall returns 0 on error.</span><br><span class="line">      case 0 &#123; revert(0, returndatasize()) &#125;</span><br><span class="line">      default &#123; return(0, returndatasize()) &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * @dev Function that is run as the first thing in the fallback function.</span><br><span class="line">   * Can be redefined in derived contracts to add functionality.</span><br><span class="line">   * Redefinitions must call super._willFallback().</span><br><span class="line">   */</span><br><span class="line">  function _willFallback() internal &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * @dev fallback implementation.</span><br><span class="line">   * Extracted to enable manual triggering.</span><br><span class="line">   */</span><br><span class="line">  function _fallback() internal &#123;</span><br><span class="line">    _willFallback();</span><br><span class="line">    _delegate(_implementation());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract TestSstore is Proxy &#123;</span><br><span class="line"></span><br><span class="line">    bytes32 private constant IMPLEMENTATION_SLOT = 0x7050c9e0f4ca769c69bd3a8ef740bc37934f8e2c036e5a723fd8ee048ed3f8c3;</span><br><span class="line"></span><br><span class="line">     constructor(address implementation_)  &#123;</span><br><span class="line">        assert(IMPLEMENTATION_SLOT == keccak256(&quot;org.zeppelinos.proxy.implementation&quot;));</span><br><span class="line"></span><br><span class="line">        setImplementation(implementation_);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _implementation() public override view returns (address impl) &#123;</span><br><span class="line">        bytes32 slot = IMPLEMENTATION_SLOT;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            impl := sload(slot)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function setImplementation(address newImplementation) public &#123;</span><br><span class="line">        require(AddressUtils.isContract(newImplementation), &quot;Cannot set a proxy implementation to a non-contract address&quot;);</span><br><span class="line"></span><br><span class="line">        bytes32 slot = IMPLEMENTATION_SLOT;</span><br><span class="line"></span><br><span class="line">        assembly &#123;</span><br><span class="line">            sstore(slot, newImplementation)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>部署代理合约(Proxy)时候， 需要填写实现合约(implement)的地址</li>
-<li>为了获得调用代理合约的数据，可以先在remix里面调用实现合约，在Metamask中拿到数据，然后粘贴到代理合约调用处</li>
-</ul>
-<p>示例：</p>
-<ul>
-<li><p>部署实现合约：<a target="_blank" rel="noopener" href="https://goerli.etherscan.io/address/0x2867edd391edd1879c5ed9bcee3666bcef353753"> https://goerli.etherscan.io/tx/0x6a26cf6ff348bc32831d8dbd00ed4aae807591613e48435407fa41cb73b78c02</a></p>
-</li>
-<li><p>部署代理合约： <a target="_blank" rel="noopener" href="https://goerli.etherscan.io/tx/0xcba8a55c22a31285185190170cf6d2a150a84b87f0c31d041023e64da3a5d83c">https://goerli.etherscan.io/tx/0xcba8a55c22a31285185190170cf6d2a150a84b87f0c31d041023e64da3a5d83c</a></p>
-</li>
-<li><p>通过代理合约调用实现合约的store函数，写入<code>12345</code>：<a target="_blank" rel="noopener" href="https://goerli.etherscan.io/tx/0x3ac401e00f917898d6d47765132667414b4a5f290e599df7e5af537297fba78b">https://goerli.etherscan.io/tx/0x3ac401e00f917898d6d47765132667414b4a5f290e599df7e5af537297fba78b</a></p>
-</li>
-<li><p><strong>直接</strong>读取实现合约，结果是<code>0</code>：<a target="_blank" rel="noopener" href="https://goerli.etherscan.io/address/0x33ef59987eaa6776617f79673d5452849197778c#readContract">https://goerli.etherscan.io/address/0x33ef59987eaa6776617f79673d5452849197778c#readContract</a></p>
-<p>  <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE%202022-12-15%2017-17-28.png"></p>
-</li>
-<li><p>读取代理合约, 结果是 <code>12345</code></p>
-</li>
-<li><p>我们再“升级”一下实现合约：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">contract Storage &#123;</span><br><span class="line"></span><br><span class="line"> uint256 public number;</span><br><span class="line"> uint256 public nb;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @dev Store value in variable</span><br><span class="line"> * @param num value to store</span><br><span class="line"> */</span><br><span class="line">function store(uint256 num) public &#123;</span><br><span class="line">    number = num ;</span><br><span class="line">    nb  = number * 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @dev Return value</span><br><span class="line"> * @return value of &#x27;number&#x27;</span><br><span class="line"> */</span><br><span class="line">function retrieve() public view returns (uint256)&#123;</span><br><span class="line">    return number;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>部署新的实现合约：<a target="_blank" rel="noopener" href="https://goerli.etherscan.io/tx/0x4b5287ac0fd8756ac70cf50d4b66565310467f53c931489eaf6cf65014da116b">https://goerli.etherscan.io/tx/0x4b5287ac0fd8756ac70cf50d4b66565310467f53c931489eaf6cf65014da116b</a></p>
-</li>
-<li><p>设置新实现合约地址: <a target="_blank" rel="noopener" href="https://goerli.etherscan.io/tx/0x1f074c4a25f46fa7d6010a9e169847706aece07107b5a889918c20e84ea5d876">https://goerli.etherscan.io/tx/0x1f074c4a25f46fa7d6010a9e169847706aece07107b5a889918c20e84ea5d876</a></p>
-</li>
-<li><p>调用代理写入<code>12345</code></p>
-</li>
-<li><p>读取代理合约，<br> <img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/%E6%88%AA%E5%9B%BE%202022-12-15%2017-21-59.png"></p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过<code>delegatecall</code>进行调用实现合约，数据是存放在代理合约中，因此当“升级”实现合约合约后，不会影响现有的数据。</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/707eb54e8d395615d1fd87e29cb2ad5e.png"></p>
-<blockquote>
-<p><code>delegatecall</code>很像“动态库”</p>
-</blockquote>
-<hr>
-<p>关于<code>delegatecall</code>和 <code>call</code>的对比：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*PwYIsFyDM60IW4KuDkUncA.webp"></p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/1*4OB3IwTF1AkW6zH3tJv8Tw.webp"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E5%90%88%E7%BA%A6/" rel="tag">代理合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%AF%E5%8D%87%E7%BA%A7/" rel="tag">可升级</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/21/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/23/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/21/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/23/">下一页</a>
   </nav>
   
 </section>

@@ -106,6 +106,61 @@
     
     
     <article
+  id="post-technology/blockchain/ton/TON技术研究"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/12/04/technology/blockchain/ton/TON%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/"
+    >TON技术研究</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/12/04/technology/blockchain/ton/TON%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/" class="article-date">
+  <time datetime="2024-12-04T06:50:00.000Z" itemprop="datePublished">2024-12-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><a target="_blank" rel="noopener" href="https://github.com/ton-blockchain/ton/tree/master">https://github.com/ton-blockchain/ton/tree/master</a></p>
+<p>DEX: <a target="_blank" rel="noopener" href="https://defillama.com/dexs/chains/ton">https://defillama.com/dexs/chains/ton</a></p>
+<p>STON-FI: <a target="_blank" rel="noopener" href="https://github.com/ston-fi">https://github.com/ston-fi</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TON/" rel="tag">TON</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Telegram/" rel="tag">Telegram</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%AC%E9%93%BE/" rel="tag">公链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/other/优化Docker的overlay2占用磁盘过大的问题"
   class="article article-type-post"
   itemscope
@@ -396,105 +451,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/move/4_Sui+Move核心概念"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/"
-    >4_Sui+Move核心概念</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
-  <time datetime="2024-10-23T08:19:00.000Z" itemprop="datePublished">2024-10-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="Sui-Move的-Object基础概念"><a href="#Sui-Move的-Object基础概念" class="headerlink" title="Sui Move的 Object基础概念"></a>Sui Move的 Object基础概念</h2><blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md</a></li>
-</ul>
-</blockquote>
-<ul>
-<li>Sui Move 是以Object为核心</li>
-<li>Sui的交易输入和输出都是 Object</li>
-<li>Object是Sui的基本存储单元</li>
-<li>Object即 <code>struct</code></li>
-<li>Sui 的 Object 必须包含一个 <code>id: UID</code>字段, 并且设置<code>key</code>特性</li>
-<li>Sui中每个Object都必须有一个 owner, owner可以是：<ul>
-<li>一个地址</li>
-<li>其他object</li>
-<li>Object是”shared”</li>
-</ul>
-</li>
-</ul>
-<h2 id="Object的所有权"><a href="#Object的所有权" class="headerlink" title="Object的所有权"></a>Object的所有权</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md</a></p>
-</blockquote>
-<p>在Sui Move中，Object一共有4种所有权:</p>
-<ul>
-<li><strong>Owned</strong>: owned object交易不需要全局排序<ul>
-<li>Owned by an address</li>
-<li>Owned by another object</li>
-</ul>
-</li>
-<li><strong>Shared</strong><ul>
-<li>Shared immutable:<ul>
-<li>没有owner, 所有人都不可修改</li>
-</ul>
-</li>
-<li>Shared mutable：<ul>
-<li>任何人都可以读取和修改, shared object交易需要进行全局排序</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
   </nav>
   
 </section>

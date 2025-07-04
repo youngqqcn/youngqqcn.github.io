@@ -106,6 +106,73 @@
     
     
     <article
+  id="post-technology/blockchain/solidity/基于BondingCurve价格发现的代币"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/"
+    >基于BodingCurve价格发现的代币</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/05/15/technology/blockchain/solidity/%E5%9F%BA%E4%BA%8EBondingCurve%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BB%A3%E5%B8%81/" class="article-date">
+  <time datetime="2024-05-15T16:00:00.000Z" itemprop="datePublished">2024-05-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="基于BondingCurve价格发现的代币"><a href="#基于BondingCurve价格发现的代币" class="headerlink" title="基于BondingCurve价格发现的代币"></a>基于BondingCurve价格发现的代币</h1><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://yos.io/2018/11/10/bonding-curves/">https://yos.io/2018/11/10/bonding-curves/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/C-ORG/whitepaper/">https://github.com/C-ORG/whitepaper/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/continuous-token">https://github.com/youngqqcn/continuous-token</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/c-org">https://github.com/youngqqcn/c-org</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs">https://github.com/solana-labs/solana-program-library/blob/master/token-swap/program/src/curve/constant_price.rs</a></p>
+</li>
+</ul>
+<h2 id="关于抢跑问题"><a href="#关于抢跑问题" class="headerlink" title="关于抢跑问题"></a>关于抢跑问题</h2><ul>
+<li>通过设置一个最大的gas price，可以避免抢跑问题</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">contract CappedGasPrice is Ownable &#123;</span><br><span class="line">    uint256 public maxGasPrice = 1 * 10**18; // Adjustable value</span><br><span class="line"></span><br><span class="line">    modifier validGasPrice() &#123;</span><br><span class="line">        require(tx.gasprice &lt;= maxGasPrice, &quot;Transaction gas price cannot exceed maximum gas price.&quot;);</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function setMaxGasPrice(uint256 gasPrice) public onlyOwner &#123;</span><br><span class="line">        maxGasPrice = gasPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BodingCurve/" rel="tag">BodingCurve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E5%B8%81/" rel="tag">代币</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%B7%E6%A0%BC%E5%8F%91%E7%8E%B0/" rel="tag">价格发现</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/cpp/P2P技术(UDP)打洞 "
   class="article article-type-post"
   itemscope
@@ -440,99 +507,13 @@
 </article>
 
     
-    <article
-  id="post-life/爱因斯坦与佛陀"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/"
-    >爱因斯坦与佛陀</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2023/10/23/life/%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E4%B8%8E%E4%BD%9B%E9%99%80/" class="article-date">
-  <time datetime="2023-10-23T13:55:00.000Z" itemprop="datePublished">2023-10-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p>转载自： <a target="_blank" rel="noopener" href="https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/">https://www.colombotelegraph.com/index.php/einstein-and-buddha-convergence-between-science-and-eastern-philosophy/</a></p>
-</blockquote>
-<p>“Buddhism has the characteristics of what would be expected in a cosmic religion for the future: It transcends a personal God avoids dogmas and theology; it covers both the natural and spiritual; and it is based on a religious sense aspiring from the experience of all things, natural and spiritual, as a meaningful unity.</p>
-<p>“If there is any religion that would cope with modern scientific needs it would be Buddhism.  . (Albert Einstein)</p>
-<p>Albert Einstein is possibly the greatest scientist mankind has ever produced. His general theory of relatively created a revolutionary change on how scientists have viewed the world. He discovered that time and space is always related to the observer. His famous equation  E=MC2  revealed that matter and energy are interchangeable forms of same substance. Einstein being a genius did not confine his interest only on science. The views he has expressed on Religion, philosophy and politics indicates that he was a great thinker who tried to bridge the gap between science and philosophy or religion. Buddha gave us a great teaching which would lead to tap the maximum potential of the mind which will eventually lead to the understanding of everything happening around us and finally to liberate from the cycle of Sansara (Cycle of Birth and death). The difference between Einstein and Buddha is that while former was keen in finding answers to the phenomenon of outside world, Buddha used his own powers of observation within his mind (introspection), intellect and reasoning, grounded in reality, to guide him to his enlightenment. Both Buddha and Einstein did their research on a scientific basis. Buddha advised his followers NOT to accept what he was teaching them at face value or to take his beliefs “on faith.” Rather, he counseled them to test his theories for themselves, and if they didn’t prove true, then reject them.  Buddha found what he was looking for. Einstein after all his discoveries has to admit mankind does not have the wisdom to understand the all the mysteries of the nature. The purpose of this article is to examine the relevancy of some of Einstein’s statement to Buddhist teachings and also to present Einstein’s view about the religion.</p>
-<p>Einstein upheld the need for morality and rightness of the mankind. But he believed that morality should not come from fear or punishment expected from ‘God” or any other force. He said – A man’s ethical behavior should be based effectually on sympathy, education, and social ties and needs; no religious basis is necessary. Man would indeed be in a poor way if he had to be restrained by fear of punishment and hope of reward after death. If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed- (Albert Einstein, “Religion and Science”, New York Times Magazine, 9 November 1930</p>
-<p>Einstein denied the existence of a personal God but he could not provide an answer behind the beauty and methodical way universe has been formed. This he expressed in following way.</p>
-<p>I do not believe in a personal God and I have never denied this but have expressed it clearly. If something is in me which can be called religious then it is the unbounded admiration for the structure of the world so far as our science can reveal it. I believe in Spinoza’s God who reveals himself in the orderly harmony of what exists, not in a God who concerns himself with the fates and actions of human beings.  (Albert Einstein, 1954)</p>
-<p>Who is this Spinoza’s God Einstein is refereeing to?  Spinoza was a Dutch philosopher, who claimed that God is nothing but the NATURE According to Spinoza there is mass, energy, atoms, molecules, life, thought, people, societies, galaxies and perhaps even multiple universes but there is nothing outside nature, including spiritual visions and other phenomena we don’t yet understand. If they exist, they are part of nature.  According to Buddhism there are five natural laws at work in the cosmos that cause things to happen, called the Five Niyamas. . Karma is only one of these factors. Present circumstances are the result of countless factors that are always in flux. There is no single cause that makes everything to be the way it is</p>
-<p>The following statement clearly indicates that although Einstein rejected God he is not an atheist.</p>
-<p>I have repeatedly said that in my opinion the idea of a personal God is a childlike one, but I do not share the crusading spirit of the professional atheist whose fervor is mostly due to a painful act of liberation from the fetters of religious indoctrination received in youth. I prefer an attitude of humility corresponding to the weakness of our intellectual understanding of nature and of our own being.</p>
-<p>Buddha rejected the traditional Hindu view that world was a creation by God and also rejected materialism of atheists. He became the first philosopher to reject the belief ‘Soul’ is a permanent entity. It appears that Einstein accepted both these positions. In the above statement, Einstein was humble enough to admit the inadequacy or limitations of his knowledge to find the answer to the ‘mysteries’ of the world.</p>
-<p>Just examine following statement of Einstein</p>
-<p>“A human being is part of the whole, called by us ‘Universe’; a part limited in time and space.  He experiences himself, his thoughts and feelings as something separated from the rest – a kind of optical delusion of his consciousness.  This delusion is a kind of prison for us, restricting us to our personal desires and affection for a few persons nearest us.  Our task must be to free ourselves from this prison by widening our circle of compassion to embrace all living creatures and the whole nature in its beauty.  Nobody is able to achieve this completely but striving for such achievement is, in itself, a part of the liberation and a foundation for inner security.”</p>
-<p>Physical concepts are free creations of the human mind, and are not, however it may seem, uniquely determined by the external world. -Einstein</p>
-<p>It is amazing to know that Buddha, 2500 years back, expressed almost the same view in different words   “All such notions as causation, succession, atoms, primary elements…are all figments of the imagination and manifestations of the mind. – -Buddha</p>
-<p>According to Buddha, Self is not a rational concept. Self is only an emotional feeling- Therefore consciousness is an illusion and the feeling of ‘Self” is only an activity of brain. People live unconsciously in dream like state believing their existence. As a result they become attached to names and forms, not realising that they have no more basis than the activities of the mind itself. Buddha declared that due to this error in view, liberation of the mankind would be blocked. Buddha called it ignorance what Einstein described it as a delusion of consciousness. Buddha’s solution to free us from prison is by developing and purification of mind, following a clear path towards it (8 FP and 4NT). Buddha’s path also involves widening selfless compassion to all human beings. According to Buddha the attachment (Lust) brings suffering and would also prevent one from escaping the prison.  Einstein says that this prison restricts   our affection only to our loved ones (Becoming Selfish). He suggests that to free from the prison the compassion should embrace all living creatures. (It is interesting Einstein did not confine compassion only to human beings)</p>
-<p>Einstein’s attempt to discover the mystery of the world can be seen from this statement.</p>
-<p>The most beautiful and most profound experience is the sensation of the mystical. It is the sower of all true science. He to whom this emotion is a stranger, who can no longer wonder and stand rapt in awe, is as good as dead. To know that what is impenetrable to us really exists, manifesting itself as the highest wisdom and the most radiant beauty which our dull faculties can comprehend only in their primitive forms – this knowledge, this feeling is at the center of true religiousness.  (Albert Einstein – The Merging of Spirit and Science)</p>
-<p>Here again Einstein admits that human mind cannot comprehend all the mysteries of the world. But he admired the beauty and methodical way nature operates it. He admitted the answer comes with more wisdom and he also termed it as true religiousness.  Buddha’s approach for what Einstein has been looking could be evident from following interesting Dialogue between Buddha and one of his disciples.</p>
-<p>“Most respected one; can you please tell me what the size of the universe is?”</p>
-<p>Buddha replied:</p>
-<p>“Will the size of the universe help you end suffering?”</p>
-<p>The disciple answered:</p>
-<p>“No, most respected one”</p>
-<p>Buddha then answered:</p>
-<p>“So why are you asking questions of little importance and not ask questions on the ending of suffering?</p>
-<p>Buddhism avoids speculative metaphysical questions as irrelevant distractions. According to Buddhism, nothing happens without a cause; therefore the universe is infinite with no real beginning. However, it does run in cycles, so there can be a beginning for each particular era.</p>
-<p>This Parable of the arrow has often been used to illustrate the Buddha’s teachings that “practitioners who concern themselves with the origins of the universe and other topics are missing the point of religious practice.”</p>
-<p>Suppose someone was hit by a poisoned arrow and his friends and relatives found a doctor able to remove the arrow. If this man were to say, ‘I will not have this arrow taken out until I know whether the person who had shot it was a priest, a prince or a merchant, his name and his family. I will not have it taken out until I know what kind of bow was used and whether the arrowhead was an ordinary one or an iron one.’ That person would die before all these things are ever known to</p>
-<p>In short, work on being here (The Present moment) before you consider why or how you came to be here.</p>
-<p>Once Bertrand Russell   explained why he accepts the Buddhist view on origin of the world. -” Among the founders of all religions in this world, I respect only one man — the Buddha. The main reason was that the Buddha did not make statements regarding the origin of the world. The Buddha was the only teacher who realised the true nature of the world.” (Bertrand Russell)</p>
-<p>It is interesting to note that Modern scientists and psychologists pay great attention to research on brain and mind.  Buddhist mediation methods of loving kindness, breathing mediation and mindfulness are widely used in western medicine and psychology. It would be great if more scientists like Einstein come forward to bridge the gap between the science and eastern philosophy in future.</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%96%E7%95%8C/" rel="tag">世界</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9B%E5%AD%A6/" rel="tag">佛学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6/" rel="tag">科学</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/13/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/15/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/13/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/15/">下一页</a>
   </nav>
   
 </section>

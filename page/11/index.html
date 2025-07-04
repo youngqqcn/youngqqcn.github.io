@@ -106,6 +106,78 @@
     
     
     <article
+  id="post-technology/blockchain/solana/12_Solana_Rust的宏"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/"
+    >12_Solana-Rust的宏</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/17/technology/blockchain/solana/12_Solana_Rust%E7%9A%84%E5%AE%8F/" class="article-date">
+  <time datetime="2024-07-17T08:31:00.000Z" itemprop="datePublished">2024-07-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>参考: <a target="_blank" rel="noopener" href="https://www.soldev.app/course/rust-macros">https://www.soldev.app/course/rust-macros</a><br>Rust官方: <a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/ch19-06-macros.html">https://rustwiki.org/zh-CN/book/ch19-06-macros.html</a></p>
+</blockquote>
+<p>Rust的宏分为2类:</p>
+<ul>
+<li><p>声明宏(Declarative macro): 使用<code>macro_rules!</code>定义，例如: <code>vec!</code></p>
+</li>
+<li><p>过程宏(Procedural macro): 使用AST(Abstract syntax tree) 支持更加复杂的代码生成</p>
+<ul>
+<li><p>Function-like macros - <code>custom!(...)</code></p>
+</li>
+<li><p>Derive macros - <code>#[derive(CustomDerive)]</code>, 一般用于 <code>struct, enum, union</code> , 用于实现某些trait</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(MyMacro)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Input</span> &#123;</span><br><span class="line">    field: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定helper属性</span></span><br><span class="line"><span class="meta">#[proc_macro_derive(MyMacro, attributes(helper))]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">my_macro</span>(body: TokenStream) <span class="punctuation">-&gt;</span> TokenStream &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(MyMacro)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Input</span> &#123;</span><br><span class="line">    <span class="meta">#[helper]</span>  <span class="comment">// 可以根据这个 helper attribitue 执行更多操作</span></span><br><span class="line">    field: <span class="type">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>Attribute macros - <code>#[CustomAttribute]</code>: 用于<code>struct</code>或函数</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[my_macro]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">my_function</span>() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[proc_macro_attribute]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">my_macro</span>(attr: TokenStream, input: TokenStream) <span class="punctuation">-&gt;</span> TokenStream &#123;</span><br><span class="line">    <span class="comment">// 第1个参数 attr 代表属性宏的参数</span></span><br><span class="line">    <span class="comment">// 第2个参数 input，是剩余的元素</span></span><br><span class="line">    ...,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[my_macro(arg1, arg2)]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">my_function</span>() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>可以使用 <code>cargo-expand</code> 命令展开宏</p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Anchor/" rel="tag">Anchor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/11_Solana-Anchor解决内存限制"
   class="article article-type-post"
   itemscope
@@ -687,183 +759,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/solana/7_Solana的Token"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/"
-    >7_Solana的Token</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/09/technology/blockchain/solana/7_Solana%E7%9A%84Token/" class="article-date">
-  <time datetime="2024-07-09T11:54:00.000Z" itemprop="datePublished">2024-07-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Solana的Token"><a href="#Solana的Token" class="headerlink" title="Solana的Token"></a>Solana的Token</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens">https://solana.com/docs/core/tokens</a></p>
-</blockquote>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://x.com/pencilflip/status/1454141877972779013">https://x.com/pencilflip/status/1454141877972779013</a></p>
-</li>
-<li><p>SPL Token官方文档: <a target="_blank" rel="noopener" href="https://spl.solana.com/associated-token-account">https://spl.solana.com/associated-token-account</a></p>
-</li>
-</ul>
-<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ul>
-<li>Token代表了同质化和非同质化的资产的所有权</li>
-<li>Token Program 包含了所有与token交互所需要的指令</li>
-<li>Token Extensions Program 是新版程序，包含了额外的特性</li>
-<li><strong>Mint Account</strong>: 代表了一个唯一的代币</li>
-<li>Token Account:<ul>
-<li>A Token Account tracks individual ownership of tokens for a specific mint account.</li>
-</ul>
-</li>
-<li><strong>Associated Token Account (ATA)</strong>: 由 owner地址 和 Mint Account地址派生出来的 Token Account<ul>
-<li>An Associated Token Account(ATA) is a <strong>Token Account</strong> created with an address derived from the owner’s and mint account’s addresses.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>注意区别：<code>Token Account</code> 和 ATA</p>
-<ul>
-<li><p>Token Account 是更加通用的，可以随机生成(由客户端生成)</p>
-</li>
-<li><p>ATA 是通过确定性算法生成出来的, 标准化的</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ATA = PDA(</span><br><span class="line">    [</span><br><span class="line">        owner_address,</span><br><span class="line">        token_program_id,</span><br><span class="line">        mint_address</span><br><span class="line">    ],</span><br><span class="line">    associated_token_program_id</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li><p>问题： <code>SPL Token</code>的接收账户必须是<code>ATA</code>吗？</p>
-<ul>
-<li>答： 不是不是必须，用户可以自定义<code>seeds</code>和<code>bump</code>生成 Token Account</li>
-</ul>
-</li>
-</ul>
-<h3 id="Token-Program"><a href="#Token-Program" class="headerlink" title="Token Program"></a>Token Program</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-program.svg"></p>
-<ul>
-<li><code>InitializeMint</code>: 发行代币<ul>
-<li>Create a new mint account to represent a new type of token.</li>
-</ul>
-</li>
-<li><code>InitializeAccount</code>:  创建ATA账号<ul>
-<li>Create a new token account to hold units of a specific type of token (mint).</li>
-</ul>
-</li>
-<li><code>MintTo</code>: 增发代币。<ul>
-<li>Create new units of a specific type of token and add them to a token account. This increases the supply of the token and can only be done by the mint authority of the mint account.</li>
-</ul>
-</li>
-<li><code>Transfer</code>: 转移Token<ul>
-<li>Transfer units of a specific type of token from one token account to another.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Mint-Account"><a href="#Mint-Account" class="headerlink" title="Mint Account"></a>Mint Account</h3><ul>
-<li>Supply: token 的总发行量</li>
-<li>Decimals: 精度</li>
-<li>Mint authority: 持有<em>增发token权限</em>账户, 可以增发token</li>
-<li>Freeze authority: 持有<em>冻结转移</em>的账户, 即将某个用户账户”拉黑”<ul>
-<li>The account authorized to freeze tokens from being transferred from “token accounts”</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/mint-account.svg"></p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Mint</span> &#123;</span><br><span class="line">    <span class="comment">/// Optional authority used to mint new tokens. The mint authority may only</span></span><br><span class="line">    <span class="comment">/// be provided during mint creation. If no mint authority is present</span></span><br><span class="line">    <span class="comment">/// then the mint has a fixed supply and no further tokens may be</span></span><br><span class="line">    <span class="comment">/// minted.</span></span><br><span class="line">    <span class="keyword">pub</span> mint_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// Total supply of tokens.</span></span><br><span class="line">    <span class="keyword">pub</span> supply: <span class="type">u64</span>,</span><br><span class="line">    <span class="comment">/// Number of base 10 digits to the right of the decimal place.</span></span><br><span class="line">    <span class="keyword">pub</span> decimals: <span class="type">u8</span>,</span><br><span class="line">    <span class="comment">/// Is `true` if this structure has been initialized</span></span><br><span class="line">    <span class="keyword">pub</span> is_initialized: <span class="type">bool</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to freeze token accounts.</span></span><br><span class="line">    <span class="keyword">pub</span> freeze_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>例如 USDC的Mint Account : <a target="_blank" rel="noopener" href="https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v">https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</a></p>
-<h3 id="Token-Account"><a href="#Token-Account" class="headerlink" title="Token Account"></a>Token Account</h3><p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account.svg"></p>
-<ul>
-<li><code>Mint</code>: 执行特定的Mint Account<ul>
-<li>The type of token the Token Account holds units of</li>
-</ul>
-</li>
-<li><code>Owner</code>: The account authorized to transfer tokens out of the Token Account<ul>
-<li>该Token Account 的所有者，有权转移该Token Account上的token</li>
-<li>注意： AccountInfo中owner 和 AccountInfo Data中的owner 是不同的，前者是Program的owner（即Token Program地址, 所有Token Account的owner都是 Token Program）, 后者是 Token Account的所有者(即用户的钱包地址)<blockquote>
-<p>原文： Note that each Token Account’s data includes an owner field used to identify who has <strong>authority over that specific Token Account</strong>. This is separate from the <strong>program owner</strong> specified in the AccountInfo, which is the Token Program for all Token Accounts.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><code>Amount</code>: Units of the token the Token Account currently holds<ul>
-<li>余额</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Account</span> &#123;</span><br><span class="line">    <span class="comment">/// The mint associated with this account</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The owner of this account.</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line">    <span class="comment">/// The amount of tokens this account holds.</span></span><br><span class="line">    <span class="keyword">pub</span> amount: <span class="type">u64</span>,</span><br><span class="line">    <span class="comment">/// If `delegate` is `Some` then `delegated_amount` represents</span></span><br><span class="line">    <span class="comment">/// the amount authorized by the delegate</span></span><br><span class="line">    <span class="keyword">pub</span> delegate: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// The account&#x27;s state</span></span><br><span class="line">    <span class="keyword">pub</span> state: AccountState,</span><br><span class="line">    <span class="comment">/// If is_native.is_some, this is a native token, and the value logs the</span></span><br><span class="line">    <span class="comment">/// rent-exempt reserve. An Account is required to be rent-exempt, so</span></span><br><span class="line">    <span class="comment">/// the value is used by the Processor to ensure that wrapped SOL</span></span><br><span class="line">    <span class="comment">/// accounts do not drop below this threshold.</span></span><br><span class="line">    <span class="keyword">pub</span> is_native: COption&lt;<span class="type">u64</span>&gt;,</span><br><span class="line">    <span class="comment">/// The amount delegated</span></span><br><span class="line">    <span class="keyword">pub</span> delegated_amount: <span class="type">u64</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to close the account.</span></span><br><span class="line">    <span class="keyword">pub</span> close_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship.svg"></p>
-<h3 id="Associated-Token-Account"><a href="#Associated-Token-Account" class="headerlink" title="Associated Token Account"></a>Associated Token Account</h3><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#associated-token-account">https://solana.com/docs/core/tokens#associated-token-account</a></p>
-</blockquote>
-<ul>
-<li>Associated Token Account (ATA) 是一个 Token Account, 这个token account的地址是确定的，通过 owner的地址 和 Mint Account的地址一起生成出来的。你可以认为<strong>ATA就是每个用户的默认Token Account</strong><blockquote>
-<p>原文：An Associated Token Account is a token account whose address is deterministically derived using the owner’s address and the mint account’s address. You can think of the Associated Token Account as the “default” token account for a specific mint and owner.</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/associated-token-account.svg"></p>
-<p>获取 ATA</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getAssociatedTokenAddressSync &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/spl-token&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> associatedTokenAccountAddress = <span class="title function_">getAssociatedTokenAddressSync</span>(</span><br><span class="line">  <span class="variable constant_">USDC_MINT_ADDRESS</span>,</span><br><span class="line">  <span class="variable constant_">OWNER_ADDRESS</span>,</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>或者，通过<code>PDA</code>的方式生成 ATA</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">PublicKey</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/web3.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [<span class="variable constant_">PDA</span>, bump] = <span class="title class_">PublicKey</span>.<span class="title function_">findProgramAddressSync</span>(</span><br><span class="line">  [</span><br><span class="line">    <span class="variable constant_">OWNER_ADDRESS</span>.<span class="title function_">toBuffer</span>(),</span><br><span class="line">    <span class="variable constant_">TOKEN_PROGRAM_ID</span>.<span class="title function_">toBuffer</span>(),</span><br><span class="line">    <span class="variable constant_">USDC_MINT_ADDRESS</span>.<span class="title function_">toBuffer</span>(),</span><br><span class="line">  ],</span><br><span class="line">  <span class="variable constant_">ASSOCIATED_TOKEN_PROGRAM_ID</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>对于每个代币(即Mint Account), 每个钱包账户都有一个自己的 Token Account(也可以叫ATA)， 如下图：</p>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/token-account-relationship-ata.svg"></p>
-<h3 id="创建Token-Metadata"><a href="#创建Token-Metadata" class="headerlink" title="创建Token Metadata"></a>创建Token Metadata</h3><p>需要使用<code>Token Extensions Program </code></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/tokens#create-token-metadata">https://solana.com/docs/core/tokens#create-token-metadata</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</span><br><span class="line">--enable-metadata</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TokenMetadata</span> &#123;</span><br><span class="line">    <span class="comment">/// The authority that can sign to update the metadata</span></span><br><span class="line">    <span class="keyword">pub</span> update_authority: OptionalNonZeroPubkey,</span><br><span class="line">    <span class="comment">/// The associated mint, used to counter spoofing to be sure that metadata</span></span><br><span class="line">    <span class="comment">/// belongs to a particular mint</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// The longer name of the token</span></span><br><span class="line">    <span class="keyword">pub</span> name: <span class="type">String</span>,</span><br><span class="line">    <span class="comment">/// The shortened symbol for the token</span></span><br><span class="line">    <span class="keyword">pub</span> symbol: <span class="type">String</span>,</span><br><span class="line">    <span class="comment">/// The URI pointing to richer metadata</span></span><br><span class="line">    <span class="keyword">pub</span> uri: <span class="type">String</span>,</span><br><span class="line">    <span class="comment">/// Any additional metadata about the token as key-value pairs. The program</span></span><br><span class="line">    <span class="comment">/// must avoid storing the same key twice.</span></span><br><span class="line">    <span class="keyword">pub</span> additional_metadata: <span class="type">Vec</span>&lt;(<span class="type">String</span>, <span class="type">String</span>)&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>更多细节：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/token-extensions/metadata-pointer">https://solana.com/developers/guides/token-extensions/metadata-pointer</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/10/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/12/">下一页</a>
   </nav>
   
 </section>

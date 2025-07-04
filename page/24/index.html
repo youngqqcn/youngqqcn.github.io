@@ -106,6 +106,150 @@
     
     
     <article
+  id="post-technology/blockchain/web3/深度解析Optimism窃取事件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/"
+    >深度解析Optimism窃取事件</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/10/technology/blockchain/web3/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90Optimism%E7%AA%83%E5%8F%96%E4%BA%8B%E4%BB%B6/" class="article-date">
+  <time datetime="2022-06-10T03:55:00.000Z" itemprop="datePublished">2022-06-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="深度解析Optimism窃取事件"><a href="#深度解析Optimism窃取事件" class="headerlink" title="深度解析Optimism窃取事件"></a>深度解析Optimism窃取事件</h1><p>本文在这篇文章<a target="_blank" rel="noopener" href="https://www.techflow520.com/news/920">深度解析 Optimism窃取事件：Layer2 网络合约部署重放攻击</a>加以梳理，并配有详细的示例代码，示例代码会放在github上。</p>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>为了简化，就用甲方乙代替公司名吧。甲方（optimism）要乙方（Wintermute）帮忙搞事情，因为乙在layer1玩得很溜，甲方想在自己的layer2也玩起来。</p>
+<p>于是，乙方爽快地答应了，给了一个收币地址给甲方说：“你忘这个地址上转币吧，其他事情我这边搞定。”甲方很开心地向乙方提供的收币地址转了2000万个OP币，乙方却说没有收到。一查才发现，乙方提供的是layer1的地址，而甲方转的是layer2的地址，虽然地址长得一样，但是此地址在layer2上尚未被创建（没有创建也可以转账进去）。</p>
+<p>那该怎么办呢？两边的技术人员一看说，这是个黑洞地址，现在没有人能转走里面的币，只要操作一波是可以找回那些币的，不过现在是五一假期，大家都在夏威夷独家呢，过了五一节再说吧（开玩笑）。黑客可没有五一，立即行动，搞走了里面的币。甲乙双方尴尬了。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>黑客是做到的呢？ 思路很简单，只要2步：</p>
+<ul>
+<li>在layer2上创建乙方的收币地址（是合约地址）</li>
+<li>搞到乙方的收币地址的所有权（控制权），因为地址是合约地址，而且是个proxy合约，即代理合约。</li>
+<li>转移资金</li>
+</ul>
+<h2 id="Layer1"><a href="#Layer1" class="headerlink" title="Layer1"></a>Layer1</h2><ul>
+<li>Gnosis Safe Proxy Factory（以下统称合约A): 0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b</li>
+<li>Wintermute proxy(以下统称合约B): 0x4f3a120E72C76c22ae802D129F599BFDbc31cb81</li>
+</ul>
+<p>其中合约A由此交易创建:<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261">https://etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261</a><br>这笔交易的发起地址是：0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-002.png"></p>
+<p>合约B由此交易创建：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#eventlog">https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#eventlog</a></p>
+<p>这笔交易的发起者不重要，重要的是调用ProxyCreation传入的参数，0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b，这个地址就是合约A<br><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-001.png"></p>
+<h2 id="Layer2"><a href="#Layer2" class="headerlink" title="Layer2"></a>Layer2</h2><ul>
+<li>合约地址A：0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b</li>
+<li>合约地址B：0x4f3a120e72c76c22ae802d129f599bfdbc31cb81 </li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://etherscan.io/txs?a=0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a">https://etherscan.io/txs?a=0x1aa7451dd11b8cb16ac089ed7fe05efa00100a6a</a></p>
+<h3 id="⭐-第1步：如何在layer2创建处合约地址A？"><a href="#⭐-第1步：如何在layer2创建处合约地址A？" class="headerlink" title="⭐ 第1步：如何在layer2创建处合约地址A？"></a>⭐ 第1步：如何在layer2创建处合约地址A？</h3><p>因为layer1上创建合约A的交易，没有使用<a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/eips/eip-155.html#%E8%A7%84%E8%8C%83">EIP155</a>,所以可以，将此笔交易进行重放。</p>
+<p>重放layer1上创建合约A的交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261">https://optimistic.etherscan.io/tx/0x75a42f240d229518979199f56cd7c82e4fc1f1a20ad9a4864c635354b4a34261</a><br>，保证发送笔交易时nonce与layer创建合约A时一样即可。</p>
+<p>如何重放？ 可以使用RPC <code>sendRawTransaction</code>将交易data发到layer2链上即可，当然要保证账户有余额</p>
+<h3 id="⭐-第2步：如何在layer2创建处合约地址B？"><a href="#⭐-第2步：如何在layer2创建处合约地址B？" class="headerlink" title="⭐ 第2步：如何在layer2创建处合约地址B？"></a>⭐ 第2步：如何在layer2创建处合约地址B？</h3><p>合约地址生成原理: <code>Hash(caller, nonce_of_caller)</code></p>
+<p>普通地址的nonce记录的交易次数，合约地址的nonce值是合约地址创建合约数量。nonce值可以以太坊的JSON RPC接口获取</p>
+<p>例如获取当前的nonce值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">curl https://mainnet.infura.io/v3/8a264f274fd94de48eb290d35db030ab \</span><br><span class="line">-X POST \</span><br><span class="line">-H &quot;Content-Type: application/json&quot; \</span><br><span class="line">-d \</span><br><span class="line">&#x27;&#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;eth_getTransactionCount&quot;,</span><br><span class="line">    &quot;params&quot;: [</span><br><span class="line">        &quot;0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b&quot;,</span><br><span class="line">        &quot;latest&quot; </span><br><span class="line">    ],</span><br><span class="line">    &quot;id&quot;: 1</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;result&quot;:&quot;0x89a7&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>0x89a7</code>是<code>35239</code>，黑客是不是要创建这么多合约呢？其实不用，因为layer1上的合约B是2020年创建的，那时候合约A的nonce肯定没有这么大。有没有什么办法可以获取到那笔创建合约B时，合约A的准确的nonce值呢？有的！etherscan就记录了state的转换：<a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#statechange">https://etherscan.io/tx/0xd705178d68551a6a6f65ca74363264b32150857a26dd62c27f3f96b8ec69ca01#statechange</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-003.png"></p>
+<p>nonce从<code>8884</code>增加到了<code>8885</code>，也就说，我们要得到的nonce值就是<code>8884</code>！</p>
+<p>当然也可以使用以下代码找到nonce值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Web3</span> = <span class="built_in">require</span>(<span class="string">&quot;web3&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">RLP</span> = <span class="built_in">require</span>(<span class="string">&quot;rlp&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> account = <span class="string">&quot;0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> nonce = <span class="number">0</span>; nonce &lt; <span class="number">0xffffffff</span>; nonce++)&#123;</span><br><span class="line">    <span class="keyword">let</span> e = <span class="variable constant_">RLP</span>.<span class="title function_">encode</span>([account, nonce] );</span><br><span class="line">    <span class="keyword">const</span> nonceHash = <span class="title class_">Web3</span>.<span class="property">utils</span>.<span class="title function_">sha3</span>(<span class="title class_">Buffer</span>.<span class="title function_">from</span>(e));</span><br><span class="line">    <span class="keyword">const</span> targetAddress = <span class="string">&#x27;0x&#x27;</span>+ nonceHash.<span class="title function_">substring</span>(<span class="number">26</span>)</span><br><span class="line">    <span class="keyword">if</span>(targetAddress === <span class="string">&#x27;0x4f3a120e72c76c22ae802d129f599bfdbc31cb81&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(nonce)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输出结果是:<code>8884</code></p>
+<p>黑客创建了一个攻击合约（以下称作合约C）：0xE7145dd6287AE53326347f3A6694fCf2954bcD8A</p>
+<p>只要调用合约A不停地创建合约，当nonce与layer1创建合约B那笔交易的nonce相同，就可以在layer2创建出合约地址B。</p>
+<p>黑客在layer2上创建合约B地址的交易log，在135位置：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x00a3da68f0f6a69cb067f09c3f7e741a01636cbc27a84c603b468f65271d415b#eventlog">https://optimistic.etherscan.io/tx/0x00a3da68f0f6a69cb067f09c3f7e741a01636cbc27a84c603b468f65271d415b#eventlog</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-004.png"></p>
+<p>黑客是如何将合约B中的<code>masterCopy</code>设置为自己的攻击合约地址的？</p>
+<p>在区块浏览器查不到合约B的构造参数，但是我们看合约A的代码 <a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/address/0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b#code%EF%BC%9A">https://optimistic.etherscan.io/address/0x76e2cfc1f5fa8f6a5b3fc4c8f4788f0116861f9b#code：</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/// @dev Allows to create new proxy contact and execute a message call to the new proxy within one transaction.</span><br><span class="line">/// @param masterCopy Address of master copy.</span><br><span class="line">/// @param data Payload for message call sent to new proxy contract.</span><br><span class="line">function createProxy(address masterCopy, bytes memory data)</span><br><span class="line">    public</span><br><span class="line">    returns (Proxy proxy)</span><br><span class="line">&#123;</span><br><span class="line">    proxy = new Proxy(masterCopy);</span><br><span class="line">    if (data.length &gt; 0)</span><br><span class="line">        // solium-disable-next-line security/no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            if eq(call(gas, proxy, 0, add(data, 0x20), mload(data), 0, 0), 0) &#123; revert(0, 0) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    emit ProxyCreation(proxy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要在调用<code>createProxy</code>时将<code>masterCopy</code>设置为黑客自己的攻击合约地址即可，<code>data</code>为空，这样即可。</p>
+<h3 id="⭐-第3步：如何转移合约B中的金额？"><a href="#⭐-第3步：如何转移合约B中的金额？" class="headerlink" title="⭐ 第3步：如何转移合约B中的金额？"></a>⭐ 第3步：如何转移合约B中的金额？</h3><p>黑客转移合约B上的1000000个OP的交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e">https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e</a></p>
+<p>查看内部交易：<a target="_blank" rel="noopener" href="https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e#internal">https://optimistic.etherscan.io/tx/0x230e17117986f0dc7259db824de1d00c6cf455c925c0c8c6b89bf0b6756a7b7e#internal</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-10-005.png"></p>
+<p>其中 0xE7145dd6287AE53326347f3A6694fCf2954bcD8A 就是黑客攻击合约</p>
+<p>交易的inputData</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xad8d5f480000000000000000000000004200000000000000000000000000000000000042000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044a9059cbb00000000000000000000000060b28637879b5a09d21b68040020ffbf7dba510700000000000000000000000000000000000000000000d3c21bcecceda100000000000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+
+<p>其中 <code>0xad8d5f48</code>: 是<code>exec(address,bytes,uint256)</code>的签名</p>
+<p>我们再看看layer1上合约B的源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">contract Proxy &#123;</span><br><span class="line"></span><br><span class="line">    // masterCopy always needs to be first declared variable, to ensure that it is at the same location in the contracts to which calls are delegated.</span><br><span class="line">    // To reduce deployment costs this variable is internal and needs to be retrieved via `getStorageAt`</span><br><span class="line">    address internal masterCopy;</span><br><span class="line"></span><br><span class="line">    /// @dev Constructor function sets address of master copy contract.</span><br><span class="line">    /// @param _masterCopy Master copy address.</span><br><span class="line">    constructor(address _masterCopy)</span><br><span class="line">        public</span><br><span class="line">    &#123;</span><br><span class="line">        require(_masterCopy != address(0), &quot;Invalid master copy address provided&quot;);</span><br><span class="line">        masterCopy = _masterCopy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @dev Fallback function forwards all transactions and returns all received return data.</span><br><span class="line">    function ()</span><br><span class="line">        external</span><br><span class="line">        payable</span><br><span class="line">    &#123;</span><br><span class="line">        // solium-disable-next-line security/no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let masterCopy := and(sload(0), 0xffffffffffffffffffffffffffffffffffffffff)</span><br><span class="line">            // 0xa619486e == keccak(&quot;masterCopy()&quot;). The value is right padded to 32-bytes with 0s</span><br><span class="line">            if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) &#123;</span><br><span class="line">                mstore(0, masterCopy)</span><br><span class="line">                return(0, 0x20)</span><br><span class="line">            &#125;</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line">            let success := delegatecall(gas, masterCopy, 0, calldatasize(), 0, 0)</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line">            if eq(success, 0) &#123; revert(0, returndatasize()) &#125;</span><br><span class="line">            return(0, returndatasize())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题来了，并没有发现<code>exec</code>函数！这是怎么回事呢？</p>
+<p>我们注意到，函数<code>function () external payable</code>是<code>fallback函数</code>，也就是说当调用时没有匹配到函数时，会进入<code>fallback</code>函数。</p>
+<p>因为<code>masterCopy</code>在创建合约B时，就已经设置为黑客自己的攻击合约地址<code>0xE7145dd6287AE53326347f3A6694fCf2954bcD8A</code>。</p>
+<p>如此一来，代码中的<code>delegatecall</code>调用黑客自己的攻击合约，然后在攻击合约中执行<code>OP</code>合约(<code>0x4200000000000000000000000000000000000042</code>)的ERC20的<code>transfer</code>操作，又因为使用的是<code>delegatecall</code>，<code>msg.sender</code>就是合约B的地址，即(0x4f3a120e72c76c22ae802d129f599bfdbc31cb81)，所以，调用<code>transfer</code>时，扣除的<code>msg.sender</code>的OP代币余额，这样，就可以转移了<code>OP</code>代币。</p>
+<p>我们再验证这个合约B的“转发”功能，</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-001.png"></p>
+<p>其中<code>0x8da5cb5b</code>是函数<code>owner()</code>的签名。合约B<code>0x4f3a120e72c76c22ae802d129f599bfdbc31cb81</code>将请求转发到黑客的攻击合约，如下图：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-11-002.png"></p>
+<h3 id="模拟转移代币"><a href="#模拟转移代币" class="headerlink" title="模拟转移代币"></a>模拟转移代币</h3><p>为了更加深入理解，我们编写一个测试合约，来模拟黑客转移代币的操作。</p>
+<ul>
+<li>我们把<code>proxy</code>的代码复制过来；</li>
+<li>然后编写一个<code>Erc20</code>合约模拟<code>OP</code>代币合约，秩序实现一个简单的<code>transfer</code>操作；</li>
+<li>再编写一个<code>Hacker</code>合约，模拟黑客的攻击合约</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.26;</span><br><span class="line"></span><br><span class="line">contract Proxy &#123;</span><br><span class="line"></span><br><span class="line">    address internal masterCopy;</span><br><span class="line">    constructor(address _masterCopy)</span><br><span class="line">        public</span><br><span class="line">    &#123;</span><br><span class="line">        require(_masterCopy != address(0), &quot;Invalid master copy address provided&quot;);</span><br><span class="line">        masterCopy = _masterCopy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @dev Fallback function forwards all transactions and returns all received return data.</span><br><span class="line">    function ()</span><br><span class="line">        external</span><br><span class="line">        payable</span><br><span class="line">    &#123;</span><br><span class="line">        // solium-disable-next-line security/no-inline-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            let masterCopy := and(sload(0), 0xffffffffffffffffffffffffffffffffffffffff)</span><br><span class="line">            // 0xa619486e == keccak(&quot;masterCopy()&quot;). The value is right padded to 32-bytes with 0s</span><br><span class="line">            if eq(calldataload(0), 0xa619486e00000000000000000000000000000000000000000000000000000000) &#123;</span><br><span class="line">                mstore(0, masterCopy)</span><br><span class="line">                return(0, 0x20)</span><br><span class="line">            &#125;</span><br><span class="line">            calldatacopy(0, 0, calldatasize())</span><br><span class="line">            let success := delegatecall(gas, masterCopy, 0, calldatasize(), 0, 0)</span><br><span class="line">            returndatacopy(0, 0, returndatasize())</span><br><span class="line">            if eq(success, 0) &#123; revert(0, returndatasize()) &#125;</span><br><span class="line">            return(0, returndatasize())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Erc20 &#123;</span><br><span class="line">    address public sender;</span><br><span class="line">    // 为了方便查看结果，我们输出一个log</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 value);</span><br><span class="line">    function transfer(address to, uint256 amount) external returns (bool) &#123;</span><br><span class="line">        sender = msg.sender;</span><br><span class="line">        // 略，其他操作，从msg.sender余额扣除，增加to的余额</span><br><span class="line">        emit Transfer(msg.sender, to, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">contract Hacker &#123;</span><br><span class="line">    event Ok(address,bytes,uint256);</span><br><span class="line">    event Failed(bool);</span><br><span class="line"></span><br><span class="line">    function exec(address addr, bytes data, uint256 amount)  public payable returns(bool)&#123;</span><br><span class="line">        Erc20 erc20 = Erc20(addr);</span><br><span class="line">        address to = 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            to := mload(add(data,20)) // 将data转为地址</span><br><span class="line">        &#125;</span><br><span class="line">        bool success = erc20.transfer(to, amount);</span><br><span class="line">        if(success) &#123;</span><br><span class="line">            // 为了方便查看结果，我们输出一个log</span><br><span class="line">            emit Ok(addr, data, amount);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 为了方便查看结果，我们输出一个log</span><br><span class="line">            emit Failed(false);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>具体部署步骤:</p>
+<ul>
+<li>部署<code>Erc20</code>合约</li>
+<li>部署<code>Hacker</code>合约</li>
+<li>部署<code>proxy</code>合约，构造参数将<code>masterCopy</code>地址设置<code>Hacker</code>合约地址即可</li>
+</ul>
+<p>为了获得proxy的调用data，我们这里先直接调用<code>Hacker</code>的<code>exec</code>函数，这样就可以获得完整的input data</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xad8d5f4800000000000000000000000032f99155646d147b8a4846470b64a96dd9cba4140000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000115c000000000000000000000000000000000000000000000000000000000000001460b28637879b5a09d21b68040020ffbf7dba5107000000000000000000000000</span><br></pre></td></tr></table></figure>
+<p>我们将此input data 填入<code>proxy</code>的CALLDATA，就可以调用proxy的<code>fallback</code>函数，运行结果如下：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img2022-06-12-001.png"></p>
+<p>至此，我们这个分析流程结束。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>山外有山，人外有人。应该向黑客学习，学习他的好的一面，比如，技术方面、耐心。</p>
+<hr>
+<p>示例代码链接：<a target="_blank" rel="noopener" href="https://github.com/youngqqcn/optimism-attack-analysis">https://github.com/youngqqcn/optimism-attack-analysis</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimism/" rel="tag">Optimism</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web3/" rel="tag">Web3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solidity/" rel="tag">solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%BB%91%E5%AE%A2/" rel="tag">黑客</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/github非常有价值的项目1"
   class="article article-type-post"
   itemscope
@@ -672,71 +816,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/NFT/NFT学习"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/"
-    >NFT学习</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/04/17/technology/blockchain/NFT/NFT%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2022-04-17T16:00:00.000Z" itemprop="datePublished">2022-04-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="NFT学习"><a href="#NFT学习" class="headerlink" title="NFT学习"></a>NFT学习</h1><p>ERC721官网：<a target="_blank" rel="noopener" href="http://erc721.org/">http://erc721.org/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">interface IERC721 /* is ERC165 */ &#123;</span><br><span class="line">    // 事件：转移token</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    //事件： 授权approved管理owner的tokenId</span><br><span class="line">    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);</span><br><span class="line"></span><br><span class="line">    //事件：  授权operator管理所有资产</span><br><span class="line">    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);</span><br><span class="line"></span><br><span class="line">    // 获取token的数量</span><br><span class="line">    function balanceOf(address owner) external view returns (uint256 balance);</span><br><span class="line"></span><br><span class="line">    // 获取token所有者</span><br><span class="line">    function ownerOf(uint256 tokenId) external view returns (address owner);</span><br><span class="line"></span><br><span class="line">    // 安全转移，首先会检查合约是否能够识别ERC721协议，以防止转进区的NFT被锁住</span><br><span class="line">    // from, to 都不能是零地址</span><br><span class="line">    // 如果调用者不是from，那么，在此之前必须已经被授权</span><br><span class="line">    // 如果to是智能合约，那么，to必须实现IERC721Receiver-onERC721Received</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    // 转移函数</span><br><span class="line">    function transferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId</span><br><span class="line">    ) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    // 授权函数</span><br><span class="line">    function approve(address to, uint256 tokenId) external;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    // 获取某个token授权的账户</span><br><span class="line">    function getApproved(uint256 tokenId) external view returns (address operator);</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    // 授权operator管理所有资产 </span><br><span class="line">    function setApprovalForAll(address operator, bool _approved) external;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">    // 检查是否有授权</span><br><span class="line">    function isApprovedForAll(address owner, address operator) external view returns (bool);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    // 同上，多了一个data参数</span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ERC165 &#123;</span><br><span class="line">    /// @notice Query if a contract implements an interface</span><br><span class="line">    /// @param interfaceID The interface identifier, as specified in ERC-165</span><br><span class="line">    /// @dev Interface identification is specified in ERC-165. This function</span><br><span class="line">    ///  uses less than 30,000 gas.</span><br><span class="line">    /// @return `true` if the contract implements `interfaceID` and</span><br><span class="line">    ///  `interfaceID` is not 0xffffffff, `false` otherwise</span><br><span class="line">    function supportsInterface(bytes4 interfaceID) external view returns (bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//用于接收ERC721的智能合约必须实现此 `IERC721Receiver` 接口</span><br><span class="line">/**</span><br><span class="line"> * @title ERC721 token receiver interface</span><br><span class="line"> * @dev Interface for any contract that wants to support safeTransfers</span><br><span class="line"> * from ERC721 asset contracts.</span><br><span class="line"> */</span><br><span class="line">interface IERC721Receiver &#123;</span><br><span class="line">    /**</span><br><span class="line">     * @dev Whenever an &#123;IERC721&#125; `tokenId` token is transferred to this contract via &#123;IERC721-safeTransferFrom&#125;</span><br><span class="line">     * by `operator` from `from`, this function is called.</span><br><span class="line">     *</span><br><span class="line">     * It must return its Solidity selector to confirm the token transfer.</span><br><span class="line">     * If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.</span><br><span class="line">     *</span><br><span class="line">     * The selector can be obtained in Solidity with `IERC721.onERC721Received.selector`.</span><br><span class="line">     */</span><br><span class="line">    // 当智能合约收到ERC721 token时，此函数就会被调用，并返回一个selector以确认收到了token    </span><br><span class="line">    function onERC721Received(</span><br><span class="line">        address operator,</span><br><span class="line">        address from,</span><br><span class="line">        uint256 tokenId,</span><br><span class="line">        bytes calldata data</span><br><span class="line">    ) external returns (bytes4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>所谓NFT（Non-Fungible Token）就是保证tokenId唯一即可，关于tokenId生成，有很多方式。CryptoKitty中是用数组的index</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Kitty[] kitties; </span><br><span class="line"></span><br><span class="line">uint256 newKittenId = kitties.push(_kitty) - 1; // push 会返回数组的长度，用元素的index作为token的ID</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC721/" rel="tag">ERC721</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/23/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/25/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/23/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/25/">下一页</a>
   </nav>
   
 </section>

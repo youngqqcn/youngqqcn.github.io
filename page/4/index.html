@@ -106,6 +106,98 @@
     
     
     <article
+  id="post-technology/blockchain/move/4_Sui+Move核心概念"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/"
+    >4_Sui+Move核心概念</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/10/23/technology/blockchain/move/4_Sui+Move%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time datetime="2024-10-23T08:19:00.000Z" itemprop="datePublished">2024-10-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="Sui-Move的-Object基础概念"><a href="#Sui-Move的-Object基础概念" class="headerlink" title="Sui Move的 Object基础概念"></a>Sui Move的 Object基础概念</h2><blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/1_working_with_sui_objects.md</a></li>
+</ul>
+</blockquote>
+<ul>
+<li>Sui Move 是以Object为核心</li>
+<li>Sui的交易输入和输出都是 Object</li>
+<li>Object是Sui的基本存储单元</li>
+<li>Object即 <code>struct</code></li>
+<li>Sui 的 Object 必须包含一个 <code>id: UID</code>字段, 并且设置<code>key</code>特性</li>
+<li>Sui中每个Object都必须有一个 owner, owner可以是：<ul>
+<li>一个地址</li>
+<li>其他object</li>
+<li>Object是”shared”</li>
+</ul>
+</li>
+</ul>
+<h2 id="Object的所有权"><a href="#Object的所有权" class="headerlink" title="Object的所有权"></a>Object的所有权</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md">https://github.com/sui-foundation/sui-move-intro-course/blob/main/unit-two/lessons/2_ownership.md</a></p>
+</blockquote>
+<p>在Sui Move中，Object一共有4种所有权:</p>
+<ul>
+<li><strong>Owned</strong>: owned object交易不需要全局排序<ul>
+<li>Owned by an address</li>
+<li>Owned by another object</li>
+</ul>
+</li>
+<li><strong>Shared</strong><ul>
+<li>Shared immutable:<ul>
+<li>没有owner, 所有人都不可修改</li>
+</ul>
+</li>
+<li>Shared mutable：<ul>
+<li>任何人都可以读取和修改, shared object交易需要进行全局排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Move/" rel="tag">Move</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sui/" rel="tag">Sui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/move/3_HelloWorld"
   class="article article-type-post"
   itemscope
@@ -520,125 +612,13 @@
 </article>
 
     
-    <article
-  id="post-read/代码大全"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/10/15/read/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"
-    >代码大全</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/10/15/read/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" class="article-date">
-  <time datetime="2024-10-15T04:16:00.000Z" itemprop="datePublished">2024-10-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6/">读书</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8.pdf">https://github.com/youngqqcn/expert_readed_books/blob/master/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8.pdf</a></p>
-</blockquote>
-<p>《代码大全》——第三十一章 个人性格</p>
-<ul>
-<li><p><strong>谦虚</strong></p>
-<ul>
-<li><p>那些最精通编程序的人往往是那些认为自己的头脑是多么有限的人,他们是谦虚的。而那些最为糟糕的程序员往往是那些拒绝承认自己的能力不适应工作任务的程序员。他们的自我妨碍自己成为优秀程序员,你学到越多的东西来弥<br>补你的大脑,你就越能成为一个好的程序员,你越谦虚,你取得的进步也就越快。</p>
-</li>
-<li><p>“分解”一个系统的目的是为了使其更为简单易懂。人们往往易于理解几条简单的信息而不是一条复杂的信息。所有软件设计方法的目的是将复杂的问题分解为简单的几部分,不论你是否使用结构化、自顶向下或是面向对象的设计,以上目标都相同。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>好奇心(学习)</strong></p>
-<ul>
-<li><p>如果正在开发有良好市场前景的软件,你所学的一半知识将会在今后三年内过时,如果你不再学习新知识,你将会落伍。</p>
-</li>
-<li><p>Thomas Kuhn 指出,任何成熟的科学,实际上是通过解决问题而发展起来的,而这些问题通常被看作本领域良好工作的例子,并且可用作将来进行工作的例子。</p>
-</li>
-<li><p>学习别人的编程(代码)是有重要意义的。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>诚实</strong></p>
-<ul>
-<li>不假装你是一个编程能手, 乐于承认自己的错误</li>
-</ul>
-</li>
-<li><p><strong>交流和合作</strong></p>
-<ul>
-<li>开发程序首先应同程序员交流,其次则是和计算机交流。</li>
-</ul>
-</li>
-<li><p><strong>懒惰</strong></p>
-</li>
-<li><p><strong>经验</strong></p>
-<ul>
-<li>在许多其它领域中,基本知识变化缓慢,以致于 10 年前毕业的某人所学到的知识在现在仍没有什么变化。而在软件开发中,即使基本的知识也发展迅速,在你以后 10 年毕业的某个人可能学到了二倍于你的有效编程方法,一些老的程序员往往被另眼相看,不是由于他们对某些特定方法缺乏接触,而由于他们在走出校门后对一些闻名的基本编程概念缺乏了解。</li>
-<li>如果你不因时间而做出应变,你的经验与其说是帮助倒不如说是一个阻碍。</li>
-</ul>
-</li>
-<li><p><strong>习惯</strong></p>
-<ul>
-<li>微软公司的 Bill Gates——曾说过,任何好程序员在开始的几年都做得很好。从那以后,程序员的好坏便基本定型了。</li>
-<li>成为某方面好的或差的程序员,主要是靠你自己的所作所为。建筑师要通过建筑而程序员要通过编程。你所作所为习惯,决定了你的编程品行。最终,你的习惯好坏决定了你是否能成为一位好的程序员。</li>
-<li>当你开始学习某一件事时,你应按正确的方式学好它。</li>
-<li>当你开始学时,你已对其进行了思考,并且你可在正确或错误的途径间作出轻易的选择。在你作过一段时间后,你对你所作的不太注意,此时“习惯的力量”会开始起作用。确保起作用的习惯是你所希望的。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>小结：</p>
-<ul>
-<li>你的个人性格直接影响你编写计算机程序的能力。</li>
-<li>最有明显作用的性格为:谦虚、好奇心、诚实、创造性和纪律,还有文明的“懒惰”。</li>
-<li>高级程序员的发展和生成与天才并无多大联系,任何事情都和个人的发展有关。</li>
-<li>令人吃惊的是,小聪明、经验、坚持和欲望既可帮助你也能妨碍你。</li>
-<li>许多程序员不主动去吸收新信息和新技术,而是靠偶然地上获得一些新信息,如果你抽出少量时间学习别人的编程经验,过一段时间后,你将在你的同行中脱颖而出。</li>
-<li>好的性格对养成良好习惯有很大影响。为了成为一位高水平的程序员,你应养成良好<br>的习惯,其余的就会随之而来。</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%A0%E6%83%AF/" rel="tag">习惯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%8C%E4%B8%9A/" rel="tag">职业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">软件开发</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
   </nav>
   
 </section>

@@ -106,6 +106,121 @@
     
     
     <article
+  id="post-technology/blockchain/solidity/ERC20高级充币归集技术"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/"
+    >ERC20高级充币归集技术</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/08/12/technology/blockchain/solidity/ERC20%E9%AB%98%E7%BA%A7%E5%85%85%E5%B8%81%E5%BD%92%E9%9B%86%E6%8A%80%E6%9C%AF/" class="article-date">
+  <time datetime="2024-08-12T10:07:00.000Z" itemprop="datePublished">2024-08-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="核心技术概括"><a href="#核心技术概括" class="headerlink" title="核心技术概括:"></a>核心技术概括:</h3><ul>
+<li>使用 <code>CREATE2</code>派生确定的充币地址(合约)</li>
+<li>归集时在合约中 使用相同的 salt 和 hash, 创建充币地址(合约)<ul>
+<li>在合约中执行 ERC20的 approve，授权本合约</li>
+<li>调用 <code>selfdestruct</code>销毁合约</li>
+</ul>
+</li>
+<li>转移使用<code>transferFrom</code>转移充币地址中的ERC20代币</li>
+</ul>
+<hr>
+<h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><ul>
+<li>  充币 USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967">https://etherscan.io/tx/0x3a5a4f8075aab5f67ae5d0be98574ddbae05daa5b3be4b82bc75dad3f3752967</a></li>
+<li>归集(操作)USDC交易: <a target="_blank" rel="noopener" href="https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7">https://etherscan.io/tx/0xf745adf975e874c4f4831e3fc07eb7aa18235013fe2d84089a20f85d0c8460f7</a><ul>
+<li>  实际上是跨链</li>
+</ul>
+</li>
+</ul>
+<h4 id="技术点剖析"><a href="#技术点剖析" class="headerlink" title="技术点剖析:"></a>技术点剖析:</h4><ul>
+<li>  充币地址(接收地址)是一个”临时”合约地址</li>
+<li>  “临时”地址可以派生出来</li>
+<li>  且，”归集”合约可以操作 “临时”地址进行 <code>approve</code>操作</li>
+<li>  <code>approve</code>完成后即自毁(<code>selfdestruct</code>)了临时合约地址</li>
+</ul>
+<h4 id="合约代码分析"><a href="#合约代码分析" class="headerlink" title="合约代码分析:"></a>合约代码分析:</h4><ul>
+<li>合约代码: <a target="_blank" rel="noopener" href="https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171">https://vscode.blockscan.com/ethereum/0x07042134d4dc295cbf3ab08a4a0eff847a528171</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function that bridges taking amount from the t2bAddress where the user funds are parked.</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bridgeERC20</span>(<span class="params"></span></span><br><span class="line"><span class="params">    uint256 fees,</span></span><br><span class="line"><span class="params">    uint256 nonce,</span></span><br><span class="line"><span class="params">    bytes calldata bridgeData,</span></span><br><span class="line"><span class="params">    bytes calldata signature</span></span><br><span class="line"><span class="params"></span>) external &#123;</span><br><span class="line">    <span class="comment">// recovering signer.</span></span><br><span class="line">    address recoveredSigner = <span class="variable constant_">ECDSA</span>.<span class="title function_">recover</span>(</span><br><span class="line">        <span class="title function_">keccak256</span>(</span><br><span class="line">            abi.<span class="title function_">encodePacked</span>(</span><br><span class="line">                <span class="string">&quot;\x19Ethereum Signed Message:\n32&quot;</span>,</span><br><span class="line">                <span class="title function_">keccak256</span>(</span><br><span class="line">                    abi.<span class="title function_">encode</span>(</span><br><span class="line">                        <span class="title function_">address</span>(<span class="variable language_">this</span>),</span><br><span class="line">                        nonce,</span><br><span class="line">                        block.<span class="property">chainid</span>, <span class="comment">// uint256</span></span><br><span class="line">                        fees,</span><br><span class="line">                        bridgeData</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        signature</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (signerAddress != recoveredSigner) revert <span class="title class_">SignerMismatch</span>();</span><br><span class="line">    <span class="comment">// nonce is used by gated roles and we don&#x27;t expect nonce to reach the max value of uint256</span></span><br><span class="line">    unchecked &#123;</span><br><span class="line">        <span class="keyword">if</span> (nonce != nextNonce[signerAddress]++) revert <span class="title class_">InvalidNonce</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bridgeVerifiers[<span class="title function_">uint32</span>(<span class="title function_">bytes4</span>(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))] == <span class="title function_">address</span>(<span class="number">0</span>))</span><br><span class="line">        revert <span class="title class_">UnsupportedBridge</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    (bool parseSuccess, bytes memory parsedData) = bridgeVerifiers[</span><br><span class="line">        <span class="title function_">uint32</span>(<span class="title function_">bytes4</span>(bridgeData[<span class="number">0</span>:<span class="number">4</span>]))</span><br><span class="line">    ].<span class="title function_">call</span>(bridgeData[<span class="number">4</span>:bridgeData.<span class="property">length</span> - <span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!parseSuccess) revert <span class="title class_">VerificationCallFailed</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解析数据</span></span><br><span class="line">    <span class="title class_">IT2BRequest</span>.<span class="property">T2BRequest</span> memory t2bRequest = abi.<span class="title function_">decode</span>(</span><br><span class="line">        parsedData,</span><br><span class="line">        (<span class="title class_">IT2BRequest</span>.<span class="property">T2BRequest</span>)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取派生地址</span></span><br><span class="line">    address t2bAddress = <span class="title function_">getAddressFor</span>(</span><br><span class="line">        t2bRequest.<span class="property">recipient</span>,</span><br><span class="line">        t2bRequest.<span class="property">toChainId</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断 allowance</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        <span class="title class_">ERC20</span>(t2bRequest.<span class="property">token</span>).<span class="title function_">allowance</span>(t2bAddress, <span class="title function_">address</span>(<span class="variable language_">this</span>)) &lt;</span><br><span class="line">        t2bRequest.<span class="property">amount</span></span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 计算salt</span></span><br><span class="line">        bytes32 uniqueSalt = <span class="title function_">keccak256</span>(</span><br><span class="line">            abi.<span class="title function_">encode</span>(t2bRequest.<span class="property">recipient</span>, t2bRequest.<span class="property">toChainId</span>)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用 CREATE2 创建临时地址</span></span><br><span class="line">        <span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(<span class="title function_">address</span>(<span class="variable language_">this</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将派生地址的 ERC20代币转移</span></span><br><span class="line">    <span class="title class_">ERC20</span>(t2bRequest.<span class="property">token</span>).<span class="title function_">safeTransferFrom</span>(</span><br><span class="line">        t2bAddress,</span><br><span class="line">        <span class="title function_">address</span>(<span class="variable language_">this</span>),</span><br><span class="line">        t2bRequest.<span class="property">amount</span> + fees</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... 其他代码, 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 部署派生地址</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deployApprovalContract</span>(<span class="params"></span></span><br><span class="line"><span class="params">    address receiver,</span></span><br><span class="line"><span class="params">    uint256 toChainId</span></span><br><span class="line"><span class="params"></span>) public <span class="title function_">returns</span> (address approvalAddress) &#123;</span><br><span class="line">    bytes32 uniqueSalt = <span class="title function_">keccak256</span>(abi.<span class="title function_">encode</span>(receiver, toChainId));</span><br><span class="line">    approvalAddress = <span class="title function_">address</span>(<span class="keyword">new</span> T2BApproval&#123;<span class="attr">salt</span>: uniqueSalt&#125;(<span class="title function_">address</span>(<span class="variable language_">this</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取派生地址</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getAddressFor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    address receiver,</span></span><br><span class="line"><span class="params">    uint256 toChainId</span></span><br><span class="line"><span class="params"></span>) public view <span class="title function_">returns</span> (address) &#123;</span><br><span class="line">    bytes32 salt = <span class="title function_">keccak256</span>(abi.<span class="title function_">encode</span>(receiver, toChainId));</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">        <span class="title function_">address</span>(</span><br><span class="line">            <span class="title function_">uint160</span>(</span><br><span class="line">                <span class="title function_">uint256</span>(</span><br><span class="line">                    <span class="title function_">keccak256</span>(</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 可以看下文的  CreateAddress2的实现</span></span><br><span class="line">                        abi.<span class="title function_">encodePacked</span>(</span><br><span class="line">                            <span class="title function_">bytes1</span>(<span class="number">0xff</span>), <span class="comment">// 固定的</span></span><br><span class="line">                            <span class="title function_">address</span>(<span class="variable language_">this</span>), <span class="comment">// 本合约地址</span></span><br><span class="line">                            salt, <span class="comment">// salt</span></span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 合约代码的 hash</span></span><br><span class="line">                            <span class="title function_">keccak256</span>(</span><br><span class="line">                                abi.<span class="title function_">encodePacked</span>(</span><br><span class="line">                                    <span class="title function_">type</span>(T2BApproval).<span class="property">creationCode</span>, <span class="comment">// 合约代码</span></span><br><span class="line">                                    abi.<span class="title function_">encode</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>)) <span class="comment">// 合约</span></span><br><span class="line">                                )</span><br><span class="line">                            )</span><br><span class="line">                        )</span><br><span class="line">                    )</span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  <code>T2BApproval</code> 派生地址合约</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">contract T2BApproval &#123;</span><br><span class="line">    using <span class="title class_">SafeTransferLib</span> <span class="keyword">for</span> <span class="title class_">ERC20</span>;</span><br><span class="line"></span><br><span class="line">    error <span class="title class_">ZeroAddress</span>();</span><br><span class="line">    error <span class="title class_">InvalidTokenAddress</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Constructor</span></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">address _t2bRouter</span>) &#123;</span><br><span class="line">        <span class="comment">// Set T2b Router.</span></span><br><span class="line">        <span class="title class_">IT2BRouter</span> t2bRouter = <span class="title class_">IT2BRouter</span>(_t2bRouter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set Max Approvals for supported tokens.</span></span><br><span class="line">        uint256 tokenIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t2bRouter.<span class="title function_">supportedTokens</span>(tokenIndex) != <span class="title function_">address</span>(<span class="number">0</span>)) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 进行 approve操作</span></span><br><span class="line">            <span class="title class_">ERC20</span>(t2bRouter.<span class="title function_">supportedTokens</span>(tokenIndex)).<span class="title function_">safeApprove</span>(</span><br><span class="line">                <span class="title function_">address</span>(t2bRouter),</span><br><span class="line">                <span class="title function_">type</span>(uint256).<span class="property">max</span></span><br><span class="line">            );</span><br><span class="line">            unchecked &#123;</span><br><span class="line">                ++tokenIndex;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 销毁</span></span><br><span class="line">        <span class="title function_">selfdestruct</span>(<span class="title function_">payable</span>(msg.<span class="property">sender</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>安全性:</p>
+<ul>
+<li><code> new T2BApproval&#123;salt: uniqueSalt&#125;(address(this));</code><ul>
+<li>CREATE2 生成的地址是基于<code>部署者地址</code>、<code>salt</code>、<code>合约字节码的哈希</code>计算的。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li> <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743">https://github.com/ethereum/go-ethereum/blob/5adf4adc8ec2c497eddd3b1ff20d2d35d65ec5fc/core/vm/instructions.go#L709-L743</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  scope.Contract 是本合约地址</span></span><br><span class="line"><span class="comment">// input  合约代码</span></span><br><span class="line">res, addr, returnGas, suberr := interpreter.evm.Create2(scope.Contract, input, gas, &amp;endowment, &amp;salt)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L583-L587</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create2 creates a new contract using code as deployment code.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The different between Create2 with Create is Create2 uses keccak256(0xff ++ msg.sender ++ salt ++ keccak256(init_code))[12:]</span></span><br><span class="line"><span class="comment">// instead of the usual sender-and-nonce-hash as the address where the contract is initialized at.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(evm *EVM)</span></span> Create2(caller ContractRef, code []<span class="type">byte</span>, gas <span class="type">uint64</span>, endowment *uint256.Int, salt *uint256.Int)</span><br><span class="line"> (ret []<span class="type">byte</span>, contractAddr common.Address, leftOverGas <span class="type">uint64</span>, err <span class="type">error</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合约代码的hash</span></span><br><span class="line">	codeAndHash := &amp;codeAndHash&#123;code: code&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	contractAddr = crypto.CreateAddress2(caller.Address(), salt.Bytes32(), codeAndHash.Hash().Bytes())</span><br><span class="line">	<span class="keyword">return</span> evm.create(caller, codeAndHash, gas, endowment, contractAddr, CREATE2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125">https://github.com/ethereum/go-ethereum/blob/master/crypto/crypto.go#L123-L125</a></li>
+</ul>
+<p>生成地址</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CreateAddress2 creates an ethereum address given the address bytes, initial</span></span><br><span class="line"><span class="comment">// contract code hash and a salt.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CreateAddress2</span><span class="params">(b common.Address, salt [32]<span class="type">byte</span>, inithash []<span class="type">byte</span>)</span></span> common.Address &#123;</span><br><span class="line">	<span class="keyword">return</span> common.BytesToAddress(Keccak256([]<span class="type">byte</span>&#123;<span class="number">0xff</span>&#125;, b.Bytes(), salt[:], inithash)[<span class="number">12</span>:])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>略 <a target="_blank" rel="noopener" href="https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448">https://github.com/ethereum/go-ethereum/blob/master/core/vm/evm.go#L448</a></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ERC20/" rel="tag">ERC20</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solidity/Foundry合约开发框架学习"
   class="article article-type-post"
   itemscope
@@ -378,65 +493,13 @@
 </article>
 
     
-    <article
-  id="post-technology/blockchain/defi/Uniswap-v2学习"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/"
-    >Uniswap-v2学习</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/30/technology/blockchain/defi/Uniswap-v2%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2024-07-30T16:00:00.000Z" itemprop="datePublished">2024-07-31</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E8%80%85/" rel="tag">开发者</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%87%91%E8%9E%8D/" rel="tag">金融</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
   </nav>
   
 </section>
