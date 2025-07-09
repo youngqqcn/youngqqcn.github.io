@@ -106,6 +106,62 @@
     
     
     <article
+  id="post-technology/blockchain/defi/Raydium做市资金量计算"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/12/10/technology/blockchain/defi/Raydium%E5%81%9A%E5%B8%82%E8%B5%84%E9%87%91%E9%87%8F%E8%AE%A1%E7%AE%97/"
+    >Raydium做市资金量计算</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/12/10/technology/blockchain/defi/Raydium%E5%81%9A%E5%B8%82%E8%B5%84%E9%87%91%E9%87%8F%E8%AE%A1%E7%AE%97/" class="article-date">
+  <time datetime="2024-12-10T08:24:00.000Z" itemprop="datePublished">2024-12-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc_market</span>(<span class="params">market_cap_in_usd: <span class="built_in">float</span>, sol_price_in_usd: <span class="built_in">float</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># k = x * y      量纲 t*s  , s 为 sol ,  t 为 token</span></span><br><span class="line">    k = <span class="number">79</span> * (<span class="number">10_0000_0000</span> - <span class="number">7_9310_0000</span>)</span><br><span class="line"></span><br><span class="line">    P = <span class="number">0</span>  <span class="comment"># 量纲   s/t</span></span><br><span class="line">    <span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 量纲 u/s  , u为usd</span></span><br><span class="line">        target_sol_price = sol_price_in_usd</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 量纲 u/t  , u为usd</span></span><br><span class="line">        target_token_price = market_cap_in_usd / <span class="number">10_0000_0000</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># p = (u/t) / (u/s) , 目标量纲为 s/t</span></span><br><span class="line">        P = target_token_price / target_sol_price</span><br><span class="line">        <span class="comment"># print(p)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># y^2 = k / p       ,  量纲为 ts / (s/t) = t^2 , 因此 y的量纲为 t</span></span><br><span class="line">    Y = sqrt(k / P)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># x = p * y         , 量纲为 (s/t) * t = s , 因此 x 的量纲为 s</span></span><br><span class="line">    X = P * Y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> X, Y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">target_market_cap_in_usd_lists = [<span class="number">1_0000_0000</span> * i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">sol_price_in_usd = <span class="number">230</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> target_market_cap <span class="keyword">in</span> target_market_cap_in_usd_lists:</span><br><span class="line">    ret = calc_market(target_market_cap, sol_price_in_usd)</span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">        <span class="string">f&quot;拉盘到<span class="subst">&#123;target_market_cap:<span class="number">0.0</span>f&#125;</span>美金市值,  所需资金数量: <span class="subst">&#123;ret[<span class="number">0</span>]:<span class="number">0.0</span>f&#125;</span> 枚SOL , 约合 <span class="subst">&#123;ret[<span class="number">0</span>] * sol_price_in_usd : <span class="number">0.0</span>f&#125;</span> USDT&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>计算结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">拉盘到100000000美金市值,  所需资金数量: 2666 枚SOL , 约合  613137 USDT</span><br><span class="line">拉盘到200000000美金市值,  所需资金数量: 3770 枚SOL , 约合  867107 USDT</span><br><span class="line">拉盘到300000000美金市值,  所需资金数量: 4617 枚SOL , 约合  1061985 USDT</span><br><span class="line">拉盘到400000000美金市值,  所需资金数量: 5332 枚SOL , 约合  1226275 USDT</span><br><span class="line">拉盘到500000000美金市值,  所需资金数量: 5961 枚SOL , 约合  1371017 USDT</span><br><span class="line">拉盘到600000000美金市值,  所需资金数量: 6530 枚SOL , 约合  1501873 USDT</span><br><span class="line">拉盘到700000000美金市值,  所需资金数量: 7053 枚SOL , 约合  1622209 USDT</span><br><span class="line">拉盘到800000000美金市值,  所需资金数量: 7540 枚SOL , 约合  1734214 USDT</span><br><span class="line">拉盘到900000000美金市值,  所需资金数量: 7997 枚SOL , 约合  1839412 USDT</span><br><span class="line">拉盘到1000000000美金市值,  所需资金数量: 8430 枚SOL , 约合  1938910 USDT</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/ton/TON技术研究"
   class="article article-type-post"
   itemscope
@@ -389,59 +445,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E6%8A%80%E6%9C%AF/" rel="tag">语音技术</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/python/gradio学习笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/10/25/technology/python/gradio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >gradio学习笔记</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/10/25/technology/python/gradio%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2024-10-25T02:11:35.000Z" itemprop="datePublished">2024-10-25</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><a target="_blank" rel="noopener" href="https://github.com/gradio-app/gradio/">https://github.com/gradio-app/gradio/</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradio/" rel="tag">gradio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
 
     </footer>
   </div>
