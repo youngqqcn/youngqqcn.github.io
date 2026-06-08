@@ -106,6 +106,67 @@
     
     
     <article
+  id="post-technology/blockchain/solana/8_Solana-原生程序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/"
+    >8_Solana-原生程序</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/8_Solana-%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2024-07-09T12:00:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="8-Solana程序开发-原生"><a href="#8-Solana程序开发-原生" class="headerlink" title="8_Solana程序开发(原生)"></a>8_Solana程序开发(原生)</h1><h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world!"></a>Hello world!</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/developers/guides/getstarted/hello-world-in-your-browser">https://solana.com/developers/guides/getstarted/hello-world-in-your-browser</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet">https://explorer.solana.com/tx/65AGdio7aeK47h9HjAvnR7ap8dFepm3Sp3MJcFvPfuSnXWHJgQBENtxe5xijEk1uLy8bRw31fyjyXZvoBEEQzMGW?cluster=devnet</a></p>
+<p><a target="_blank" rel="noopener" href="https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet">https://explorer.solana.com/tx/5mX3oxvHZAXbYfnpjwDgEXJLTEgYXNrpKvhKufkVqay7Js3qbgaDu2P3ESWiQE5YjjaLGUur2PAJ4pzLPxzW1aUL?cluster=devnet</a></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> solana_program::&#123;</span><br><span class="line">    account_info::AccountInfo,</span><br><span class="line">    entrypoint,</span><br><span class="line">    entrypoint::ProgramResult,</span><br><span class="line">    pubkey::Pubkey,</span><br><span class="line">    msg,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declare and export the program&#x27;s entrypoint</span></span><br><span class="line">entrypoint!(process_instruction);</span><br><span class="line"></span><br><span class="line"><span class="comment">// program entrypoint&#x27;s implementation</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">process_instruction</span>(</span><br><span class="line">    program_id: &amp;Pubkey,</span><br><span class="line">    accounts: &amp;[AccountInfo],</span><br><span class="line">    instruction_data: &amp;[<span class="type">u8</span>]</span><br><span class="line">) <span class="punctuation">-&gt;</span> ProgramResult &#123;</span><br><span class="line">    <span class="comment">// log a message to the blockchain</span></span><br><span class="line">    msg!(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// gracefully exit the program</span></span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create an empty transaction</span></span><br><span class="line"><span class="keyword">const</span> transaction = <span class="keyword">new</span> web3.<span class="title class_">Transaction</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// add a hello world program instruction to the transaction</span></span><br><span class="line">transaction.<span class="title function_">add</span>(</span><br><span class="line">  <span class="keyword">new</span> web3.<span class="title class_">TransactionInstruction</span>(&#123;</span><br><span class="line">    <span class="attr">keys</span>: [],</span><br><span class="line">    <span class="attr">programId</span>: <span class="keyword">new</span> web3.<span class="title class_">PublicKey</span>(pg.<span class="property">PROGRAM_ID</span>),</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// send the transaction to the Solana cluster</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Sending transaction...&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> txHash = <span class="keyword">await</span> web3.<span class="title function_">sendAndConfirmTransaction</span>(</span><br><span class="line">  pg.<span class="property">connection</span>,</span><br><span class="line">  transaction,</span><br><span class="line">  [pg.<span class="property">wallet</span>.<span class="property">keypair</span>],</span><br><span class="line">);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Transaction sent with hash:&quot;</span>, txHash);</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token/" rel="tag">Token</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/7_Solana的Token"
   class="article article-type-post"
   itemscope
@@ -497,124 +558,6 @@
 <li>链上程序可以更新, 必须通过<code>upgrade authority</code>账号, 这个账号通常是初始程序部署的账号</li>
 <li>如果<code>upgrade authority</code>为空， 那么程序就是不可变的，并且不可升级<ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865">https://github.com/solana-labs/solana/blob/27eff8408b7223bb3c4ab70523f8a8dca3ca6645/programs/bpf_loader/src/lib.rs#L865</a></li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solana/3_Solana的手续费"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/"
-    >3_Solana的手续费</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/" class="article-date">
-  <time datetime="2024-07-09T11:31:00.000Z" itemprop="datePublished">2024-07-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
-</blockquote>
-<ul>
-<li>Transaction Fees(base fee) : 交易费</li>
-<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
-<li>给矿工</li>
-</ul>
-</li>
-<li>Rent: 账户租金(充值)</li>
-</ul>
-<ul>
-<li><p>交易手续费的分配：</p>
-<ul>
-<li><code>50%</code>: 交易费直接燃烧</li>
-<li><code>50%</code>: 给矿工</li>
-</ul>
-</li>
-<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
-</li>
-<li><p>交易执行限制：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
-</blockquote>
-<ul>
-<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
-<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
-<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
-<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
-<li>关于调整交易的最大CU: <a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
-</li>
-<li><p>Prioritization fee 的计算取决于：</p>
-<ul>
-<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
-<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
-<li>如果不提供此值， 则交易无priority fee</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>如何设置  <code>prioritization fee</code> ？</p>
-<ul>
-<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
-<li>注意：<ul>
-<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
-<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
-</ul>
-</li>
-<li>更多：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>租金<ul>
-<li>获取租金豁免: <a target="_blank" rel="noopener" href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
-<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
 </ul>
 </li>
 </ul>

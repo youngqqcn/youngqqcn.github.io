@@ -106,6 +106,124 @@
     
     
     <article
+  id="post-technology/blockchain/solana/3_Solana的手续费"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/"
+    >3_Solana的手续费</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/07/09/technology/blockchain/solana/3_Solana%E7%9A%84%E6%89%8B%E7%BB%AD%E8%B4%B9/" class="article-date">
+  <time datetime="2024-07-09T11:31:00.000Z" itemprop="datePublished">2024-07-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Solana手续费"><a href="#Solana手续费" class="headerlink" title="Solana手续费"></a>Solana手续费</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>Transaction Fees(base fee) : 交易费</li>
+<li>Prioritization Fees : 可选的,加速交易的手续费<ul>
+<li>给矿工</li>
+</ul>
+</li>
+<li>Rent: 账户租金(充值)</li>
+</ul>
+<ul>
+<li><p>交易手续费的分配：</p>
+<ul>
+<li><code>50%</code>: 交易费直接燃烧</li>
+<li><code>50%</code>: 给矿工</li>
+</ul>
+</li>
+<li><p>交易中的每个签名需要支付<code>5000</code> lamports</p>
+</li>
+<li><p>交易执行限制：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://solana.com/docs/core/fees#compute-unit-limit">https://solana.com/docs/core/fees#compute-unit-limit</a></p>
+</blockquote>
+<ul>
+<li>每个指令最大计算单元(CU): <code>200000</code> CU</li>
+<li><strong>绝对的交易的最大计算单元(CU)</strong>: <code>1400000</code> CU<ul>
+<li>这个是Solana的上限，不管如何调整都不能突破这个限制</li>
+<li>交易中可以设置最大执行单元，但是最大不能超过系统的最大限制</li>
+<li>关于调整交易的最大CU: <a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>计算单元(CU)价格： 如果需要加速交易，需要设置 <code>compute unit price</code>, 并且设置<code>compute unit limit</code>, 这2个参数用来决定交易的  <code>priority fee</code></p>
+</li>
+<li><p>Prioritization fee 的计算取决于：</p>
+<ul>
+<li><code>SetComputeUnitLimit</code> : 设置交易最大能够消耗的CU</li>
+<li><code>SetComputeUnitPrice</code> : CU价格,来加速<ul>
+<li>如果不提供此值， 则交易无priority fee</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何设置  <code>prioritization fee</code> ？</p>
+<ul>
+<li>交易需要包含2个指令<code>SetComputeUnitLimit</code> 和 <code>SetComputeUnitPrice</code></li>
+<li>注意：<ul>
+<li>这2个指令<strong>不需要任何账户</strong> , 这不同于其他指令</li>
+<li>同一种计算单元指令类型不能重复，否则会报错<code>TransactionError::DuplicateInstruction</code></li>
+</ul>
+</li>
+<li>更多：<a target="_blank" rel="noopener" href="https://solana.com/developers/guides/advanced/how-to-request-optimal-compute">https://solana.com/developers/guides/advanced/how-to-request-optimal-compute</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>租金<ul>
+<li>获取租金豁免: <a target="_blank" rel="noopener" href="https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption">https://solana.com/docs/rpc/http/getminimumbalanceforrentexemption</a></li>
+<li>垃圾账户回收： solana会将不能支付租金的账户进行回收，回收之后，账户在区块浏览器上显示”account not found”, 但是这个账户的历史交易仍然可以查询</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%98%93/" rel="tag">交易</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/2_Solana交易和指令"
   class="article article-type-post"
   itemscope
@@ -843,109 +961,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeFi/" rel="tag">DeFi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MEV/" rel="tag">MEV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%92%B1%E5%8C%85/" rel="tag">智能合约钱包</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/solidity/学习课程"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/"
-    >智能合约课程大纲</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/05/23/technology/blockchain/solidity/%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/" class="article-date">
-  <time datetime="2024-05-23T16:00:00.000Z" itemprop="datePublished">2024-05-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>登链社区的培训课程大纲, 非常全面，可以借鉴学习</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/openspace/1">https://learnblockchain.cn/openspace/1</a></p>
-</blockquote>
-<h2 id="课程大纲"><a href="#课程大纲" class="headerlink" title="课程大纲"></a>课程大纲</h2><h3 id="夯实基础"><a href="#夯实基础" class="headerlink" title="夯实基础"></a>夯实基础</h3><ul>
-<li>比特币、以太坊核心技术原理，核心概念：钱包账号、交易调用、GAS 机制</li>
-<li>Remix &amp; Solidity 语言特性：数据类型、函数、库、事件、异常处理、OpenZeppelin</li>
-<li>开发工具：MetaMask、Hardhat、Foundry，如何进行编译、部署、代码验证</li>
-<li>测试：Foundry作弊码使用、Fork 链模拟测试、模糊测试</li>
-<li>ERC 标准介绍及实战：ERC20、ERC777、EIP2612、ERC721、ERC1155 及 SBT</li>
-<li>理解合约 ABI</li>
-<li>跟踪链上数据：解析合约事件与TheGraph 使⽤</li>
-<li>使用 Oracle 预言机、Keeper 服务，进行链上链下自动化交互</li>
-<li>前端 web3 SDK 集成：ethers.js ，viem，wagmi ，walletconnect 原理及应用</li>
-</ul>
-<h3 id="合约开发进阶"><a href="#合约开发进阶" class="headerlink" title="合约开发进阶"></a>合约开发进阶</h3><ul>
-<li>探究升级原理及可能遇到问题，实践合约升级模式：透明代理及 UUPS</li>
-<li>理解底层调用call、delegatecall，什么时候用、该如何用，有什么风险；</li>
-<li>理解 Multicall 解决什么问题</li>
-<li>离线签名的作用、如何安全的应用离线签名、线上验证</li>
-<li>智能合约钱包、多签钱包、AA 钱包</li>
-<li>跨链交互</li>
-<li>探究 EVM ，理解合约字节码</li>
-<li>Solidity 合约数据存储布局</li>
-<li>Gas 优化技巧：数据结构优化和使用、链上与链下权衡</li>
-<li>高级安全技术及漏洞挑战：重入攻击、不安全的随机数、权限漏洞</li>
-<li>大量 CTF 挑战实战，培养优秀代码思维</li>
-<li>Flashbots 应用</li>
-</ul>
-<h3 id="DeFi-算法"><a href="#DeFi-算法" class="headerlink" title="DeFi 算法"></a>DeFi 算法</h3><ul>
-<li>核心 DEFI 协议分析： Uniswap、 Compound、AAVE 、MakerDAO 等</li>
-<li>AMM DEX 实践</li>
-<li>借贷算法 Compound</li>
-<li>质押分红算法</li>
-<li>算法稳定币</li>
-</ul>
-<h3 id="Rollup-二层"><a href="#Rollup-二层" class="headerlink" title="Rollup 二层"></a>Rollup 二层</h3><ul>
-<li>Op-Stack 架构、Rollup 流程、跨链调用</li>
-<li>深入理解 ETH 和 ERC20 充值提现</li>
-<li>本地启动 op-Stack 测试网</li>
-<li>开发自己的的 Layer2 链</li>
-<li>模块化区块链、以太坊 DA（EIP4844 ）与 Celestia 等</li>
-<li>EigenLayer 重质押与 EigenDA</li>
-</ul>
-<h3 id="应用开发"><a href="#应用开发" class="headerlink" title="应用开发"></a>应用开发</h3><ul>
-<li>实现一个你自己的创意想法（学员组队完成）</li>
-<li>构建一个 DEX 、 Token 质押应用</li>
-<li>构建 NFT 市场</li>
-<li>构建抽象账户（AA）钱包</li>
-<li>构建一个区块链浏览器</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li></ul>
 
     </footer>
   </div>

@@ -106,6 +106,59 @@
     
     
     <article
+  id="post-technology/rust/0_Rust核心_基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/"
+    >0_Rust核心_基础</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/09/26/technology/rust/0_Rust%E6%A0%B8%E5%BF%83_%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2024-09-26T08:46:00.000Z" itemprop="datePublished">2024-09-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><a target="_blank" rel="noopener" href="https://course.rs/">https://course.rs/</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/" rel="tag">Rust</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-technology/blockchain/solana/19_solana的SPL-Token-Mint创建流程"
   class="article article-type-post"
   itemscope
@@ -464,139 +517,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solana/" rel="tag">Solana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AB%98%E7%BA%A7/" rel="tag">高级</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-technology/blockchain/prediction/Polymarket技术分析"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/"
-    >Polymarket技术分析</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2024/08/12/technology/blockchain/prediction/Polymarket%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2024-08-12T11:00:00.000Z" itemprop="datePublished">2024-08-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Polymarket技术分析</p>
-<p>polymarket介绍:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.polymarket.com/what-is-polymarket">https://learn.polymarket.com/what-is-polymarket</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/polymarket.png"></p>
-<p>关键概念:</p>
-<ul>
-<li><p>预测事件: 二元事件，即结果是发生和不发生</p>
-<ul>
-<li>例如:<ul>
-<li>特朗普赢得2024大选，其结果是 <code>Yes</code> 和 <code>No</code></li>
-<li>谁将赢得2024大选? 有多个候选人，但是每个候选人最后的结果只有<code>2种</code>: <code>Yes</code> 和 <code>No</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>shares: 股份， 即持有某个预测的凭证， 实际上是ERC1155代币, 可以理解为股份</p>
-</li>
-<li><p>用户可以买入或卖出某个事件的 Yes的shares 或 No的shares</p>
-</li>
-<li><p>关于价格: <code>0-1</code>美金的价格, 对应当前市场对于该事件的概率(<code>0-1</code>)预测, polymarket使用美分<code>¢</code> , <code>1美元 = 100美分</code></p>
-<ul>
-<li>例如： 特朗普赢得2024大选的事件<ul>
-<li>目前 <code>Yes</code>的Shares的市场价格是 <code>45¢</code> , 代表目前市场对于特朗普赢得大选的预测的概率是 <code>45%</code></li>
-<li>目前 <code>No</code>的shares的市场价格是 <code>56¢</code>, 即与 <code>Yes</code>的概率相反， 是<code>56%</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>可以使用 <code>市价</code> 和 <code>限价</code>进行<code>买入</code>或<code>卖出</code>，</p>
-<ul>
-<li>例如:<ul>
-<li><code>市价</code>买入， 则买入价格是 <code>卖1</code>的价格;</li>
-<li><code>市价</code>卖出，则卖出价格是 <code>买1</code>的价格</li>
-</ul>
-</li>
-<li>例如：<ul>
-<li>当前某事件的<code>Yes</code>市价是 <code>45¢</code>, 你挂单 <code>40¢</code>的买入单，则需要等待有<code>40¢</code>卖出单(可以部分成交)才能撮合</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>关于清算: 如果事件发生了，那么每股清算价格为<code>1$</code>, 即 <code>100¢</code>; 如果事件没有发生，则每股清算价格为 <code>0</code><ul>
-<li>例如，你觉得特朗普会赢得2024大选， 那么你按照<code>Yes</code>市价 <code>45¢</code>买入10股,即 <code>450¢</code>, 即<code>4.5$</code> , 如果特朗普赢了大选， 每股的价格是 <code>100¢</code>, 即<code>1$</code>,那么，你最终将获得是： <code>100 * 10 = 1000¢</code> , 那么你的利润是 <code>1000 - 450 = 550</code>, 即 <code>5.5$</code>; 如果特朗普输了大选， 则你损失全部的 <code>450¢</code> , 即<code>4.5$</code>.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>是否可以下注高赔率的事件（加杠杆）?</p>
-<ul>
-<li><p>需要有对手单，polymarket并没有提供杠杆玩法，即polymarket不坐庄，用户实际上是和其他用户做对手单</p>
-</li>
-<li><p>例如:</p>
-<ul>
-<li>你非常不看好特朗普, 觉得他赢得大选概率为<code>0</code>，那么你用 <code>1¢</code>的价格挂一个买入 <code>Yes</code>的单，数量为<code>1000</code>股, 那么， 理论上说，如果事件没有发生，你可以获得 <code>1000$</code>, 利润是 <code>990$</code>, 相当于赔率是 <code>1000倍</code></li>
-<li>但是，你的这笔挂单需要有一个<code>对手单</code>， 即市场上有一另外一个赌徒，他非常看好特朗普，觉得特朗普100%会赢得大选</li>
-</ul>
-</li>
-<li><p>为了方便起见，使用<code>(BUY, YES, 1) * 1000</code> 表示按照每股1美分的价格买入YES股的1000股</p>
-</li>
-<li><p>上面的例子: 形成对手单，有2种方式</p>
-<ul>
-<li>第一种: 直接方式<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 的直接对手单是 <code>(SELL, YES, 1) * 1000</code>, 即之前有一个已经有 1000股 <code>YES</code>, 他卖给你</li>
-</ul>
-</li>
-<li>第二种: 间接方式, 因为 <code>YES</code>和<code>NO</code> 是共享订单簿的<ul>
-<li><code>(BUY, YES, 1) * 1000</code> 与 <code>(SELL, NO, 99) * 1000</code> 等价, 可以理解逆否命题</li>
-<li><code>(SELL, NO, 99) * 1000</code> 的对手单是 <code>(BUY, NO, 99) * 1000</code>,</li>
-<li>因此， <code>(BUY, NO, 99) * 1000</code> 也是 <code>(BUY, YES, 1) * 1000</code>的间接对手单，</li>
-<li>可以理解为, 市场上有一个人, 按照 99美分的价格<strong>买入</strong>1000股<code>YES</code>, 和你形成对手单</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Polymarket/" rel="tag">Polymarket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prediction-market/" rel="tag">prediction market</a></li></ul>
 
     </footer>
   </div>
