@@ -286,3 +286,60 @@ SecurityWeek 报道的就是同一类手法：攻击者利用这个 XSS，把访
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-18-02-48.png)
 
 ![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-18-05-02.png)
+
+
+# 为什么能在Google搜索中看到这个链接
+
+简单说：**Google 不需要网站所有者的同意，只要有人把这个链接放到它能爬到的地方，它就会去抓。** 具体怎么做的我没法确认，下面分"能从截图验证的"和"合理推断的"两部分。
+
+## 一、你的截图本身就是证据
+
+搜索结果里显示的内容，和我们读到的 GitHub 源码完全对得上：
+
+- **标题**：`LIVE Twente vs Ajax Football Live fRee Reddit`，就是 GitHub 页面的 `<title>`。
+- **摘要**："Everything you need to know about the Twente vs Ajax. Find score, results..."，就是那页的 meta description。
+- **站点名显示为 "Sky Sports"**：政府站的名字后面跟着 Sky Sports，是因为仿冒页里写了 `og:site_name`、`application-name` 都是 "Sky Sports"。
+- **视频缩略图**：来自页面里伪造的 VideoObject 结构化数据。
+
+这说明 Google 抓到并渲染了 JavaScript 执行后的内容：政府站的 krpano 页面加载 XML，XML 里的脚本把 GitHub 上的假页面 `document.write` 进来，Google 的渲染器把它当成了这个 URL 的正文。所以 Google 眼里，`data.cqna.gov.cn` 的这个地址就是一篇"Twente vs Ajax 直播"页面。
+
+## 二、链接是怎么被 Google 发现的（推断）
+
+Google 主要靠**顺着链接爬**。一个带参数的恶意 URL，对 Google 来说只是普通网址，不需要在目标站上做任何手脚。攻击者要做的只是让这个链接出现在 Google 常爬的地方，常见做法有：
+
+- 在论坛、博客评论、留言板、问答站批量发带链接的垃圾帖
+- 搭建或租用一批站群，互相链接
+- 在 GitHub、Pastebin、社交平台等高频被爬的地方放链接
+- 用自动化工具批量生成，每场比赛换一批 id
+
+SecurityWeek 对同类攻击的描述是：攻击者利用 SEO 投毒，把用户引到承载恶意重定向的页面上。手法一致，但我没有看到这次具体用了哪些外链，所以这部分是基于常规做法的判断。
+
+## 三、为什么能排得靠前
+
+| 因素 | 说明 |
+|---|---|
+| **高权重域名** | `.gov.cn` 在搜索系统里信誉高，借它的权重，新页面不用从零积累 |
+| **每个参数都是新页面** | `id=` 不同就是不同的 URL，一个漏洞页面可以"长出"无限个关键词页 |
+| **URL 里就带关键词** | `video-live-twente-vs-ajax-football-live-free-reddit...` 本身就是关键词匹配 |
+| **热点时效** | 比赛前后"live"类搜索量暴涨，竞争的正规页面反而少 |
+| **长尾词** | "twente vs ajax live free reddit" 这类词，正规站点不会专门去做 |
+
+你截图里 "11 hours ago""17 hours ago" 说明这些页面被**很快抓取、收录**，符合"赛前集中投放"的节奏。
+
+## 四、为什么 Google 没及时拦住
+
+这是我的推测，没有 Google 内部信息：
+
+- 页面内容靠 JavaScript 加载，爬虫要渲染后才看得到，检测比抓静态页面更难。
+- 这些页面生命周期极短，比赛一结束就没价值，等反垃圾系统识别并处理时，流量已经赚完了。
+- 每次换 id、换账号，规则很难一刀切。
+
+## 五、你可以自己验证
+
+在 Google 里搜：
+
+```
+site:data.cqna.gov.cn live
+```
+
+如果这个政府域名下出现大量同类标题的结果，就说明这是批量投放而不是个例。数量越多，说明问题越严重，举报时也可以把这个搜索结果截图附上。
