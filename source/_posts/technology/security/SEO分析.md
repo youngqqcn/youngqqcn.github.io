@@ -278,3 +278,11 @@ Google 搜索垃圾结果
 
 SecurityWeek 报道的就是同一类手法：攻击者利用这个 XSS，把访客从大机构网站的页面重定向到任意域名，并用 SEO 投毒引流，目的地包括成人内容、赌场、黑客服务等可疑站点。你看到的"政府站 → 跳转 → 盗版直播"是同一套打法，只是换成了体育赛事关键词。
 
+
+# 进一步排查
+
+在Google搜索 `site:data.cqna.gov.cn live`，返现大量类似的SEO投毒链接
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-18-02-48.png)
+
+![](https://raw.githubusercontent.com/youngqqcn/repo4picgo/master/img/2026-11-09-18-05-02.png)
